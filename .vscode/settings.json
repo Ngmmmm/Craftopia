@@ -1,7 +1,7 @@
 {
     "java.project.sourcePaths": [
-        "src",
-        "."
+        "Craftopia/src",
+        "src"
     ],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": []
