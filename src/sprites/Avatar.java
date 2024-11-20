@@ -63,6 +63,15 @@ public final class Avatar extends Sprite {
             direction = "right";
             this.x += this.speed;
         }
+        spriteCounter++;
+        if (spriteCounter>200) {
+            if (spriteNum==1) {
+                spriteNum=2;
+            }
+            else if(spriteNum==2){
+                spriteNum=1;
+            }
+        }
     }
 
     public void draw(Graphics2D g2) {
@@ -71,13 +80,42 @@ public final class Avatar extends Sprite {
 
         BufferedImage image = null;
         switch (direction) {
-            case "up" -> image = up1;
-            case "down" -> image = down1;
-            case "right" -> image = right1;
-            case "left" -> image = left1;
+            case "up" -> {
+                if (spriteNum == 1) {
+                    image = up1;
+                }
+                if (spriteNum == 2) {
+                    image = up2;
+                }
+            }
+            case "down" -> {
+                if (spriteNum == 1) {
+                    image = down1;
+                }
+                if (spriteNum == 2) {
+                    image = down2;
+                }
+            }
+            case "right" -> {
+                if (spriteNum == 1) {
+                    image = right1;
+                }
+                if (spriteNum == 2) {
+                    image = right2;
+                }
+            }
+            case "left" -> {
+                if (spriteNum == 1) {
+                    image = left1;
+                }
+                if (spriteNum == 2) {
+                    image = left2;
+                }
+            }
             default -> {
             }
         }
+
         g2.drawImage(image, x, y, gp.tailleBloc, gp.tailleBloc, null);
     }
 }
