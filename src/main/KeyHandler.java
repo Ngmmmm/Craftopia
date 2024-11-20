@@ -1,3 +1,4 @@
+package main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -6,7 +7,7 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener {
     // Déclaration de 2 variables booléenne pour savoir si les touches flèche droit
     // ou flèche gauche sont actives
-    public boolean leftPressed, rightPressed;
+    public boolean leftPressed, rightPressed, upPressed, downPressed;
 
     @Override
     public void keyTyped(KeyEvent e) { // Méthode obligatoire pour l'implémentation de la classe
@@ -23,6 +24,12 @@ public class KeyHandler implements KeyListener {
         if (toucheCode == KeyEvent.VK_RIGHT) {
             rightPressed = true;
         }
+        if (toucheCode == KeyEvent.VK_UP) {
+            upPressed = true;
+        }
+        if (toucheCode == KeyEvent.VK_DOWN) {
+            downPressed = true;
+        }
     }
 
     @Override
@@ -34,6 +41,12 @@ public class KeyHandler implements KeyListener {
         }
         if (toucheCode == KeyEvent.VK_RIGHT) {
             rightPressed = false;
+        }
+        if (toucheCode == KeyEvent.VK_UP) {
+            upPressed = false;
+        }
+        if (toucheCode == KeyEvent.VK_DOWN) {
+            downPressed = false;
         }
     }
 
