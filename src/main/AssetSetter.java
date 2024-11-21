@@ -1,6 +1,6 @@
 package main;
 
-import ressources.Bois;
+import ressources.Fer;
 
 public class AssetSetter {
 
@@ -11,7 +11,7 @@ public class AssetSetter {
     }
 
     public void setObjet(){
-        gp.objet[0] = new Bois();
+        gp.objet[0] = new Fer();
         gp.objet[0].posX = 3 * gp.tailleBloc;
         gp.objet[0].posY = 2 * gp.tailleBloc;
 
