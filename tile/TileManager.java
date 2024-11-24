@@ -1,0 +1,36 @@
+package tile;
+
+import java.io.File;
+import java.io.IO;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import main.GamePanel;
+
+public class TileManager {
+    GamePanel gp;
+    Tile[] tile;
+
+    public TileManager(GamePanel gp) {
+        this.gp = gp;
+        this.tile = new Tile[10];
+        getTileImage();
+    }
+
+    public void getTileImage(){
+        try {
+            tile[0] = new Tile();
+            tile[0].image= ImageIO.read(new File("./img/tiles/grass.png"));
+
+            tile[1] = new Tile();
+            tile[1].image= ImageIO.read(new File("./img/tiles/water.png"));
+
+            tile[2] = new Tile();
+            tile[2].image= ImageIO.read(new File("./img/tiles/brickwall.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
