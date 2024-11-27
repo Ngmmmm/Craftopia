@@ -21,7 +21,7 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {// Méthode qui check les touches appuyées et mets leurs valeur à true
         int toucheCode = e.getKeyCode();
-        if (gp.gameState == gp.titleState){
+        if (gp.gameState == gp.TITLE_STATE){
             if (toucheCode == KeyEvent.VK_UP) {
                 if(gp.ui.commandeNum > 0){
                     gp.ui.commandeNum--;

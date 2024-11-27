@@ -16,7 +16,7 @@ public class Ui {
     public void draw (Graphics2D g2){
         this.g2 = g2;
 
-        if(gp.gameState == gp.titleState){
+        if(gp.gameState == gp.TITLE_STATE){
             drawTitleScreen();
         }else{
             g2.setFont(new Font("Arial", Font.PLAIN, 40));

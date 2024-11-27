@@ -35,7 +35,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     public int gameState;
-    public final int titleState = 0;
+    public final int TITLE_STATE = 0;
     public final int playState = 1;
 
     int avatarX = 100;
@@ -58,7 +58,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setupGame(){
         aSetter.setObjet();
-        gameState = titleState;
+        gameState = TITLE_STATE;
     }
 
     // Méthode pour démarrer le thread du jeu
@@ -104,7 +104,7 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
 
         //TITLESCREEN
-        if (gameState == titleState){
+        if (gameState == TITLE_STATE){
             ui.draw(g2);
             
 
