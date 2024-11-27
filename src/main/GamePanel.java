@@ -7,23 +7,25 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 import ressources.*;
 import sprites.Avatar;
+import tile.TileManager;
 
 // La classe GamePanel hérite de JPanel et implémente l'interface Runnable (nécessaire pour le fonctionnement)
 public class GamePanel extends JPanel implements Runnable {
 
-    // * PARAMÈTRES DE L'ÉCRAN
+    // * PARAMÈTRES DE L'ÉCRAN 
 
     final int tailleOriginalBloc = 16; // Taille originale d'un bloc (en pixels)
     final int facteurEchelle = 3; // Facteur d'agrandissement des blocs
     public final int tailleBloc = tailleOriginalBloc * facteurEchelle; // Taille d'un bloc en pixels (tailleOriginaleBloc *
                                                                 // facteurEchelle)
-    final int nbColonneMax = 16; // Nombre de colonnes maximum sur l'écran
-    final int nbLigneMax = 12;// Nombre de lignes maximum sur l'écran
-    final int largeurEcran = tailleBloc * nbColonneMax; // Largeur de l'écran (tailleBloc * nbColonneMax)
-    final int hauteurEcran = tailleBloc * nbLigneMax; // Hauteur de l'écran (tailleBloc * nbLigneMax)
+    public final int nbColonneMax = 16; // Nombre de colonnes maximum sur l'écran
+    public final int nbLigneMax = 12;// Nombre de lignes maximum sur l'écran
+    public final int largeurEcran = tailleBloc * nbColonneMax; // Largeur de l'écran (tailleBloc * nbColonneMax)
+    public final int hauteurEcran = tailleBloc * nbLigneMax; // Hauteur de l'écran (tailleBloc * nbLigneMax)
 
     int FPS = 60; // FPS (Frames Par Seconde)
 
+    TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler(this); // Instance de KeyHandler pour gérer les événements clavier
 
     Thread gameThread;// Thread pour le jeu
