@@ -12,8 +12,8 @@ public class AssetSetter {
 
     public void setObjet(){
         gp.objet[0] = new Fer();
-        gp.objet[0].posX = 3 * gp.tailleBloc;
-        gp.objet[0].posY = 2 * gp.tailleBloc;
+        gp.objet[0].pos.x = 3 * gp.TAILLE_BLOC;
+        gp.objet[0].pos.y = 2 * gp.TAILLE_BLOC;
 
     }
 

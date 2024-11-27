@@ -14,15 +14,15 @@ public class GamePanel extends JPanel implements Runnable {
 
     // * PARAMÈTRES DE L'ÉCRAN
 
-    final int tailleOriginalBloc = 16; // Taille originale d'un bloc (en pixels)
-    final int facteurEchelle = 3; // Facteur d'agrandissement des blocs
-    public final int tailleBloc = tailleOriginalBloc * facteurEchelle; // Taille d'un bloc en pixels
-                                                                       // (tailleOriginaleBloc *
-    // facteurEchelle)
-    public final int nbColonneMax = 16; // Nombre de colonnes maximum sur l'écran
-    public final int nbLigneMax = 12;// Nombre de lignes maximum sur l'écran
-    public final int largeurEcran = tailleBloc * nbColonneMax; // Largeur de l'écran (tailleBloc * nbColonneMax)
-    public final int hauteurEcran = tailleBloc * nbLigneMax; // Hauteur de l'écran (tailleBloc * nbLigneMax)
+    final int TAILLE_BLOC_ORIGINAL = 16; // Taille originale d'un bloc (en pixels)
+    final int FACTEUR_ECHELLE = 3; // Facteur d'agrandissement des blocs
+    public final int TAILLE_BLOC = TAILLE_BLOC_ORIGINAL * FACTEUR_ECHELLE; // Taille d'un bloc en pixels
+    // (tailleOriginaleBloc *
+    // FACTEUR_ECHELLE)
+    public final int NB_COLONNE_MAX = 16; // Nombre de colonnes maximum sur l'écran
+    public final int NB_LIGNE_MAX = 12;// Nombre de lignes maximum sur l'écran
+    public final int LARGEUR_ECRAN = TAILLE_BLOC * NB_COLONNE_MAX; // Largeur de l'écran (TAILLE_BLOC * NB_COLONNE_MAX)
+    public final int HAUTEUR_ECRAN = TAILLE_BLOC * NB_LIGNE_MAX; // Hauteur de l'écran (TAILLE_BLOC * NB_LIGNE_MAX)
 
     int FPS = 60; // FPS (Frames Par Seconde)
 
@@ -47,7 +47,7 @@ public class GamePanel extends JPanel implements Runnable {
     // Constructeur de GamePanel
     public GamePanel() {
         // Définir la taille préférée du panneau
-        this.setPreferredSize(new Dimension(largeurEcran, hauteurEcran));
+        this.setPreferredSize(new Dimension(LARGEUR_ECRAN, HAUTEUR_ECRAN));
         // Définir la couleur de fond du panneau
         this.setBackground(Color.BLACK);
         // Activer le double buffering pour améliorer les performances
@@ -105,8 +105,8 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        //TITLESCREEN
-        if (gameState == TITLE_STATE){
+        // TITLESCREEN
+        if (gameState == TITLE_STATE) {
             ui.draw(g2);
 
         } else {

@@ -1,6 +1,7 @@
 package tile;
 
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
 
@@ -36,17 +37,17 @@ public class TileManager {
     public void draw(Graphics2D g2) {
         int col = 0;
         int lignes = 0;
-        int x = 0;
-        int y = 0;
-        while (col < gp.nbColonneMax && lignes < gp.nbLigneMax) {
-            g2.drawImage(tile[0].image, x, y, gp.tailleBloc, gp.tailleBloc, null);
+        Point pos = new Point(0, 0);
+
+        while (col < gp.NB_COLONNE_MAX && lignes < gp.NB_LIGNE_MAX) {
+            g2.drawImage(tile[0].image, pos.x, pos.y, gp.TAILLE_BLOC, gp.TAILLE_BLOC, null);
             col++;
-            x += gp.tailleBloc;
-            if (col == gp.nbColonneMax) {
+            pos.x += gp.TAILLE_BLOC;
+            if (col == gp.NB_COLONNE_MAX) {
                 col = 0;
-                x = 0;
+                pos.x = 0;
                 lignes++;
-                y += gp.tailleBloc;
+                pos.y += gp.TAILLE_BLOC;
             }
         }
     }
