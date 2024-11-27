@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
+import ressources.*;
 import sprites.Avatar;
 
 // La classe GamePanel hérite de JPanel et implémente l'interface Runnable (nécessaire pour le fonctionnement)
@@ -23,11 +24,19 @@ public class GamePanel extends JPanel implements Runnable {
 
     int FPS = 60; // FPS (Frames Par Seconde)
 
-    KeyHandler keyH = new KeyHandler(); // Instance de KeyHandler pour gérer les événements clavier
+    KeyHandler keyH = new KeyHandler(this); // Instance de KeyHandler pour gérer les événements clavier
 
     Thread gameThread;// Thread pour le jeu
+    AssetSetter aSetter = new AssetSetter(this);
+    Ui ui = new Ui(this);
     Avatar avatar = new Avatar(this, keyH);
     // * POSITION PAR DEFAUT DU JOUEUR
+    public Objet objet[] = new Objet[10];
+
+
+    public int gameState;
+    public final int titleState = 0;
+    public final int playState = 1;
 
     int avatarX = 100;
     int avatarY = 100;
@@ -45,6 +54,11 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyH);
         // Rendre le panneau focusable pour recevoir les événements clavier
         this.setFocusable(true);
+    }
+
+    public void setupGame(){
+        aSetter.setObjet();
+        gameState = titleState;
     }
 
     // Méthode pour démarrer le thread du jeu
@@ -88,8 +102,26 @@ public class GamePanel extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+
+        //TITLESCREEN
+        if (gameState == titleState){
+            ui.draw(g2);
+            
+
+        }else{
+            //OBJET
+        for (int i = 0; i<objet.length;i++){
+            if (objet[i] != null){
+                objet[i].draw(g2, this);
+            }
+        }
+
+        //PLAYER
         avatar.draw(g2);
         g2.dispose();
+
+        }
+
 
     }
 

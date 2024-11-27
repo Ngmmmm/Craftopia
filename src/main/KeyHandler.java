@@ -7,16 +7,46 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener {
     // Déclaration de 2 variables booléenne pour savoir si les touches flèche droit
     // ou flèche gauche sont actives
+    GamePanel gp;
+    public KeyHandler(GamePanel gp) {
+        this.gp = gp;
+    }
     public boolean leftPressed, rightPressed, upPressed, downPressed;
 
     @Override
     public void keyTyped(KeyEvent e) { // Méthode obligatoire pour l'implémentation de la classe
-
+    
     }
 
     @Override
-    public void keyPressed(KeyEvent e) { // Méthode qui check les touches appuyées et mets leurs valeur à true
+    public void keyPressed(KeyEvent e) {// Méthode qui check les touches appuyées et mets leurs valeur à true
         int toucheCode = e.getKeyCode();
+        if (gp.gameState == gp.titleState){
+            if (toucheCode == KeyEvent.VK_UP) {
+                if(gp.ui.commandeNum > 0){
+                    gp.ui.commandeNum--;
+                }
+            }
+            if (toucheCode == KeyEvent.VK_DOWN) {
+                if(gp.ui.commandeNum < 2){
+                    gp.ui.commandeNum++;
+                }
+            }
+            if(toucheCode == KeyEvent.VK_ENTER){
+                if(gp.ui.commandeNum == 0){
+                    gp.gameState = gp.playState;
+                }
+                if(gp.ui.commandeNum == 1){
+                    gp.gameState = gp.playState;
+                }
+                if(gp.ui.commandeNum == 2){
+                    System.exit(0);
+                }
+            }
+
+        }
+
+
 
         if (toucheCode == KeyEvent.VK_LEFT) {
             leftPressed = true;
@@ -30,6 +60,8 @@ public class KeyHandler implements KeyListener {
         if (toucheCode == KeyEvent.VK_DOWN) {
             downPressed = true;
         }
+
+        
     }
 
     @Override

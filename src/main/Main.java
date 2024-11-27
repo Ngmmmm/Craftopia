@@ -35,6 +35,7 @@ public class Main { // Définition de la classe principale
         // Affichage de la fenêtre
         fenetre.setVisible(true);
 
+        ecranDuJeu.setupGame();
         // Démarrage du thread de jeu
         ecranDuJeu.startGameThread();
     }
