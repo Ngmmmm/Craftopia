@@ -20,8 +20,8 @@ public final class Avatar extends Sprite {
     }
 
     public void setValeurParDefaut() {
-        this.pos.x = 100;
-        this.pos.y = 100;
+        pos.x = 100;
+        pos.y = 100;
         this.speed = 4;
         direction = "down";
     }

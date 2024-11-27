@@ -13,7 +13,6 @@ public class Objet {
     public Point pos;
 
     public void draw(Graphics2D g2, GamePanel gp){
-        
         g2.drawImage(image, pos.x, pos.y,null);
 
 
