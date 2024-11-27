@@ -12,12 +12,13 @@ import tile.TileManager;
 // La classe GamePanel hérite de JPanel et implémente l'interface Runnable (nécessaire pour le fonctionnement)
 public class GamePanel extends JPanel implements Runnable {
 
-    // * PARAMÈTRES DE L'ÉCRAN 
+    // * PARAMÈTRES DE L'ÉCRAN
 
     final int tailleOriginalBloc = 16; // Taille originale d'un bloc (en pixels)
     final int facteurEchelle = 3; // Facteur d'agrandissement des blocs
-    public final int tailleBloc = tailleOriginalBloc * facteurEchelle; // Taille d'un bloc en pixels (tailleOriginaleBloc *
-                                                                // facteurEchelle)
+    public final int tailleBloc = tailleOriginalBloc * facteurEchelle; // Taille d'un bloc en pixels
+                                                                       // (tailleOriginaleBloc *
+    // facteurEchelle)
     public final int nbColonneMax = 16; // Nombre de colonnes maximum sur l'écran
     public final int nbLigneMax = 12;// Nombre de lignes maximum sur l'écran
     public final int largeurEcran = tailleBloc * nbColonneMax; // Largeur de l'écran (tailleBloc * nbColonneMax)
@@ -34,7 +35,6 @@ public class GamePanel extends JPanel implements Runnable {
     Avatar avatar = new Avatar(this, keyH);
     // * POSITION PAR DEFAUT DU JOUEUR
     public Objet objet[] = new Objet[10];
-
 
     public int gameState;
     public final int titleState = 0;
@@ -58,7 +58,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
     }
 
-    public void setupGame(){
+    public void setupGame() {
         aSetter.setObjet();
         gameState = titleState;
     }
@@ -105,25 +105,27 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        //TITLESCREEN
-        if (gameState == titleState){
+        // TITLESCREEN
+        if (gameState == titleState) {
             ui.draw(g2);
-            
 
-        }else{
-            //OBJET
-        for (int i = 0; i<objet.length;i++){
-            if (objet[i] != null){
-                objet[i].draw(g2, this);
+        } else {
+            // MAP
+            tileM.draw(g2);
+            // OBJET
+            for (int i = 0; i < objet.length; i++) {
+                if (objet[i] != null) {
+                    objet[i].draw(g2, this);
+                }
             }
+
+            // PLAYER
+
+            avatar.draw(g2);
+
+            g2.dispose();
+
         }
-
-        //PLAYER
-        avatar.draw(g2);
-        g2.dispose();
-
-        }
-
 
     }
 
