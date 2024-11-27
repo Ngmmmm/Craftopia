@@ -10,7 +10,7 @@ public class Objet {
     public BufferedImage image;
     String name;
     public boolean collision = false;
-    public Point pos;
+    public Point pos = new Point();
 
     public void draw(Graphics2D g2, GamePanel gp){
         g2.drawImage(image, pos.x, pos.y,null);
