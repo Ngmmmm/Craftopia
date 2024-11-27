@@ -20,7 +20,6 @@ public class Main { // Définition de la classe principale
         ImageIcon logo = new ImageIcon("img/CraftopiaLogo.jpeg");
         // ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("resources/img/CraftopiaLogo.jpeg"));
         fenetre.setIconImage(logo.getImage());
-       
 
         // Création d'une nouvelle instance de GamePanel
         GamePanel ecranDuJeu = new GamePanel();

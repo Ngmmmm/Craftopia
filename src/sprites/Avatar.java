@@ -20,8 +20,8 @@ public final class Avatar extends Sprite {
     }
 
     public void setValeurParDefaut() {
-        this.x = 100;
-        this.y = 100;
+        this.pos.x = 100;
+        this.pos.y = 100;
         this.speed = 4;
         direction = "down";
     }
@@ -59,20 +59,20 @@ public final class Avatar extends Sprite {
 
     public void update() {
 
-        if(keyH.upPressed||keyH.downPressed||keyH.leftPressed||keyH.rightPressed){
-            
+        if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
+
             if (keyH.upPressed) {
                 direction = "up";
-                this.y -= this.speed;
+                this.pos.y -= this.speed;
             } else if (keyH.downPressed) {
                 direction = "down";
-                this.y += this.speed;
+                this.pos.y += this.speed;
             } else if (keyH.leftPressed) {
                 direction = "left";
-                this.x -= this.speed;
+                this.pos.x -= this.speed;
             } else if (keyH.rightPressed) {
                 direction = "right";
-                this.x += this.speed;
+                this.pos.x += this.speed;
             }
             spriteCounter++;
             if (spriteCounter > 12) {
@@ -84,17 +84,14 @@ public final class Avatar extends Sprite {
                     }
                 }
             }
-        }
-        else{
+        } else {
             direction = "down";
             spriteNum = 2;
         }
-        
+
     }
 
     public void draw(Graphics2D g2) {
-        // g2.setColor(Color.RED);
-        // g2.fillRect(this.x, this.y, gp.tailleBloc, gp.tailleBloc);
 
         BufferedImage image = null;
         switch (direction) {
@@ -143,10 +140,10 @@ public final class Avatar extends Sprite {
                 }
             }
             default -> {
-                
+
             }
         }
 
-        g2.drawImage(image, x, y, gp.tailleBloc, gp.tailleBloc, null);
+        g2.drawImage(image, pos.x, pos.y, gp.TAILLE_BLOC, gp.TAILLE_BLOC, null);
     }
 }
