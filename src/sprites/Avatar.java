@@ -1,5 +1,6 @@
 package sprites;
 
+import bag.Argent;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -7,12 +8,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import main.GamePanel;
 import main.KeyHandler;
-import ressources.Argent;
 
 public final class Avatar extends Sprite {
     GamePanel gp;
     KeyHandler keyH;
-    public static int argent = Argent.monnaie_Player;
+    public static int argent = Argent.getMonnaiePlayer();
 
     public Avatar(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
