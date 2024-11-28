@@ -40,8 +40,6 @@ public class GamePanel extends JPanel implements Runnable {
     public final int TITLE_STATE = 0;
     public final int playState = 1;
 
-    int avatarX = 100;
-    int avatarY = 100;
     int avatarSpeed = 4;
 
     // Constructeur de GamePanel
