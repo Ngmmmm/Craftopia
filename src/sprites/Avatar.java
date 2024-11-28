@@ -28,18 +28,18 @@ public final class Avatar extends Sprite {
 
     public void getAvatarImage() {
         try {
-            File f1 = new File("./img/player/avatarUp1.png");
-            File f2 = new File("./img/player/avatarUp2.png");
-            File f3 = new File("./img/player/avatarDown1.png");
-            File f4 = new File("./img/player/avatarDown2.png");
-            File f5 = new File("./img/player/avatarRight1.png");
-            File f6 = new File("./img/player/avatarRight2.png");
-            File f7 = new File("./img/player/avatarLeft1.png");
-            File f8 = new File("./img/player/avatarLeft2.png");
-            File f9 = new File("./img/player/noMoveUp.png");
-            File f10 = new File("./img/player/noMoveDown.png");
-            File f11 = new File("./img/player/noMoveRight.png");
-            File f12 = new File("./img/player/noMoveLeft.png");
+            File f1 = new File("img/player/avatarUp1.png");
+            File f2 = new File("img/player/avatarUp2.png");
+            File f3 = new File("img/player/avatarDown1.png");
+            File f4 = new File("img/player/avatarDown2.png");
+            File f5 = new File("img/player/avatarRight1.png");
+            File f6 = new File("img/player/avatarRight2.png");
+            File f7 = new File("img/player/avatarLeft1.png");
+            File f8 = new File("img/player/avatarLeft2.png");
+            File f9 = new File("img/player/noMoveUp.png");
+            File f10 = new File("img/player/noMoveDown.png");
+            File f11 = new File("img/player/noMoveRight.png");
+            File f12 = new File("img/player/noMoveLeft.png");
             up1 = ImageIO.read(f1);
             up2 = ImageIO.read(f2);
             up3 = ImageIO.read(f9);

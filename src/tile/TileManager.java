@@ -4,9 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
 
 import main.GamePanel;
@@ -20,7 +19,7 @@ public class TileManager {
         this.gp = gp;
         this.tile = new Tile[10];
         this.mapTileNum = new int[gp.NB_COLONNE_MAX][gp.NB_LIGNE_MAX];
-        
+
         getTileImage();
         loadMap();
     }
@@ -41,33 +40,27 @@ public class TileManager {
     }
 
     public void loadMap() {
-        try {
-            InputStream is = getClass().getResourceAsStream("./src/maps/map.txt");
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-
-            int col = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader("maps/map.txt"))) {
             int ligne = 0;
-            while (col < gp.NB_COLONNE_MAX && ligne < gp.NB_LIGNE_MAX) {
-                
-                String line = br.readLine();
-                while (col < gp.NB_COLONNE_MAX) {
-                    
-                    String numbers[] = line.split(" ");
-                    int num = Integer.parseInt(numbers[col]);
-
-                    mapTileNum[col][ligne] = num;
-                    col++;
+            String line;
+    
+            while ((line = reader.readLine()) != null && ligne < gp.NB_LIGNE_MAX) {
+                String[] numbers = line.trim().split(" ");
+                for (int col = 0; col < gp.NB_COLONNE_MAX; col++) {
+                    try {
+                        mapTileNum[col][ligne] = Integer.parseInt(numbers[col]);
+                    } catch (NumberFormatException e) {
+                        System.err.println("Valeur invalide détectée à la ligne " + ligne + ", colonne " + col);
+                        mapTileNum[col][ligne] = 0; // Valeur par défaut
+                    }
                 }
-                if (col == gp.NB_COLONNE_MAX) {
-                    col = 0;
-                    ligne++;
-                }
+                ligne++;
             }
-            br.close();
-        } catch (Exception e) {
-            System.out.println("Impossible de charger la carte: " + e);
+        } catch (IOException e) {
+            System.err.println("Erreur lors du chargement de la carte : " + e.getMessage());
         }
     }
+    
 
     public void draw(Graphics2D g2) {
         int col = 0;
