@@ -7,6 +7,7 @@ public class Bois extends Objet {
     
     public Bois(){
         name = "bois";
+        prix = Argent.VALBOIS; 
         try {
             File f1 = new File("./img/object/bois.png");
             image = ImageIO.read(f1);

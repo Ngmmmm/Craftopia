@@ -11,6 +11,7 @@ public class Objet {
     String name;
     public boolean collision = false;
     public Point pos = new Point();
+    public int prix;
 
     public void draw(Graphics2D g2, GamePanel gp){
         g2.drawImage(image, pos.x, pos.y,null);
