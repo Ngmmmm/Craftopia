@@ -17,7 +17,7 @@ public class TileManager {
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
-        this.tile = new Tile[10];
+        this.tile = new Tile[30];
         this.mapTileNum = new int[gp.NB_COLONNE_MAX][gp.NB_LIGNE_MAX];
 
         getTileImage();
@@ -34,6 +34,60 @@ public class TileManager {
 
             tile[2] = new Tile();
             tile[2].image = ImageIO.read(new File("./img/tiles/brickwall.png"));
+
+            tile[3] = new Tile();
+            tile[3].image = ImageIO.read(new File("./img/tiles/Cloture.png"));
+
+            //tile[4] = new Tile();
+            //tile[4].image = ImageIO.read(new File("./img/tiles/.png"));
+
+            tile[5] = new Tile();
+            tile[5].image = ImageIO.read(new File("./img/tiles/ClotureDroiteVerticale.png"));
+            
+            tile[6] = new Tile();
+            tile[6].image = ImageIO.read(new File("./img/tiles/ClotureGaucheVerticale.png"));
+
+            tile[7] = new Tile();
+            tile[7].image = ImageIO.read(new File("./img/tiles/ClotureInfDroite.png"));
+
+            tile[8] = new Tile();
+            tile[8].image = ImageIO.read(new File("./img/tiles/ClotureInfGauche.png"));
+
+            tile[9] = new Tile();
+            tile[9].image = ImageIO.read(new File("./img/tiles/ClotureSupDroite.png"));
+
+            tile[10] = new Tile();
+            tile[10].image = ImageIO.read(new File("./img/tiles/ClotureSupGauche.png"));
+
+            tile[11] = new Tile();
+            tile[11].image = ImageIO.read(new File("./img/tiles/EmptyTile.png"));
+            
+            tile[12] = new Tile();
+            tile[12].image = ImageIO.read(new File("./img/tiles/Flowers.png"));
+
+            tile[13] = new Tile();
+            tile[13].image = ImageIO.read(new File("./img/tiles/MaturedPlant.png"));
+
+            tile[14] = new Tile();
+            tile[14].image = ImageIO.read(new File("./img/tiles/GrowingTile.png"));
+
+            tile[15] = new Tile();
+            tile[15].image = ImageIO.read(new File("./img/tiles/Seeds.png"));
+
+            // tile[16] = new Tile();
+            // tile[16].image = ImageIO.read(new File("./img/tiles/.png"));
+
+            // tile[17] = new Tile();
+            // tile[17].image = ImageIO.read(new File("./img/tiles/.png"));
+
+            // tile[18] = new Tile();
+            // tile[0].image = ImageIO.read(new File("./img/tiles/.png"));
+
+            // tile[19] = new Tile();
+            // tile[19].image = ImageIO.read(new File("./img/tiles/.png"));
+
+            // tile[20] = new Tile();
+            // tile[20].image = ImageIO.read(new File("./img/tiles/.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

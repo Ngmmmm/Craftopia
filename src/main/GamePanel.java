@@ -17,8 +17,7 @@ public class GamePanel extends JPanel implements Runnable {
     final int TAILLE_BLOC_ORIGINAL = 16; // Taille originale d'un bloc (en pixels)
     final int FACTEUR_ECHELLE = 3; // Facteur d'agrandissement des blocs
     public final int TAILLE_BLOC = TAILLE_BLOC_ORIGINAL * FACTEUR_ECHELLE; // Taille d'un bloc en pixels
-    // (tailleOriginaleBloc *
-    // FACTEUR_ECHELLE)
+    // (tailleOriginaleBloc * FACTEUR_ECHELLE)
     public final int NB_COLONNE_MAX = 16; // Nombre de colonnes maximum sur l'écran
     public final int NB_LIGNE_MAX = 12;// Nombre de lignes maximum sur l'écran
     public final int LARGEUR_ECRAN = TAILLE_BLOC * NB_COLONNE_MAX; // Largeur de l'écran (TAILLE_BLOC * NB_COLONNE_MAX)
