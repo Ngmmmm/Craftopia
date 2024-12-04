@@ -39,6 +39,7 @@ public class Ui {
 
         g2.setColor(Color.WHITE);
         g2.drawString(text, pos.x, pos.y);
+    
 
         g2.setFont(new Font("Arial", Font.BOLD, 40));
         text = "New Game";

@@ -1,26 +1,23 @@
 package bag;
+import java.util.ArrayList;
 import ressources.Objet;
 
 public class Inventaire {
 
-    private final Case[][] stock = new Case[3][5];
+    private final ArrayList<Case> inv  = new ArrayList<>();
 
-    public boolean add (Objet objet){
-        for(int i = 0; i < stock.length; i++){
-            for(int j = 0; j < stock[i].length; j++){
-                if(!stock[i][j].getObjet().isEmpty()){
-                    if (stock[i][j].getName().equals(objet.name)){
-                        stock[i][j].getObjet().add(objet);
-                        return true; 
-                    }
-                }else if(stock[i][j].getObjet().isEmpty()){
-                    stock[i][j].getObjet().add(objet);
-                    stock[i][j].setName(objet.name);
-                    return true;
-                }
+    public boolean add(Objet obj){
+        for (int i = 0; i<inv.size();i++){
+            if(inv.get(i).getName().equals(obj.getName())){
+                inv.get(i).add(obj);
+                return true;
             }
         }
-        return false;
+        inv.add(new Case());
+        inv.get(inv.size()-1).add(obj);
+        inv.get(inv.size()-1).setName(obj.getName());
+        return true;
     }
+   
     
 }

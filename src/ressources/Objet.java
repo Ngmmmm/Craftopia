@@ -17,5 +17,9 @@ public class Objet {
         g2.drawImage(image, pos.x, pos.y,null);
 
     }   
+
+    public String getName(){
+        return name;
+    } 
     
 }

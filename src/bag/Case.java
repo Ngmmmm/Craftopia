@@ -17,6 +17,9 @@ public class Case {
     public void setName(String name){
         this.name = name;
     }
+    public void add(Objet obj){
+        this.objet.add(obj);
+    }
     
     
     
