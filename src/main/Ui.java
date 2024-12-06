@@ -42,8 +42,8 @@ public class Ui {
         exit = new JButton(exitIcon);
         start.setBounds(300,250,160,65);
         exit.setBounds(300,350,160,65);
-        start.addMouseListener(gp.mouseH);
-        exit.addMouseListener(gp.mouseH);
+        start.addActionListener(e -> {gp.gameState = gp.playState;});
+        exit.addActionListener(e -> {System.exit(0);});
         gp.add(start);
         gp.add(exit);
         gp.setLayout(null);

@@ -22,14 +22,6 @@ public class MouseHandler implements MouseListener {
     
     @Override
     public void mousePressed(MouseEvent e){
-        if (gp.gameState == gp.TITLE_STATE){
-            if (e.getButton() == MouseEvent.BUTTON1){
-                gp.gameState = gp.playState;
-            }
-            if (e.getButton() == MouseEvent.BUTTON2){
-                System.exit(0);
-            }
-        }
     }
     
 }
