@@ -28,7 +28,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler(this); // Instance de KeyHandler pour gérer les événements clavier
-
+    MouseHandler mouseH = new MouseHandler(this);
     Thread gameThread;// Thread pour le jeu
     AssetSetter aSetter = new AssetSetter(this);
     Ui ui = new Ui(this);
@@ -54,6 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         // Ajouter le gestionnaire de clavier au panneau
         this.addKeyListener(keyH);
+        this.addMouseListener(mouseH);
         // Rendre le panneau focusable pour recevoir les événements clavier
         this.setFocusable(true);
     }
@@ -108,6 +109,7 @@ public class GamePanel extends JPanel implements Runnable {
         // TITLESCREEN
         if (gameState == TITLE_STATE) {
             ui.draw(g2);
+
 
         } else {
             // MAP

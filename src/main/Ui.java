@@ -4,12 +4,18 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 public class Ui {
 
     GamePanel gp;
     Graphics2D g2;
     int commandeNum = 0;
+    JButton start = new JButton();
+    JButton exit = new JButton();
+
 
     public Ui(GamePanel gp) {
         this.gp = gp;
@@ -29,43 +35,37 @@ public class Ui {
 
     }
 
+    public void initButton(){
+        Icon startIcon = new ImageIcon("./img/PlayButton.png");
+        Icon exitIcon = new ImageIcon("./img/QuitButton.png");
+        start = new JButton(startIcon);
+        exit = new JButton(exitIcon);
+        start.setBounds(300,250,160,65);
+        exit.setBounds(300,350,160,65);
+        start.addMouseListener(gp.mouseH);
+        exit.addMouseListener(gp.mouseH);
+        gp.add(start);
+        gp.add(exit);
+        gp.setLayout(null);
+        gp.setVisible(true);
+
+
+    }
+
     public void drawTitleScreen() {
 
-        g2.setColor(Color.BLUE);
+        g2.setColor(Color.GREEN);
         g2.fillRect(0, 0, gp.LARGEUR_ECRAN, gp.HAUTEUR_ECRAN);
         g2.setFont(new Font("Arial", Font.BOLD, 80));
         String text = "CRAFTOPIA";
         Point pos = new Point(160, 200);
-
         g2.setColor(Color.WHITE);
         g2.drawString(text, pos.x, pos.y);
-    
+        initButton();
 
-        g2.setFont(new Font("Arial", Font.BOLD, 40));
-        text = "New Game";
-        pos.x = 200;
-        pos.y = 300;
-        g2.drawString(text, pos.x, pos.y);
-        if (commandeNum == 0) {
-            g2.drawString(">", pos.x - gp.TAILLE_BLOC, pos.y);
-        }
+        
+        
+               
 
-        g2.setFont(new Font("Arial", Font.BOLD, 40));
-        text = "Continue";
-        pos.x = 200;
-        pos.y = 350;
-        g2.drawString(text, pos.x, pos.y);
-        if (commandeNum == 1) {
-            g2.drawString(">", pos.x - gp.TAILLE_BLOC, pos.y);
-        }
-
-        g2.setFont(new Font("Arial", Font.BOLD, 40));
-        text = "Exit";
-        pos.x = 200;
-        pos.y = 400;
-        g2.drawString(text, pos.x, pos.y);
-        if (commandeNum == 2) {
-            g2.drawString(">", pos.x - gp.TAILLE_BLOC, pos.y);
-        }
     }
 }
