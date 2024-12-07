@@ -132,8 +132,10 @@ public class TileManager {
             int screenY = mapY - gp.avatar.mapPoint.y + gp.avatar.screenY;
 
             // Vérifiez si les coordonnées sont dans la zone visible
-            if (screenX + gp.TAILLE_BLOC > 0 && screenX < gp.LARGEUR_MAP &&
-                screenY + gp.TAILLE_BLOC > 0 && screenY < gp.HAUTEUR_MAP) {
+            if (mapX > gp.avatar.mapPoint.x - gp.avatar.screenX
+                    && mapX < gp.avatar.mapPoint.x + gp.avatar.screenX
+                    && mapY > gp.avatar.mapPoint.y - gp.avatar.screenY
+                    && mapY < gp.avatar.mapPoint.y + gp.avatar.screenY) {
                 g2.drawImage(tile[tileNum].image, screenX, screenY, gp.TAILLE_BLOC, gp.TAILLE_BLOC, null);
             }
 
