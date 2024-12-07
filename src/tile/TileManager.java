@@ -38,8 +38,8 @@ public class TileManager {
             tile[3] = new Tile();
             tile[3].image = ImageIO.read(new File("./img/tiles/Cloture.png"));
 
-            //tile[4] = new Tile();
-            //tile[4].image = ImageIO.read(new File("./img/tiles/.png"));
+            tile[4] = new Tile();
+            tile[4].image = ImageIO.read(new File("./img/tiles/tree.png"));
 
             tile[5] = new Tile();
             tile[5].image = ImageIO.read(new File("./img/tiles/ClotureDroiteVerticale.png"));
@@ -94,7 +94,7 @@ public class TileManager {
     }
 
     public void loadMap() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("maps/map.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("maps/bigmap.txt"))) {
             int ligne = 0;
             String line;
     

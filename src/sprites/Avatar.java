@@ -20,8 +20,8 @@ public final class Avatar extends Sprite {
     }
 
     public void setValeurParDefaut() {
-        pos.x = 100;
-        pos.y = 100;
+        worldPoint.x = gp.NB_COLONNE_MAX*23;
+        worldPoint.y = gp.NB_LIGNE_MAX*21;
         this.speed = 4;
         direction = "down";
     }
@@ -63,16 +63,16 @@ public final class Avatar extends Sprite {
 
             if (keyH.upPressed) {
                 direction = "up";
-                this.pos.y -= this.speed;
+                this.worldPoint.y -= this.speed;
             } else if (keyH.downPressed) {
                 direction = "down";
-                this.pos.y += this.speed;
+                this.worldPoint.y += this.speed;
             } else if (keyH.leftPressed) {
                 direction = "left";
-                this.pos.x -= this.speed;
+                this.worldPoint.x -= this.speed;
             } else if (keyH.rightPressed) {
                 direction = "right";
-                this.pos.x += this.speed;
+                this.worldPoint.x += this.speed;
             }
             spriteCounter++;
             if (spriteCounter > 12) {
@@ -144,6 +144,6 @@ public final class Avatar extends Sprite {
             }
         }
 
-        g2.drawImage(image, pos.x, pos.y, gp.TAILLE_BLOC, gp.TAILLE_BLOC, null);
+        g2.drawImage(image, worldPoint.x, worldPoint.y, gp.TAILLE_BLOC, gp.TAILLE_BLOC, null);
     }
 }
