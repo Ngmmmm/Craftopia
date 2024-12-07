@@ -1,7 +1,6 @@
 package tile;
 
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -18,7 +17,7 @@ public class TileManager {
     public TileManager(GamePanel gp) {
         this.gp = gp;
         this.tile = new Tile[30];
-        this.mapTileNum = new int[gp.NB_COLONNE_MAX][gp.NB_LIGNE_MAX];
+        this.mapTileNum = new int[gp.NB_COLONNE_MAP_MAX][gp.NB_LIGNE_MAP_MAX];
 
         getTileImage();
         loadMap();
@@ -43,7 +42,7 @@ public class TileManager {
 
             tile[5] = new Tile();
             tile[5].image = ImageIO.read(new File("./img/tiles/ClotureDroiteVerticale.png"));
-            
+
             tile[6] = new Tile();
             tile[6].image = ImageIO.read(new File("./img/tiles/ClotureGaucheVerticale.png"));
 
@@ -61,7 +60,7 @@ public class TileManager {
 
             tile[11] = new Tile();
             tile[11].image = ImageIO.read(new File("./img/tiles/EmptyTile.png"));
-            
+
             tile[12] = new Tile();
             tile[12].image = ImageIO.read(new File("./img/tiles/Flowers.png"));
 
@@ -94,47 +93,56 @@ public class TileManager {
     }
 
     public void loadMap() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("maps/bigmap.txt"))) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("maps/bigmap.txt"));
+            int col = 0;
             int ligne = 0;
-            String line;
-    
-            while ((line = reader.readLine()) != null && ligne < gp.NB_LIGNE_MAX) {
-                String[] numbers = line.trim().split(" ");
-                for (int col = 0; col < gp.NB_COLONNE_MAX; col++) {
-                    try {
-                        mapTileNum[col][ligne] = Integer.parseInt(numbers[col]);
-                    } catch (NumberFormatException e) {
-                        System.err.println("Valeur invalide détectée à la ligne " + ligne + ", colonne " + col);
-                        mapTileNum[col][ligne] = 0; // Valeur par défaut
-                    }
+
+            while (col < gp.NB_COLONNE_MAP_MAX && ligne < gp.NB_LIGNE_MAP_MAX) {
+                String line = reader.readLine();
+
+                while (col < gp.NB_COLONNE_MAP_MAX) {
+                    String[] numbers = line.split(" ");
+                    int num = Integer.parseInt(numbers[col]);
+                    mapTileNum[col][ligne] = num;
+                    col++;
                 }
-                ligne++;
+                if (col == gp.NB_COLONNE_MAP_MAX) {
+                    col = 0;
+                    ligne++;
+                }
             }
+            reader.close();
+
         } catch (IOException e) {
             System.err.println("Erreur lors du chargement de la carte : " + e.getMessage());
         }
     }
-    
 
     public void draw(Graphics2D g2) {
-        int col = 0;
-        int ligne = 0;
-        Point pos = new Point(0, 0);
+        int mapCol = 0;
+        int mapLigne = 0;
+        while (mapCol < gp.NB_COLONNE_MAP_MAX && mapLigne < gp.NB_LIGNE_MAP_MAX) {
 
-        while (col < gp.NB_COLONNE_MAX && ligne < gp.NB_LIGNE_MAX) {
+            int tileNum = mapTileNum[mapCol][mapLigne];
 
-            int tileNum = mapTileNum[col][ligne];
+            int mapX = mapCol * gp.TAILLE_BLOC;
+            int mapY = mapLigne * gp.TAILLE_BLOC;
+            int screenX = mapX - gp.avatar.mapPoint.x + gp.avatar.screenX;
+            int screenY = mapY - gp.avatar.mapPoint.y + gp.avatar.screenY;
 
-            g2.drawImage(tile[tileNum].image, pos.x, pos.y, gp.TAILLE_BLOC, gp.TAILLE_BLOC, null);
-            col++;
-            pos.x += gp.TAILLE_BLOC;
-            if (col == gp.NB_COLONNE_MAX) {
-                col = 0;
-                pos.x = 0;
-                ligne++;
-                pos.y += gp.TAILLE_BLOC;
+            // Vérifiez si les coordonnées sont dans la zone visible
+            if (screenX + gp.TAILLE_BLOC > 0 && screenX < gp.LARGEUR_MAP &&
+                screenY + gp.TAILLE_BLOC > 0 && screenY < gp.HAUTEUR_MAP) {
+                g2.drawImage(tile[tileNum].image, screenX, screenY, gp.TAILLE_BLOC, gp.TAILLE_BLOC, null);
+            }
+
+            mapCol++;
+
+            if (mapCol == gp.NB_COLONNE_MAP_MAX) {
+                mapCol = 0;
+                mapLigne++;
             }
         }
     }
-
 }

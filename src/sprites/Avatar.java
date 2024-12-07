@@ -12,16 +12,21 @@ public final class Avatar extends Sprite {
     GamePanel gp;
     KeyHandler keyH;
 
+    public final int screenX;
+    public final int screenY;
+
     public Avatar(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
+        this.screenX = (this.gp.LARGEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2);
+        this.screenY = (this.gp.HAUTEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2);
         setValeurParDefaut();
         getAvatarImage();
     }
 
     public void setValeurParDefaut() {
-        worldPoint.x = gp.NB_COLONNE_MAX*23;
-        worldPoint.y = gp.NB_LIGNE_MAX*21;
+        mapPoint.x = gp.TAILLE_BLOC * 23;
+        mapPoint.y = gp.TAILLE_BLOC * 21;
         this.speed = 4;
         direction = "down";
     }
@@ -63,16 +68,16 @@ public final class Avatar extends Sprite {
 
             if (keyH.upPressed) {
                 direction = "up";
-                this.worldPoint.y -= this.speed;
+                this.mapPoint.y -= this.speed;
             } else if (keyH.downPressed) {
                 direction = "down";
-                this.worldPoint.y += this.speed;
+                this.mapPoint.y += this.speed;
             } else if (keyH.leftPressed) {
                 direction = "left";
-                this.worldPoint.x -= this.speed;
+                this.mapPoint.x -= this.speed;
             } else if (keyH.rightPressed) {
                 direction = "right";
-                this.worldPoint.x += this.speed;
+                this.mapPoint.x += this.speed;
             }
             spriteCounter++;
             if (spriteCounter > 12) {
@@ -144,6 +149,6 @@ public final class Avatar extends Sprite {
             }
         }
 
-        g2.drawImage(image, worldPoint.x, worldPoint.y, gp.TAILLE_BLOC, gp.TAILLE_BLOC, null);
+        g2.drawImage(image, screenX, screenY, gp.TAILLE_BLOC, gp.TAILLE_BLOC, null);
     }
 }

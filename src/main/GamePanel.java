@@ -23,7 +23,14 @@ public class GamePanel extends JPanel implements Runnable {
     public final int LARGEUR_ECRAN = TAILLE_BLOC * NB_COLONNE_MAX; // Largeur de l'écran (TAILLE_BLOC * NB_COLONNE_MAX)
     public final int HAUTEUR_ECRAN = TAILLE_BLOC * NB_LIGNE_MAX; // Hauteur de l'écran (TAILLE_BLOC * NB_LIGNE_MAX)
 
-    int FPS = 60; // FPS (Frames Par Seconde)
+    // * MAP SETTINGS
+    public final int NB_COLONNE_MAP_MAX = 50;
+    public final int NB_LIGNE_MAP_MAX = 50;
+    public final int LARGEUR_MAP = TAILLE_BLOC * NB_COLONNE_MAP_MAX;
+    public final int HAUTEUR_MAP = TAILLE_BLOC * NB_LIGNE_MAP_MAX;
+
+    // * FPS (Frames Par Seconde)
+    int FPS = 60;
 
     TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler(this); // Instance de KeyHandler pour gérer les événements clavier
@@ -31,7 +38,7 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;// Thread pour le jeu
     AssetSetter aSetter = new AssetSetter(this);
     Ui ui = new Ui(this);
-    Avatar avatar = new Avatar(this, keyH);
+    public Avatar avatar = new Avatar(this, keyH);
     // * POSITION PAR DEFAUT DU JOUEUR
     public Objet objet[] = new Objet[10];
 
