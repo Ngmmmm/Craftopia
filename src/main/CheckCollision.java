@@ -33,13 +33,28 @@ public class CheckCollision {
                 }
                 break;
             case "down":
-                
+                spriteTopLigne = (spriteTopMapY - sprite.speed) / gp.TAILLE_BLOC;
+                tileNum1 = gp.tileM.mapTileNum[spriteLeftCol][spriteBottomLigne];
+                tileNum2 = gp.tileM.mapTileNum[spriteRightCol][spriteBottomLigne];
+                if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision) {
+                    sprite.collisionOn = true;
+                }
                 break;
             case "left":
-                
+                spriteLeftCol = (spriteLeftMapX - sprite.speed) / gp.TAILLE_BLOC;
+                tileNum1 = gp.tileM.mapTileNum[spriteLeftCol][spriteTopLigne];
+                tileNum2 = gp.tileM.mapTileNum[spriteLeftCol][spriteBottomLigne];
+                if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision) {
+                    sprite.collisionOn = true;
+                }
                 break;
             case "right":
-                
+                spriteRightCol = (spriteRightMapX + sprite.speed) / gp.TAILLE_BLOC;
+                tileNum1 = gp.tileM.mapTileNum[spriteRightCol][spriteTopLigne];
+                tileNum2 = gp.tileM.mapTileNum[spriteRightCol][spriteBottomLigne];
+                if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision) {
+                    sprite.collisionOn = true;
+                }
                 break;
 
             default:

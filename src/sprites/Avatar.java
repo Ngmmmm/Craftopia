@@ -22,7 +22,7 @@ public final class Avatar extends Sprite {
         this.screenX = (this.gp.LARGEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2);
         this.screenY = (this.gp.HAUTEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2);
 
-        solidArea = new Rectangle(8, 32, 32, 32);
+        solidArea = new Rectangle(0, 0, 16, 16);
 
         setValeurParDefaut();
         getAvatarImage();
