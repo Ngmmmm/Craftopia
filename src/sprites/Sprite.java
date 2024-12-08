@@ -1,6 +1,7 @@
 package sprites;
 
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class Sprite {
@@ -12,5 +13,8 @@ public class Sprite {
 
     public int spriteCounter = 0;
     public int spriteNum = 1;
+
+    public Rectangle solidArea;
+    public boolean collisionOn = false;
 
 }

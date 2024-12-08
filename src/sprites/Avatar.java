@@ -1,6 +1,7 @@
 package sprites;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +21,9 @@ public final class Avatar extends Sprite {
         this.keyH = keyH;
         this.screenX = (this.gp.LARGEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2);
         this.screenY = (this.gp.HAUTEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2);
+
+        solidArea = new Rectangle(8, 16, 32, 32);
+
         setValeurParDefaut();
         getAvatarImage();
     }
@@ -93,6 +97,9 @@ public final class Avatar extends Sprite {
             direction = "down";
             spriteNum = 2;
         }
+
+        collisionOn = false;
+        gp.collision.checkTile(this);
 
     }
 

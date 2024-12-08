@@ -11,8 +11,8 @@ import main.GamePanel;
 
 public class TileManager {
     GamePanel gp;
-    Tile[] tile;
-    int mapTileNum[][];
+    public Tile[] tile;
+    public int mapTileNum[][];
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
@@ -30,33 +30,43 @@ public class TileManager {
 
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(new File("./img/tiles/water.png"));
+            tile[1].collision = true;
 
             tile[2] = new Tile();
             tile[2].image = ImageIO.read(new File("./img/tiles/brickwall.png"));
+            tile[2].collision = true;
 
             tile[3] = new Tile();
             tile[3].image = ImageIO.read(new File("./img/tiles/Cloture.png"));
+            tile[3].collision = true;
 
             tile[4] = new Tile();
             tile[4].image = ImageIO.read(new File("./img/tiles/tree.png"));
+            tile[4].collision = true;
 
             tile[5] = new Tile();
             tile[5].image = ImageIO.read(new File("./img/tiles/ClotureDroiteVerticale.png"));
+            tile[5].collision = true;
 
             tile[6] = new Tile();
             tile[6].image = ImageIO.read(new File("./img/tiles/ClotureGaucheVerticale.png"));
+            tile[6].collision = true;
 
             tile[7] = new Tile();
             tile[7].image = ImageIO.read(new File("./img/tiles/ClotureInfDroite.png"));
+            tile[7].collision = true;
 
             tile[8] = new Tile();
             tile[8].image = ImageIO.read(new File("./img/tiles/ClotureInfGauche.png"));
+            tile[8].collision = true;
 
             tile[9] = new Tile();
             tile[9].image = ImageIO.read(new File("./img/tiles/ClotureSupDroite.png"));
+            tile[9].collision = true;
 
             tile[10] = new Tile();
             tile[10].image = ImageIO.read(new File("./img/tiles/ClotureSupGauche.png"));
+            tile[10].collision = true;
 
             tile[11] = new Tile();
             tile[11].image = ImageIO.read(new File("./img/tiles/EmptyTile.png"));
