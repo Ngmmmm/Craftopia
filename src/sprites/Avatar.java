@@ -22,7 +22,7 @@ public final class Avatar extends Sprite {
         this.screenX = (this.gp.LARGEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2);
         this.screenY = (this.gp.HAUTEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2);
 
-        solidArea = new Rectangle(8, 16, 32, 32);
+        solidArea = new Rectangle(8, 32, 32, 32);
 
         setValeurParDefaut();
         getAvatarImage();
@@ -67,21 +67,21 @@ public final class Avatar extends Sprite {
     }
 
     public void update() {
-
+        boolean immobile = false;
         if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
 
             if (keyH.upPressed) {
                 direction = "up";
-                this.mapPoint.y -= this.speed;
+
             } else if (keyH.downPressed) {
                 direction = "down";
-                this.mapPoint.y += this.speed;
+
             } else if (keyH.leftPressed) {
                 direction = "left";
-                this.mapPoint.x -= this.speed;
+
             } else if (keyH.rightPressed) {
                 direction = "right";
-                this.mapPoint.x += this.speed;
+
             }
             spriteCounter++;
             if (spriteCounter > 12) {
@@ -96,10 +96,33 @@ public final class Avatar extends Sprite {
         } else {
             direction = "down";
             spriteNum = 2;
+            immobile =true;
         }
 
+        // CHECK TILE COLLISION
         collisionOn = false;
         gp.collision.checkTile(this);
+
+        // SI COLLISION EST FAUX, L'AVATAR PEUT BOUGER
+        if (!collisionOn&&!immobile) {
+            switch (direction) {
+                case "up":
+                    this.mapPoint.y -= this.speed;
+                    break;
+                case "down":
+                    this.mapPoint.y += this.speed;
+                    break;
+                case "left":
+                    this.mapPoint.x -= this.speed;
+                    break;
+                case "right":
+                    this.mapPoint.x += this.speed;
+                    break;
+
+                default:
+                    break;
+            }
+        }
 
     }
 

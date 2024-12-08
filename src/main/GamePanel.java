@@ -36,6 +36,9 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyH = new KeyHandler(this); // Instance de KeyHandler pour gérer les événements clavier
 
     Thread gameThread;// Thread pour le jeu
+    public CheckCollision collision = new CheckCollision(this);
+
+
     AssetSetter aSetter = new AssetSetter(this);
     Ui ui = new Ui(this);
     public Avatar avatar = new Avatar(this, keyH);

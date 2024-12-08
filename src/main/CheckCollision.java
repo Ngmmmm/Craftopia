@@ -33,13 +33,13 @@ public class CheckCollision {
                 }
                 break;
             case "down":
-                spriteTopLigne = (spriteTopMapY - sprite.speed) / gp.TAILLE_BLOC;
+                
                 break;
             case "left":
-                spriteTopLigne = (spriteTopMapY - sprite.speed) / gp.TAILLE_BLOC;
+                
                 break;
             case "right":
-                spriteTopLigne = (spriteTopMapY - sprite.speed) / gp.TAILLE_BLOC;
+                
                 break;
 
             default:
