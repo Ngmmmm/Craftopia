@@ -1,6 +1,7 @@
 package tile;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -66,6 +67,7 @@ public class TileManager {
 
             tile[10] = new Tile();
             tile[10].image = ImageIO.read(new File("./img/tiles/ClotureSupGauche.png"));
+            tile[10].solidArea = new Rectangle();
             tile[10].collision = true;
 
             tile[11] = new Tile();
