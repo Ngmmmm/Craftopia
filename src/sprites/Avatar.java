@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import main.GamePanel;
 import main.KeyHandler;
+import java.awt.RenderingHints;
 
 public final class Avatar extends Sprite {
     GamePanel gp;
@@ -65,6 +66,7 @@ public final class Avatar extends Sprite {
             System.out.println("Image non chargée: " + e);
         }
     }
+    
 
     public void update() {
         boolean immobile = false;
@@ -127,7 +129,6 @@ public final class Avatar extends Sprite {
     }
 
     public void draw(Graphics2D g2) {
-
         BufferedImage image = null;
         switch (direction) {
             case "up" -> {
@@ -175,10 +176,16 @@ public final class Avatar extends Sprite {
                 }
             }
             default -> {
-
             }
         }
-
+    
+        // Set rendering hints for better quality
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+    
         g2.drawImage(image, screenX, screenY, gp.TAILLE_BLOC, gp.TAILLE_BLOC, null);
     }
+    
+    
 }
