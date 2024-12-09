@@ -25,7 +25,7 @@ public class Ui {
         this.g2 = g2;
 
         if (gp.gameState == gp.TITLE_STATE) {
-            drawTitleScreen();
+            drawTitleScreen(g2);
         } else {
             g2.setFont(new Font("Arial", Font.PLAIN, 40));
             g2.setColor(Color.WHITE);
@@ -42,18 +42,21 @@ public class Ui {
         exit = new JButton(exitIcon);
         start.setBounds(300,250,160,65);
         exit.setBounds(300,350,160,65);
-        start.addActionListener(e -> {gp.gameState = gp.playState;});
-        exit.addActionListener(e -> {System.exit(0);});
+        start.addActionListener(l -> {gp.gameState = gp.playState; gp.remove(start);});
+        exit.addActionListener(l -> {System.exit(0); gp.remove(exit);});
+        start.setFocusable(false);
+        exit.setFocusable(false);
         gp.add(start);
         gp.add(exit);
         gp.setLayout(null);
         gp.setVisible(true);
+        
 
 
     }
 
-    public void drawTitleScreen() {
-
+    public void drawTitleScreen(Graphics2D g2) {
+        this.g2 = g2;
         g2.setColor(Color.GREEN);
         g2.fillRect(0, 0, gp.LARGEUR_ECRAN, gp.HAUTEUR_ECRAN);
         g2.setFont(new Font("Arial", Font.BOLD, 80));

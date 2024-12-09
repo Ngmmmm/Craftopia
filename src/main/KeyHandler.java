@@ -23,30 +23,6 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {// Méthode qui check les touches appuyées et mets leurs valeur à true
         int toucheCode = e.getKeyCode();
-        if (gp.gameState == gp.TITLE_STATE) {
-            if (toucheCode == KeyEvent.VK_UP) {
-                if (gp.ui.commandeNum > 0) {
-                    gp.ui.commandeNum--;
-                }
-            }
-            if (toucheCode == KeyEvent.VK_DOWN) {
-                if (gp.ui.commandeNum < 2) {
-                    gp.ui.commandeNum++;
-                }
-            }
-            if (toucheCode == KeyEvent.VK_ENTER) {
-                if (gp.ui.commandeNum == 0) {
-                    gp.gameState = gp.playState;
-                }
-                if (gp.ui.commandeNum == 1) {
-                    gp.gameState = gp.playState;
-                }
-                if (gp.ui.commandeNum == 2) {
-                    System.exit(0);
-                }
-            }
-
-        }
 
         if (toucheCode == KeyEvent.VK_LEFT) {
             leftPressed = true;
