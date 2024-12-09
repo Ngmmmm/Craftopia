@@ -35,7 +35,7 @@ public class Ui {
 
     }
 
-    public void initButton(){
+    public boolean initButton(){
         Icon startIcon = new ImageIcon("./img/PlayButton.png");
         Icon exitIcon = new ImageIcon("./img/QuitButton.png");
         start = new JButton(startIcon);
@@ -50,7 +50,7 @@ public class Ui {
         gp.add(exit);
         gp.setLayout(null);
         gp.setVisible(true);
-        
+        return true;
 
 
     }
@@ -64,7 +64,6 @@ public class Ui {
         Point pos = new Point(160, 200);
         g2.setColor(Color.WHITE);
         g2.drawString(text, pos.x, pos.y);
-        initButton();
 
         
         

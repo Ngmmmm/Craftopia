@@ -34,6 +34,7 @@ public class GamePanel extends JPanel implements Runnable {
     Avatar avatar = new Avatar(this, keyH);
     // * POSITION PAR DEFAUT DU JOUEUR
     public Objet objet[] = new Objet[10];
+    boolean initButton = false;
 
     public int gameState;
     public final int TITLE_STATE = 0;
@@ -107,6 +108,9 @@ public class GamePanel extends JPanel implements Runnable {
         // TITLESCREEN
         if (gameState == TITLE_STATE) {
             ui.drawTitleScreen(g2);
+            if (!initButton){
+                initButton = ui.initButton();
+            }
         } else if (gameState == playState){
             // MAP
             tileM.draw(g2);
