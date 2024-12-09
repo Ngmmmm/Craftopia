@@ -14,7 +14,7 @@ public class Main { // Définition de la classe principale
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Définition de la taille de la fenêtre (non redimensionnable)
-        fenetre.setResizable(false);
+        fenetre.setResizable(true);
         // Définition du titre de la fenêtre
         fenetre.setTitle("Craftopia");
         ImageIcon logo = new ImageIcon("img/CraftopiaLogo.jpeg");
