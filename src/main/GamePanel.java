@@ -1,132 +1,124 @@
 package main;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import javax.swing.JPanel;
-import ressources.*;
-import sprites.Avatar;
-import tile.TileManager;
+import java.awt.Color; // Importation de la classe pour gérer les couleurs
+import java.awt.Dimension; // Importation pour définir les dimensions des composants
+import java.awt.Graphics; // Importation pour dessiner des composants
+import java.awt.Graphics2D; // Importation pour des dessins graphiques avancés
+import javax.swing.JPanel; // Importation de JPanel pour créer le panneau de jeu
+import ressources.*; // Importation des ressources nécessaires
+import sprites.Avatar; // Importation de la classe Avatar (le joueur)
+import tile.TileManager; // Importation pour gérer les blocs du jeu
 
-// La classe GamePanel hérite de JPanel et implémente l'interface Runnable (nécessaire pour le fonctionnement)
+// La classe GamePanel hérite de JPanel et implémente Runnable pour le fonctionnement via un thread
 public class GamePanel extends JPanel implements Runnable {
 
-    // * PARAMÈTRES DE L'ÉCRAN
+    final int TAILLE_BLOC_ORIGINAL = 16; // Taille de base d'un bloc en pixels
+    final int FACTEUR_ECHELLE = 3; // Facteur d'agrandissement appliqué à chaque bloc
+    public final int TAILLE_BLOC = TAILLE_BLOC_ORIGINAL * FACTEUR_ECHELLE; // Taille finale d'un bloc
+    public final int NB_COLONNE_MAX = 16; // Nombre maximal de colonnes visibles à l'écran
+    public final int NB_LIGNE_MAX = 12; // Nombre maximal de lignes visibles à l'écran
+    public final int LARGEUR_ECRAN = TAILLE_BLOC * NB_COLONNE_MAX; // Largeur totale de l'écran
+    public final int HAUTEUR_ECRAN = TAILLE_BLOC * NB_LIGNE_MAX; // Hauteur totale de l'écran
 
-    final int TAILLE_BLOC_ORIGINAL = 16; // Taille originale d'un bloc (en pixels)
-    final int FACTEUR_ECHELLE = 3; // Facteur d'agrandissement des blocs
-    public final int TAILLE_BLOC = TAILLE_BLOC_ORIGINAL * FACTEUR_ECHELLE; // Taille d'un bloc en pixels
-    // (tailleOriginaleBloc *
-    // FACTEUR_ECHELLE)
-    public final int NB_COLONNE_MAX = 16; // Nombre de colonnes maximum sur l'écran
-    public final int NB_LIGNE_MAX = 12;// Nombre de lignes maximum sur l'écran
-    public final int LARGEUR_ECRAN = TAILLE_BLOC * NB_COLONNE_MAX; // Largeur de l'écran (TAILLE_BLOC * NB_COLONNE_MAX)
-    public final int HAUTEUR_ECRAN = TAILLE_BLOC * NB_LIGNE_MAX; // Hauteur de l'écran (TAILLE_BLOC * NB_LIGNE_MAX)
+    public final int NB_COLONNE_MAP_MAX = 50; // Nombre de colonnes maximal sur la carte
+    public final int NB_LIGNE_MAP_MAX = 50; // Nombre de lignes maximal sur la carte
+    public final int LARGEUR_MAP = TAILLE_BLOC * NB_COLONNE_MAP_MAX; // Largeur totale de la carte
+    public final int HAUTEUR_MAP = TAILLE_BLOC * NB_LIGNE_MAP_MAX; // Hauteur totale de la carte
 
-    int FPS = 60; // FPS (Frames Par Seconde)
+    int FPS = 60; // Images par seconde pour maintenir la fluidité du jeu
 
-    TileManager tileM = new TileManager(this);
-    KeyHandler keyH = new KeyHandler(this); // Instance de KeyHandler pour gérer les événements clavier
+    TileManager tileM = new TileManager(this); // Gestionnaire des blocs (tiles) pour dessiner la carte
+    KeyHandler keyH = new KeyHandler(this); // Gestionnaire des touches clavier
+    Thread gameThread; // Thread du jeu, pour exécuter le jeu en parallèle
+    public CheckCollision collision = new CheckCollision(this); // Gestionnaire des collisions
 
-    Thread gameThread;// Thread pour le jeu
-    AssetSetter aSetter = new AssetSetter(this);
-    Ui ui = new Ui(this);
-    Avatar avatar = new Avatar(this, keyH);
-    // * POSITION PAR DEFAUT DU JOUEUR
-    public Objet objet[] = new Objet[10];
+    AssetSetter aSetter = new AssetSetter(this); // Gestion des objets (ressources, ennemis...)
+    Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
+    public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
+    public Objet objet[] = new Objet[10]; // Tableau pour stocker les objets à afficher
 
-    public int gameState;
-    public final int TITLE_STATE = 0;
-    public final int playState = 1;
+    public int gameState; // État actuel du jeu (titre, en cours, etc.)
+    public final int TITLE_STATE = 0; // État correspondant à l'écran de titre
+    public final int playState = 1; // État correspondant au jeu en cours
 
-    int avatarX = 100;
-    int avatarY = 100;
-    int avatarSpeed = 4;
+    int avatarSpeed = 1; // Vitesse par défaut de l'avatar
 
-    // Constructeur de GamePanel
+    /**
+     * Constructeur pour initialiser le panneau de jeu.
+     */
     public GamePanel() {
-        // Définir la taille préférée du panneau
-        this.setPreferredSize(new Dimension(LARGEUR_ECRAN, HAUTEUR_ECRAN));
-        // Définir la couleur de fond du panneau
-        this.setBackground(Color.BLACK);
-        // Activer le double buffering pour améliorer les performances
-        this.setDoubleBuffered(true);
-        // Ajouter le gestionnaire de clavier au panneau
-        this.addKeyListener(keyH);
-        // Rendre le panneau focusable pour recevoir les événements clavier
-        this.setFocusable(true);
+        this.setPreferredSize(new Dimension(LARGEUR_ECRAN, HAUTEUR_ECRAN)); // Définir la taille du panneau
+        this.setBackground(Color.BLACK); // Couleur de fond noire
+        this.setDoubleBuffered(true); // Activer le double buffering pour un rendu fluide
+        this.addKeyListener(keyH); // Ajouter le gestionnaire de clavier
+        this.setFocusable(true); // Permettre au panneau de capturer les événements clavier
     }
 
+    /**
+     * Configure les paramètres initiaux du jeu.
+     */
     public void setupGame() {
-        aSetter.setObjet();
-        gameState = TITLE_STATE;
+        aSetter.setObjet(); // Initialise les objets du jeu
+        gameState = TITLE_STATE; // Définit l'état initial à l'écran de titre
     }
 
-    // Méthode pour démarrer le thread du jeu
+    /**
+     * Démarre le thread du jeu.
+     */
     public void startGameThread() {
-        gameThread = new Thread(this);
-        gameThread.start();
+        gameThread = new Thread(this); // Crée un nouveau thread pour le jeu
+        gameThread.start(); // Lance l'exécution du thread
     }
 
-    // Méthode pour exécuter le thread du jeu
+    /**
+     * Boucle principale du thread du jeu.
+     */
     @Override
     public void run() {
+        double drawInterval = 1000000000 / FPS; // Intervalle entre chaque image
+        double delta = 0; // Stocke le temps accumulé
+        long lastTime = System.nanoTime(); // Temps initial
+        long currentTime; // Temps courant
 
-        double drawInterval = 1000000000 / FPS;
-        double delta = 0;
-        long lastTime = System.nanoTime();
-        long currentTime;
+        while (gameThread != null) { // Boucle tant que le thread est actif
+            currentTime = System.nanoTime(); // Obtenir le temps actuel
+            delta += (currentTime - lastTime) / drawInterval; // Calculer le delta de temps
+            lastTime = currentTime; // Mettre à jour le temps précédent
 
-        while (gameThread != null) {
-            currentTime = System.nanoTime();
-            delta += (currentTime - lastTime) / drawInterval;
-            lastTime = currentTime;
-
-            if (delta >= 1) {
-
-                // 1 UPDATE : INFORMATIONS (Position du joueur, ressources récoltées...)
-                update();
-                // 2 DRAW : DESSINER les informations mise à jour
-                repaint();
-                delta--;
+            if (delta >= 1) { // Si une itération est prête
+                update(); // Met à jour les éléments du jeu
+                repaint(); // Redessine l'écran
+                delta--; // Réduit le delta
             }
         }
     }
 
+    /**
+     * Met à jour les éléments du jeu.
+     */
     public void update() {
-        // 1 UPDATE : INFORMATIONS (Position du joueur, ressources récoltées
-        avatar.update();
-
+        avatar.update(); // Met à jour l'état de l'avatar (position, etc.)
     }
 
+    /**
+     * Dessine les éléments du jeu.
+     */
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
+        super.paintComponent(g); // Appelle la méthode de dessin de la classe parent
+        Graphics2D g2 = (Graphics2D) g; // Conversion en Graphics2D pour un dessin avancé
 
-        // TITLESCREEN
-        if (gameState == TITLE_STATE) {
-            ui.draw(g2);
-
-        } else {
-            // MAP
-            tileM.draw(g2);
-            // OBJET
-            for (int i = 0; i < objet.length; i++) {
-                if (objet[i] != null) {
-                    objet[i].draw(g2, this);
+        if (gameState == TITLE_STATE) { // Si l'état est celui de l'écran de titre
+            ui.draw(g2); // Dessine l'interface utilisateur de l'écran de titre
+        } else { // Sinon, état de jeu en cours
+            tileM.draw(g2); // Dessine les blocs (carte)
+            for (int i = 0; i < objet.length; i++) { // Parcourt les objets
+                if (objet[i] != null) { // Si l'objet existe
+                    objet[i].draw(g2, this); // Dessine l'objet
                 }
             }
-
-            // PLAYER
-
-            avatar.draw(g2);
-
-            g2.dispose();
-
+            avatar.draw(g2); // Dessine l'avatar
+            g2.dispose(); // Libère les ressources graphiques
         }
-
     }
-
 }
