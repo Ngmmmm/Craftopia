@@ -16,7 +16,6 @@ public class Ui {
     JButton start = new JButton();
     JButton exit = new JButton();
 
-
     public Ui(GamePanel gp) {
         this.gp = gp;
     }
@@ -35,15 +34,21 @@ public class Ui {
 
     }
 
-    public boolean initButton(){
+    public boolean initButton() {
         Icon startIcon = new ImageIcon("./img/PlayButton.png");
         Icon exitIcon = new ImageIcon("./img/QuitButton.png");
         start = new JButton(startIcon);
         exit = new JButton(exitIcon);
-        start.setBounds(300,250,160,65);
-        exit.setBounds(300,350,160,65);
-        start.addActionListener(l -> {gp.gameState = gp.playState; gp.remove(start);});
-        exit.addActionListener(l -> {System.exit(0); gp.remove(exit);});
+        start.setBounds(300, 250, 160, 65);
+        exit.setBounds(300, 350, 160, 65);
+        start.addActionListener(l -> {
+            gp.gameState = gp.playState;
+            gp.remove(start);
+        });
+        exit.addActionListener(l -> {
+            System.exit(0);
+            gp.remove(exit);
+        });
         start.setFocusable(false);
         exit.setFocusable(false);
         gp.add(start);
@@ -51,7 +56,6 @@ public class Ui {
         gp.setLayout(null);
         gp.setVisible(true);
         return true;
-
 
     }
 
@@ -64,10 +68,6 @@ public class Ui {
         Point pos = new Point(160, 200);
         g2.setColor(Color.WHITE);
         g2.drawString(text, pos.x, pos.y);
-
-        
-        
-               
 
     }
 }

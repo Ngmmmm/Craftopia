@@ -33,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable {
     Ui ui = new Ui(this);
     Avatar avatar = new Avatar(this, keyH);
     // * POSITION PAR DEFAUT DU JOUEUR
-    public Objet objet[] = new Objet[10];
+    public Ressource ressource[] = new Ressource[10];
     boolean initButton = false;
 
     public int gameState;
@@ -59,7 +59,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void setupGame() {
-        aSetter.setObjet();
+        aSetter.setRessource();
         gameState = TITLE_STATE;
     }
 
@@ -114,10 +114,10 @@ public class GamePanel extends JPanel implements Runnable {
         } else if (gameState == playState){
             // MAP
             tileM.draw(g2);
-            // OBJET
-            for(int i = 0; i < objet.length; i++) {
-                if (objet[i] != null) {
-                    objet[i].draw(g2, this);
+            // Ressource
+            for(int i = 0; i < ressource.length; i++) {
+                if (ressource[i] != null) {
+                    ressource[i].draw(g2, this);
                 }
             }
 

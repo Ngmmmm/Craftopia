@@ -4,7 +4,7 @@ import bag.Argent;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-public class Bois extends Objet {
+public class Bois extends Ressource {
     
     public Bois(){
         name = "bois";

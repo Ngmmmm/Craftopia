@@ -4,7 +4,7 @@ import bag.Argent;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-public class Fer extends Objet {
+public class Fer extends Ressource {
     
     public Fer(){
         name = "fer";

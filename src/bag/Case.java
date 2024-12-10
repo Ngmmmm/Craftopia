@@ -1,26 +1,35 @@
 package bag;
 
-import java.util.ArrayList;
-import ressources.Objet;
+import ressources.Ressource;
 
-public class Case {
+// ? Proposition avec code générique
 
-    private ArrayList<Objet> objet = new ArrayList<>();
+public class Case<E extends Ressource> {
+    private E item;
     private String name;
 
-    public ArrayList<Objet> getObjet(){
-        return this.objet;
+    public E getItem() {
+        return item;
     }
-    public String getName(){
-        return this.name;
+
+    public void setItem(E item) {
+        this.item = item;
     }
-    public void setName(String name){
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
-    public void add(Objet obj){
-        this.objet.add(obj);
+
+    public Case() {
+        this.item = null;
     }
-    
-    
-    
+
+    public void increaseQuantity(E item, int quantity) {
+        item.setQuantity(item.getQuantity() + quantity);
+    }
+
 }
