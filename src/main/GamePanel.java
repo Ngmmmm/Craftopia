@@ -109,15 +109,8 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g; // Conversion en Graphics2D pour un dessin avancé
         double scaleX = (double) getWidth() / LARGEUR_ECRAN;
         double scaleY = (double) getHeight() / HAUTEUR_ECRAN;
-        double scale = Math.min(scaleX, scaleY); // Garder un ratio uniforme
-
-        int offsetX = (int) ((getWidth() - LARGEUR_ECRAN * scale) / 2);
-        int offsetY = (int) ((getHeight() - HAUTEUR_ECRAN * scale) / 2);
-
-        // Appliquer les transformations pour centrer et mettre à l'échelle
-        g2.translate(offsetX, offsetY);
-        g2.scale(scale, scale);
-
+        // Appliquer les transformations pour mettre à l'échelle
+        g2.scale(scaleX, scaleY);
         if (gameState == TITLE_STATE) { // Si l'état est celui de l'écran de titre
             ui.draw(g2); // Dessine l'interface utilisateur de l'écran de titre
         } else { // Sinon, état de jeu en cours
