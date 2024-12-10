@@ -35,13 +35,13 @@ public class GamePanel extends JPanel implements Runnable {
     AssetSetter aSetter = new AssetSetter(this); // Gestion des objets (ressources, ennemis...)
     Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
     public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
-    public Objet objet[] = new Objet[10]; // Tableau pour stocker les objets à afficher
+    public Ressource ressource[] = new Ressource[10]; // Tableau pour stocker les objets à afficher
 
+    boolean initButton = false;
     public int gameState; // État actuel du jeu (titre, en cours, etc.)
     public final int TITLE_STATE = 0; // État correspondant à l'écran de titre
     public final int playState = 1; // État correspondant au jeu en cours
-
-    int avatarSpeed = 1; // Vitesse par défaut de l'avatar
+    
 
     /**
      * Constructeur pour initialiser le panneau de jeu.
@@ -58,8 +58,8 @@ public class GamePanel extends JPanel implements Runnable {
      * Configure les paramètres initiaux du jeu.
      */
     public void setupGame() {
-        aSetter.setObjet(); // Initialise les objets du jeu
-        gameState = TITLE_STATE; // Définit l'état initial à l'écran de titre
+        aSetter.setRessource();
+        gameState = TITLE_STATE;
     }
 
     /**
@@ -105,20 +105,30 @@ public class GamePanel extends JPanel implements Runnable {
      */
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g); // Appelle la méthode de dessin de la classe parent
-        Graphics2D g2 = (Graphics2D) g; // Conversion en Graphics2D pour un dessin avancé
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
 
-        if (gameState == TITLE_STATE) { // Si l'état est celui de l'écran de titre
-            ui.draw(g2); // Dessine l'interface utilisateur de l'écran de titre
-        } else { // Sinon, état de jeu en cours
-            tileM.draw(g2); // Dessine les blocs (carte)
-            for (int i = 0; i < objet.length; i++) { // Parcourt les objets
-                if (objet[i] != null) { // Si l'objet existe
-                    objet[i].draw(g2, this); // Dessine l'objet
+        // TITLESCREEN
+        if (gameState == TITLE_STATE) {
+            ui.drawTitleScreen(g2);
+            if (!initButton) {
+                initButton = ui.initButton();
+            }
+        } else if (gameState == playState) {
+            // MAP
+            tileM.draw(g2);
+            // Ressource
+            for (int i = 0; i < ressource.length; i++) {
+                if (ressource[i] != null) {
+                    ressource[i].draw(g2, this);
                 }
             }
-            avatar.draw(g2); // Dessine l'avatar
-            g2.dispose(); // Libère les ressources graphiques
+
+            // PLAYER
+
+            avatar.draw(g2);
+            g2.dispose();
+
         }
     }
 }

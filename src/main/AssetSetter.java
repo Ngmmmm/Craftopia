@@ -10,10 +10,10 @@ public class AssetSetter {
         this.gp = gp;
     }
 
-    public void setObjet(){
-        gp.objet[0] = new Fer();
-        gp.objet[0].pos.x = 3 * gp.TAILLE_BLOC;
-        gp.objet[0].pos.y = 2 * gp.TAILLE_BLOC;
+    public void setRessource(){
+        gp.ressource[0] = new Fer();
+        gp.ressource[0].pos.x = 3 * gp.TAILLE_BLOC;
+        gp.ressource[0].pos.y = 2 * gp.TAILLE_BLOC;
 
     }
 

@@ -1,5 +1,6 @@
 package sprites;
 
+import bag.Argent;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -13,6 +14,7 @@ import java.awt.RenderingHints;
 public final class Avatar extends Sprite {
     GamePanel gp;
     KeyHandler keyH;
+    public static int argent = Argent.getMonnaiePlayer();
 
     public final int screenX;
     public final int screenY;
@@ -32,7 +34,7 @@ public final class Avatar extends Sprite {
     public void setValeurParDefaut() {
         mapPoint.x = gp.TAILLE_BLOC * 23;
         mapPoint.y = gp.TAILLE_BLOC * 21;
-        this.speed = 4;
+        this.speed = 4; // Vitesse par défaut de l'avatar
         direction = "down";
     }
 
@@ -66,7 +68,6 @@ public final class Avatar extends Sprite {
             System.out.println("Image non chargée: " + e);
         }
     }
-    
 
     public void update() {
         boolean immobile = false;
@@ -98,7 +99,7 @@ public final class Avatar extends Sprite {
         } else {
             direction = "down";
             spriteNum = 2;
-            immobile =true;
+            immobile = true;
         }
 
         // CHECK TILE COLLISION
@@ -106,7 +107,7 @@ public final class Avatar extends Sprite {
         gp.collision.checkTile(this);
 
         // SI COLLISION EST FAUX, L'AVATAR PEUT BOUGER
-        if (!collisionOn&&!immobile) {
+        if (!collisionOn && !immobile) {
             switch (direction) {
                 case "up":
                     this.mapPoint.y -= this.speed;
@@ -178,14 +179,13 @@ public final class Avatar extends Sprite {
             default -> {
             }
         }
-    
+
         // Set rendering hints for better quality
         g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-    
+
         g2.drawImage(image, screenX, screenY, gp.TAILLE_BLOC, gp.TAILLE_BLOC, null);
     }
-    
-    
+
 }
