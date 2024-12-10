@@ -15,12 +15,12 @@ public class GamePanel extends JPanel implements Runnable {
     final int TAILLE_BLOC_ORIGINAL = 16; // Taille de base d'un bloc en pixels
     final int FACTEUR_ECHELLE = 3; // Facteur d'agrandissement appliqué à chaque bloc
     public final int TAILLE_BLOC = TAILLE_BLOC_ORIGINAL * FACTEUR_ECHELLE; // Taille finale d'un bloc
-    public final int NB_COLONNE_MAX = 16; // Nombre maximal de colonnes visibles à l'écran
-    public final int NB_LIGNE_MAX = 12; // Nombre maximal de lignes visibles à l'écran
+    public final int NB_COLONNE_MAX = 19; // Nombre maximal de colonnes visibles à l'écran
+    public final int NB_LIGNE_MAX = 11; // Nombre maximal de lignes visibles à l'écran
     public final int LARGEUR_ECRAN = TAILLE_BLOC * NB_COLONNE_MAX; // Largeur totale de l'écran
     public final int HAUTEUR_ECRAN = TAILLE_BLOC * NB_LIGNE_MAX; // Hauteur totale de l'écran
 
-    public final int NB_COLONNE_MAP_MAX = 50; // Nombre de colonnes maximal sur la carte
+    public final int NB_COLONNE_MAP_MAX = 52; // Nombre de colonnes maximal sur la carte
     public final int NB_LIGNE_MAP_MAX = 50; // Nombre de lignes maximal sur la carte
     public final int LARGEUR_MAP = TAILLE_BLOC * NB_COLONNE_MAP_MAX; // Largeur totale de la carte
     public final int HAUTEUR_MAP = TAILLE_BLOC * NB_LIGNE_MAP_MAX; // Hauteur totale de la carte
@@ -107,6 +107,16 @@ public class GamePanel extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g); // Appelle la méthode de dessin de la classe parent
         Graphics2D g2 = (Graphics2D) g; // Conversion en Graphics2D pour un dessin avancé
+        double scaleX = (double) getWidth() / LARGEUR_ECRAN;
+        double scaleY = (double) getHeight() / HAUTEUR_ECRAN;
+        double scale = Math.min(scaleX, scaleY); // Garder un ratio uniforme
+
+        int offsetX = (int) ((getWidth() - LARGEUR_ECRAN * scale) / 2);
+        int offsetY = (int) ((getHeight() - HAUTEUR_ECRAN * scale) / 2);
+
+        // Appliquer les transformations pour centrer et mettre à l'échelle
+        g2.translate(offsetX, offsetY);
+        g2.scale(scale, scale);
 
         if (gameState == TITLE_STATE) { // Si l'état est celui de l'écran de titre
             ui.draw(g2); // Dessine l'interface utilisateur de l'écran de titre

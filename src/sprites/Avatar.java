@@ -2,13 +2,13 @@ package sprites;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import main.GamePanel;
 import main.KeyHandler;
-import java.awt.RenderingHints;
 
 public final class Avatar extends Sprite {
     GamePanel gp;
@@ -30,8 +30,8 @@ public final class Avatar extends Sprite {
     }
 
     public void setValeurParDefaut() {
-        mapPoint.x = gp.TAILLE_BLOC * 23;
-        mapPoint.y = gp.TAILLE_BLOC * 21;
+        mapPoint.x = gp.TAILLE_BLOC * 29;
+        mapPoint.y = gp.TAILLE_BLOC * 26;
         this.speed = 4;
         direction = "down";
     }
