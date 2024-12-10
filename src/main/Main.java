@@ -1,4 +1,6 @@
+package main;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame; // Importation de la classe JFrame pour créer une fenêtre
 
 public class Main { // Définition de la classe principale
@@ -12,9 +14,12 @@ public class Main { // Définition de la classe principale
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Définition de la taille de la fenêtre (non redimensionnable)
-        fenetre.setResizable(false);
+        fenetre.setResizable(true);
         // Définition du titre de la fenêtre
         fenetre.setTitle("Craftopia");
+        ImageIcon logo = new ImageIcon("img/CraftopiaLogo.jpeg");
+        // ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("resources/img/CraftopiaLogo.jpeg"));
+        fenetre.setIconImage(logo.getImage());
 
         // Création d'une nouvelle instance de GamePanel
         GamePanel ecranDuJeu = new GamePanel();
@@ -29,6 +34,7 @@ public class Main { // Définition de la classe principale
         // Affichage de la fenêtre
         fenetre.setVisible(true);
 
+        ecranDuJeu.setupGame();
         // Démarrage du thread de jeu
         ecranDuJeu.startGameThread();
     }
