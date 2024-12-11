@@ -3,6 +3,5 @@
         "src"
     ],
     "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [],
-    "CodeGPT.apiKey": "CodeGPT Plus Beta"
+    "java.project.referencedLibraries": []
 }

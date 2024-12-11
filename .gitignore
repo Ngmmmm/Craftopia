@@ -1,0 +1,17 @@
+# Ignorer les fichiers spécifiques à VSCode
+.vscode/
+
+# Ignorer les fichiers compilés Java
+*.class
+
+# Ignorer les dossiers de compilation et de build
+bin/
+target/
+
+# Ignorer les fichiers d'archives
+*.jar
+*.war
+
+# Ignorer les fichiers système
+.DS_Store
+Thumbs.db
