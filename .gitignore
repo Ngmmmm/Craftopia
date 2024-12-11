@@ -1,5 +1,5 @@
 # Ignorer les fichiers spécifiques à VSCode
-.vscode/
+.vscode/settings.json
 
 # Ignorer les fichiers compilés Java
 *.class
