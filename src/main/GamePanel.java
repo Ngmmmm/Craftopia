@@ -20,7 +20,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int LARGEUR_ECRAN = TAILLE_BLOC * NB_COLONNE_MAX; // Largeur totale de l'écran
     public final int HAUTEUR_ECRAN = TAILLE_BLOC * NB_LIGNE_MAX; // Hauteur totale de l'écran
 
-    public final int NB_COLONNE_MAP_MAX = 50; // Nombre de colonnes maximal sur la carte
+    public final int NB_COLONNE_MAP_MAX = 52; // Nombre de colonnes maximal sur la carte
     public final int NB_LIGNE_MAP_MAX = 50; // Nombre de lignes maximal sur la carte
     public final int LARGEUR_MAP = TAILLE_BLOC * NB_COLONNE_MAP_MAX; // Largeur totale de la carte
     public final int HAUTEUR_MAP = TAILLE_BLOC * NB_LIGNE_MAP_MAX; // Hauteur totale de la carte
@@ -107,6 +107,10 @@ public class GamePanel extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        double scaleX = (double) getWidth() / LARGEUR_ECRAN;
+        double scaleY = (double) getHeight() / HAUTEUR_ECRAN;
+        // Appliquer les transformations pour mettre à l'échelle
+        g2.scale(scaleX, scaleY);
 
         // TITLESCREEN
         if (gameState == TITLE_STATE) {
