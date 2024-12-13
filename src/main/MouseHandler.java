@@ -11,6 +11,7 @@ public class MouseHandler implements MouseListener {
         this.gp = gp;
     }
 
+    //Méthodes obligatoires pour le fonctionnement du MouseHandler
     @Override
     public void mouseExited(MouseEvent e){}
     @Override

@@ -8,34 +8,44 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+
+/**
+ * La classe Ui gère la génération des boutons du Menu et leur affichage
+ * 
+ * <p>
+ * Cette classe utilise les propriétés des JButton de Swing
+ * </p>
+ * 
+ * 
+ * @author Noa Gregoire--Mellier
+ * @version 1.0
+ */
 public class Ui {
 
-    GamePanel gp;
-    Graphics2D g2;
-    int commandeNum = 0;
-    Icon startIcon = new ImageIcon("./img/PlayButton.png");
-    Icon exitIcon = new ImageIcon("./img/QuitButton.png");
-    JButton start = new JButton(startIcon);
-    JButton exit = new JButton(exitIcon);
+    GamePanel gp; // Instance du panneau de jeu
+    Graphics2D g2; // 
+    Icon startIcon = new ImageIcon("./img/PlayButton.png"); // Icon correspondante au bouton start
+    Icon exitIcon = new ImageIcon("./img/QuitButton.png"); // Icon correspondante au bouton exit
+    JButton start = new JButton(startIcon); // Instance correspondante au bouton start
+    JButton exit = new JButton(exitIcon); // Instance correspondante au bouton exit
 
+    /**
+     * Constructeur de la classe Ui.
+     * 
+     * @param gp le panneau de jeu principal, utilisé pour afficher le menu et le jeu
+     */
     public Ui(GamePanel gp) {
         this.gp = gp;
     }
 
-    public void draw(Graphics2D g2) {
-        this.g2 = g2;
 
-        if (gp.gameState == gp.TITLE_STATE) {
-            drawTitleScreen(g2);
-        } else {
-            g2.setFont(new Font("Arial", Font.PLAIN, 40));
-            g2.setColor(Color.WHITE);
-            g2.drawString("Oui", 330, 200);
-
-        }
-
-    }
-
+    /**
+     * Initialise les boutons du menu au centre du
+     * panneau de jeu et ajoute
+     * leurs actions définies.
+     * 
+     * 
+     */
     public boolean initButton() {
         start.setBounds(gp.getWidth()/3, gp.getHeight()/2, 160, 65);
         exit.setBounds(gp.getWidth()/3, gp.getHeight()/2 + 100, 160, 65);
@@ -55,7 +65,11 @@ public class Ui {
         gp.setVisible(true);
         return true;
     }
-
+    /**
+     *Déplace les boutons a la position demandée en fonction de la dimension du Panel de jeu
+     * @param scaleX Double représentant le facteur de modification X par rapport au précédant panel
+     * @param scaleY Double représentant le facteur de modification Y par rapport au précédant panel
+     */
     public void resizeButton(double scaleX, double scaleY){
         gp.remove(start);
         gp.remove(exit);
@@ -69,6 +83,10 @@ public class Ui {
         gp.add(exit);
     }
 
+    /**
+     *Dessine la base du Menu tel que son fond et le titre du jeu
+     * @param g2 
+     */
     public void drawTitleScreen(Graphics2D g2) {
         this.g2 = g2;
         g2.setColor(Color.GREEN);
