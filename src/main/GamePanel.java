@@ -19,6 +19,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int NB_LIGNE_MAX = 12; // Nombre maximal de lignes visibles à l'écran
     public final int LARGEUR_ECRAN = TAILLE_BLOC * NB_COLONNE_MAX; // Largeur totale de l'écran
     public final int HAUTEUR_ECRAN = TAILLE_BLOC * NB_LIGNE_MAX; // Hauteur totale de l'écran
+    public double scaleXAct = getHeight()/LARGEUR_ECRAN;
+    public double scaleYAct = getWidth()/HAUTEUR_ECRAN;
 
     public final int NB_COLONNE_MAP_MAX = 52; // Nombre de colonnes maximal sur la carte
     public final int NB_LIGNE_MAP_MAX = 50; // Nombre de lignes maximal sur la carte
@@ -111,13 +113,18 @@ public class GamePanel extends JPanel implements Runnable {
         double scaleY = (double) getHeight() / HAUTEUR_ECRAN;
         // Appliquer les transformations pour mettre à l'échelle
         g2.scale(scaleX, scaleY);
-
+        
         // TITLESCREEN
         if (gameState == TITLE_STATE) {
-            ui.drawTitleScreen(g2);
             if (!initButton) {
                 initButton = ui.initButton();
             }
+            if(scaleXAct != scaleX && scaleYAct != scaleY){
+                ui.resizeButton(scaleX, scaleY);
+                scaleXAct = scaleX;
+                scaleYAct = scaleY;
+            }
+            ui.drawTitleScreen(g2);
         } else if (gameState == playState) {
             // MAP
             tileM.draw(g2);
@@ -132,6 +139,7 @@ public class GamePanel extends JPanel implements Runnable {
 
             avatar.draw(g2);
             g2.dispose();
+
 
         }
     }

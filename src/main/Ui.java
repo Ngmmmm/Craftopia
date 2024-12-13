@@ -13,8 +13,10 @@ public class Ui {
     GamePanel gp;
     Graphics2D g2;
     int commandeNum = 0;
-    JButton start = new JButton();
-    JButton exit = new JButton();
+    Icon startIcon = new ImageIcon("./img/PlayButton.png");
+    Icon exitIcon = new ImageIcon("./img/QuitButton.png");
+    JButton start = new JButton(startIcon);
+    JButton exit = new JButton(exitIcon);
 
     public Ui(GamePanel gp) {
         this.gp = gp;
@@ -35,12 +37,8 @@ public class Ui {
     }
 
     public boolean initButton() {
-        Icon startIcon = new ImageIcon("./img/PlayButton.png");
-        Icon exitIcon = new ImageIcon("./img/QuitButton.png");
-        start = new JButton(startIcon);
-        exit = new JButton(exitIcon);
-        start.setBounds(300, 250, 160, 65);
-        exit.setBounds(300, 350, 160, 65);
+        start.setBounds(gp.getWidth()/3, gp.getHeight()/2, 160, 65);
+        exit.setBounds(gp.getWidth()/3, gp.getHeight()/2 + 100, 160, 65);
         start.addActionListener(l -> {
             gp.gameState = gp.playState;
             gp.remove(start);
@@ -56,7 +54,19 @@ public class Ui {
         gp.setLayout(null);
         gp.setVisible(true);
         return true;
+    }
 
+    public void resizeButton(double scaleX, double scaleY){
+        gp.remove(start);
+        gp.remove(exit);
+        int newButtonX = (int) (300 * scaleX);
+        int newButtonY = (int) (250 * scaleY);
+        int newButtonWidth = (int) (160 * scaleX);
+        int newButtonHeight = (int) (65 * scaleY);
+        start.setBounds(newButtonX, newButtonY, newButtonWidth, newButtonHeight);
+        exit.setBounds(newButtonX, newButtonY + 100, newButtonWidth, newButtonHeight);
+        gp.add(start);
+        gp.add(exit);
     }
 
     public void drawTitleScreen(Graphics2D g2) {
