@@ -5,7 +5,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import main.GamePanel;
 
-public class Ressource {
+public abstract class Ressource {
 
     public BufferedImage image;
     public String name;
