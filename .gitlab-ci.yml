@@ -1,18 +1,26 @@
+image: openjdk:17-alpine
+
 stages:
   - build
   - test
 
-build-job:
+variables:
+  JAVA_OPTS: "-Dhttps.proxyHost=194.254.199.96 -Dhttps.proxyPort=3128"
+
+build:
   stage: build
   script:
-    - echo "Compilation des fichiers sources..."
+    - echo "Compilation des fichiers source..."
     - mkdir -p bin
     - javac -d bin -cp "lib/*" $(find src/main -name "*.java") $(find src/test -name "*.java")
     - echo "Compilation terminée avec succès."
+  artifacts:
+    paths:
+      - bin
 
-test-job:
+test:
   stage: test
   script:
     - echo "Exécution des tests unitaires..."
     - java -cp "bin:lib/*" org.junit.platform.console.ConsoleLauncher --scan-classpath
-    - echo "Tous les tests ont été exécutés."
+    - echo "Tests terminés avec succès."
