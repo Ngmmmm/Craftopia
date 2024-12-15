@@ -14,16 +14,16 @@ public class GamePanel extends JPanel implements Runnable {
 
     final int TAILLE_BLOC_ORIGINAL = 16; // Taille de base d'un bloc en pixels
     final int FACTEUR_ECHELLE = 3; // Facteur d'agrandissement appliqué à chaque bloc
-    public final int TAILLE_BLOC = TAILLE_BLOC_ORIGINAL * FACTEUR_ECHELLE; // Taille finale d'un bloc
+    public final int TAILLE_BLOC = TAILLE_BLOC_ORIGINAL * FACTEUR_ECHELLE; // Taille finale d'un bloc (48px)
     public final int NB_COLONNE_MAX = 16; // Nombre maximal de colonnes visibles à l'écran
     public final int NB_LIGNE_MAX = 12; // Nombre maximal de lignes visibles à l'écran
-    public final int LARGEUR_ECRAN = TAILLE_BLOC * NB_COLONNE_MAX; // Largeur totale de l'écran
-    public final int HAUTEUR_ECRAN = TAILLE_BLOC * NB_LIGNE_MAX; // Hauteur totale de l'écran
+    public final int LARGEUR_ECRAN = TAILLE_BLOC * NB_COLONNE_MAX; // Largeur totale de l'écran (768px)
+    public final int HAUTEUR_ECRAN = TAILLE_BLOC * NB_LIGNE_MAX; // Hauteur totale de l'écran (576px)
 
     public final int NB_COLONNE_MAP_MAX = 52; // Nombre de colonnes maximal sur la carte
     public final int NB_LIGNE_MAP_MAX = 50; // Nombre de lignes maximal sur la carte
-    public final int LARGEUR_MAP = TAILLE_BLOC * NB_COLONNE_MAP_MAX; // Largeur totale de la carte
-    public final int HAUTEUR_MAP = TAILLE_BLOC * NB_LIGNE_MAP_MAX; // Hauteur totale de la carte
+    public final int LARGEUR_MAP = TAILLE_BLOC * NB_COLONNE_MAP_MAX; // Largeur totale de la carte (2496px)
+    public final int HAUTEUR_MAP = TAILLE_BLOC * NB_LIGNE_MAP_MAX; // Hauteur totale de la carte (2400px)
 
     int FPS = 60; // Images par seconde pour maintenir la fluidité du jeu
 
@@ -41,7 +41,6 @@ public class GamePanel extends JPanel implements Runnable {
     public int gameState; // État actuel du jeu (titre, en cours, etc.)
     public final int TITLE_STATE = 0; // État correspondant à l'écran de titre
     public final int playState = 1; // État correspondant au jeu en cours
-    
 
     /**
      * Constructeur pour initialiser le panneau de jeu.
