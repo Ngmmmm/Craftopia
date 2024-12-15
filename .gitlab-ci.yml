@@ -1,13 +1,16 @@
-stages:
+# Définition des étapes du pipeline
 stages:
   - build
   - test
+  - deploy
 
+# Variables globales pour le pipeline
 variables:
   JAVA_HOME: "/usr/lib/jvm/java-17-openjdk"
   PATH: "$JAVA_HOME/bin:$PATH"
   CLASSPATH: "bin:lib/*" # Inclure les bibliothèques JAR nécessaires
 
+# Étape de compilation
 build:
   stage: build
   image: openjdk:17  # Utilise l'image Docker avec OpenJDK 17
@@ -18,10 +21,24 @@ build:
   artifacts:
     paths:
       - bin # Sauvegarde les fichiers compilés pour l'étape suivante
-    expire_in: 1 day
+    expire_in: 1 day # Les artefacts expirent après 1 jour
 
+# Étape de tests
 test:
   stage: test
+  image: openjdk:17  # Utilise l'image Docker avec OpenJDK 17
   script:
     - echo "Étape de tests"
     - java -cp "bin:lib/*" org.junit.platform.console.ConsoleLauncher --scan-classpath # Exécute les tests
+  dependencies:
+    - build # Dépend de l'étape de build pour récupérer les artefacts
+
+# Étape de déploiement
+deploy:
+  stage: deploy
+  image: openjdk:17  # Utilise l'image Docker avec OpenJDK 17
+  script:
+    - echo "Étape de déploiement"
+    # Ajoutez ici les commandes nécessaires pour déployer votre application
+  only:
+    - main # Déploie uniquement à partir de la branche principale
