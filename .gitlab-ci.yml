@@ -1,0 +1,36 @@
+stages:
+  - build
+  - test
+  - deploy
+
+# Etape de build : compile le projet Java
+build:
+  stage: build
+  image: openjdk:17  # Utilise l'image Docker avec OpenJDK 17
+  script:
+    - echo "Compilation du projet Java..."
+    - javac -d bin src/**/*.java  # Compile tous les fichiers .java dans le répertoire src
+  artifacts:
+    paths:
+      - bin  # Enregistre le dossier contenant les fichiers compilés
+  only:
+    - main  # Cette étape ne s'exécute que sur la branche "main"
+
+# Etape de test : exécute les tests JUnit
+test:
+  stage: test
+  image: openjdk:17  # Utilise l'image Docker avec OpenJDK 17
+  script:
+    - echo "Exécution des tests JUnit..."
+    - javac -cp .:lib/* -d bin src/test/**/*.java  # Compile les tests
+    - java -cp .:bin:lib/* org.junit.runner.JUnitCore test.<NomDeLaClasseTest>  # Remplace <NomDeLaClasseTest> par la classe de test à exécuter
+  only:
+    - main  # Cette étape ne s'exécute que sur la branche "main"
+
+# Etape de déploiement (exemple : déploiement vers un serveur de staging)
+deploy:
+  stage: deploy
+  script:
+    - echo "Déploiement vers le serveur de staging..."  # Remplace par ton script de déploiement réel
+  only:
+    - main  # Cette étape ne s'exécute que sur la branche "main"
