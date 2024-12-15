@@ -1,9 +1,23 @@
+<<<<<<< HEAD
+=======
+# Définition des étapes du pipeline
+>>>>>>> c9e985f (Changement du fichier CI/CD)
 stages:
   - build
   - test
   - deploy
 
+<<<<<<< HEAD
 # Etape de build : compile le projet Java
+=======
+# Variables globales pour le pipeline
+variables:
+  JAVA_HOME: "/usr/lib/jvm/java-17-openjdk"
+  PATH: "$JAVA_HOME/bin:$PATH"
+  CLASSPATH: "bin:lib/*" # Inclure les bibliothèques JAR nécessaires
+
+# Étape de compilation
+>>>>>>> c9e985f (Changement du fichier CI/CD)
 build:
   stage: build
   image: openjdk:17  # Utilise l'image Docker avec OpenJDK 17
@@ -12,15 +26,23 @@ build:
     - javac -d bin src/**/*.java  # Compile tous les fichiers .java dans le répertoire src
   artifacts:
     paths:
+<<<<<<< HEAD
       - bin  # Enregistre le dossier contenant les fichiers compilés
   only:
     - main  # Cette étape ne s'exécute que sur la branche "main"
 
 # Etape de test : exécute les tests JUnit
+=======
+      - bin # Sauvegarde les fichiers compilés pour l'étape suivante
+    expire_in: 1 day # Les artefacts expirent après 1 jour
+
+# Étape de tests
+>>>>>>> c9e985f (Changement du fichier CI/CD)
 test:
   stage: test
   image: openjdk:17  # Utilise l'image Docker avec OpenJDK 17
   script:
+<<<<<<< HEAD
     - echo "Exécution des tests JUnit..."
     - javac -cp .:lib/* -d bin src/test/**/*.java  # Compile les tests
     - java -cp .:bin:lib/* org.junit.runner.JUnitCore test.<NomDeLaClasseTest>  # Remplace <NomDeLaClasseTest> par la classe de test à exécuter
@@ -34,3 +56,19 @@ deploy:
     - echo "Déploiement vers le serveur de staging..."  # Remplace par ton script de déploiement réel
   only:
     - main  # Cette étape ne s'exécute que sur la branche "main"
+=======
+    - echo "Étape de tests"
+    - java -cp "bin:lib/*" org.junit.platform.console.ConsoleLauncher --scan-classpath # Exécute les tests
+  dependencies:
+    - build # Dépend de l'étape de build pour récupérer les artefacts
+
+# Étape de déploiement
+deploy:
+  stage: deploy
+  image: openjdk:17  # Utilise l'image Docker avec OpenJDK 17
+  script:
+    - echo "Étape de déploiement"
+    # Ajoutez ici les commandes nécessaires pour déployer votre application
+  only:
+    - main # Déploie uniquement à partir de la branche principale
+>>>>>>> c9e985f (Changement du fichier CI/CD)
