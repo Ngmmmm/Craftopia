@@ -1,4 +1,5 @@
 stages:
+stages:
   - build
   - test
 
@@ -9,6 +10,7 @@ variables:
 
 build:
   stage: build
+  image: openjdk:17  # Utilise l'image Docker avec OpenJDK 17
   script:
     - echo "Étape de compilation"
     - mkdir -p bin
