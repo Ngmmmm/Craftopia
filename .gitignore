@@ -9,7 +9,6 @@ bin/
 target/
 
 # Ignorer les fichiers d'archives
-*.jar
 *.war
 
 # Ignorer les fichiers système
