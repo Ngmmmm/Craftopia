@@ -10,12 +10,12 @@ public class Inventaire {
     public boolean add(Ressource ress, int quantity) {
         for (int i = 0; i < inv.size(); i++) {
             if (inv.get(i).getText().equals(ress.getName())) {
-                inv.get(i).getItem().increaseQuantity(ress, quantity);
+                inv.get(i).getItem().increaseQuantity(quantity);
                 return true;
             }
         }
         inv.add(new Case<Ressource>());
-        inv.get(inv.size() - 1).getItem().increaseQuantity(ress, quantity);
+        inv.get(inv.size() - 1).getItem().increaseQuantity(quantity);
         inv.get(inv.size() - 1).setText(ress.getName());
         return true;
     }

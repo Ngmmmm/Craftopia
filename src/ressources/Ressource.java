@@ -32,8 +32,8 @@ public class Ressource {
      * @param item     L'item auquel on applique la méthode
      * @param quantity La valeur par laquelle augmenter la quantité de l'item
      */
-    public void increaseQuantity(Ressource ress, int quantity) {
-        ress.setQuantity(ress.getQuantity() + quantity);// Augmente la quantité de l'item par la valeur de quantity
+    public void increaseQuantity(int quantity) {
+        this.quantity += quantity;// Augmente la quantité de l'item par la valeur de quantity
     }
 
     /**
@@ -42,11 +42,13 @@ public class Ressource {
      * @param item     L'item auquel on applique la méthode
      * @param quantity La valeur par laquelle réduire la quantité de l'item
      */
-    public void reduceQuantity(Ressource ress, int quantity) {
-        ress.setQuantity(ress.getQuantity() - quantity);// Réduit la quantité de l'item par la valeur de quantity
+    public void reduceQuantity(int quantity) {
+        if (this.quantity<quantity) {
+            throw new IllegalArgumentException("Nombre de ressource insufisant.");
+        }
+        this.quantity -= quantity;// Réduit la quantité de l'item par la valeur de quantity
     }
 
-    
     public void draw(Graphics2D g2, GamePanel gp) {
         g2.drawImage(image, pos.x, pos.y, null);
 
