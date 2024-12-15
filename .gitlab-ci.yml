@@ -5,14 +5,14 @@ stages:
 build-job:
   stage: build
   script:
-    - echo "Compilation du code..."
+    - echo "Compilation des fichiers sources..."
     - mkdir -p bin
     - javac -d bin -cp "lib/*" $(find src/main -name "*.java") $(find src/test -name "*.java")
-    - echo "Compilation terminée."
+    - echo "Compilation terminée avec succès."
 
 test-job:
   stage: test
   script:
-    - echo "Exécution des tests..."
-    - java -cp "bin:lib/*" org.junit.platform.console.ConsoleLauncher --classpath bin --scan-classpath
-    - echo "Tests terminés."
+    - echo "Exécution des tests unitaires..."
+    - java -cp "bin:lib/*" org.junit.platform.console.ConsoleLauncher --scan-classpath
+    - echo "Tous les tests ont été exécutés."
