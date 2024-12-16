@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 # Définition des étapes du pipeline
 >>>>>>> c9e985f (Changement du fichier CI/CD)
@@ -25,10 +26,18 @@ stages:
 
 stages:          # List of stages for jobs, and their order of execution
 >>>>>>> 163a3cd (Update .gitlab-ci.yml)
+=======
+default:
+  tags:
+    - docker
+
+stages:          # Liste des étapes pour les jobs, dans l'ordre d'exécution
+>>>>>>> f73447e (Mettre à jour le fichier .gitlab-ci.yml)
   - build
   - test
   - deploy
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 # Etape de build : compile le projet Java
@@ -90,10 +99,23 @@ deploy:
 =======
     - echo "Compiling the code..."
     - echo "Compile complete."
-
-unit-test-job:   # This job runs in the test stage.
-  stage: test    # It only starts when the job in the build stage completes successfully.
+=======
+build:
+  stage: build
   script:
+    - echo "Compilation des fichiers sources..."
+    - mkdir -p bin
+    - javac -d bin src/app/**/*.java
+    - echo "Compilation terminée avec succès."
+  artifacts:
+    paths:
+      - bin      # Conserve les fichiers compilés pour les autres jobs
+>>>>>>> f73447e (Mettre à jour le fichier .gitlab-ci.yml)
+
+test:
+  stage: test
+  script:
+<<<<<<< HEAD
     - echo "Running unit tests... This will take about 60 seconds."
     - sleep 60
     - echo "Code coverage is 90%"
@@ -120,3 +142,18 @@ deploy-job:      # This job runs in the deploy stage.
     - echo "Deploying application..."
     - echo "Application successfully deployed."
 >>>>>>> 163a3cd (Update .gitlab-ci.yml)
+=======
+    - echo "Compilation des fichiers de test..."
+    - javac -cp ".;lib/junit-jupiter-api-5.11.3.jar;lib/junit-platform-console-standalone-1.11.3.jar" -d bin src/app/**/*.java src/test/*.java
+    - echo "Exécution des tests..."
+    - java -cp "bin;lib/junit-platform-console-standalone-1.11.3.jar;lib/junit-jupiter-api-5.11.3.jar" org.junit.platform.console.ConsoleLauncher --scan-classpath
+  dependencies:
+    - build      # Récupère les artefacts du job "build"
+
+deploy:
+  stage: deploy
+  environment: production
+  script:
+    - echo "Déploiement de l'application..."
+    - echo "Application déployée avec succès."
+>>>>>>> f73447e (Mettre à jour le fichier .gitlab-ci.yml)
