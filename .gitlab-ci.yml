@@ -3,37 +3,41 @@ stages:
   - test
   - deploy
 
+# Job de compilation des sources
 build:
   stage: build
-  image: debian:latest   # Utilise l'image Debian par défaut
+  image: debian:latest
   script:
     - echo "Mise à jour des dépôts et installation de Java..."
-    - apt-get update && apt-get install -y openjdk-17-jdk  # Installe OpenJDK 17
+    - apt-get update && apt-get install -y openjdk-17-jdk
     - echo "Compilation des fichiers sources..."
     - mkdir -p bin
-    # Trouver tous les fichiers .java et les compiler
-    - find src/app -name "*.java" > sources.txt
+    # Trouver tous les fichiers .java dans le répertoire src et ses sous-répertoires
+    - find src -name "*.java" > sources.txt
     - javac -d bin @sources.txt
     - echo "Compilation terminée avec succès."
   timeout: 10m
   artifacts:
     paths:
-      - bin      # Conserve les fichiers compilés pour les autres jobs
+      - bin  # Conserve les fichiers compilés pour les autres jobs
 
+# Job de test
 test:
   stage: test
-  image: debian:latest  # Utilise également Debian
+  image: debian:latest
   script:
     - echo "Mise à jour et installation de Java pour les tests..."
-    - apt-get update && apt-get install -y openjdk-17-jdk # Installe OpenJDK 17
+    - apt-get update && apt-get install -y openjdk-17-jdk
     - echo "Compilation des fichiers de test..."
+    # Trouver les fichiers .java dans le répertoire src/test et ses sous-répertoires
     - find src/test -name "*.java" > test_sources.txt
     - javac -cp ".;lib/junit-jupiter-api-5.11.3.jar;lib/junit-platform-console-standalone-1.11.3.jar" -d bin @test_sources.txt
     - echo "Exécution des tests..."
     - java -cp "bin;lib/junit-platform-console-standalone-1.11.3.jar;lib/junit-jupiter-api-5.11.3.jar" org.junit.platform.console.ConsoleLauncher --scan-classpath
   dependencies:
-    - build      # Récupère les artefacts du job "build"
+    - build  # Récupère les artefacts du job "build"
 
+# Job de déploiement
 deploy:
   stage: deploy
   environment: production
