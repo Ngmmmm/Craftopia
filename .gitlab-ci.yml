@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 # Définition des étapes du pipeline
 >>>>>>> c9e985f (Changement du fichier CI/CD)
@@ -157,3 +158,5 @@ deploy:
     - echo "Déploiement de l'application..."
     - echo "Application déployée avec succès."
 >>>>>>> f73447e (Mettre à jour le fichier .gitlab-ci.yml)
+=======
+>>>>>>> 3eeca3b (vidage du .gitlab-ci.yml)
