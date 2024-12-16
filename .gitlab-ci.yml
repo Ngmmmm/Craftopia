@@ -8,7 +8,7 @@ build:
   script:
     - echo "Compilation du fichier Main.java..."
     - mkdir -p bin
-    - javac -d bin src/main/Main.java
+    - javac -d bin src/app/**/*.java
     - echo "Compilation terminée avec succès."
   artifacts:
     paths:
