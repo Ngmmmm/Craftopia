@@ -10,6 +10,8 @@ build:
     - mkdir -p bin
     - javac -d bin src/app/**/*.java
     - echo "Compilation terminée avec succès."
+  
+  timeout: 10m
   artifacts:
     paths:
       - bin      # Conserve les fichiers compilés pour les autres jobs
