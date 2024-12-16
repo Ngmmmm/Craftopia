@@ -7,6 +7,8 @@ public class Argent {
     private static final int VALFER = 3;
     private static final int VALPIOCHE = 5;
     private static final int VALPIERRE = 1;
+    private static final int VALBLOCPIERRE = 5;
+    private static final int PRIXRECOLTEUSE = 100;
 
     public static int getMonnaiePlayer(){
         return monnaiePlayer;
@@ -22,6 +24,12 @@ public class Argent {
     }
     public static int getVALPIERRE(){
         return VALPIERRE;
+    }
+    public static int getVALBLOCPIERRE(){
+        return VALBLOCPIERRE;
+    }
+    public static int getPRIXRECOLTEUSE(){
+        return PRIXRECOLTEUSE;
     }
     
     
