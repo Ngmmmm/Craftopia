@@ -1,28 +1,39 @@
-stages:          # List of stages for jobs, and their order of execution
+stages:
   - build
   - test
   - deploy
 
-before_script:   # This will run before any job starts.
-  - apt-get update && apt-get install -y openjdk-11-jdk
-
-build:           # This job runs in the build stage, which runs first.
+build:
   stage: build
+  image: debian:latest   # Utilise l'image Debian par défaut
   script:
-    - echo "Compiling the code..."
-    - javac -cp ".:lib/junit-jupiter-api-5.11.3.jar:lib/junit-platform-console-standalone-1.11.3.jar" -d bin src/app/**/*.java src/test/*.java
-    - echo "Compile complete."
-    
-test:            # This job runs in the test stage.
-  stage: test     # It only starts when the job in the build stage completes successfully.
+    - echo "Mise à jour des dépôts et installation de Java..."
+    - apt-get update && apt-get install -y openjdk-17-jdk  # Installe OpenJDK 17
+    - echo "Compilation des fichiers sources..."
+    - mkdir -p bin
+    - javac -d bin src/app/**/*.java
+    - echo "Compilation terminée avec succès."
+  timeout: 10m
+  artifacts:
+    paths:
+      - bin      # Conserve les fichiers compilés pour les autres jobs
+
+test:
+  stage: test
+  image: debian:latest  # Utilise également Debian
   script:
-    - echo "Running unit tests..."
-    - java -cp "bin:lib/junit-platform-console-standalone-1.11.3.jar:lib/junit-jupiter-api-5.11.3.jar" org.junit.platform.console.ConsoleLauncher --scan-classpath
-    - echo "Code coverage is 90%"
-    
-deploy:          # This job runs in the deploy stage.
-  stage: deploy   # It only runs when both jobs in the test stage complete successfully.
+    - echo "Mise à jour et installation de Java pour les tests..."
+    - apt-get update && apt-get install -y openjdk-17-jdk # Installe OpenJDK 17
+    - echo "Compilation des fichiers de test..."
+    - javac -cp ".;lib/junit-jupiter-api-5.11.3.jar;lib/junit-platform-console-standalone-1.11.3.jar" -d bin src/app/**/*.java src/test/*.java
+    - echo "Exécution des tests..."
+    - java -cp "bin;lib/junit-platform-console-standalone-1.11.3.jar;lib/junit-jupiter-api-5.11.3.jar" org.junit.platform.console.ConsoleLauncher --scan-classpath
+  dependencies:
+    - build      # Récupère les artefacts du job "build"
+
+deploy:
+  stage: deploy
   environment: production
   script:
-    - echo "Deploying application..."
-    - echo "Application successfully deployed."
+    - echo "Déploiement de l'application..."
+    - echo "Application déployée avec succès."
