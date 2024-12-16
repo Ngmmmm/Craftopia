@@ -1,4 +1,4 @@
-stages:          # Liste des étapes pour les jobs, dans l'ordre d'exécution
+stages:
   - build
   - test
   - deploy
@@ -8,7 +8,7 @@ build:
   image: debian:latest   # Utilise l'image Debian par défaut
   script:
     - echo "Mise à jour des dépôts et installation de Java..."
-    - apt-get update && apt-get install -y openjdk-11-jdk # Installer Java 11
+    - apt-get update && apt-get install -y openjdk-17-jdk  # Installe OpenJDK 17
     - echo "Compilation des fichiers sources..."
     - mkdir -p bin
     - javac -d bin src/app/**/*.java
@@ -23,7 +23,7 @@ test:
   image: debian:latest  # Utilise également Debian
   script:
     - echo "Mise à jour et installation de Java pour les tests..."
-    - apt-get update && apt-get install -y openjdk-11-jdk # Installer Java 11
+    - apt-get update && apt-get install -y openjdk-17-jdk # Installe OpenJDK 17
     - echo "Compilation des fichiers de test..."
     - javac -cp ".;lib/junit-jupiter-api-5.11.3.jar;lib/junit-platform-console-standalone-1.11.3.jar" -d bin src/app/**/*.java src/test/*.java
     - echo "Exécution des tests..."
