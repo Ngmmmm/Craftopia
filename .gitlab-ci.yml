@@ -1,18 +1,14 @@
-image: openjdk:17-alpine
-
-stages:
+stages:          # Liste des étapes pour les jobs, dans l'ordre d'exécution
   - build
   - test
-
-variables:
-  JAVA_OPTS: "-Dhttps.proxyHost=194.254.199.96 -Dhttps.proxyPort=3128"
+  - deploy
 
 build:
   stage: build
   script:
-    - echo "Compilation des fichiers source..."
+    - echo "Compilation du fichier Main.java..."
     - mkdir -p bin
-    - javac -d bin -cp "lib/*" $(find src/main -name "*.java") $(find src/test -name "*.java")
+    - javac -d bin src/main/Main.java
     - echo "Compilation terminée avec succès."
   artifacts:
     paths:
@@ -21,6 +17,16 @@ build:
 test:
   stage: test
   script:
-    - echo "Exécution des tests unitaires..."
-    - java -cp "bin:lib/*" org.junit.platform.console.ConsoleLauncher --scan-classpath
-    - echo "Tests terminés avec succès."
+    - echo "Compilation des fichiers de test..."
+    - javac -cp ".;lib/junit-jupiter-api-5.11.3.jar;lib/junit-platform-console-standalone-1.11.3.jar" -d bin src/app/**/*.java src/test/*.java
+    - echo "Exécution des tests..."
+    - java -cp "bin;lib/junit-platform-console-standalone-1.11.3.jar;lib/junit-jupiter-api-5.11.3.jar" org.junit.platform.console.ConsoleLauncher --scan-classpath
+  dependencies:
+    - build
+
+deploy:
+  stage: deploy
+  environment: production
+  script:
+    - echo "Déploiement de l'application..."
+    - echo "Application déployée avec succès."
