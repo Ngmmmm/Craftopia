@@ -11,7 +11,9 @@ build:
     - apt-get update && apt-get install -y openjdk-17-jdk  # Installe OpenJDK 17
     - echo "Compilation des fichiers sources..."
     - mkdir -p bin
-    - javac -d bin src/app/**/*.java
+    # Trouver tous les fichiers .java et les compiler
+    - find src/app -name "*.java" > sources.txt
+    - javac -d bin @sources.txt
     - echo "Compilation terminée avec succès."
   timeout: 10m
   artifacts:
@@ -25,7 +27,8 @@ test:
     - echo "Mise à jour et installation de Java pour les tests..."
     - apt-get update && apt-get install -y openjdk-17-jdk # Installe OpenJDK 17
     - echo "Compilation des fichiers de test..."
-    - javac -cp ".;lib/junit-jupiter-api-5.11.3.jar;lib/junit-platform-console-standalone-1.11.3.jar" -d bin src/app/**/*.java src/test/*.java
+    - find src/test -name "*.java" > test_sources.txt
+    - javac -cp ".;lib/junit-jupiter-api-5.11.3.jar;lib/junit-platform-console-standalone-1.11.3.jar" -d bin @test_sources.txt
     - echo "Exécution des tests..."
     - java -cp "bin;lib/junit-platform-console-standalone-1.11.3.jar;lib/junit-jupiter-api-5.11.3.jar" org.junit.platform.console.ConsoleLauncher --scan-classpath
   dependencies:
