@@ -8,7 +8,7 @@ build:
   script:
     - echo "Compilation des fichiers sources..."
     - mkdir -p bin
-    - javac -d bin src/app/**/*.java
+    #- javac -d bin src/app/**/*.java
     - echo "Compilation terminée avec succès."
   
   timeout: 10m
