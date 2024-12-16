@@ -18,9 +18,9 @@ test:
   stage: test
   script:
     - echo "Compilation des fichiers de test..."
-    - javac -cp "bin:lib/junit-jupiter-api-5.11.3.jar:lib/junit-platform-console-standalone-1.11.3.jar" -d bin src/test/*.java
+    - javac -cp ".;lib/junit-jupiter-api-5.11.3.jar;lib/junit-platform-console-standalone-1.11.3.jar" -d bin src/app/**/*.java src/test/*.java
     - echo "Exécution des tests..."
-    - java -cp "bin:lib/junit-platform-console-standalone-1.11.3.jar:lib/junit-jupiter-api-5.11.3.jar" org.junit.platform.console.ConsoleLauncher --scan-classpath
+    - java -cp "bin;lib/junit-platform-console-standalone-1.11.3.jar;lib/junit-jupiter-api-5.11.3.jar" org.junit.platform.console.ConsoleLauncher --scan-classpath
   dependencies:
     - build      # Récupère les artefacts du job "build"
 
