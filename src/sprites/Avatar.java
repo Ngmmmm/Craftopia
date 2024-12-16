@@ -1,6 +1,7 @@
 package sprites;
 
 import bag.Argent; // Importation de la classe permettant de gérer l'argent
+import bag.Inventaire;
 import java.awt.Graphics2D; // Permet de dessiner l'avatar avec une qualité graphique
 import java.awt.Rectangle; // Définit l'aire solide pour la détection des collisions
 import java.awt.RenderingHints; // Optimise le rendu graphique
@@ -36,6 +37,7 @@ public final class Avatar extends Sprite {
     public static int argent = Argent.getMonnaiePlayer(); // Argent du joueur
     public final int screenX; // Position de l'avatar au centre de l'écran sur l'axe X
     public final int screenY; // Position de l'avatar au centre de l'écran sur l'axe Y
+    public final Inventaire inv;
 
     /**
      * Constructeur de la classe Avatar.
@@ -43,11 +45,12 @@ public final class Avatar extends Sprite {
      * @param gp   le panneau de jeu principal, utilisé pour les dimensions de l'écran.
      * @param keyH le gestionnaire des entrées clavier, permettant de détecter les actions du joueur.
      */
-    public Avatar(GamePanel gp, KeyHandler keyH) {
+    public Avatar(GamePanel gp, KeyHandler keyH, Inventaire inv) {
         this.gp = gp; // Initialisation du panneau de jeu
         this.keyH = keyH; // Initialisation du gestionnaire des entrées clavier
         this.screenX = (this.gp.LARGEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran (X)
         this.screenY = (this.gp.HAUTEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran (Y)
+        this.inv = inv;
 
         solidArea = new Rectangle(8, 16, 32, 32); // Définit la zone de collision de l'avatar
 

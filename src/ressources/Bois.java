@@ -15,6 +15,7 @@ public class Bois extends Ressource {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        time = 300;
     }
     
 }

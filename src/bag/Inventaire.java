@@ -5,7 +5,7 @@ import ressources.Ressource;
 
 public class Inventaire {
 
-    private final ArrayList<Case<Ressource>> inv = new ArrayList<>();
+    public final ArrayList<Case<Ressource>> inv = new ArrayList<>();
 
     public boolean add(Ressource ress, int quantity) {
         for (int i = 0; i < inv.size(); i++) {

@@ -13,6 +13,7 @@ public class Ressource {
     public boolean collision = false;
     public Point pos = new Point();
     public int prix;
+    public int time;
 
     public String getName() {
         return name;

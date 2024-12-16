@@ -1,10 +1,11 @@
 package main;
 
-import java.awt.Color; // Importation de la classe pour gérer les couleurs
-import java.awt.Dimension; // Importation pour définir les dimensions des composants
-import java.awt.Graphics; // Importation pour dessiner des composants
-import java.awt.Graphics2D; // Importation pour des dessins graphiques avancés
-import javax.swing.JPanel; // Importation de JPanel pour créer le panneau de jeu
+import bag.Inventaire; // Importation de la classe pour gérer les couleurs
+import java.awt.Color; // Importation pour définir les dimensions des composants
+import java.awt.Dimension; // Importation pour dessiner des composants
+import java.awt.Graphics; // Importation pour des dessins graphiques avancés
+import java.awt.Graphics2D; // Importation de JPanel pour créer le panneau de jeu
+import javax.swing.JPanel;
 import ressources.*; // Importation des ressources nécessaires
 import sprites.Avatar; // Importation de la classe Avatar (le joueur)
 import tile.TileManager; // Importation pour gérer les blocs du jeu
@@ -36,7 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     AssetSetter aSetter = new AssetSetter(this); // Gestion des objets (ressources, ennemis...)
     Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
-    public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
+    public Avatar avatar = new Avatar(this, keyH, new Inventaire()); // L'avatar contrôlé par le joueur
     public Ressource ressource[] = new Ressource[10]; // Tableau pour stocker les objets à afficher
 
     boolean initButton = false;
