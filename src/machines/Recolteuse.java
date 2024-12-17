@@ -28,7 +28,7 @@ public class Recolteuse {
     }
 
     public void addRessource(){
-        this.res.increaseQuantity(res, 1);
+        this.res.increaseQuantity(1);
     }
 
     public void backToPlayer(Avatar player, Ressource r){

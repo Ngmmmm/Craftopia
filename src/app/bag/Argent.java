@@ -33,6 +33,9 @@ public class Argent {
     public static int getPRIXRECOLTEUSE(){
         return PRIXRECOLTEUSE;
     }
+    public static int getVALFEUILLE(){
+        return VALFEUILLE;
+    }
     
     
 
