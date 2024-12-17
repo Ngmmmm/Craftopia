@@ -1,6 +1,5 @@
 package recettes;
 
-<<<<<<< HEAD
 import bag.Inventaire;
 import ressources.Ressource;
 
@@ -33,11 +32,4 @@ public class Recette {
     public Ressource[] getTabRessource(){
         return this.ingredients;
     }
-=======
-public class Recette {
-    private String nom;
-    private String[] ingredients;
-    private int time;
-
->>>>>>> 59943d1b5555aee25e5e07e909ba2e72b7f0b067
 }

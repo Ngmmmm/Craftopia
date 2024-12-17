@@ -79,7 +79,6 @@ public class TileManager {
             tile[4].isOccupied = true; // Empêche de pouvoir poser un objet sur le bloc
 
             // Chargement des blocs supplémentaires
-<<<<<<< HEAD
             tile[5] = new Tile();
             tile[5].image = ImageIO.read(new File("./img/machines/recolteuse.png"));
             tile[5].collision = true;
@@ -119,9 +118,6 @@ public class TileManager {
 
             tile[15] = new Tile();
             tile[15].image = ImageIO.read(new File("./img/tiles/Seeds.png"));
-=======
-            
->>>>>>> 59943d1b5555aee25e5e07e909ba2e72b7f0b067
 
         } catch (IOException e) {
             e.printStackTrace();

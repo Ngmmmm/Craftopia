@@ -14,10 +14,7 @@ public abstract class Ressource {
     public boolean collision = false;
     public Point pos = new Point();
     public int prix;
-<<<<<<< HEAD
     public int time;
-=======
->>>>>>> 59943d1b5555aee25e5e07e909ba2e72b7f0b067
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX = 0;
     public int solidAreaDefaultY = 0;
