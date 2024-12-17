@@ -2,6 +2,7 @@ package ressources;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import main.GamePanel;
 
@@ -14,6 +15,9 @@ public abstract class Ressource {
     public Point pos = new Point();
     public int prix;
     public int time;
+    public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+    public int solidAreaDefaultX = 0;
+    public int solidAreaDefaultY = 0;
 
     public String getName() {
         return name;

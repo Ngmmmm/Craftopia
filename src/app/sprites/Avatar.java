@@ -17,14 +17,15 @@ import main.KeyHandler; // Gère les entrées clavier du joueur
  * 
  * <p>
  * Elle hérite de la classe {@link Sprite} et contient des informations et
- * fonctionnalités spécifiques à l'avatar, telles que sa position, sa vitesse, 
+ * fonctionnalités spécifiques à l'avatar, telles que sa position, sa vitesse,
  * la gestion des collisions, les images pour ses animations, ainsi que les
  * interactions avec les entrées clavier du joueur.
  * </p>
  * 
  * <p>
  * Cette classe est responsable du mouvement du personnage, de la gestion des
- * directions, du changement d'animations en fonction des actions, et de l'affichage
+ * directions, du changement d'animations en fonction des actions, et de
+ * l'affichage
  * correct de l'avatar sur l'écran.
  * </p>
  * 
@@ -42,8 +43,10 @@ public final class Avatar extends Sprite {
     /**
      * Constructeur de la classe Avatar.
      * 
-     * @param gp   le panneau de jeu principal, utilisé pour les dimensions de l'écran.
-     * @param keyH le gestionnaire des entrées clavier, permettant de détecter les actions du joueur.
+     * @param gp   le panneau de jeu principal, utilisé pour les dimensions de
+     *             l'écran.
+     * @param keyH le gestionnaire des entrées clavier, permettant de détecter les
+     *             actions du joueur.
      */
     public Avatar(GamePanel gp, KeyHandler keyH, Inventaire inv) {
         this.gp = gp; // Initialisation du panneau de jeu
@@ -53,7 +56,8 @@ public final class Avatar extends Sprite {
         this.inv = inv;
 
         solidArea = new Rectangle(8, 16, 32, 32); // Définit la zone de collision de l'avatar
-
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
         setValeurParDefaut(); // Définit les valeurs initiales par défaut
         getAvatarImage(); // Charge les images de l'avatar
     }
@@ -70,8 +74,10 @@ public final class Avatar extends Sprite {
     }
 
     /**
-     * Charge les images nécessaires à l'animation de l'avatar, incluant ses mouvements
-     * dans les quatre directions (haut, bas, gauche, droite) et ses positions immobiles.
+     * Charge les images nécessaires à l'animation de l'avatar, incluant ses
+     * mouvements
+     * dans les quatre directions (haut, bas, gauche, droite) et ses positions
+     * immobiles.
      */
     public void getAvatarImage() {
         try {
@@ -128,10 +134,13 @@ public final class Avatar extends Sprite {
             immobile = true;
         }
 
-        // Vérifie les collisions avec les tuiles
+        // Vérifie les collisions avec les blocs
         collisionOn = false;
         gp.collision.checkTile(this);
 
+        // Vérifie les collisions avec les objets sur la map
+        int ressourceIndex = gp.collision.collisionItem(this, true);
+        pickUpItem(ressourceIndex);
         // Si aucune collision et que l'avatar est mobile, met à jour la position
         if (!collisionOn && !immobile) {
             switch (direction) {
@@ -142,6 +151,12 @@ public final class Avatar extends Sprite {
                 default -> {
                 }
             }
+        }
+    }
+
+    public void pickUpItem(int index){
+        if (index!=999) {
+            gp.ressource[index]=null;
         }
     }
 
