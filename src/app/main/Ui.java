@@ -8,6 +8,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+<<<<<<< HEAD
 
 /**
  * La classe Ui gère la génération des boutons du Menu et leur affichage
@@ -34,10 +35,21 @@ public class Ui {
      * 
      * @param gp le panneau de jeu principal, utilisé pour afficher le menu et le jeu
      */
+=======
+public class Ui {
+
+    GamePanel gp;
+    Graphics2D g2;
+    int commandeNum = 0;
+    JButton start = new JButton();
+    JButton exit = new JButton();
+
+>>>>>>> 59943d1b5555aee25e5e07e909ba2e72b7f0b067
     public Ui(GamePanel gp) {
         this.gp = gp;
     }
 
+<<<<<<< HEAD
 
     /**
      * Initialise les boutons du menu au centre du
@@ -49,6 +61,29 @@ public class Ui {
     public boolean initButton() {
         start.setBounds(gp.getWidth()/3, gp.getHeight()/2, 160, 65);
         exit.setBounds(gp.getWidth()/3, gp.getHeight()/2 + 100, 160, 65);
+=======
+    public void draw(Graphics2D g2) {
+        this.g2 = g2;
+
+        if (gp.gameState == gp.TITLE_STATE) {
+            drawTitleScreen(g2);
+        } else {
+            g2.setFont(new Font("Arial", Font.PLAIN, 40));
+            g2.setColor(Color.WHITE);
+            g2.drawString("Oui", 330, 200);
+
+        }
+
+    }
+
+    public boolean initButton() {
+        Icon startIcon = new ImageIcon("./img/PlayButton.png");
+        Icon exitIcon = new ImageIcon("./img/QuitButton.png");
+        start = new JButton(startIcon);
+        exit = new JButton(exitIcon);
+        start.setBounds(300, 250, 160, 65);
+        exit.setBounds(300, 350, 160, 65);
+>>>>>>> 59943d1b5555aee25e5e07e909ba2e72b7f0b067
         start.addActionListener(l -> {
             gp.gameState = gp.playState;
             gp.remove(start);
@@ -64,6 +99,7 @@ public class Ui {
         gp.setLayout(null);
         gp.setVisible(true);
         return true;
+<<<<<<< HEAD
     }
     /**
      *Déplace les boutons a la position demandée en fonction de la dimension du Panel de jeu
@@ -87,6 +123,11 @@ public class Ui {
      *Dessine la base du Menu tel que son fond et le titre du jeu
      * @param g2 
      */
+=======
+
+    }
+
+>>>>>>> 59943d1b5555aee25e5e07e909ba2e72b7f0b067
     public void drawTitleScreen(Graphics2D g2) {
         this.g2 = g2;
         g2.setColor(Color.GREEN);
@@ -96,5 +137,9 @@ public class Ui {
         Point pos = new Point(160, 200);
         g2.setColor(Color.WHITE);
         g2.drawString(text, pos.x, pos.y);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 59943d1b5555aee25e5e07e909ba2e72b7f0b067
     }
 }
