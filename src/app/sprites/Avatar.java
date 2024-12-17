@@ -157,7 +157,7 @@ public final class Avatar extends Sprite {
 
     public void pickUpItem(int index){
         if (index!=999) {
-            gp.ressource[index]=null;
+            // gp.ressource[index]=null; // Permet de faire disparaitre l'objet de la carte
         }
     }
 
