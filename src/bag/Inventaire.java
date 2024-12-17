@@ -20,4 +20,16 @@ public class Inventaire {
         return true;
     }
 
+    public boolean remove(Ressource ress, int quantity){
+        for (int i = 0; i < inv.size(); i++) {
+            if (inv.get(i).getText().equals(ress.getName())) {
+                inv.get(i).getItem().decreaseQuantity(ress, quantity);
+                if(inv.get(i).getItem().getQuantity() < 0){
+                    inv.remove(i);
+                }
+            }
+        }
+        return true;
+    }
+
 }

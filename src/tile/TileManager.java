@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-
 import main.GamePanel;
 
 /**
@@ -77,7 +76,7 @@ public class TileManager {
 
             // Chargement des blocs supplémentaires
             tile[5] = new Tile();
-            tile[5].image = ImageIO.read(new File("./img/tiles/ClotureDroiteVerticale.png"));
+            tile[5].image = ImageIO.read(new File("./img/machines/recolteuse.png"));
             tile[5].collision = true;
 
             tile[6] = new Tile();

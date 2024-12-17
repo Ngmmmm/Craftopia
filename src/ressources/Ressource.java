@@ -43,7 +43,7 @@ public class Ressource {
      * @param item     L'item auquel on applique la méthode
      * @param quantity La valeur par laquelle réduire la quantité de l'item
      */
-    public void reduceQuantity(Ressource ress, int quantity) {
+    public void decreaseQuantity(Ressource ress, int quantity) {
         ress.setQuantity(ress.getQuantity() - quantity);// Réduit la quantité de l'item par la valeur de quantity
     }
 

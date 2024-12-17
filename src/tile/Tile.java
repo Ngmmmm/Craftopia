@@ -43,4 +43,5 @@ public class Tile {
      * Elle définit précisément l'espace où des interactions physiques peuvent se produire.
      */
     public Rectangle solidArea;
+
 }
