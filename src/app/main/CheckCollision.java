@@ -7,7 +7,8 @@ import sprites.Sprite;
  * et les blocs de la carte.
  * <p>
  * Cette classe utilise les propriétés des {@link Sprite} et les données de la
- * carte pour déterminer si un sprite rencontre un bloc avec laquelle il ne peut pas
+ * carte pour déterminer si un sprite rencontre un bloc avec laquelle il ne peut
+ * pas
  * passer
  * (c'est-à-dire un bloc avec la propriété de collision activée).
  * </p>
@@ -98,5 +99,76 @@ public class CheckCollision {
             default:
                 break;
         }
+    }
+
+    public int collisionItem(Sprite sprite, boolean avatar) {
+        int index = 999;
+
+        for (int i = 0; i < gp.ressource.length; i++) {
+            if (gp.ressource[i] != null) {
+                // OBTENIR LA HITBOX DU SPRITE EN ARGUMENT
+                sprite.solidArea.x += sprite.mapPoint.x;
+                sprite.solidArea.y += sprite.mapPoint.y;
+                // OBTENIR LA HITBOX DE LA RESSOURCE ACTUEL
+                gp.ressource[i].solidArea.x += gp.ressource[i].pos.x;
+                gp.ressource[i].solidArea.y += gp.ressource[i].pos.y;
+
+                switch (sprite.direction) {
+                    case "up":
+                        sprite.solidArea.y -= sprite.speed;
+                        if (sprite.solidArea.intersects(gp.ressource[i].solidArea)) {
+                            if (gp.ressource[i].collision) {
+                                sprite.collisionOn = true;
+                            }
+                            if (avatar) {
+                                index = i;
+                            }
+                        }
+                        break;
+                    case "down":
+                        sprite.solidArea.y += sprite.speed;
+                        if (sprite.solidArea.intersects(gp.ressource[i].solidArea)) {
+                            if (gp.ressource[i].collision) {
+                                sprite.collisionOn = true;
+                            }
+                            if (avatar) {
+                                index = i;
+                            }
+                        }
+                        break;
+                    case "left":
+                        sprite.solidArea.x -= sprite.speed;
+                        if (sprite.solidArea.intersects(gp.ressource[i].solidArea)) {
+                            if (gp.ressource[i].collision) {
+                                sprite.collisionOn = true;
+                            }
+                            if (avatar) {
+                                index = i;
+                            }
+                        }
+                        break;
+                    case "right":
+                        sprite.solidArea.x += sprite.speed;
+                        if (sprite.solidArea.intersects(gp.ressource[i].solidArea)) {
+                            if (gp.ressource[i].collision) {
+                                sprite.collisionOn = true;
+                            }
+                            if (avatar) {
+                                index = i;
+                            }
+                        }
+                        break;
+
+                    default:
+
+                        break;
+                }
+                sprite.solidArea.x = sprite.solidAreaDefaultX;
+                sprite.solidArea.y = sprite.solidAreaDefaultY;
+                gp.ressource[i].solidArea.x = gp.ressource[i].solidAreaDefaultX;
+                gp.ressource[i].solidArea.y = gp.ressource[i].solidAreaDefaultY;
+            }
+        }
+        return index;
     }
 }

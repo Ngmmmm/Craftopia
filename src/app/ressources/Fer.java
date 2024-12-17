@@ -5,8 +5,8 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 public class Fer extends Ressource {
-    
-    public Fer(){
+
+    public Fer() {
         name = "fer";
         prix = Argent.getVALFER();
         try {
@@ -15,6 +15,7 @@ public class Fer extends Ressource {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        collision = true;
     }
-    
+
 }
