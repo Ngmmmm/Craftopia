@@ -6,13 +6,12 @@ import javax.imageio.ImageIO;
 
 import bag.Argent;
 
-public class Pierre extends Ressource{
-
+public class Pierre extends Ressource {
     public Pierre(){
-        name = "pierre";
-        prix = Argent.getVALPIERRE();
+        name = "Pierre";
+        prix = Argent.getVALPIERRE(); 
         try {
-            File f1 = new File("./img/object/fer.png");
+            File f1 = new File("./img/ressources/pierre.png");
             image = ImageIO.read(f1);
         } catch (Exception e) {
             e.printStackTrace();
@@ -20,4 +19,6 @@ public class Pierre extends Ressource{
         time = 0;
     }
     
+        collision = true;
+    }
 }
