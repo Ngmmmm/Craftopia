@@ -10,7 +10,7 @@ public class Fer extends Ressource {
         name = "fer";
         prix = Argent.getVALFER();
         try {
-            File f1 = new File("./img/ressources/bois.png");
+            File f1 = new File("./img/ressources/fer.png");
             image = ImageIO.read(f1);
         } catch (Exception e) {
             e.printStackTrace();

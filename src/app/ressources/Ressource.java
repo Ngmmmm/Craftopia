@@ -43,14 +43,23 @@ public abstract class Ressource {
      * @param quantity La valeur par laquelle réduire la quantité de l'item
      */
     public void reduceQuantity(int quantity) {
-        if (this.quantity<quantity) {
+        if (this.quantity < quantity) {
             throw new IllegalArgumentException("Nombre de ressource insufisant.");
         }
         this.quantity -= quantity;// Réduit la quantité de l'item par la valeur de quantity
     }
 
     public void draw(Graphics2D g2, GamePanel gp) {
-        g2.drawImage(image, pos.x, pos.y, null);
+        // Coordonnées de la bloc à l'écran
+        int screenX = pos.x - gp.avatar.mapPoint.x + gp.avatar.screenX;
+        int screenY = pos.y - gp.avatar.mapPoint.y + gp.avatar.screenY;
 
+        // Vérifie si les coordonnées sont dans la zone visible
+        if (pos.x + gp.TAILLE_BLOC > gp.avatar.mapPoint.x - gp.avatar.screenX
+                && pos.x - gp.TAILLE_BLOC < gp.avatar.mapPoint.x + gp.avatar.screenX
+                && pos.y + gp.TAILLE_BLOC > gp.avatar.mapPoint.y - gp.avatar.screenY
+                && pos.y - gp.TAILLE_BLOC < gp.avatar.mapPoint.y + gp.avatar.screenY) {
+            g2.drawImage(image, screenX, screenY, gp.TAILLE_BLOC, gp.TAILLE_BLOC, null);
+        }
     }
 }

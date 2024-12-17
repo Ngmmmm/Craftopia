@@ -41,5 +41,6 @@ public class Sprite {
                               // l'animation
 
     public Rectangle solidArea; // La hitbox est représenté par un rectangle
+    public int solidAreaDefaultX, solidAreaDefaultY; // Dimension de la hitbox par défaut
     public boolean collisionOn = false; // Indique si le sprite possède une Hitbox
 }
