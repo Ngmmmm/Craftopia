@@ -96,6 +96,5 @@ public class Ui {
         Point pos = new Point(160, 200);
         g2.setColor(Color.WHITE);
         g2.drawString(text, pos.x, pos.y);
-
     }
 }

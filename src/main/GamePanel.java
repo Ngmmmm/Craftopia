@@ -44,6 +44,10 @@ public class GamePanel extends JPanel implements Runnable {
     public int gameState; // État actuel du jeu (titre, en cours, etc.)
     public final int TITLE_STATE = 0; // État correspondant à l'écran de titre
     public final int playState = 1; // État correspondant au jeu en cours
+    public final int recolteuseState = 2;
+    public final int craftState = 3;
+    public final int inventaireState = 4;
+    public final int shopState = 5;
     
 
     /**
