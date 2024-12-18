@@ -1,15 +1,14 @@
 package item.sprites;
 
-import java.awt.Graphics2D; // Permet de dessiner l'avatar avec une qualité graphique
-import java.awt.Rectangle; // Définit l'aire solide pour la détection des collisions
-import java.awt.RenderingHints; // Optimise le rendu graphique
-import java.awt.image.BufferedImage; // Stocke les images de l'avatar
-import java.io.File; // Gère les fichiers d'images
-import java.io.IOException; // Gère les exceptions liées aux fichiers
-import javax.imageio.ImageIO; // Permet de lire les fichiers d'images
-
-import item.bag.Argent;
-import item.bag.Inventaire;
+import item.bag.Argent; // Permet de dessiner l'avatar avec une qualité graphique
+import item.bag.Inventaire; // Définit l'aire solide pour la détection des collisions
+import java.awt.Graphics2D; // Optimise le rendu graphique
+import java.awt.Rectangle; // Stocke les images de l'avatar
+import java.awt.RenderingHints; // Gère les fichiers d'images
+import java.awt.image.BufferedImage; // Gère les exceptions liées aux fichiers
+import java.io.File; // Permet de lire les fichiers d'images
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import main.GamePanel; // Importation du panneau principal du jeu
 import main.KeyHandler; // Gère les entrées clavier du joueur
 
@@ -172,7 +171,7 @@ public final class Avatar extends Sprite{
      * 
      * @param g2 l'objet Graphics2D utilisé pour dessiner l'avatar.
      */
-    public void draw(Graphics2D g2) {
+    public void draw(Graphics2D g2, double scaleX, double scaleY) {
         BufferedImage image = null; // Image à afficher
 
         // Sélectionne l'image en fonction de la direction et de l'animation
@@ -211,6 +210,6 @@ public final class Avatar extends Sprite{
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         // Dessine l'image sélectionnée
-        g2.drawImage(image, screenX, screenY, gp.TAILLE_BLOC, gp.TAILLE_BLOC, null);
+        g2.drawImage(image, (int)(screenX*scaleX), (int)(screenY*scaleY), (int)(gp.TAILLE_BLOC*scaleX),(int) (gp.TAILLE_BLOC*scaleY), null);
     }
 }

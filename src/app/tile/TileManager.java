@@ -167,7 +167,7 @@ public class TileManager {
      * 
      * @param g2 L'objet Graphics2D utilisé pour dessiner les blocs.
      */
-    public void draw(Graphics2D g2) {
+    public void draw(Graphics2D g2, double scaleX, double scaleY) {
         int mapCol = 0;
         int mapLigne = 0;
 
@@ -187,7 +187,9 @@ public class TileManager {
                     && mapX - gp.TAILLE_BLOC < gp.avatar.mapPoint.x + gp.avatar.screenX
                     && mapY + gp.TAILLE_BLOC > gp.avatar.mapPoint.y - gp.avatar.screenY
                     && mapY - gp.TAILLE_BLOC < gp.avatar.mapPoint.y + gp.avatar.screenY) {
-                g2.drawImage(tile[tileNum].image, screenX, screenY, gp.TAILLE_BLOC, gp.TAILLE_BLOC, null);
+                //+1 pour résoudre un bug due a l'arrondi double/int
+                g2.drawImage(tile[tileNum].image,(int)(screenX*scaleX), (int)(screenY*scaleY), (int)(gp.TAILLE_BLOC*scaleX)+1, (int)(gp.TAILLE_BLOC*scaleY)+1, null);
+            
             }
 
             mapCol++;

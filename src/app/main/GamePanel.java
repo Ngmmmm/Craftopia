@@ -1,16 +1,14 @@
 package main;
 
-import java.awt.Color; // Importation pour définir les dimensions des composants
-import java.awt.Dimension; // Importation pour dessiner des composants
-import java.awt.Graphics; // Importation pour des dessins graphiques avancés
-import java.awt.Graphics2D; // Importation de JPanel pour créer le panneau de jeu
+import item.bag.Inventaire; // Importation pour définir les dimensions des composants
+import item.sprites.Avatar; // Importation pour dessiner des composants
+import item.sprites.SuperObjet; // Importation pour des dessins graphiques avancés
+import java.awt.Color; // Importation de JPanel pour créer le panneau de jeu
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
-
 import javax.swing.JPanel;
-
-import item.bag.Inventaire;
-import item.sprites.Avatar;
-import item.sprites.SuperObjet;
 import tile.TileManager; // Importation pour gérer les blocs du jeu
 
 // La classe GamePanel hérite de JPanel et implémente Runnable pour le fonctionnement via un thread
@@ -23,8 +21,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int NB_LIGNE_MAX = 12; // Nombre maximal de lignes visibles à l'écran
     public final int LARGEUR_ECRAN = TAILLE_BLOC * NB_COLONNE_MAX; // Largeur totale de l'écran
     public final int HAUTEUR_ECRAN = TAILLE_BLOC * NB_LIGNE_MAX; // Hauteur totale de l'écran
-    public double scaleXAct = getHeight()/LARGEUR_ECRAN;
-    public double scaleYAct = getWidth()/HAUTEUR_ECRAN;
+    public double scaleXAct = getWidth()/LARGEUR_ECRAN;
+    public double scaleYAct = getHeight()/HAUTEUR_ECRAN;
 
     public final int NB_COLONNE_MAP_MAX = 52; // Nombre de colonnes maximal sur la carte
     public final int NB_LIGNE_MAP_MAX = 50; // Nombre de lignes maximal sur la carte
@@ -121,33 +119,33 @@ public class GamePanel extends JPanel implements Runnable {
         double scaleX = (double) getWidth() / LARGEUR_ECRAN;
         double scaleY = (double) getHeight() / HAUTEUR_ECRAN;
         // Appliquer les transformations pour mettre à l'échelle
-        g2.scale(scaleX, scaleY);
+        //g2.scale(scaleX, scaleY);
         
         // TITLESCREEN
         if (gameState == TITLE_STATE) {
             if (!initButton) {
-                initButton = ui.initButton();
+                initButton = ui.initButtons();
             }
-            if(scaleXAct != scaleX && scaleYAct != scaleY){
-                ui.resizeButton(scaleX, scaleY);
+            if(scaleXAct != scaleX || scaleYAct != scaleY){
+                ui.resizeButtons(scaleX, scaleY);
                 scaleXAct = scaleX;
                 scaleYAct = scaleY;
             }
-            ui.drawTitleScreen(g2);
+            ui.drawTitleScreen(g2, scaleX, scaleY);
         } else if (gameState == playState) {
             // MAP
-            tileM.draw(g2);
+            tileM.draw(g2, scaleX, scaleY);
             // Ressource
             for (int i = 0; i < obj.size(); i++) {
                 if (obj.get(i) != null) {
-                    obj.get(i).draw(g2, this);
+                    obj.get(i).draw(g2, this, scaleX, scaleY);
                 }
             }
 
             // PLAYER
 
-            avatar.draw(g2);
-            g2.dispose();
+            avatar.draw(g2,scaleX,scaleY);
+            //g2.dispose();
 
 
         }

@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame; // Importation de la classe JFrame pour créer une fenêtre
 
@@ -36,8 +37,9 @@ public class Main { // Définition de la classe principale
         // fenêtre est fermée)
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Définition de la taille de la fenêtre (non redimensionnable)
+        // Définition de la taille de la fenêtre (redimensionnable)
         fenetre.setResizable(true);
+        fenetre.setMinimumSize(new Dimension(768,576));
         // Définition du titre de la fenêtre
         fenetre.setTitle("Craftopia");
         ImageIcon logo = new ImageIcon("img/CraftopiaLogo.jpeg");
