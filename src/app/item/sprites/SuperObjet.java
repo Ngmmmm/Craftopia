@@ -5,7 +5,6 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-
 import main.GamePanel;
 
 public class SuperObjet {
@@ -17,7 +16,7 @@ public class SuperObjet {
     public int solidAreaDefaultX = 0;
     public int solidAreaDefaultY = 0;
 
-    public void draw(Graphics2D g2, GamePanel gp) {
+    public void draw(Graphics2D g2, GamePanel gp, double scaleX, double scaleY) {
         // Coordonnées de la bloc à l'écran
         int screenX = pos.x - gp.avatar.mapPoint.x + gp.avatar.screenX;
         int screenY = pos.y - gp.avatar.mapPoint.y + gp.avatar.screenY;
@@ -27,7 +26,7 @@ public class SuperObjet {
                 && pos.x - gp.TAILLE_BLOC < gp.avatar.mapPoint.x + gp.avatar.screenX
                 && pos.y + gp.TAILLE_BLOC > gp.avatar.mapPoint.y - gp.avatar.screenY
                 && pos.y - gp.TAILLE_BLOC < gp.avatar.mapPoint.y + gp.avatar.screenY) {
-            g2.drawImage(image, screenX, screenY, gp.TAILLE_BLOC, gp.TAILLE_BLOC, null);
+            g2.drawImage(image, (int)(screenX*scaleX), (int)(screenY*scaleY), (int)(gp.TAILLE_BLOC*scaleX),(int) (gp.TAILLE_BLOC*scaleY), null);
         }
     }
 }

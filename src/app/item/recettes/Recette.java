@@ -10,7 +10,7 @@ public class Recette {
     private int time;
 
     public boolean isPossible(Inventaire inv){
-        int ok = ingredients.length;
+        int sizeRecette = ingredients.length;
         int act = 0;
 
         for (Ressource r : ingredients) {
@@ -22,7 +22,7 @@ public class Recette {
                 }
             }
         }
-        return ok == act;
+        return sizeRecette == act;
     }
 
     public Ressource getRessource(){

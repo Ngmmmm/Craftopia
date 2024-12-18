@@ -59,26 +59,6 @@ public class Ui {
         this.exitButton = new JButton(exitButtonIcon);
     }
 
-    /**
-     * Méthode permettant de dessiner le menu principal (titre du jeu et fond
-     * d'écran).
-     * Cette méthode est appelée à chaque frame pour mettre à jour l'écran de titre.
-     * 
-     * @param g2 Le Graphics2D utilisé pour dessiner sur l'écran
-     */
-    public void draw(Graphics2D g2) {
-        this.graphics2D = g2;
-
-        // Vérifie si le jeu est dans l'état du titre
-        if (gamePanel.gameState == gamePanel.TITLE_STATE) {
-            drawTitleScreen(g2);
-        } else {
-            // Si ce n'est pas l'état titre, on affiche une simple info (exemple ici "Oui")
-            g2.setFont(new Font("Arial", Font.PLAIN, 40));
-            g2.setColor(Color.WHITE);
-            g2.drawString("Oui", 330, 200);
-        }
-    }
 
     /**
      * Méthode pour initialiser les boutons et leur affecter des actions (Play,
@@ -88,8 +68,8 @@ public class Ui {
      */
     public boolean initButtons() {
         // Initialisation des boutons avec des images
-        startButton.setBounds(300, 250, 160, 65);
-        exitButton.setBounds(300, 350, 160, 65);
+        startButton.setBounds(gamePanel.LARGEUR_ECRAN/2 - 160/2 ,gamePanel.HAUTEUR_ECRAN/2, 160, 65);
+        exitButton.setBounds(gamePanel.LARGEUR_ECRAN/2 - 160/2, gamePanel.HAUTEUR_ECRAN/2 + 65, 160 , 65 );
 
         // Redimensionner les images des boutons
         resizeButtonImages(startButton, startButtonIcon);
@@ -98,13 +78,16 @@ public class Ui {
         // Action pour le bouton "Start"
         startButton.addActionListener(l -> {
             gamePanel.gameState = gamePanel.playState;
-            gamePanel.remove(startButton);
+            startButton.setVisible(false);
+            exitButton.setVisible(false);
+            
         });
 
         // Action pour le bouton "Exit"
         exitButton.addActionListener(l -> {
             System.exit(0);
-            gamePanel.remove(exitButton);
+            startButton.setVisible(false);
+            exitButton.setVisible(false);
         });
 
         // Empêcher les boutons d'être sélectionnables (pour une meilleure apparence)
@@ -146,32 +129,13 @@ public class Ui {
      * @param scaleY Facteur de mise à l'échelle sur l'axe Y
      */
     public void resizeButtons(double scaleX, double scaleY) {
-        // Retirer les boutons avant de les redimensionner
-        gamePanel.remove(startButton);
-        gamePanel.remove(exitButton);
 
-        // Calculer les nouvelles positions pour centrer les boutons
-        int centerX = gamePanel.LARGEUR_ECRAN / 2;
-        int centerY = gamePanel.HAUTEUR_ECRAN / 2;
-
-        int newButtonWidth = (int) (160 * scaleX);
-        int newButtonHeight = (int) (65 * scaleY);
-
-        int newButtonX = centerX - newButtonWidth / 2; // Centrer horizontalement
-        int newStartY = centerY - newButtonHeight - 10; // 10px d'écart entre les boutons
-        int newExitY = centerY + 10;                    // Bouton Exit sous Start
-
-        // Appliquer les nouvelles dimensions et positions
-        startButton.setBounds(newButtonX, newStartY, newButtonWidth, newButtonHeight);
-        exitButton.setBounds(newButtonX, newExitY, newButtonWidth, newButtonHeight);
+        startButton.setBounds((int)((gamePanel.LARGEUR_ECRAN/2 - 160/2)*scaleX), (int)((gamePanel.HAUTEUR_ECRAN/2)*scaleY), (int)(160*scaleX), (int)(65*scaleY));
+        exitButton.setBounds((int)((gamePanel.LARGEUR_ECRAN/2- 160/2)*scaleX), (int)((gamePanel.HAUTEUR_ECRAN/2 + 65)*scaleY), (int)(160*scaleX), (int)(65*scaleY));
 
         // Redimensionner les images des boutons
         resizeButtonImages(startButton, startButtonIcon);
         resizeButtonImages(exitButton, exitButtonIcon);
-
-        // Réajouter les boutons au panneau de jeu
-        gamePanel.add(startButton);
-        gamePanel.add(exitButton);
     }
 
     /**
@@ -179,10 +143,10 @@ public class Ui {
      * 
      * @param g2 Le Graphics2D utilisé pour dessiner sur l'écran
      */
-    public void drawTitleScreen(Graphics2D g2) {
+    public void drawTitleScreen(Graphics2D g2, double scaleX,double scaleY) {
         // Charger et afficher l'image de fond
         ImageIcon backgroundIcon = new ImageIcon(BACKGROUND_IMAGE_PATH);
-        g2.drawImage(backgroundIcon.getImage(), 0, 0, gamePanel.LARGEUR_ECRAN, gamePanel.HAUTEUR_ECRAN, null);
+        g2.drawImage(backgroundIcon.getImage(), 0, 0, (int)(gamePanel.LARGEUR_ECRAN*scaleX),(int)(gamePanel.HAUTEUR_ECRAN*scaleY), null);
 
         // Affichage du texte du titre du jeu (Craftopia)
         g2.setFont(new Font("Arial", Font.BOLD, 80));
