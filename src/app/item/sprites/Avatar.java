@@ -129,8 +129,8 @@ public final class Avatar extends Sprite{
             }
         } else {
             // Si aucune touche n'est pressée, l'avatar reste immobile
-            direction = "down"; // Direction par défaut
-            spriteNum = 2; // Image par défaut
+            // direction = "down"; // Direction par défaut
+            // spriteNum = 2; // Image par défaut
             immobile = true;
         }
 

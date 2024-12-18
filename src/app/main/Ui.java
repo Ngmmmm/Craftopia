@@ -59,7 +59,6 @@ public class Ui {
         this.exitButton = new JButton(exitButtonIcon);
     }
 
-
     /**
      * Méthode pour initialiser les boutons et leur affecter des actions (Play,
      * Quitter).
@@ -68,8 +67,8 @@ public class Ui {
      */
     public boolean initButtons() {
         // Initialisation des boutons avec des images
-        startButton.setBounds(gamePanel.LARGEUR_ECRAN/2 - 160/2 ,gamePanel.HAUTEUR_ECRAN/2, 160, 65);
-        exitButton.setBounds(gamePanel.LARGEUR_ECRAN/2 - 160/2, gamePanel.HAUTEUR_ECRAN/2 + 65, 160 , 65 );
+        startButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 160 / 2, gamePanel.HAUTEUR_ECRAN / 2, 160, 65);
+        exitButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 160 / 2, gamePanel.HAUTEUR_ECRAN / 2 + 65, 160, 65);
 
         // Redimensionner les images des boutons
         resizeButtonImages(startButton, startButtonIcon);
@@ -80,7 +79,7 @@ public class Ui {
             gamePanel.gameState = gamePanel.playState;
             startButton.setVisible(false);
             exitButton.setVisible(false);
-            
+
         });
 
         // Action pour le bouton "Exit"
@@ -106,17 +105,19 @@ public class Ui {
     }
 
     /**
-     * Redimensionne l'image d'un bouton pour qu'elle corresponde à sa taille actuelle.
+     * Redimensionne l'image d'un bouton pour qu'elle corresponde à sa taille
+     * actuelle.
      * 
      * @param button Le bouton à redimensionner
-     * @param icon L'icône à redimensionner
+     * @param icon   L'icône à redimensionner
      */
     private void resizeButtonImages(JButton button, Icon icon) {
         int buttonWidth = button.getWidth();
         int buttonHeight = button.getHeight();
 
         // Redimensionner l'icône en fonction de la taille du bouton
-        ImageIcon resizedIcon = new ImageIcon(((ImageIcon) icon).getImage().getScaledInstance(buttonWidth, buttonHeight, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon resizedIcon = new ImageIcon(((ImageIcon) icon).getImage().getScaledInstance(buttonWidth, buttonHeight,
+                java.awt.Image.SCALE_SMOOTH));
         button.setIcon(resizedIcon);
     }
 
@@ -130,8 +131,10 @@ public class Ui {
      */
     public void resizeButtons(double scaleX, double scaleY) {
 
-        startButton.setBounds((int)((gamePanel.LARGEUR_ECRAN/2 - 160/2)*scaleX), (int)((gamePanel.HAUTEUR_ECRAN/2)*scaleY), (int)(160*scaleX), (int)(65*scaleY));
-        exitButton.setBounds((int)((gamePanel.LARGEUR_ECRAN/2- 160/2)*scaleX), (int)((gamePanel.HAUTEUR_ECRAN/2 + 65)*scaleY), (int)(160*scaleX), (int)(65*scaleY));
+        startButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 160 / 2) * scaleX),
+                (int) ((gamePanel.HAUTEUR_ECRAN / 2) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
+        exitButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 160 / 2) * scaleX),
+                (int) ((gamePanel.HAUTEUR_ECRAN / 2 + 65) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
 
         // Redimensionner les images des boutons
         resizeButtonImages(startButton, startButtonIcon);
@@ -143,10 +146,11 @@ public class Ui {
      * 
      * @param g2 Le Graphics2D utilisé pour dessiner sur l'écran
      */
-    public void drawTitleScreen(Graphics2D g2, double scaleX,double scaleY) {
+    public void drawTitleScreen(Graphics2D g2, double scaleX, double scaleY) {
         // Charger et afficher l'image de fond
         ImageIcon backgroundIcon = new ImageIcon(BACKGROUND_IMAGE_PATH);
-        g2.drawImage(backgroundIcon.getImage(), 0, 0, (int)(gamePanel.LARGEUR_ECRAN*scaleX),(int)(gamePanel.HAUTEUR_ECRAN*scaleY), null);
+        g2.drawImage(backgroundIcon.getImage(), 0, 0, (int) (gamePanel.LARGEUR_ECRAN * scaleX),
+                (int) (gamePanel.HAUTEUR_ECRAN * scaleY), null);
 
         // Affichage du texte du titre du jeu (Craftopia)
         g2.setFont(new Font("Arial", Font.BOLD, 80));
