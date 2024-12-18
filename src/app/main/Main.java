@@ -31,7 +31,7 @@ public class Main { // Définition de la classe principale
 
         // Création d'une nouvelle instance de JFrame
         JFrame fenetre = new JFrame();
-        
+
         // Définition de la fermeture de la fenêtre (quitter le programme lorsque la
         // fenêtre est fermée)
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
