@@ -1,13 +1,16 @@
 package machines;
 
 import bag.Inventaire;
+import main.GamePanel;
+
+import java.awt.Graphics2D;
 import java.io.File;
 import javax.imageio.ImageIO;
 import recettes.Recette;
 import ressources.Ressource;
 import sprites.Avatar;
 
-public class Usine extends Machine implements MachineBehavior{
+public class Usine extends Machine implements MachineBehavior {
 
     public Inventaire inventaireAvatar;
     public Recette recetteAct;
@@ -17,10 +20,11 @@ public class Usine extends Machine implements MachineBehavior{
         stock = new Inventaire();
         recetteAct = null;
         try {
-            File f1 = new File("./img/machines/manualMachine.png");
+            File f1 = new File("./img/machines/usine.png");
             img = ImageIO.read(f1);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Immpossible d'afficher l'usine " + e);
+
         }
     }
 
@@ -28,6 +32,7 @@ public class Usine extends Machine implements MachineBehavior{
         inventaireAvatar.add(r, 1);
         player.inv.remove(r, 1);
     }
+
     @Override
     public void backToPlayer(Avatar player, Ressource r) {
         player.inv.add(r, 1);
@@ -50,5 +55,22 @@ public class Usine extends Machine implements MachineBehavior{
             }
         }
     }
+
+    @Override
+    public void draw(Graphics2D g2, GamePanel gp) {
+        // Coordonnées de la bloc à l'écran
+        int screenX = pos.x - gp.avatar.mapPoint.x + gp.avatar.screenX;
+        int screenY = pos.y - gp.avatar.mapPoint.y + gp.avatar.screenY;
+
+        // Vérifie si les coordonnées sont dans la zone visible
+        if (pos.x + gp.TAILLE_BLOC > gp.avatar.mapPoint.x - gp.avatar.screenX
+                && pos.x - gp.TAILLE_BLOC < gp.avatar.mapPoint.x + gp.avatar.screenX
+                && pos.y + gp.TAILLE_BLOC > gp.avatar.mapPoint.y - gp.avatar.screenY
+                && pos.y - gp.TAILLE_BLOC < gp.avatar.mapPoint.y + gp.avatar.screenY) {
+            g2.drawImage(img, screenX, screenY, gp.TAILLE_BLOC, gp.TAILLE_BLOC, null);
+        }
+    }
+
+    
 
 }

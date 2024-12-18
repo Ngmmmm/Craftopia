@@ -1,6 +1,8 @@
 package main;
 
 import bag.Inventaire; // Importation de la classe pour gérer les couleurs
+import machines.Usine;
+
 import java.awt.Color; // Importation pour définir les dimensions des composants
 import java.awt.Dimension; // Importation pour dessiner des composants
 import java.awt.Graphics; // Importation pour des dessins graphiques avancés
@@ -39,6 +41,7 @@ public class GamePanel extends JPanel implements Runnable {
     Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
     public Avatar avatar = new Avatar(this, keyH, new Inventaire()); // L'avatar contrôlé par le joueur
     public Ressource ressource[] = new Ressource[10]; // Tableau pour stocker les objets à afficher
+    public Usine usine[] = new Usine[10]; // Tableau pour stocker les objets à afficherc
 
     boolean initButton = false;
     public int gameState; // État actuel du jeu (titre, en cours, etc.)
@@ -65,7 +68,7 @@ public class GamePanel extends JPanel implements Runnable {
      * Configure les paramètres initiaux du jeu.
      */
     public void setupGame() {
-        aSetter.setRessource();
+        aSetter.setAllItems();
         gameState = TITLE_STATE;
     }
 
@@ -137,6 +140,12 @@ public class GamePanel extends JPanel implements Runnable {
             for (int i = 0; i < ressource.length; i++) {
                 if (ressource[i] != null) {
                     ressource[i].draw(g2, this);
+                }
+            }
+
+            for (int i = 0; i < usine.length; i++) {
+                if (usine[i] != null) {
+                    usine[i].draw(g2, this);
                 }
             }
 

@@ -1,5 +1,6 @@
 package main;
 
+import machines.Usine;
 import ressources.Bois;
 import ressources.Fer;
 import ressources.Feuille;
@@ -13,6 +14,10 @@ public class AssetSetter {
         this.gp = gp;
     }
 
+    public void setAllItems(){
+        setRessource();
+        setUsine();
+    }
     public void setRessource() {
 
         gp.ressource[0] = new Feuille();
@@ -30,6 +35,14 @@ public class AssetSetter {
         gp.ressource[3] = new Fer();
         gp.ressource[3].pos.x = 26 * gp.TAILLE_BLOC;
         gp.ressource[3].pos.y = 25 * gp.TAILLE_BLOC;
+
+    }
+
+    public void setUsine(){
+        gp.usine[0] = new Usine();
+        gp.usine[0].pos.x = 27 * gp.TAILLE_BLOC;
+        gp.usine[0].pos.y = 25 * gp.TAILLE_BLOC;
+
     }
 
 }

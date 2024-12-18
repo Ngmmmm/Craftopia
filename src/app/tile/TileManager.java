@@ -79,9 +79,9 @@ public class TileManager {
             tile[4].isOccupied = true; // Empêche de pouvoir poser un objet sur le bloc
 
             // Chargement des blocs supplémentaires
-            tile[5] = new Tile();
-            tile[5].image = ImageIO.read(new File("./img//.png"));
-            tile[5].collision = true;
+            // tile[5] = new Tile();
+            // tile[5].image = ImageIO.read(new File("./img//.png"));
+            // tile[5].collision = true;
 
             tile[6] = new Tile();
             tile[6].image = ImageIO.read(new File("./img/tiles/ClotureGaucheVerticale.png"));
