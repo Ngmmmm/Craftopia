@@ -16,8 +16,5 @@ public class Pierre extends Ressource {
             e.printStackTrace();
         }
         time = 0;
-    
-    
-        collision = true;
     }
 }

@@ -1,8 +1,5 @@
 package item.machines;
 
-import main.GamePanel;
-
-import java.awt.Graphics2D;
 import java.io.File;
 import javax.imageio.ImageIO;
 
@@ -35,10 +32,5 @@ public class Recolteuse extends Machine implements MachineBehavior {
         stock.remove(r, 1);
     }
 
-    @Override
-    public void draw(Graphics2D g2, GamePanel gp) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'draw'");
-    }
-
+    
 }

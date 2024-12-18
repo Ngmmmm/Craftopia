@@ -1,6 +1,6 @@
 package item.bag;
 
-public class Argent {
+public class Argent{
 
     private static int monnaiePlayer = 0;
     private static final int VALFEUILLE = 1;

@@ -17,7 +17,6 @@ public class Bois extends Ressource {
             e.printStackTrace();
         }
         time = 300;
-        collision = true;
     }
     
 }

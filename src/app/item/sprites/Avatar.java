@@ -33,7 +33,7 @@ import main.KeyHandler; // Gère les entrées clavier du joueur
  * @author Ouahid Houat
  * @version 1.0
  */
-public final class Avatar extends Sprite {
+public final class Avatar extends Sprite{
     GamePanel gp; // Fenêtre du jeu
     KeyHandler keyH; // Entrées clavier du joueur
     public static int argent = Argent.getMonnaiePlayer(); // Argent du joueur
@@ -155,6 +155,7 @@ public final class Avatar extends Sprite {
         }
     }
 
+    // TODO: la méthode qui permet de ramasser un item
     public void pickUpItem(int index){
         if (index!=999) {
             // gp.ressource[index]=null; // Permet de faire disparaitre l'objet de la carte

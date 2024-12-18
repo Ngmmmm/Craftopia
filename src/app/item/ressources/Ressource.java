@@ -11,7 +11,7 @@ public abstract class Ressource {
     public BufferedImage image;
     public String name;
     private int quantity;
-    public boolean collision = false;
+    public boolean collision = true;
     public Point pos = new Point();
     public int prix;
     public int time;

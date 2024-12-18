@@ -57,7 +57,6 @@ public class Usine extends Machine implements MachineBehavior {
         }
     }
 
-    @Override
     public void draw(Graphics2D g2, GamePanel gp) {
         // Coordonnées de la bloc à l'écran
         int screenX = pos.x - gp.avatar.mapPoint.x + gp.avatar.screenX;
@@ -71,7 +70,5 @@ public class Usine extends Machine implements MachineBehavior {
             g2.drawImage(img, screenX, screenY, gp.TAILLE_BLOC, gp.TAILLE_BLOC, null);
         }
     }
-
-    
 
 }
