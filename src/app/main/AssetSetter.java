@@ -30,7 +30,6 @@ public class AssetSetter {
         gp.ressource[3] = new Fer();
         gp.ressource[3].pos.x = 26 * gp.TAILLE_BLOC;
         gp.ressource[3].pos.y = 25 * gp.TAILLE_BLOC;
-
     }
 
 }

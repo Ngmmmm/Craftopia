@@ -80,7 +80,7 @@ public class TileManager {
 
             // Chargement des blocs supplémentaires
             tile[5] = new Tile();
-            tile[5].image = ImageIO.read(new File("./img/machines/recolteuse.png"));
+            tile[5].image = ImageIO.read(new File("./img//.png"));
             tile[5].collision = true;
 
             tile[6] = new Tile();
