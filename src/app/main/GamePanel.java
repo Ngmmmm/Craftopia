@@ -1,15 +1,15 @@
 package main;
 
-import bag.Inventaire; // Importation de la classe pour gérer les couleurs
-import machines.Usine;
-
 import java.awt.Color; // Importation pour définir les dimensions des composants
 import java.awt.Dimension; // Importation pour dessiner des composants
 import java.awt.Graphics; // Importation pour des dessins graphiques avancés
 import java.awt.Graphics2D; // Importation de JPanel pour créer le panneau de jeu
 import javax.swing.JPanel;
-import ressources.*; // Importation des ressources nécessaires
-import sprites.Avatar; // Importation de la classe Avatar (le joueur)
+
+import item.bag.Inventaire;
+import item.machines.Usine;
+import item.ressources.*;
+import item.sprites.Avatar;
 import tile.TileManager; // Importation pour gérer les blocs du jeu
 
 // La classe GamePanel hérite de JPanel et implémente Runnable pour le fonctionnement via un thread

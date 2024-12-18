@@ -1,8 +1,9 @@
-package ressources;
+package item.ressources;
 
-import bag.Argent;
 import java.io.File;
 import javax.imageio.ImageIO;
+
+import item.bag.Argent;
 
 public class Pioche extends Ressource{
 

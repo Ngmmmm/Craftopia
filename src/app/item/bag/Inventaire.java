@@ -1,7 +1,8 @@
-package bag;
+package item.bag;
 
 import java.util.ArrayList;
-import ressources.Ressource;
+
+import item.ressources.Ressource;
 
 public class Inventaire {
 

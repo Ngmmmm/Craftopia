@@ -1,7 +1,7 @@
-package recettes;
+package item.recettes;
 
-import bag.Inventaire;
-import ressources.Ressource;
+import item.bag.Inventaire;
+import item.ressources.Ressource;
 
 public class Recette {
     private String nom;

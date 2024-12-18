@@ -1,10 +1,10 @@
-package ressources;
+package item.ressources;
 
 import java.io.File;
 
 import javax.imageio.ImageIO;
 
-import bag.Argent;
+import item.bag.Argent;
 
 public class BlocPierre extends Ressource {
 

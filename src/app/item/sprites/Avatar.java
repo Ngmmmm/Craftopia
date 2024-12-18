@@ -1,7 +1,5 @@
-package sprites;
+package item.sprites;
 
-import bag.Argent; // Importation de la classe permettant de gérer l'argent
-import bag.Inventaire;
 import java.awt.Graphics2D; // Permet de dessiner l'avatar avec une qualité graphique
 import java.awt.Rectangle; // Définit l'aire solide pour la détection des collisions
 import java.awt.RenderingHints; // Optimise le rendu graphique
@@ -9,6 +7,9 @@ import java.awt.image.BufferedImage; // Stocke les images de l'avatar
 import java.io.File; // Gère les fichiers d'images
 import java.io.IOException; // Gère les exceptions liées aux fichiers
 import javax.imageio.ImageIO; // Permet de lire les fichiers d'images
+
+import item.bag.Argent;
+import item.bag.Inventaire;
 import main.GamePanel; // Importation du panneau principal du jeu
 import main.KeyHandler; // Gère les entrées clavier du joueur
 

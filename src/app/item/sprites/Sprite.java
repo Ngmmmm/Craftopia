@@ -1,4 +1,4 @@
-package sprites;
+package item.sprites;
 
 import java.awt.Point;
 import java.awt.Rectangle;

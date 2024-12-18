@@ -1,4 +1,4 @@
-package ressources;
+package item.ressources;
 
 import java.awt.Graphics2D;
 import java.awt.Point;

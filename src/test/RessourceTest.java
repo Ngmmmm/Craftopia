@@ -6,7 +6,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ressources.Bois;
+import item.ressources.Bois;
 
 public class RessourceTest {
     static Bois bois;

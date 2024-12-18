@@ -1,4 +1,4 @@
-package bag;
+package item.bag;
 
 public class Argent {
 

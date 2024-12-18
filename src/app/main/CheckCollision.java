@@ -1,6 +1,6 @@
 package main;
 
-import sprites.Sprite;
+import item.sprites.Sprite;
 
 /**
  * La classe CheckCollision gère la détection des collisions entre les sprites

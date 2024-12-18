@@ -1,10 +1,10 @@
 package main;
 
-import machines.Usine;
-import ressources.Bois;
-import ressources.Fer;
-import ressources.Feuille;
-import ressources.Pierre;
+import item.machines.Usine;
+import item.ressources.Bois;
+import item.ressources.Fer;
+import item.ressources.Feuille;
+import item.ressources.Pierre;
 
 public class AssetSetter {
 

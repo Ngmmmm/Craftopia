@@ -1,6 +1,6 @@
-package bag;
+package item.bag;
 
-import ressources.Ressource;
+import item.ressources.Ressource;
 
 /**
  * La classe Case représente une case générique dans un inventaire ou un sac.

@@ -1,14 +1,15 @@
-package machines;
+package item.machines;
 
-import bag.Inventaire;
 import main.GamePanel;
 
 import java.awt.Graphics2D;
 import java.io.File;
 import javax.imageio.ImageIO;
-import recettes.Recette;
-import ressources.Ressource;
-import sprites.Avatar;
+
+import item.bag.Inventaire;
+import item.recettes.Recette;
+import item.ressources.Ressource;
+import item.sprites.Avatar;
 
 public class Usine extends Machine implements MachineBehavior {
 

@@ -1,10 +1,10 @@
-package machines;
+package item.machines;
 
 import java.awt.Graphics2D;
 
+import item.ressources.Ressource;
+import item.sprites.Avatar;
 import main.GamePanel;
-import ressources.Ressource;
-import sprites.Avatar;
 
 public interface MachineBehavior {
     void backToPlayer(Avatar player, Ressource r);

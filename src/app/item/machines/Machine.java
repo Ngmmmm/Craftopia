@@ -1,11 +1,11 @@
-package machines;
-
-import bag.Inventaire;
-import ressources.Ressource;
+package item.machines;
 
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+
+import item.bag.Inventaire;
+import item.ressources.Ressource;
 
 public abstract class Machine {
     public Inventaire stock;

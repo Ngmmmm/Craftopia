@@ -1,9 +1,9 @@
-package recettes;
+package item.recettes;
 
-import ressources.Bois;
-import ressources.Fer;
-import ressources.Pioche;
-import ressources.Ressource;
+import item.ressources.Bois;
+import item.ressources.Fer;
+import item.ressources.Pioche;
+import item.ressources.Ressource;
 
 public class RecettePioche extends Recette{
 

@@ -1,8 +1,8 @@
-package recettes;
+package item.recettes;
 
-import ressources.BlocPierre;
-import ressources.Pierre;
-import ressources.Ressource;
+import item.ressources.BlocPierre;
+import item.ressources.Pierre;
+import item.ressources.Ressource;
 
 public class RecetteBlocPierre {
 

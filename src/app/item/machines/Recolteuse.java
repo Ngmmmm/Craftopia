@@ -1,13 +1,14 @@
-package machines;
+package item.machines;
 
-import bag.Inventaire;
 import main.GamePanel;
 
 import java.awt.Graphics2D;
 import java.io.File;
 import javax.imageio.ImageIO;
-import ressources.Ressource;
-import sprites.Avatar;
+
+import item.bag.Inventaire;
+import item.ressources.Ressource;
+import item.sprites.Avatar;
 
 public class Recolteuse extends Machine implements MachineBehavior {
 
