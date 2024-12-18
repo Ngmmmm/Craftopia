@@ -126,10 +126,10 @@ public class GamePanel extends JPanel implements Runnable {
         // TITLESCREEN
         if (gameState == TITLE_STATE) {
             if (!initButton) {
-                initButton = ui.initButton();
+                initButton = ui.initButtons();
             }
             if(scaleXAct != scaleX && scaleYAct != scaleY){
-                ui.resizeButton(scaleX, scaleY);
+                ui.resizeButtons(scaleX, scaleY);
                 scaleXAct = scaleX;
                 scaleYAct = scaleY;
             }
