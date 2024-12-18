@@ -1,4 +1,4 @@
-package item;
+package item.sprites;
 
 import java.awt.Graphics2D;
 

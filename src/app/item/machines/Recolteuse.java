@@ -15,7 +15,7 @@ public class Recolteuse extends Machine implements MachineBehavior {
         this.stock.add(res, 0);
         try {
             File f1 = new File("./img/machines/recolteuse.png");
-            img = ImageIO.read(f1);
+            image = ImageIO.read(f1);
         } catch (Exception e) {
             e.printStackTrace();
         }

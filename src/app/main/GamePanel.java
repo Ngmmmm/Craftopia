@@ -4,12 +4,13 @@ import java.awt.Color; // Importation pour définir les dimensions des composant
 import java.awt.Dimension; // Importation pour dessiner des composants
 import java.awt.Graphics; // Importation pour des dessins graphiques avancés
 import java.awt.Graphics2D; // Importation de JPanel pour créer le panneau de jeu
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
 import item.bag.Inventaire;
-import item.machines.Usine;
-import item.ressources.*;
 import item.sprites.Avatar;
+import item.sprites.SuperObjet;
 import tile.TileManager; // Importation pour gérer les blocs du jeu
 
 // La classe GamePanel hérite de JPanel et implémente Runnable pour le fonctionnement via un thread
@@ -40,8 +41,8 @@ public class GamePanel extends JPanel implements Runnable {
     AssetSetter aSetter = new AssetSetter(this); // Gestion des objets (ressources, ennemis...)
     Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
     public Avatar avatar = new Avatar(this, keyH, new Inventaire()); // L'avatar contrôlé par le joueur
-    public Ressource ressource[] = new Ressource[10]; // Tableau pour stocker les objets à afficher
-    public Usine usine[] = new Usine[10]; // Tableau pour stocker les objets à afficherc
+    public ArrayList <SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
+
 
     boolean initButton = false;
     public int gameState; // État actuel du jeu (titre, en cours, etc.)
@@ -137,15 +138,9 @@ public class GamePanel extends JPanel implements Runnable {
             // MAP
             tileM.draw(g2);
             // Ressource
-            for (int i = 0; i < ressource.length; i++) {
-                if (ressource[i] != null) {
-                    ressource[i].draw(g2, this);
-                }
-            }
-
-            for (int i = 0; i < usine.length; i++) {
-                if (usine[i] != null) {
-                    usine[i].draw(g2, this);
+            for (int i = 0; i < obj.size(); i++) {
+                if (obj.get(i) != null) {
+                    obj.get(i).draw(g2, this);
                 }
             }
 

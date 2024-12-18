@@ -104,20 +104,20 @@ public class CheckCollision {
     public int collisionItem(Sprite sprite, boolean avatar) {
         int index = 999;
 
-        for (int i = 0; i < gp.ressource.length; i++) {
-            if (gp.ressource[i] != null) {
+        for (int i = 0; i < gp.obj.size(); i++) {
+            if (gp.obj.get(i) != null) {
                 // OBTENIR LA HITBOX DU SPRITE EN ARGUMENT
                 sprite.solidArea.x += sprite.mapPoint.x;
                 sprite.solidArea.y += sprite.mapPoint.y;
                 // OBTENIR LA HITBOX DE LA RESSOURCE ACTUEL
-                gp.ressource[i].solidArea.x += gp.ressource[i].pos.x;
-                gp.ressource[i].solidArea.y += gp.ressource[i].pos.y;
+                gp.obj.get(i).solidArea.x += gp.obj.get(i).pos.x;
+                gp.obj.get(i).solidArea.y += gp.obj.get(i).pos.y;
 
                 switch (sprite.direction) {
                     case "up":
                         sprite.solidArea.y -= sprite.speed;
-                        if (sprite.solidArea.intersects(gp.ressource[i].solidArea)) {
-                            if (gp.ressource[i].collision) {
+                        if (sprite.solidArea.intersects(gp.obj.get(i).solidArea)) {
+                            if (gp.obj.get(i).collision) {
                                 sprite.collisionOn = true;
                             }
                             if (avatar) {
@@ -127,8 +127,8 @@ public class CheckCollision {
                         break;
                     case "down":
                         sprite.solidArea.y += sprite.speed;
-                        if (sprite.solidArea.intersects(gp.ressource[i].solidArea)) {
-                            if (gp.ressource[i].collision) {
+                        if (sprite.solidArea.intersects(gp.obj.get(i).solidArea)) {
+                            if (gp.obj.get(i).collision) {
                                 sprite.collisionOn = true;
                             }
                             if (avatar) {
@@ -138,8 +138,8 @@ public class CheckCollision {
                         break;
                     case "left":
                         sprite.solidArea.x -= sprite.speed;
-                        if (sprite.solidArea.intersects(gp.ressource[i].solidArea)) {
-                            if (gp.ressource[i].collision) {
+                        if (sprite.solidArea.intersects(gp.obj.get(i).solidArea)) {
+                            if (gp.obj.get(i).collision) {
                                 sprite.collisionOn = true;
                             }
                             if (avatar) {
@@ -149,8 +149,8 @@ public class CheckCollision {
                         break;
                     case "right":
                         sprite.solidArea.x += sprite.speed;
-                        if (sprite.solidArea.intersects(gp.ressource[i].solidArea)) {
-                            if (gp.ressource[i].collision) {
+                        if (sprite.solidArea.intersects(gp.obj.get(i).solidArea)) {
+                            if (gp.obj.get(i).collision) {
                                 sprite.collisionOn = true;
                             }
                             if (avatar) {
@@ -165,8 +165,8 @@ public class CheckCollision {
                 }
                 sprite.solidArea.x = sprite.solidAreaDefaultX;
                 sprite.solidArea.y = sprite.solidAreaDefaultY;
-                gp.ressource[i].solidArea.x = gp.ressource[i].solidAreaDefaultX;
-                gp.ressource[i].solidArea.y = gp.ressource[i].solidAreaDefaultY;
+                gp.obj.get(i).solidArea.x = gp.obj.get(i).solidAreaDefaultX;
+                gp.obj.get(i).solidArea.y = gp.obj.get(i).solidAreaDefaultY;
             }
         }
         return index;
