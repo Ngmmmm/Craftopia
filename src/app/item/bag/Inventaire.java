@@ -1,31 +1,32 @@
 package item.bag;
 
+import item.sprites.SuperObjet;
 import java.util.ArrayList;
-
-import item.ressources.Ressource;
 
 public class Inventaire {
 
-    public final ArrayList<Case<Ressource>> inv = new ArrayList<>();
+    public final ArrayList<Case<SuperObjet>> inv = new ArrayList<>();
 
-    public boolean add(Ressource ress, int quantity) {
+    public boolean add(SuperObjet item, int quantity) {
         for (int i = 0; i < inv.size(); i++) {
-            if (inv.get(i).getText().equals(ress.getName())) {
+            if (inv.get(i).getText().equals(item.name)) {
                 inv.get(i).getItem().increaseQuantity(quantity);
                 return true;
             }
         }
-        inv.add(new Case<Ressource>());
+        Case newItem = new Case<SuperObjet>();
+        newItem.setItem(item);
+        inv.add(newItem);
         inv.get(inv.size() - 1).getItem().increaseQuantity(quantity);
-        inv.get(inv.size() - 1).setText(ress.getName());
+        inv.get(inv.size() - 1).setText(item.name);
         return true;
     }
 
-    public boolean remove(Ressource ress, int quantity){
+    public boolean remove(SuperObjet item, int quantity){
         for (int i = 0; i < inv.size(); i++) {
-            if (inv.get(i).getText().equals(ress.getName())) {
+            if (inv.get(i).getText().equals(item.name)) {
                 inv.get(i).getItem().reduceQuantity(quantity);
-                if(inv.get(i).getItem().getQuantity() < 0){
+                if(inv.get(i).getItem().quantity < 0){
                     inv.remove(i);
                 }
             }

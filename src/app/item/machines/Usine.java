@@ -1,12 +1,11 @@
 package item.machines;
 
-import java.io.File;
-import javax.imageio.ImageIO;
-
 import item.bag.Inventaire;
 import item.recettes.Recette;
 import item.ressources.Ressource;
 import item.sprites.Avatar;
+import java.io.File;
+import javax.imageio.ImageIO;
 
 public class Usine extends Machine implements MachineBehavior {
 
@@ -14,6 +13,7 @@ public class Usine extends Machine implements MachineBehavior {
     public Recette recetteAct;
 
     public Usine() {
+        name = "usine";
         inventaireAvatar = new Inventaire();
         stock = new Inventaire();
         recetteAct = null;

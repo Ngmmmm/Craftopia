@@ -1,15 +1,14 @@
 package main;
 
-import item.bag.Inventaire; // Importation pour définir les dimensions des composants
-import item.sprites.Avatar; // Importation pour dessiner des composants
-import item.sprites.SuperObjet; // Importation pour des dessins graphiques avancés
-import java.awt.Color; // Importation de JPanel pour créer le panneau de jeu
-import java.awt.Dimension;
-import java.awt.Graphics;
+import item.sprites.Avatar;
+import item.sprites.SuperObjet; // Importation pour définir les dimensions des composants
+import java.awt.Color; // Importation pour dessiner des composants
+import java.awt.Dimension; // Importation pour des dessins graphiques avancés
+import java.awt.Graphics; // Importation de JPanel pour créer le panneau de jeu
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import javax.swing.JPanel;
-import tile.TileManager; // Importation pour gérer les blocs du jeu
+import tile.TileManager;
 
 // La classe GamePanel hérite de JPanel et implémente Runnable pour le fonctionnement via un thread
 public class GamePanel extends JPanel implements Runnable {
@@ -36,9 +35,10 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread; // Thread du jeu, pour exécuter le jeu en parallèle
     public CheckCollision collision = new CheckCollision(this); // Gestionnaire des collisions
 
-    AssetSetter aSetter = new AssetSetter(this); // Gestion des objets (ressources, ennemis...)
+    public AssetSetter aSetter = new AssetSetter(this); // Gestion des objets (ressources, ennemis...)
     Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
-    public Avatar avatar = new Avatar(this, keyH, new Inventaire()); // L'avatar contrôlé par le joueur
+    public UiGame itemManager = new UiGame(this);
+    public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
     public ArrayList <SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
 
 
@@ -140,6 +140,11 @@ public class GamePanel extends JPanel implements Runnable {
                 if (obj.get(i) != null) {
                     obj.get(i).draw(g2, this, scaleX, scaleY);
                 }
+            }
+            if(scaleXAct != scaleX || scaleYAct != scaleY){
+                itemManager.resizeButtons(scaleX,scaleY);
+                scaleXAct = scaleX;
+                scaleYAct = scaleY;
             }
 
             // PLAYER

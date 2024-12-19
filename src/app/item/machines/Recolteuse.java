@@ -1,15 +1,15 @@
 package item.machines;
 
-import java.io.File;
-import javax.imageio.ImageIO;
-
 import item.bag.Inventaire;
 import item.ressources.Ressource;
 import item.sprites.Avatar;
+import java.io.File;
+import javax.imageio.ImageIO;
 
 public class Recolteuse extends Machine implements MachineBehavior {
 
     public Recolteuse(Ressource res) {
+        name = "recolteuse";
         this.res = res;
         this.stock = new Inventaire();
         this.stock.add(res, 0);

@@ -169,7 +169,6 @@ public class CheckCollision {
                 gp.obj.get(i).solidArea.y = gp.obj.get(i).solidAreaDefaultY;
             }
         }
-        System.out.println(index);
         return index;
     }
 }

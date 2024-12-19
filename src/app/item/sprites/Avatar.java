@@ -39,6 +39,7 @@ public final class Avatar extends Sprite{
     public final int screenX; // Position de l'avatar au centre de l'écran sur l'axe X
     public final int screenY; // Position de l'avatar au centre de l'écran sur l'axe Y
     public final Inventaire inv;
+    public int lastRessourceIndex = 999;
 
     /**
      * Constructeur de la classe Avatar.
@@ -48,12 +49,12 @@ public final class Avatar extends Sprite{
      * @param keyH le gestionnaire des entrées clavier, permettant de détecter les
      *             actions du joueur.
      */
-    public Avatar(GamePanel gp, KeyHandler keyH, Inventaire inv) {
+    public Avatar(GamePanel gp, KeyHandler keyH) {
         this.gp = gp; // Initialisation du panneau de jeu
         this.keyH = keyH; // Initialisation du gestionnaire des entrées clavier
         this.screenX = (this.gp.LARGEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran (X)
         this.screenY = (this.gp.HAUTEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran (Y)
-        this.inv = inv;
+        this.inv = new Inventaire();
 
         solidArea = new Rectangle(8, 16, 32, 32); // Définit la zone de collision de l'avatar
         solidAreaDefaultX = solidArea.x;
@@ -156,8 +157,12 @@ public final class Avatar extends Sprite{
 
     // TODO: la méthode qui permet de ramasser un item
     public void pickUpItem(int index){
-        if (index!=999) {
-            // gp.ressource[index]=null; // Permet de faire disparaitre l'objet de la carte
+        if (index!=999 && index != lastRessourceIndex) {
+            lastRessourceIndex = index;
+            gp.itemManager.initButton(gp.LARGEUR_ECRAN/2 ,gp.HAUTEUR_ECRAN/2, gp.obj.get(index), index);
+        }else if (index == 999){
+            gp.itemManager.hideAndResetButton();
+            lastRessourceIndex = 999;
         }
     }
 
