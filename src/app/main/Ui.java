@@ -29,9 +29,6 @@ public class Ui {
     // Instance du panneau de jeu (GamePanel)
     private GamePanel gamePanel;
 
-    // Instance de l'objet Graphics2D pour dessiner
-    private Graphics2D graphics2D;
-
     // Déclaration des icônes des boutons (start et exit)
     private Icon startButtonIcon;
     private Icon exitButtonIcon;
