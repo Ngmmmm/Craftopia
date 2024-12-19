@@ -75,10 +75,10 @@ public class Ui {
      */
     public boolean initButtons() {
         // Initialisation des boutons avec des images
-        startButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 160 / 2, gamePanel.HAUTEUR_ECRAN / 2, 160, 65);
-        continueButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 160 / 2, gamePanel.HAUTEUR_ECRAN / 2, 160, 65);
-        settingsButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 160 / 2, gamePanel.HAUTEUR_ECRAN / 2 + 65*2, 160, 65);
-        exitButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 160 / 2, gamePanel.HAUTEUR_ECRAN / 2 + 65*3, 160, 65);
+        startButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 130 / 2, gamePanel.HAUTEUR_ECRAN / 2 -80, 160, 65);
+        continueButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 130 / 2, gamePanel.HAUTEUR_ECRAN / 2 -80, 160, 65);
+        settingsButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 130 / 2, gamePanel.HAUTEUR_ECRAN / 2 -80 + 65 * 2, 160, 65);
+        exitButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 130 / 2, gamePanel.HAUTEUR_ECRAN / 2 -80 + 65 * 3, 160, 65);
 
         // Redimensionner les images des boutons
         resizeButtonImages(startButton, startButtonIcon);
@@ -171,14 +171,14 @@ public class Ui {
      */
     public void resizeButtons(double scaleX, double scaleY) {
 
-        startButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 160 / 2) * scaleX),
-                (int) ((gamePanel.HAUTEUR_ECRAN / 2) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
-        continueButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 160 / 2) * scaleX),
-                (int) ((gamePanel.HAUTEUR_ECRAN / 2 + 65) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
-        settingsButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 160 / 2) * scaleX),
-                (int) ((gamePanel.HAUTEUR_ECRAN / 2 + 65*2) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
-        exitButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 160 / 2) * scaleX),
-                (int) ((gamePanel.HAUTEUR_ECRAN / 2 + 65*3) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
+        startButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 130 / 2) * scaleX),
+                (int) ((gamePanel.HAUTEUR_ECRAN / 2 -80) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
+        continueButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 130 / 2) * scaleX),
+                (int) ((gamePanel.HAUTEUR_ECRAN / 2 -80 + 65) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
+        settingsButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 130 / 2) * scaleX),
+                (int) ((gamePanel.HAUTEUR_ECRAN / 2 -80 + 65 * 2) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
+        exitButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 130 / 2) * scaleX),
+                (int) ((gamePanel.HAUTEUR_ECRAN / 2 -80 + 65 * 3) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
 
         // Redimensionner les images des boutons
         resizeButtonImages(startButton, startButtonIcon);
@@ -198,11 +198,5 @@ public class Ui {
         g2.drawImage(backgroundIcon.getImage(), 0, 0, (int) (gamePanel.LARGEUR_ECRAN * scaleX),
                 (int) (gamePanel.HAUTEUR_ECRAN * scaleY), null);
 
-        // Affichage du texte du titre du jeu (Craftopia)
-        g2.setFont(new Font("Arial", Font.BOLD, 80));
-        String titleText = "CRAFTOPIA";
-        Point titlePosition = new Point(160, 200);
-        g2.setColor(Color.WHITE);
-        g2.drawString(titleText, titlePosition.x, titlePosition.y);
     }
 }
