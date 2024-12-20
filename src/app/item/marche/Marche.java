@@ -52,9 +52,9 @@ public class Marche extends SuperObjet {
         // Définir les coûts des produits
         int prix = Argent.getPrice(produit);
 
-        // Vérifier si le joueur a suffisamment de ressources
+        // Vérifier si le joueur a suffisamment d'argent
         if (Argent.getMonnaiePlayer() >= prix) {
-            // Réduire les ressources du joueur
+            // Réduire l'argent du joueur
             Argent.decreaseMoney(prix);
 
             // Ajouter le produit à l'inventaire du joueur
@@ -64,6 +64,19 @@ public class Marche extends SuperObjet {
         } else {
             System.out.println("Vous n'avez pas assez d'argent pour acheter : " + produit);
         }
+    }
+
+    public void sell(Avatar avatar, Produits produit) {
+        // Définir les coûts des produits
+        int prix = Argent.getPrice(produit);
+
+        // Augmenter l'argent du joueur
+        Argent.increaseMoney(prix);
+
+        // Retirer le produit de l'inventaire du joueur
+        avatar.inv.remove(getProduit(produit), 1);
+        
+        System.out.println("Vous avez vendu : " + produit);
     }
 
     private static SuperObjet getProduit(Produits produit) {
