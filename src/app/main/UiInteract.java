@@ -7,10 +7,10 @@ import javax.swing.JButton;
 
 public class UiInteract {
 
-    private GamePanel gamePanel;
+    private final GamePanel gamePanel;
 
     private JButton itemButton;
-    private ImageIcon ItemButtonIcon;
+    private final ImageIcon ItemButtonIcon;
     private static final String INTERACT_BUTTON_IMAGE_PATH = "./img/InteractButton.png";
 
     /**

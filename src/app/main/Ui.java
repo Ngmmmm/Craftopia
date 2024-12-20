@@ -1,9 +1,6 @@
 package main;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -198,5 +195,12 @@ public class Ui {
         g2.drawImage(backgroundIcon.getImage(), 0, 0, (int) (gamePanel.LARGEUR_ECRAN * scaleX),
                 (int) (gamePanel.HAUTEUR_ECRAN * scaleY), null);
 
+    }
+
+    public void backToMenu(){
+        startButton.setVisible(true);
+        continueButton.setVisible(true);
+        settingsButton.setVisible(true);
+        exitButton.setVisible(true);
     }
 }

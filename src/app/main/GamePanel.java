@@ -38,11 +38,13 @@ public class GamePanel extends JPanel implements Runnable {
     public AssetSetter aSetter = new AssetSetter(this); // Gestion des objets (ressources, ennemis...)
     Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
     public UiInteract itemManager = new UiInteract(this);
+    public UiGame buttonGame = new UiGame(this);
     public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
     public ArrayList <SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
 
 
     boolean initButton = false;
+    boolean initButtonGame = false;
     public int gameState; // État actuel du jeu (titre, en cours, etc.)
     public final int TITLE_STATE = 0; // État correspondant à l'écran de titre
     public final int playState = 1; // État correspondant au jeu en cours
@@ -50,6 +52,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int craftState = 3;
     public final int inventaireState = 4;
     public final int shopState = 5;
+    public final int settingsState = 6;
     
 
     /**
@@ -133,6 +136,10 @@ public class GamePanel extends JPanel implements Runnable {
             }
             ui.drawTitleScreen(g2, scaleX, scaleY);
         } else if (gameState == playState) {
+            if (!initButtonGame) {
+                buttonGame.initButton();
+                initButtonGame = true;
+            }
             // MAP
             tileM.draw(g2, scaleX, scaleY);
             // Ressource
@@ -146,6 +153,7 @@ public class GamePanel extends JPanel implements Runnable {
                 scaleXAct = scaleX;
                 scaleYAct = scaleY;
             }
+
 
             // PLAYER
 
