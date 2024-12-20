@@ -12,7 +12,7 @@ public class BlocPierre extends Ressource {
         name = "blocpierre";
         prix = Argent.getVALBLOCPIERRE(); 
         try {
-            File f1 = new File("./img/object/bois.png");
+            File f1 = new File("./img/ressources/pierre.png");
             image = ImageIO.read(f1);
         } catch (Exception e) {
             e.printStackTrace();

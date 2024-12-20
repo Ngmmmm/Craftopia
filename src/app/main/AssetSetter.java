@@ -1,6 +1,7 @@
 package main;
 
 import item.machines.Usine;
+import item.marche.Marche;
 import item.ressources.Bois;
 import item.ressources.Fer;
 import item.ressources.Feuille;
@@ -17,6 +18,7 @@ public class AssetSetter {
     public void setAllItems() {
         setRessource();
         setMachine();
+        setMarche();
     }
 
     public void setRessource() {
@@ -44,6 +46,12 @@ public class AssetSetter {
         gp.obj.get(4).pos.x = 27 * gp.TAILLE_BLOC;
         gp.obj.get(4).pos.y = 25 * gp.TAILLE_BLOC;
 
+    }
+
+    public void setMarche() {
+        gp.obj.add(new Marche());
+        gp.obj.get(5).pos.x = 28 * gp.TAILLE_BLOC;
+        gp.obj.get(5).pos.y = 25 * gp.TAILLE_BLOC;
     }
 
 }
