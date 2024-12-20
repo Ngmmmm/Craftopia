@@ -1,6 +1,8 @@
 package item.machines;
 
+import item.bag.Argent;
 import item.bag.Inventaire;
+import item.marche.Marche.Produits;
 import item.ressources.Ressource;
 import item.sprites.Avatar;
 import java.io.File;
@@ -13,6 +15,7 @@ public class Recolteuse extends Machine implements MachineBehavior {
         this.res = res;
         this.stock = new Inventaire();
         this.stock.add(res, 0);
+        prix = Argent.getPrice(Produits.RECOLTEUSE);
         try {
             File f1 = new File("./img/machines/recolteuse.png");
             image = ImageIO.read(f1);
@@ -32,5 +35,4 @@ public class Recolteuse extends Machine implements MachineBehavior {
         stock.remove(r, 1);
     }
 
-    
 }

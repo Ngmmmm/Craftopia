@@ -1,6 +1,8 @@
 package item.machines;
 
+import item.bag.Argent;
 import item.bag.Inventaire;
+import item.marche.Marche.Produits;
 import item.recettes.Recette;
 import item.ressources.Ressource;
 import item.sprites.Avatar;
@@ -13,10 +15,11 @@ public class Usine extends Machine implements MachineBehavior {
     public Recette recetteAct;
 
     public Usine() {
-        name = "usine";
+        name = "Usine";
         inventaireAvatar = new Inventaire();
         stock = new Inventaire();
         recetteAct = null;
+        prix = Argent.getPrice(Produits.USINE);
         try {
             File f1 = new File("./img/machines/usine.png");
             image = ImageIO.read(f1);

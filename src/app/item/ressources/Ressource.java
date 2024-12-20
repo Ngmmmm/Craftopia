@@ -20,5 +20,7 @@ public abstract class Ressource extends SuperObjet {
         this.quantity = quantity;
     }
 
-
+    public int getPrix() {
+        return prix;
+    }
 }

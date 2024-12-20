@@ -14,7 +14,7 @@ public class Inventaire {
                 return true;
             }
         }
-        Case newItem = new Case<SuperObjet>();
+        Case<SuperObjet> newItem = new Case<SuperObjet>();
         newItem.setItem(item);
         inv.add(newItem);
         inv.get(inv.size() - 1).getItem().increaseQuantity(quantity);

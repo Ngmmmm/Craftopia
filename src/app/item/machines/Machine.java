@@ -10,4 +10,9 @@ public abstract class Machine extends SuperObjet {
     public String etat;
     public int prix;
     public int time;
+
+    public int getPrix() {
+        return prix;
+    }
+    
 }
