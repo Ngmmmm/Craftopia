@@ -22,7 +22,7 @@ import javax.swing.JButton;
  * </p>
  * 
  * @author Noa Gregoire--Mellier
- * @version 1.1
+ * @version 2.0
  */
 public class Ui {
 
@@ -31,15 +31,21 @@ public class Ui {
 
     // Déclaration des icônes des boutons (start et exit)
     private Icon startButtonIcon;
+    private Icon continueButtonIcon;
+    private Icon settingsButtonIcon;
     private Icon exitButtonIcon;
 
     // Déclaration des boutons start et exit
     private JButton startButton;
+    private JButton continueButton;
+    private JButton settingsButton;
     private JButton exitButton;
 
     // Chemins des images pour les boutons et le fond
     private static final String START_BUTTON_IMAGE_PATH = "./img/newGameButton.png";
-    private static final String EXIT_BUTTON_IMAGE_PATH = "./img/QuitButton.png";
+    private static final String CONTINUE_BUTTON_IMAGE_PATH = "./img/ContinueButton.png";
+    private static final String SETTINGS_BUTTON_IMAGE_PATH = "./img/SettingsButton.png";
+    private static final String EXIT_BUTTON_IMAGE_PATH = "./img/ExitButton.png";
     private static final String BACKGROUND_IMAGE_PATH = "./img/MenuBackground.png";
 
     /**
@@ -51,8 +57,13 @@ public class Ui {
     public Ui(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         this.startButtonIcon = new ImageIcon(START_BUTTON_IMAGE_PATH);
+        this.continueButtonIcon = new ImageIcon(CONTINUE_BUTTON_IMAGE_PATH);
+        this.settingsButtonIcon = new ImageIcon(SETTINGS_BUTTON_IMAGE_PATH);
         this.exitButtonIcon = new ImageIcon(EXIT_BUTTON_IMAGE_PATH);
+
         this.startButton = new JButton(startButtonIcon);
+        this.continueButton = new JButton(continueButtonIcon);
+        this.settingsButton = new JButton(settingsButtonIcon);
         this.exitButton = new JButton(exitButtonIcon);
     }
 
@@ -64,17 +75,43 @@ public class Ui {
      */
     public boolean initButtons() {
         // Initialisation des boutons avec des images
-        startButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 160 / 2, gamePanel.HAUTEUR_ECRAN / 2, 160, 65);
-        exitButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 160 / 2, gamePanel.HAUTEUR_ECRAN / 2 + 65, 160, 65);
+        startButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 130 / 2, gamePanel.HAUTEUR_ECRAN / 2 -80, 160, 65);
+        continueButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 130 / 2, gamePanel.HAUTEUR_ECRAN / 2 -80, 160, 65);
+        settingsButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 130 / 2, gamePanel.HAUTEUR_ECRAN / 2 -80 + 65 * 2, 160, 65);
+        exitButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 130 / 2, gamePanel.HAUTEUR_ECRAN / 2 -80 + 65 * 3, 160, 65);
 
         // Redimensionner les images des boutons
         resizeButtonImages(startButton, startButtonIcon);
+        resizeButtonImages(continueButton, continueButtonIcon);
+        resizeButtonImages(settingsButton, settingsButtonIcon);
         resizeButtonImages(exitButton, exitButtonIcon);
 
         // Action pour le bouton "Start"
         startButton.addActionListener(l -> {
             gamePanel.gameState = gamePanel.playState;
             startButton.setVisible(false);
+            continueButton.setVisible(false);
+            settingsButton.setVisible(false);
+            exitButton.setVisible(false);
+
+        });
+
+        // Action pour le bouton "Continue"
+        continueButton.addActionListener(l -> {
+            gamePanel.gameState = gamePanel.playState;
+            startButton.setVisible(false);
+            continueButton.setVisible(false);
+            settingsButton.setVisible(false);
+            exitButton.setVisible(false);
+
+        });
+
+        // Action pour le bouton "Settings"
+        settingsButton.addActionListener(l -> {
+            gamePanel.gameState = gamePanel.playState;
+            startButton.setVisible(false);
+            continueButton.setVisible(false);
+            settingsButton.setVisible(false);
             exitButton.setVisible(false);
 
         });
@@ -83,15 +120,21 @@ public class Ui {
         exitButton.addActionListener(l -> {
             System.exit(0);
             startButton.setVisible(false);
+            continueButton.setVisible(false);
+            settingsButton.setVisible(false);
             exitButton.setVisible(false);
         });
 
         // Empêcher les boutons d'être sélectionnables (pour une meilleure apparence)
         startButton.setFocusable(false);
+        continueButton.setFocusable(false);
+        settingsButton.setFocusable(false);
         exitButton.setFocusable(false);
 
         // Ajout des boutons au panneau de jeu
         gamePanel.add(startButton);
+        gamePanel.add(continueButton);
+        gamePanel.add(settingsButton);
         gamePanel.add(exitButton);
 
         // Définition de la mise en page pour ne pas utiliser de gestionnaire de layout
@@ -128,13 +171,19 @@ public class Ui {
      */
     public void resizeButtons(double scaleX, double scaleY) {
 
-        startButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 160 / 2) * scaleX),
-                (int) ((gamePanel.HAUTEUR_ECRAN / 2) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
-        exitButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 160 / 2) * scaleX),
-                (int) ((gamePanel.HAUTEUR_ECRAN / 2 + 65) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
+        startButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 130 / 2) * scaleX),
+                (int) ((gamePanel.HAUTEUR_ECRAN / 2 -80) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
+        continueButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 130 / 2) * scaleX),
+                (int) ((gamePanel.HAUTEUR_ECRAN / 2 -80 + 65) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
+        settingsButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 130 / 2) * scaleX),
+                (int) ((gamePanel.HAUTEUR_ECRAN / 2 -80 + 65 * 2) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
+        exitButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 130 / 2) * scaleX),
+                (int) ((gamePanel.HAUTEUR_ECRAN / 2 -80 + 65 * 3) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
 
         // Redimensionner les images des boutons
         resizeButtonImages(startButton, startButtonIcon);
+        resizeButtonImages(continueButton, continueButtonIcon);
+        resizeButtonImages(settingsButton, settingsButtonIcon);
         resizeButtonImages(exitButton, exitButtonIcon);
     }
 
@@ -149,11 +198,5 @@ public class Ui {
         g2.drawImage(backgroundIcon.getImage(), 0, 0, (int) (gamePanel.LARGEUR_ECRAN * scaleX),
                 (int) (gamePanel.HAUTEUR_ECRAN * scaleY), null);
 
-        // Affichage du texte du titre du jeu (Craftopia)
-        g2.setFont(new Font("Arial", Font.BOLD, 80));
-        String titleText = "CRAFTOPIA";
-        Point titlePosition = new Point(160, 200);
-        g2.setColor(Color.WHITE);
-        g2.drawString(titleText, titlePosition.x, titlePosition.y);
     }
 }
