@@ -24,7 +24,7 @@ public class Argent {
                 return 6; // Assemblage de pierres, donc légèrement plus cher
             case PIOCHE:
                 return 8; // Outil utile, mais abordable
-    
+
             // Usines
             case USINE_FRAGILE:
                 return 20; // Produit basique mais utile
@@ -36,7 +36,7 @@ public class Argent {
                 return 120; // Capacité très élevée, prix en conséquence
             case USINE_POLYVALENTE:
                 return 150; // Très efficace et polyvalente
-    
+
             // Récolteuses
             case RECOLTEUSE_FRAGILE:
                 return 15; // Produit fragile mais fonctionnel
@@ -48,34 +48,18 @@ public class Argent {
                 return 100; // Très grande capacité
             case RECOLTEUSE_POLYVALENTE:
                 return 130; // Polyvalente et très efficace
-    
+
             default:
                 throw new IllegalArgumentException("Produit inconnu : " + produit);
         }
     }
-    
 
-    // public static int getVALBOIS(){
-    // return VALBOIS;
-    // }
+    public static void increaseMoney(int val) {
+        monnaiePlayer += Math.abs(val);
+    }
 
-    // public static int getVALFER() {
-    // return VALFER;
-    // }
-    // public static int getVALPIOCHE(){
-    // return VALPIOCHE;
-    // }
-    // public static int getVALPIERRE(){
-    // return VALPIERRE;
-    // }
-    // public static int getVALBLOCPIERRE(){
-    // return VALBLOCPIERRE;
-    // }
-    // public static int getPRIXRECOLTEUSE(){
-    // return PRIXRECOLTEUSE;
-    // }
-    // public static int getVALFEUILLE(){
-    // return VALFEUILLE;
-    // }
+    public static void decreaseMoney(int val) {
+        monnaiePlayer -= Math.abs(val);
+    }
 
 }

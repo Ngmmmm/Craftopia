@@ -3,6 +3,15 @@ package item.marche;
 import java.io.File;
 import javax.imageio.ImageIO;
 
+import item.bag.Argent;
+import item.machines.Recolteuse;
+import item.machines.Usine;
+import item.ressources.BlocPierre;
+import item.ressources.Bois;
+import item.ressources.Fer;
+import item.ressources.Feuille;
+import item.ressources.Pierre;
+import item.ressources.Pioche;
 import item.sprites.Avatar;
 import item.sprites.SuperObjet;
 
@@ -41,59 +50,62 @@ public class Marche extends SuperObjet {
 
     public void buy(Avatar avatar, Produits produit) {
         // Définir les coûts des produits
-        int cost = getCost(produit);
+        int prix = Argent.getPrice(produit);
 
         // Vérifier si le joueur a suffisamment de ressources
-        if (avatar.getResources() >= cost) {
+        if (Argent.getMonnaiePlayer() >= prix) {
             // Réduire les ressources du joueur
-            avatar.decreaseResources(cost);
+            Argent.decreaseMoney(prix);
 
             // Ajouter le produit à l'inventaire du joueur
-            avatar.addToInventory(produit);
+            avatar.inv.add(getProduit(produit), 1);
 
             System.out.println("Vous avez acheté : " + produit);
         } else {
-            System.out.println("Vous n'avez pas assez de ressources pour acheter : " + produit);
+            System.out.println("Vous n'avez pas assez d'argent pour acheter : " + produit);
         }
     }
 
-    private int getCost(Produits produit) {
-        // Définir les coûts pour chaque produit
+    private static SuperObjet getProduit(Produits produit) {
         switch (produit) {
             case FEUILLE:
-                return 10;
+                return new Feuille();
             case BOIS:
-                return 20;
+                return new Bois();
             case PIERRE:
-                return 30;
+                return new Pierre();
             case FER:
-                return 40;
+                return new Fer();
             case BLOC_PIERRE:
-                return 50;
+                return new BlocPierre();
             case PIOCHE:
-                return 60;
+                return new Pioche();
             case USINE_FRAGILE:
-                return 70;
+                return null;
             case USINE:
-                return 80;
-            case USINE_RAPIDE:
-                return 90;
-            case USINE_XL:
-                return 100;
-            case USINE_POLYVALENTE:
-                return 110;
-            case RECOLTEUSE_FRAGILE:
-                return 120;
+                return new Usine();
+            // TODO: Créer dans le package machine les autres types d'usines
+            // case USINE_RAPIDE:
+            // return null;
+            // case USINE_XL:
+            // return null;
+            // case USINE_POLYVALENTE:
+            // return null;
+            // case RECOLTEUSE_FRAGILE:
+            // return null;
             case RECOLTEUSE:
-                return 130;
-            case RECOLTEUSE_RAPIDE:
-                return 140;
-            case RECOLTEUSE_XL:
-                return 150;
-            case RECOLTEUSE_POLYVALENTE:
-                return 160;
+                return new Recolteuse();
+
+            // TODO: Créer dans le package machine les autres types de récolteuses
+            // case RECOLTEUSE_RAPIDE:
+            // return null;
+            // case RECOLTEUSE_XL:
+            // return null;
+            // case RECOLTEUSE_POLYVALENTE:
+            // return null;
             default:
-                return 0;
+                throw new IllegalArgumentException("Produit inconnu : " + produit);
         }
     }
+
 }

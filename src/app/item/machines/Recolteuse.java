@@ -10,9 +10,8 @@ import javax.imageio.ImageIO;
 
 public class Recolteuse extends Machine implements MachineBehavior {
 
-    public Recolteuse(Ressource res) {
+    public Recolteuse() {
         name = "recolteuse";
-        this.res = res;
         this.stock = new Inventaire();
         this.stock.add(res, 0);
         prix = Argent.getPrice(Produits.RECOLTEUSE);
