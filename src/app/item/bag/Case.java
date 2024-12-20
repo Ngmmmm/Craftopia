@@ -1,6 +1,6 @@
-package bag;
+package item.bag;
 
-import ressources.Ressource;
+import item.sprites.SuperObjet;
 
 /**
  * La classe Case représente une case générique dans un inventaire ou un sac.
@@ -23,7 +23,7 @@ import ressources.Ressource;
  * @author Ouahid Houat
  * @version 1.0
  */
-public class Case<E extends Ressource> {
+public class Case<E extends SuperObjet> {
     private E item; // Un objet quelconque héritant de Ressource
     private String text; // Le texte qu'affichera la case à l'écran lorsque l'on passe dessus
 

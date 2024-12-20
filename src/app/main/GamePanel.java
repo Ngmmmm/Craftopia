@@ -1,13 +1,14 @@
 package main;
 
-import java.awt.Color; // Importation de la classe pour gérer les couleurs
-import java.awt.Dimension; // Importation pour définir les dimensions des composants
-import java.awt.Graphics; // Importation pour dessiner des composants
-import java.awt.Graphics2D; // Importation pour des dessins graphiques avancés
-import javax.swing.JPanel; // Importation de JPanel pour créer le panneau de jeu
-import ressources.*; // Importation des ressources nécessaires
-import sprites.Avatar; // Importation de la classe Avatar (le joueur)
-import tile.TileManager; // Importation pour gérer les blocs du jeu
+import item.sprites.Avatar;
+import item.sprites.SuperObjet; // Importation pour définir les dimensions des composants
+import java.awt.Color; // Importation pour dessiner des composants
+import java.awt.Dimension; // Importation pour des dessins graphiques avancés
+import java.awt.Graphics; // Importation de JPanel pour créer le panneau de jeu
+import java.awt.Graphics2D;
+import java.util.ArrayList;
+import javax.swing.JPanel;
+import tile.TileManager;
 
 // La classe GamePanel hérite de JPanel et implémente Runnable pour le fonctionnement via un thread
 public class GamePanel extends JPanel implements Runnable {
@@ -17,8 +18,10 @@ public class GamePanel extends JPanel implements Runnable {
     public final int TAILLE_BLOC = TAILLE_BLOC_ORIGINAL * FACTEUR_ECHELLE; // Taille finale d'un bloc (48px)
     public final int NB_COLONNE_MAX = 16; // Nombre maximal de colonnes visibles à l'écran
     public final int NB_LIGNE_MAX = 12; // Nombre maximal de lignes visibles à l'écran
-    public final int LARGEUR_ECRAN = TAILLE_BLOC * NB_COLONNE_MAX; // Largeur totale de l'écran (768px)
-    public final int HAUTEUR_ECRAN = TAILLE_BLOC * NB_LIGNE_MAX; // Hauteur totale de l'écran (576px)
+    public final int LARGEUR_ECRAN = TAILLE_BLOC * NB_COLONNE_MAX; // Largeur totale de l'écran
+    public final int HAUTEUR_ECRAN = TAILLE_BLOC * NB_LIGNE_MAX; // Hauteur totale de l'écran
+    public double scaleXAct = getWidth()/LARGEUR_ECRAN;
+    public double scaleYAct = getHeight()/HAUTEUR_ECRAN;
 
     public final int NB_COLONNE_MAP_MAX = 52; // Nombre de colonnes maximal sur la carte
     public final int NB_LIGNE_MAP_MAX = 50; // Nombre de lignes maximal sur la carte
@@ -32,15 +35,25 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread; // Thread du jeu, pour exécuter le jeu en parallèle
     public CheckCollision collision = new CheckCollision(this); // Gestionnaire des collisions
 
-    AssetSetter aSetter = new AssetSetter(this); // Gestion des objets (ressources, ennemis...)
+    public AssetSetter aSetter = new AssetSetter(this); // Gestion des objets (ressources, ennemis...)
     Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
+    public UiInteract itemManager = new UiInteract(this);
+    public UiGame buttonGame = new UiGame(this);
     public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
-    public Ressource ressource[] = new Ressource[10]; // Tableau pour stocker les objets à afficher
+    public ArrayList <SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
+
 
     boolean initButton = false;
+    boolean initButtonGame = false;
     public int gameState; // État actuel du jeu (titre, en cours, etc.)
     public final int TITLE_STATE = 0; // État correspondant à l'écran de titre
     public final int playState = 1; // État correspondant au jeu en cours
+    public final int recolteuseState = 2;
+    public final int craftState = 3;
+    public final int inventaireState = 4;
+    public final int shopState = 5;
+    public final int settingsState = 6;
+    
 
     /**
      * Constructeur pour initialiser le panneau de jeu.
@@ -57,7 +70,7 @@ public class GamePanel extends JPanel implements Runnable {
      * Configure les paramètres initiaux du jeu.
      */
     public void setupGame() {
-        aSetter.setRessource();
+        aSetter.setAllItems();
         gameState = TITLE_STATE;
     }
 
@@ -109,28 +122,45 @@ public class GamePanel extends JPanel implements Runnable {
         double scaleX = (double) getWidth() / LARGEUR_ECRAN;
         double scaleY = (double) getHeight() / HAUTEUR_ECRAN;
         // Appliquer les transformations pour mettre à l'échelle
-        g2.scale(scaleX, scaleY);
-
+        //g2.scale(scaleX, scaleY);
+        
         // TITLESCREEN
         if (gameState == TITLE_STATE) {
-            ui.drawTitleScreen(g2);
             if (!initButton) {
-                initButton = ui.initButton();
+                initButton = ui.initButtons();
             }
+            if(scaleXAct != scaleX || scaleYAct != scaleY){
+                ui.resizeButtons(scaleX, scaleY);
+                scaleXAct = scaleX;
+                scaleYAct = scaleY;
+            }
+            ui.drawTitleScreen(g2, scaleX, scaleY);
         } else if (gameState == playState) {
+            if (!initButtonGame) {
+                buttonGame.initButton();
+                initButtonGame = true;
+            }
             // MAP
-            tileM.draw(g2);
+            tileM.draw(g2, scaleX, scaleY);
             // Ressource
-            for (int i = 0; i < ressource.length; i++) {
-                if (ressource[i] != null) {
-                    ressource[i].draw(g2, this);
+            for (int i = 0; i < obj.size(); i++) {
+                if (obj.get(i) != null) {
+                    obj.get(i).draw(g2, this, scaleX, scaleY);
                 }
             }
+            if(scaleXAct != scaleX || scaleYAct != scaleY){
+                itemManager.resizeButtons(scaleX,scaleY);
+                buttonGame.resizeButtons(scaleX, scaleY);
+                scaleXAct = scaleX;
+                scaleYAct = scaleY;
+            }
+
 
             // PLAYER
 
-            avatar.draw(g2);
-            g2.dispose();
+            avatar.draw(g2,scaleX,scaleY);
+            //g2.dispose();
+
 
         }
     }
