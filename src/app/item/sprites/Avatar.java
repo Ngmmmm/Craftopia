@@ -141,7 +141,12 @@ public final class Avatar extends Sprite{
 
         // Vérifie les collisions avec les objets sur la map
         int ressourceIndex = gp.collision.collisionItem(this, true);
-        pickUpItem(ressourceIndex);
+        if(ressourceIndex != 999){
+            pickUpItem(ressourceIndex);
+        }else{
+            gp.itemManager.resetButton();
+            lastRessourceIndex = 999;
+        }
         // Si aucune collision et que l'avatar est mobile, met à jour la position
         if (!collisionOn && !immobile) {
             switch (direction) {
@@ -157,12 +162,9 @@ public final class Avatar extends Sprite{
 
     // TODO: la méthode qui permet de ramasser un item
     public void pickUpItem(int index){
-        if (index!=999 && index != lastRessourceIndex) {
+        if (index != lastRessourceIndex) {
             lastRessourceIndex = index;
             gp.itemManager.initButton(gp.LARGEUR_ECRAN/2 ,gp.HAUTEUR_ECRAN/2, gp.obj.get(index), index);
-        }else if (index == 999){
-            gp.itemManager.hideAndResetButton();
-            lastRessourceIndex = 999;
         }
     }
 
