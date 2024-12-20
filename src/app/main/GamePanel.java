@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public AssetSetter aSetter = new AssetSetter(this); // Gestion des objets (ressources, ennemis...)
     Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
-    public UiGame itemManager = new UiGame(this);
+    public UiInteract itemManager = new UiInteract(this);
     public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
     public ArrayList <SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
 
