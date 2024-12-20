@@ -38,7 +38,7 @@ public class UiInteract {
                     verif++;
                 }
             }
-        if (item.name.equals("Recolteuse") && verif == 0){
+        if (item.name.equals("Récolteuse") && verif == 0){
             itemButton.addActionListener(l -> {
                 gamePanel.gameState = gamePanel.recolteuseState;
                 itemButton.setVisible(false);
