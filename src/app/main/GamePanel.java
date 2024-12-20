@@ -150,6 +150,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
             if(scaleXAct != scaleX || scaleYAct != scaleY){
                 itemManager.resizeButtons(scaleX,scaleY);
+                buttonGame.resizeButtons(scaleX, scaleY);
                 scaleXAct = scaleX;
                 scaleYAct = scaleY;
             }

@@ -71,6 +71,15 @@ public class UiGame {
 
     }
 
+    public void resizeButtons(double scaleX, double scaleY){
+        invButton.setSize((int)(160*scaleX),(int)(65*scaleY));
+        backToMenuButton.setSize((int)(160*scaleX),(int)(65*scaleY));
+        setButton.setSize((int)(160*scaleX),(int)(65*scaleY));
+        resizeButtonImages(setButton, setButtonIcon);
+        resizeButtonImages(backToMenuButton, backToMenuIcon);
+        resizeButtonImages(invButton, invButtonIcon);
+    }
+
     private void resizeButtonImages(JButton button, Icon icon) {
         int buttonWidth = button.getWidth();
         int buttonHeight = button.getHeight();
