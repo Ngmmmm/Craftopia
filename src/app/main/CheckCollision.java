@@ -1,13 +1,14 @@
 package main;
 
-import sprites.Sprite;
+import item.sprites.Sprite;
 
 /**
  * La classe CheckCollision gère la détection des collisions entre les sprites
  * et les blocs de la carte.
  * <p>
  * Cette classe utilise les propriétés des {@link Sprite} et les données de la
- * carte pour déterminer si un sprite rencontre un bloc avec laquelle il ne peut pas
+ * carte pour déterminer si un sprite rencontre un bloc avec laquelle il ne peut
+ * pas
  * passer
  * (c'est-à-dire un bloc avec la propriété de collision activée).
  * </p>
@@ -98,5 +99,76 @@ public class CheckCollision {
             default:
                 break;
         }
+    }
+
+    public int collisionItem(Sprite sprite, boolean avatar) {
+        int index = 999;
+
+        for (int i = 0; i < gp.obj.size(); i++) {
+            if (gp.obj.get(i) != null) {
+                // OBTENIR LA HITBOX DU SPRITE EN ARGUMENT
+                sprite.solidArea.x += sprite.mapPoint.x;
+                sprite.solidArea.y += sprite.mapPoint.y;
+                // OBTENIR LA HITBOX DE LA RESSOURCE ACTUEL
+                gp.obj.get(i).solidArea.x += gp.obj.get(i).pos.x;
+                gp.obj.get(i).solidArea.y += gp.obj.get(i).pos.y;
+
+                switch (sprite.direction) {
+                    case "up":
+                        sprite.solidArea.y -= sprite.speed;
+                        if (sprite.solidArea.intersects(gp.obj.get(i).solidArea)) {
+                            if (gp.obj.get(i).collision) {
+                                sprite.collisionOn = true;
+                            }
+                            if (avatar) {
+                                index = i;
+                            }
+                        }
+                        break;
+                    case "down":
+                        sprite.solidArea.y += sprite.speed;
+                        if (sprite.solidArea.intersects(gp.obj.get(i).solidArea)) {
+                            if (gp.obj.get(i).collision) {
+                                sprite.collisionOn = true;
+                            }
+                            if (avatar) {
+                                index = i;
+                            }
+                        }
+                        break;
+                    case "left":
+                        sprite.solidArea.x -= sprite.speed;
+                        if (sprite.solidArea.intersects(gp.obj.get(i).solidArea)) {
+                            if (gp.obj.get(i).collision) {
+                                sprite.collisionOn = true;
+                            }
+                            if (avatar) {
+                                index = i;
+                            }
+                        }
+                        break;
+                    case "right":
+                        sprite.solidArea.x += sprite.speed;
+                        if (sprite.solidArea.intersects(gp.obj.get(i).solidArea)) {
+                            if (gp.obj.get(i).collision) {
+                                sprite.collisionOn = true;
+                            }
+                            if (avatar) {
+                                index = i;
+                            }
+                        }
+                        break;
+
+                    default:
+
+                        break;
+                }
+                sprite.solidArea.x = sprite.solidAreaDefaultX;
+                sprite.solidArea.y = sprite.solidAreaDefaultY;
+                gp.obj.get(i).solidArea.x = gp.obj.get(i).solidAreaDefaultX;
+                gp.obj.get(i).solidArea.y = gp.obj.get(i).solidAreaDefaultY;
+            }
+        }
+        return index;
     }
 }
