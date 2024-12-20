@@ -29,7 +29,7 @@ public class UiInteract {
     }
 
     public void initButton(int posX, int posY, SuperObjet item, int index){
-        itemButton.setBounds((int)(posX*gamePanel.scaleXAct),(int) (posY*gamePanel.scaleYAct),(int) (160*gamePanel.scaleXAct),(int)(65*gamePanel.scaleYAct));
+        itemButton.setBounds((int)(posX*gamePanel.scaleXAct),(int) (posY*gamePanel.scaleYAct),(int) (100*gamePanel.scaleXAct),(int)(21*gamePanel.scaleYAct));
         resizeButtonImages(itemButton, ItemButtonIcon);
         System.out.println(item.name);
         int verif = 0;
