@@ -38,12 +38,12 @@ public class UiInteract {
                     verif++;
                 }
             }
-        if (item.name.equals("recolteuse") && verif == 0){
+        if (item.name.equals("Recolteuse") && verif == 0){
             itemButton.addActionListener(l -> {
                 gamePanel.gameState = gamePanel.recolteuseState;
                 itemButton.setVisible(false);
             });
-        }else if (item.name.equals("usine") && verif == 0){
+        }else if (item.name.equals("Usine") && verif == 0){
             itemButton.addActionListener(l -> {
                 gamePanel.gameState = gamePanel.craftState;
                 itemButton.setVisible(false);
