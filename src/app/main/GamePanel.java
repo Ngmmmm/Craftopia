@@ -2,10 +2,10 @@ package main;
 
 import item.sprites.Avatar;
 import item.sprites.SuperObjet; // Importation pour définir les dimensions des composants
-import java.awt.Color; // Importation pour dessiner des composants
-import java.awt.Dimension; // Importation pour des dessins graphiques avancés
-import java.awt.Graphics; // Importation de JPanel pour créer le panneau de jeu
-import java.awt.Graphics2D;
+import java.awt.Color;
+import java.awt.Dimension; // Importation pour dessiner des composants
+import java.awt.Graphics; // Importation pour des dessins graphiques avancés
+import java.awt.Graphics2D; // Importation de JPanel pour créer le panneau de jeu
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import tile.TileManager;
@@ -36,11 +36,13 @@ public class GamePanel extends JPanel implements Runnable {
     public CheckCollision collision = new CheckCollision(this); // Gestionnaire des collisions
 
     public AssetSetter aSetter = new AssetSetter(this); // Gestion des objets (ressources, ennemis...)
+    public JPanel taskBar = new JPanel();
     Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
     public UiInteract itemManager = new UiInteract(this);
     public UiGame buttonGame = new UiGame(this);
     public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
     public ArrayList <SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
+
 
 
     boolean initButton = false;
@@ -58,12 +60,15 @@ public class GamePanel extends JPanel implements Runnable {
     /**
      * Constructeur pour initialiser le panneau de jeu.
      */
-    public GamePanel() {
+    public GamePanel(JPanel taskbar) {
         this.setPreferredSize(new Dimension(LARGEUR_ECRAN, HAUTEUR_ECRAN)); // Définir la taille du panneau
         this.setBackground(Color.BLACK); // Couleur de fond noire
         this.setDoubleBuffered(true); // Activer le double buffering pour un rendu fluide
         this.addKeyListener(keyH); // Ajouter le gestionnaire de clavier
         this.setFocusable(true); // Permettre au panneau de capturer les événements clavier
+        this.taskBar = taskbar;
+
+
     }
 
     /**
@@ -139,6 +144,7 @@ public class GamePanel extends JPanel implements Runnable {
             if (!initButtonGame) {
                 buttonGame.initButton();
                 initButtonGame = true;
+                taskBar.setVisible(true);
             }
             // MAP
             tileM.draw(g2, scaleX, scaleY);

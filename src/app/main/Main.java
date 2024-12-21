@@ -1,8 +1,10 @@
 package main;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame; // Importation de la classe JFrame pour créer une fenêtre
+import javax.swing.JFrame;
+import javax.swing.JPanel; // Importation de la classe JFrame pour créer une fenêtre
 
 /**
  * La classe Main sert de point d'entrée au jeu Craftopia.
@@ -44,12 +46,19 @@ public class Main { // Définition de la classe principale
         fenetre.setTitle("Craftopia");
         ImageIcon logo = new ImageIcon("img/CraftopiaLogo.jpeg");
         fenetre.setIconImage(logo.getImage()); // Ajout du logo de la fenêtre
+        fenetre.setLayout(new BorderLayout());
 
         // Création d'une nouvelle instance de GamePanel
-        GamePanel ecranDuJeu = new GamePanel();
+        JPanel taskBar = new JPanel();
 
+        taskBar.setOpaque(false);
+        //this.add(test, BorderLayout.CENTER);
+        taskBar.setPreferredSize(new Dimension(200,200));
         // Ajout du panneau de jeu à la fenêtre
-        fenetre.add(ecranDuJeu);
+        GamePanel ecranDuJeu = new GamePanel(taskBar);
+        fenetre.add(taskBar,BorderLayout.NORTH);
+        taskBar.setVisible(false);
+        fenetre.add(ecranDuJeu, BorderLayout.CENTER);
         // Ajustement de la taille de la fenêtre pour qu'elle contienne tous les
         // éléments
         fenetre.pack();

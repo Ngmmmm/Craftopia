@@ -1,6 +1,5 @@
 package main;
 
-import java.awt.BorderLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -11,7 +10,7 @@ public class UiGame {
 
     private final String INV_BUTTON_IMAGE_PATH = "./img/ContinueButton.png";
     private final String BACKTOMENU_BUTTON_IMAGE_PATH = "./img/ExitButton.png";
-    private final String SETTINGS_BUTTON_IMAGE_PATH = "./img/SettingButton.png";
+    private final String SETTINGS_BUTTON_IMAGE_PATH = "./img/SettingsButton.png";
     private ImageIcon invButtonIcon;
     private ImageIcon backToMenuIcon;
     private ImageIcon setButtonIcon;
@@ -27,48 +26,36 @@ public class UiGame {
         invButton = new JButton(invButtonIcon);
         backToMenuButton = new JButton(backToMenuIcon);
         setButton = new JButton(setButtonIcon);
-        invButton.setSize(160,65);
-        backToMenuButton.setSize(160,65);
-        setButton.setSize(160,65);
-        gp.setLayout(new BorderLayout());
-        gp.add(invButton, BorderLayout.NORTH);
-        gp.add(backToMenuButton, BorderLayout.SOUTH);
-        gp.add(setButton, BorderLayout.EAST);
-        invButton.setVisible(false);
-        backToMenuButton.setVisible(false);
-        setButton.setVisible(false);
+        invButton.setBounds(50, 100, 50, 50);
+        backToMenuButton.setBounds(100,100,50,50);
+        setButton.setBounds(150,100,50,50);
     }
 
 
     public void initButton(){
+        gp.taskBar.add(invButton);
+        gp.taskBar.add(backToMenuButton);
+        gp.taskBar.add(setButton);
         resizeButtonImages(setButton, setButtonIcon);
         resizeButtonImages(backToMenuButton, backToMenuIcon);
         resizeButtonImages(invButton, invButtonIcon);
         invButton.addActionListener(l -> {
             gp.gameState = gp.inventaireState;
-            gp.buttonGame.hideButton();
+            gp.taskBar.setVisible(false);
         });
         backToMenuButton.addActionListener(l -> {
             gp.gameState = gp.TITLE_STATE;
-            gp.buttonGame.hideButton();
             gp.ui.backToMenu();
             gp.initButtonGame = false;
+            gp.taskBar.setVisible(false);
         });
         setButton.addActionListener(l -> {
             gp.gameState = gp.settingsState;
-            gp.buttonGame.hideButton();
+            gp.taskBar.setVisible(false); 
         });
         invButton.setVisible(true);
         backToMenuButton.setVisible(true);
         setButton.setVisible(true);
-    }
-
-
-    public void hideButton(){
-        invButton.setVisible(false);
-        backToMenuButton.setVisible(false);
-        setButton.setVisible(false);
-
     }
 
     public void resizeButtons(double scaleX, double scaleY){
