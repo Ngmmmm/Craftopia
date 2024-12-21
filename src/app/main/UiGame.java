@@ -8,7 +8,7 @@ public class UiGame {
 
     private GamePanel gp;
 
-    private final String INV_BUTTON_IMAGE_PATH = "./img/ContinueButton.png";
+    private final String INV_BUTTON_IMAGE_PATH = "./img/UI/inventory.png";
     private final String BACKTOMENU_BUTTON_IMAGE_PATH = "./img/ExitButton.png";
     private final String SETTINGS_BUTTON_IMAGE_PATH = "./img/SettingsButton.png";
     private ImageIcon invButtonIcon;
@@ -18,21 +18,27 @@ public class UiGame {
     private JButton backToMenuButton;
     private JButton setButton;
 
-    public UiGame(GamePanel gp){
+    public UiGame(GamePanel gp) {
         this.gp = gp;
         invButtonIcon = new ImageIcon(INV_BUTTON_IMAGE_PATH);
         backToMenuIcon = new ImageIcon(BACKTOMENU_BUTTON_IMAGE_PATH);
         setButtonIcon = new ImageIcon(SETTINGS_BUTTON_IMAGE_PATH);
         invButton = new JButton(invButtonIcon);
+
+        // ! Ce bloc permet de supprimer les contours, bordures et fond du bouton
+        invButton.setOpaque(false);
+        invButton.setContentAreaFilled(false);
+        invButton.setBorderPainted(false);
+        invButton.setFocusPainted(false);
+
         backToMenuButton = new JButton(backToMenuIcon);
         setButton = new JButton(setButtonIcon);
         invButton.setBounds(50, 100, 50, 50);
-        backToMenuButton.setBounds(100,100,50,50);
-        setButton.setBounds(150,100,50,50);
+        backToMenuButton.setBounds(100, 100, 50, 50);
+        setButton.setBounds(150, 100, 50, 50);
     }
 
-
-    public void initButton(){
+    public void initButton() {
         gp.taskBar.add(invButton);
         gp.taskBar.add(backToMenuButton);
         gp.taskBar.add(setButton);
@@ -51,17 +57,17 @@ public class UiGame {
         });
         setButton.addActionListener(l -> {
             gp.gameState = gp.settingsState;
-            gp.taskBar.setVisible(false); 
+            gp.taskBar.setVisible(false);
         });
         invButton.setVisible(true);
         backToMenuButton.setVisible(true);
         setButton.setVisible(true);
     }
 
-    public void resizeButtons(double scaleX, double scaleY){
-        invButton.setSize((int)(160*scaleX),(int)(65*scaleY));
-        backToMenuButton.setSize((int)(160*scaleX),(int)(65*scaleY));
-        setButton.setSize((int)(160*scaleX),(int)(65*scaleY));
+    public void resizeButtons(double scaleX, double scaleY) {
+        invButton.setSize((int) (160 * scaleX), (int) (65 * scaleY));
+        backToMenuButton.setSize((int) (160 * scaleX), (int) (65 * scaleY));
+        setButton.setSize((int) (160 * scaleX), (int) (65 * scaleY));
         resizeButtonImages(setButton, setButtonIcon);
         resizeButtonImages(backToMenuButton, backToMenuIcon);
         resizeButtonImages(invButton, invButtonIcon);
@@ -77,13 +83,4 @@ public class UiGame {
         button.setIcon(resizedIcon);
     }
 
-    
-
-
-
-
-
-
-
-    
 }
