@@ -1,12 +1,13 @@
 package main;
 
 import item.sprites.Avatar;
-import item.sprites.SuperObjet; // Importation pour définir les dimensions des composants
+import item.sprites.SuperObjet;
+import java.awt.BorderLayout; // Importation pour définir les dimensions des composants
 import java.awt.Color;
-import java.awt.Dimension; // Importation pour dessiner des composants
-import java.awt.Graphics; // Importation pour des dessins graphiques avancés
-import java.awt.Graphics2D; // Importation de JPanel pour créer le panneau de jeu
-import java.util.ArrayList;
+import java.awt.Dimension;
+import java.awt.Graphics; // Importation pour dessiner des composants
+import java.awt.Graphics2D; // Importation pour des dessins graphiques avancés
+import java.util.ArrayList; // Importation de JPanel pour créer le panneau de jeu
 import javax.swing.JPanel;
 import tile.TileManager;
 
@@ -37,9 +38,12 @@ public class GamePanel extends JPanel implements Runnable {
 
     public AssetSetter aSetter = new AssetSetter(this); // Gestion des objets (ressources, ennemis...)
     public JPanel taskBar = new JPanel();
+    public JPanel invPanel = new JPanel();
+    public JPanel test = new JPanel();
     Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
     public UiInteract itemManager = new UiInteract(this);
     public UiGame buttonGame = new UiGame(this);
+    UiInventaire uiInv = new UiInventaire(this);
     public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
     public ArrayList <SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
 
@@ -47,6 +51,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     boolean initButton = false;
     boolean initButtonGame = false;
+    boolean initInvPanel = false;
     public int gameState; // État actuel du jeu (titre, en cours, etc.)
     public final int TITLE_STATE = 0; // État correspondant à l'écran de titre
     public final int playState = 1; // État correspondant au jeu en cours
@@ -66,7 +71,12 @@ public class GamePanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true); // Activer le double buffering pour un rendu fluide
         this.addKeyListener(keyH); // Ajouter le gestionnaire de clavier
         this.setFocusable(true); // Permettre au panneau de capturer les événements clavier
+        this.setLayout(new BorderLayout());
         this.taskBar = taskbar;
+        test.setBackground(Color.ORANGE);
+        this.add(test,BorderLayout.CENTER);
+        test.setVisible(false);
+
 
 
     }
@@ -168,6 +178,9 @@ public class GamePanel extends JPanel implements Runnable {
             //g2.dispose();
 
 
+        }else if(gameState == inventaireState){
+            //uiInv.inner();
+            
         }
     }
 }

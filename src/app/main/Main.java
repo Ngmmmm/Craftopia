@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -50,10 +51,11 @@ public class Main { // Définition de la classe principale
 
         // Création d'une nouvelle instance de GamePanel
         JPanel taskBar = new JPanel();
+        JPanel invPanel = new JPanel();
 
-        taskBar.setOpaque(false);
-        //this.add(test, BorderLayout.CENTER);
-        taskBar.setPreferredSize(new Dimension(200,200));
+        taskBar.setBackground(Color.GRAY);
+        taskBar.setLayout(null);
+        taskBar.setPreferredSize(new Dimension(30,30));
         // Ajout du panneau de jeu à la fenêtre
         GamePanel ecranDuJeu = new GamePanel(taskBar);
         fenetre.add(taskBar,BorderLayout.NORTH);

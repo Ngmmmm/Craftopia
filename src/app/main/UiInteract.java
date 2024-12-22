@@ -68,6 +68,7 @@ public class UiInteract {
         gamePanel.add(itemButton);
         gamePanel.setLayout(null);
         itemButton.setVisible(false);
+        itemButton.setFocusable(false);
         
     }
 

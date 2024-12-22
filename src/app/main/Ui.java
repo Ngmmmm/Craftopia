@@ -135,7 +135,6 @@ public class Ui {
         gamePanel.add(exitButton);
 
         // Définition de la mise en page pour ne pas utiliser de gestionnaire de layout
-        gamePanel.setLayout(null);
         gamePanel.setVisible(true);
 
         return true;

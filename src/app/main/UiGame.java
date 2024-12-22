@@ -33,9 +33,9 @@ public class UiGame {
 
         backToMenuButton = new JButton(backToMenuIcon);
         setButton = new JButton(setButtonIcon);
-        invButton.setBounds(50, 100, 50, 50);
-        backToMenuButton.setBounds(100, 100, 50, 50);
-        setButton.setBounds(150, 100, 50, 50);
+        invButton.setBounds(gp.taskBar.getWidth()/2 - 500/2, gp.taskBar.getHeight()/2-30/2, 70, 30);
+        backToMenuButton.setBounds(gp.taskBar.getWidth()/2 - 100/2, gp.taskBar.getHeight()/2-30/2, 70, 30);
+        setButton.setBounds(gp.taskBar.getWidth()/2 + 350/2, gp.taskBar.getHeight()/2-30/2, 70, 30);
     }
 
     public void initButton() {
@@ -46,8 +46,9 @@ public class UiGame {
         resizeButtonImages(backToMenuButton, backToMenuIcon);
         resizeButtonImages(invButton, invButtonIcon);
         invButton.addActionListener(l -> {
-            gp.gameState = gp.inventaireState;
             gp.taskBar.setVisible(false);
+            gp.test.setVisible(true);
+            gp.gameState = gp.inventaireState;
         });
         backToMenuButton.addActionListener(l -> {
             gp.gameState = gp.TITLE_STATE;
@@ -65,9 +66,9 @@ public class UiGame {
     }
 
     public void resizeButtons(double scaleX, double scaleY) {
-        invButton.setSize((int) (160 * scaleX), (int) (65 * scaleY));
-        backToMenuButton.setSize((int) (160 * scaleX), (int) (65 * scaleY));
-        setButton.setSize((int) (160 * scaleX), (int) (65 * scaleY));
+        invButton.setBounds(gp.taskBar.getWidth()/2 - 500/2, gp.taskBar.getHeight()/2-30/2, 70, 30);
+        backToMenuButton.setBounds(gp.taskBar.getWidth()/2 - 100/2, gp.taskBar.getHeight()/2-30/2, 70, 30);
+        setButton.setBounds(gp.taskBar.getWidth()/2 + 350/2, gp.taskBar.getHeight()/2-30/2, 70, 30);
         resizeButtonImages(setButton, setButtonIcon);
         resizeButtonImages(backToMenuButton, backToMenuIcon);
         resizeButtonImages(invButton, invButtonIcon);
