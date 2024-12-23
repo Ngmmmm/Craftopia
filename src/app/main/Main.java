@@ -42,25 +42,30 @@ public class Main { // Définition de la classe principale
 
         // Définition de la taille de la fenêtre (redimensionnable)
         fenetre.setResizable(true);
-        fenetre.setMinimumSize(new Dimension(768,576));
+        fenetre.setMinimumSize(new Dimension(768, 576));
         // Définition du titre de la fenêtre
         fenetre.setTitle("Craftopia");
         ImageIcon logo = new ImageIcon("img/CraftopiaLogo.jpeg");
         fenetre.setIconImage(logo.getImage()); // Ajout du logo de la fenêtre
         fenetre.setLayout(new BorderLayout());
 
-        // Création d'une nouvelle instance de GamePanel
-        JPanel taskBar = new JPanel();
+        // Création des différents JPanel du jeu
+        JPanel menuBar = new JPanel();
         JPanel invPanel = new JPanel();
+        JPanel marchePanel = new JPanel();
 
-        taskBar.setBackground(Color.GRAY);
-        taskBar.setLayout(null);
-        taskBar.setPreferredSize(new Dimension(30,30));
+        // Création d'une nouvelle instance de GamePanel
+        GamePanel ecranDuJeu = new GamePanel(menuBar);
+
+        menuBar.setBackground(Color.GRAY);
+        menuBar.setLayout(null);
+        menuBar.setPreferredSize(new Dimension(30, 30));
         // Ajout du panneau de jeu à la fenêtre
-        GamePanel ecranDuJeu = new GamePanel(taskBar);
-        fenetre.add(taskBar,BorderLayout.NORTH);
-        taskBar.setVisible(false);
+
+        fenetre.add(menuBar, BorderLayout.NORTH);
+        menuBar.setVisible(false);
         fenetre.add(ecranDuJeu, BorderLayout.CENTER);
+
         // Ajustement de la taille de la fenêtre pour qu'elle contienne tous les
         // éléments
         fenetre.pack();

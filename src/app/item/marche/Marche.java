@@ -18,7 +18,7 @@ import item.sprites.SuperObjet;
 public class Marche extends SuperObjet {
 
     public Marche() {
-        name = "marché";
+        name = "Marché";
         @SuppressWarnings("unused")
         final int quantity = 1; // Dans la version de base du jeu, il n'y a qu'un seul marché
         try {

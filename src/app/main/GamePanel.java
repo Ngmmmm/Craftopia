@@ -21,8 +21,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int NB_LIGNE_MAX = 12; // Nombre maximal de lignes visibles à l'écran
     public final int LARGEUR_ECRAN = TAILLE_BLOC * NB_COLONNE_MAX; // Largeur totale de l'écran
     public final int HAUTEUR_ECRAN = TAILLE_BLOC * NB_LIGNE_MAX; // Hauteur totale de l'écran
-    public double scaleXAct = getWidth()/LARGEUR_ECRAN;
-    public double scaleYAct = getHeight()/HAUTEUR_ECRAN;
+    public double scaleXAct = getWidth() / LARGEUR_ECRAN;
+    public double scaleYAct = getHeight() / HAUTEUR_ECRAN;
 
     public final int NB_COLONNE_MAP_MAX = 52; // Nombre de colonnes maximal sur la carte
     public final int NB_LIGNE_MAP_MAX = 50; // Nombre de lignes maximal sur la carte
@@ -37,17 +37,18 @@ public class GamePanel extends JPanel implements Runnable {
     public CheckCollision collision = new CheckCollision(this); // Gestionnaire des collisions
 
     public AssetSetter aSetter = new AssetSetter(this); // Gestion des objets (ressources, ennemis...)
-    public JPanel taskBar = new JPanel();
+
+    public JPanel menuBar = new JPanel();
     public JPanel invPanel = new JPanel();
-    public JPanel test = new JPanel();
+    public JPanel marche = new JPanel();
+
     Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
     public UiInteract itemManager = new UiInteract(this);
     public UiGame buttonGame = new UiGame(this);
     UiInventaire uiInv = new UiInventaire(this);
+
     public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
-    public ArrayList <SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
-
-
+    public ArrayList<SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
 
     boolean initButton = false;
     boolean initButtonGame = false;
@@ -60,24 +61,18 @@ public class GamePanel extends JPanel implements Runnable {
     public final int inventaireState = 4;
     public final int shopState = 5;
     public final int settingsState = 6;
-    
 
     /**
      * Constructeur pour initialiser le panneau de jeu.
      */
-    public GamePanel(JPanel taskbar) {
+    public GamePanel(JPanel menuBar) {
         this.setPreferredSize(new Dimension(LARGEUR_ECRAN, HAUTEUR_ECRAN)); // Définir la taille du panneau
         this.setBackground(Color.BLACK); // Couleur de fond noire
         this.setDoubleBuffered(true); // Activer le double buffering pour un rendu fluide
         this.addKeyListener(keyH); // Ajouter le gestionnaire de clavier
         this.setFocusable(true); // Permettre au panneau de capturer les événements clavier
         this.setLayout(new BorderLayout());
-        this.taskBar = taskbar;
-        test.setBackground(Color.ORANGE);
-        this.add(test,BorderLayout.CENTER);
-        test.setVisible(false);
-
-
+        this.menuBar = menuBar;
 
     }
 
@@ -137,14 +132,14 @@ public class GamePanel extends JPanel implements Runnable {
         double scaleX = (double) getWidth() / LARGEUR_ECRAN;
         double scaleY = (double) getHeight() / HAUTEUR_ECRAN;
         // Appliquer les transformations pour mettre à l'échelle
-        //g2.scale(scaleX, scaleY);
-        
+        // g2.scale(scaleX, scaleY);
+
         // TITLESCREEN
         if (gameState == TITLE_STATE) {
             if (!initButton) {
                 initButton = ui.initButtons();
             }
-            if(scaleXAct != scaleX || scaleYAct != scaleY){
+            if (scaleXAct != scaleX || scaleYAct != scaleY) {
                 ui.resizeButtons(scaleX, scaleY);
                 scaleXAct = scaleX;
                 scaleYAct = scaleY;
@@ -154,7 +149,7 @@ public class GamePanel extends JPanel implements Runnable {
             if (!initButtonGame) {
                 buttonGame.initButton();
                 initButtonGame = true;
-                taskBar.setVisible(true);
+                menuBar.setVisible(true);
             }
             // MAP
             tileM.draw(g2, scaleX, scaleY);
@@ -164,23 +159,21 @@ public class GamePanel extends JPanel implements Runnable {
                     obj.get(i).draw(g2, this, scaleX, scaleY);
                 }
             }
-            if(scaleXAct != scaleX || scaleYAct != scaleY){
-                itemManager.resizeButtons(scaleX,scaleY);
+            if (scaleXAct != scaleX || scaleYAct != scaleY) {
+                itemManager.resizeButtons(scaleX, scaleY);
                 buttonGame.resizeButtons(scaleX, scaleY);
                 scaleXAct = scaleX;
                 scaleYAct = scaleY;
             }
 
-
             // PLAYER
 
-            avatar.draw(g2,scaleX,scaleY);
-            //g2.dispose();
+            avatar.draw(g2, scaleX, scaleY);
+            // g2.dispose();
 
+        } else if (gameState == inventaireState) {
+            // uiInv.inner();
 
-        }else if(gameState == inventaireState){
-            //uiInv.inner();
-            
         }
     }
 }
