@@ -66,9 +66,12 @@ public class UiGame {
     }
 
     public void resizeButtons(double scaleX, double scaleY) {
-        invButton.setBounds(gp.menuBar.getWidth() / 2 - 500 / 2, gp.menuBar.getHeight() / 2 - 30 / 2, 70, 30);
-        backToMenuButton.setBounds(gp.menuBar.getWidth() / 2 - 100 / 2, gp.menuBar.getHeight() / 2 - 30 / 2, 70, 30);
-        setButton.setBounds(gp.menuBar.getWidth() / 2 + 350 / 2, gp.menuBar.getHeight() / 2 - 30 / 2, 70, 30);
+        invButton.setBounds(gp.menuBar.getWidth() / 2 - 500 / 2,
+        gp.menuBar.getHeight() / 2 - 30 / 2, 70, 30);
+        backToMenuButton.setBounds(gp.menuBar.getWidth() / 2 - 100 / 2,
+        gp.menuBar.getHeight() / 2 - 30 / 2, 70, 30);
+        setButton.setBounds(gp.menuBar.getWidth() / 2 + 350 / 2,
+        gp.menuBar.getHeight() / 2 - 30 / 2, 70, 30);
         resizeButtonImages(setButton, setButtonIcon);
         resizeButtonImages(backToMenuButton, backToMenuIcon);
         resizeButtonImages(invButton, invButtonIcon);

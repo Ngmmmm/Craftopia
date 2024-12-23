@@ -175,6 +175,7 @@ public class GamePanel extends JPanel implements Runnable {
             if (gameState == playState) {
                 if (!initButtonGame) {
                     buttonGame.initButton();
+                    buttonGame.resizeButtons(scaleX, scaleY);
                     initButtonGame = true;
 
                 }
