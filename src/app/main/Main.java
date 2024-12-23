@@ -2,10 +2,12 @@ package main;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel; // Importation de la classe JFrame pour créer une fenêtre
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 
 /**
  * La classe Main sert de point d'entrée au jeu Craftopia.
@@ -19,62 +21,98 @@ import javax.swing.JPanel; // Importation de la classe JFrame pour créer une fe
  * toute la logique et l'affichage du jeu.
  * </p>
  * 
- * @author Ouahid Houat
- * @version 1.0
+ * @version 2.0
  */
-public class Main { // Définition de la classe principale
+public class Main extends JFrame { // Définition de la classe principale qui étend JFrame
+
+    // Déclaration des panneaux
+    private JPanel menuBar, invPanel, marchePanel;
+    GamePanel ecranDuJeu;
 
     /**
-     * Point d'entrée principal du programme. Cette méthode configure la fenêtre du
-     * jeu
-     * et lance les mécanismes nécessaires à son fonctionnement.
-     * 
-     * @param args les arguments de ligne de commande (non utilisés ici).
+     * Constructeur de la classe Main.
+     * Initialise la fenêtre du jeu et configure les composants.
      */
-    public static void main(String[] args) { // Méthode main, point d'entrée du programme
+    public Main() {
+        // Définition du titre de la fenêtre
+        super("Craftopia");
 
-        // Création d'une nouvelle instance de JFrame
-        JFrame fenetre = new JFrame();
-
-        // Définition de la fermeture de la fenêtre (quitter le programme lorsque la
-        // fenêtre est fermée)
-        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Définition de la fermeture de la fenêtre (quitter le programme lorsque la fenêtre est fermée)
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Définition de la taille de la fenêtre (redimensionnable)
-        fenetre.setResizable(true);
-        fenetre.setMinimumSize(new Dimension(768, 576));
-        // Définition du titre de la fenêtre
-        fenetre.setTitle("Craftopia");
-        ImageIcon logo = new ImageIcon("img/CraftopiaLogo.jpeg");
-        fenetre.setIconImage(logo.getImage()); // Ajout du logo de la fenêtre
-        fenetre.setLayout(new BorderLayout());
+        setResizable(true);
+        setMinimumSize(new Dimension(768, 576));
 
-        // Création des différents JPanel du jeu
-        JPanel menuBar = new JPanel();
-        JPanel invPanel = new JPanel();
-        JPanel marchePanel = new JPanel();
+        // Ajout du logo de la fenêtre
+        ImageIcon logo = new ImageIcon("img/CraftopiaLogo.jpeg");
+        setIconImage(logo.getImage());
+
+        // Initialisation des panneaux
+        menuBar = new JPanel();
+        invPanel = new JPanel();
+        marchePanel = new JPanel();
 
         // Création d'une nouvelle instance de GamePanel
-        GamePanel ecranDuJeu = new GamePanel(menuBar);
+        ecranDuJeu = new GamePanel(menuBar, invPanel, marchePanel);
+        
 
+        // Configuration du menuBar
         menuBar.setBackground(Color.GRAY);
         menuBar.setLayout(null);
         menuBar.setPreferredSize(new Dimension(30, 30));
-        // Ajout du panneau de jeu à la fenêtre
 
-        fenetre.add(menuBar, BorderLayout.NORTH);
-        menuBar.setVisible(false);
-        fenetre.add(ecranDuJeu, BorderLayout.CENTER);
+        // Configuration du invPanel
+        invPanel.setBackground(Color.BLUE);
+        invPanel.setPreferredSize(new Dimension(30, 30));
 
-        // Ajustement de la taille de la fenêtre pour qu'elle contienne tous les
-        // éléments
-        fenetre.pack();
+        // Configuration du marchePanel
+        marchePanel.setBackground(Color.RED);
+        marchePanel.setPreferredSize(new Dimension(30, 30));
+
+        // Création et configuration du JLayeredPane
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setPreferredSize(new Dimension(768, 576));
+
+        // Ajout des panneaux au JLayeredPane avec des priorités
+        menuBar.setBounds(0, 0, 768, 30);
+        invPanel.setBounds(0, 30, 768, 30);
+        marchePanel.setBounds(0, 30, 768, 30);
+        ecranDuJeu.setBounds(0, 0, 768, 576);
+
+        layeredPane.add(ecranDuJeu, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.add(menuBar, JLayeredPane.PALETTE_LAYER);
+        layeredPane.add(invPanel, JLayeredPane.MODAL_LAYER);
+        layeredPane.add(marchePanel, JLayeredPane.MODAL_LAYER);
+        
+        invPanel.setVisible(false);
+        marchePanel.setVisible(false);
+
+        // Ajout du JLayeredPane au conteneur principal
+        Container pane = getContentPane();
+        setContentPane(pane);
+        pane.setLayout(new BorderLayout());
+        pane.add(layeredPane, BorderLayout.CENTER);
+
+        // Ajustement de la taille de la fenêtre pour qu'elle contienne tous les éléments
+        pack();
         // Placement de la fenêtre au centre de l'écran
-        fenetre.setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         // Affichage de la fenêtre
-        fenetre.setVisible(true);
+        setVisible(true);
 
-        ecranDuJeu.setupGame(); // Initialisation des paramètres du jeu Démarrage du thread de jeu
+        // Initialisation des paramètres du jeu et démarrage du thread de jeu
+        ecranDuJeu.setupGame();
         ecranDuJeu.startGameThread();
+    }
+
+    /**
+     * Point d'entrée principal du programme.
+     * Cette méthode crée une instance de la classe Main.
+     * 
+     * @param args les arguments de ligne de commande (non utilisés ici).
+     */
+    public static void main(String[] args) {
+        new Main();
     }
 }
