@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.ScrollPane;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
@@ -26,7 +28,8 @@ import javax.swing.JPanel;
 public class Main extends JFrame { // Définition de la classe principale qui étend JFrame
 
     // Déclaration des panneaux
-    private JPanel menuBar, invPanel, marchePanel;
+    private JPanel menuBar;
+    ScrollPane invPanel, marchePanel;
     GamePanel ecranDuJeu;
 
     /**
@@ -50,8 +53,8 @@ public class Main extends JFrame { // Définition de la classe principale qui é
 
         // Initialisation des panneaux
         menuBar = new JPanel();
-        invPanel = new JPanel();
-        marchePanel = new JPanel();
+        invPanel = new ScrollPane();
+        marchePanel = new ScrollPane();
 
         // Création d'une nouvelle instance de GamePanel
         ecranDuJeu = new GamePanel(menuBar, invPanel, marchePanel);

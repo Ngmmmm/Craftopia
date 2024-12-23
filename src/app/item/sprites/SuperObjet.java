@@ -27,7 +27,8 @@ public class SuperObjet {
                 && pos.x - gp.TAILLE_BLOC < gp.avatar.mapPoint.x + gp.avatar.screenX
                 && pos.y + gp.TAILLE_BLOC > gp.avatar.mapPoint.y - gp.avatar.screenY
                 && pos.y - gp.TAILLE_BLOC < gp.avatar.mapPoint.y + gp.avatar.screenY) {
-            g2.drawImage(image, (int)(screenX*scaleX), (int)(screenY*scaleY), (int)(gp.TAILLE_BLOC*scaleX),(int) (gp.TAILLE_BLOC*scaleY), null);
+            g2.drawImage(image, (int) (screenX * scaleX), (int) (screenY * scaleY), (int) (gp.TAILLE_BLOC * scaleX),
+                    (int) (gp.TAILLE_BLOC * scaleY), null);
         }
     }
 
@@ -52,6 +53,18 @@ public class SuperObjet {
             throw new IllegalArgumentException("Nombre de ressource insufisant.");
         }
         this.quantity -= quantity;// Réduit la quantité de l'item par la valeur de quantity
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public BufferedImage getImage() {
+        return image;
+    }
+
+    public int getPrix() {
+        return 0;
     }
 
 }
