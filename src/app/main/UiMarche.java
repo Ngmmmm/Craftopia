@@ -3,7 +3,6 @@ package main;
 import item.sprites.SuperObjet;
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class UiMarche {
 

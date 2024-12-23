@@ -4,12 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.ScrollPane;
-
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import java.awt.ScrollPane;
 
 /**
  * La classe Main sert de point d'entrée au jeu Craftopia.
@@ -58,7 +59,6 @@ public class Main extends JFrame { // Définition de la classe principale qui é
 
         // Création d'une nouvelle instance de GamePanel
         ecranDuJeu = new GamePanel(menuBar, invPanel, marchePanel);
-        
 
         // Configuration du menuBar
         menuBar.setBackground(Color.GRAY);
@@ -75,19 +75,19 @@ public class Main extends JFrame { // Définition de la classe principale qui é
 
         // Création et configuration du JLayeredPane
         JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(768, 576));
+        layeredPane.setLayout(null); // Utilisation d'un layout null pour un positionnement absolu
 
         // Ajout des panneaux au JLayeredPane avec des priorités
         menuBar.setBounds(0, 0, 768, 30);
         invPanel.setBounds(0, 30, 768, 30);
-        marchePanel.setBounds(30, 0, 768, 576);
+        marchePanel.setBounds(0, 60, 768, 516);
         ecranDuJeu.setBounds(0, 0, 768, 576);
 
         layeredPane.add(ecranDuJeu, JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(menuBar, JLayeredPane.PALETTE_LAYER);
         layeredPane.add(invPanel, JLayeredPane.MODAL_LAYER);
         layeredPane.add(marchePanel, JLayeredPane.MODAL_LAYER);
-        
+
         invPanel.setVisible(false);
         marchePanel.setVisible(false);
 
@@ -103,6 +103,20 @@ public class Main extends JFrame { // Définition de la classe principale qui é
         setLocationRelativeTo(null);
         // Affichage de la fenêtre
         setVisible(true);
+
+        // Ajout d'un écouteur pour redimensionner les composants lorsque la fenêtre est redimensionnée
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                int width = getWidth();
+                int height = getHeight();
+
+                menuBar.setBounds(0, 0, width, 30);
+                invPanel.setBounds(0, 30, width, 30);
+                marchePanel.setBounds(0, 60, width, height - 60);
+                ecranDuJeu.setBounds(0, 0, width, height);
+            }
+        });
 
         // Initialisation des paramètres du jeu et démarrage du thread de jeu
         ecranDuJeu.setupGame();
