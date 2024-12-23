@@ -110,7 +110,7 @@ public class GamePanel extends JPanel implements Runnable {
             lastTime = currentTime; // Mettre à jour le temps précédent
 
             if (delta >= 1) { // Si une itération est prête
-                update(); // Met à jour les éléments du jeu
+                update(gameState); // Met à jour les éléments du jeu
                 repaint(); // Redessine l'écran
                 delta--; // Réduit le delta
             }
@@ -120,8 +120,8 @@ public class GamePanel extends JPanel implements Runnable {
     /**
      * Met à jour les éléments du jeu.
      */
-    public void update() {
-        avatar.update(); // Met à jour l'état de l'avatar (position, etc.)
+    public void update(int gameState) {
+        avatar.update(gameState); // Met à jour l'état de l'avatar (position, etc.)
     }
 
     /**
@@ -149,38 +149,42 @@ public class GamePanel extends JPanel implements Runnable {
                 scaleYAct = scaleY;
             }
             ui.drawTitleScreen(g2, scaleX, scaleY);
-        } else if (gameState == playState) {
-            if (!initButtonGame) {
-                buttonGame.initButton();
-                initButtonGame = true;
-                
-            }
+        } else {
             menuBar.setVisible(true);
-            // MAP
-            tileM.draw(g2, scaleX, scaleY);
-            // Ressource
-            for (int i = 0; i < obj.size(); i++) {
-                if (obj.get(i) != null) {
-                    obj.get(i).draw(g2, this, scaleX, scaleY);
+                // MAP
+                tileM.draw(g2, scaleX, scaleY);
+                // Ressource
+                for (int i = 0; i < obj.size(); i++) {
+                    if (obj.get(i) != null) {
+                        obj.get(i).draw(g2, this, scaleX, scaleY);
+                    }
                 }
+                if (scaleXAct != scaleX || scaleYAct != scaleY) {
+                    itemManager.resizeButtons(scaleX, scaleY);
+                    buttonGame.resizeButtons(scaleX, scaleY);
+                    scaleXAct = scaleX;
+                    scaleYAct = scaleY;
+                }
+    
+                // PLAYER
+    
+                avatar.draw(g2, scaleX, scaleY);
+                // g2.dispose();
+                // UI
+            if (gameState == playState) {
+                if (!initButtonGame) {
+                    buttonGame.initButton();
+                    initButtonGame = true;
+                    
+                }
+                
+            } else if (gameState == inventaireState) {
+                // uiInv.inner();
+    
+            } else if (gameState == shopState) {
+                marchePanel.setVisible(true);
             }
-            if (scaleXAct != scaleX || scaleYAct != scaleY) {
-                itemManager.resizeButtons(scaleX, scaleY);
-                buttonGame.resizeButtons(scaleX, scaleY);
-                scaleXAct = scaleX;
-                scaleYAct = scaleY;
-            }
-
-            // PLAYER
-
-            avatar.draw(g2, scaleX, scaleY);
-            // g2.dispose();
-
-        } else if (gameState == inventaireState) {
-            // uiInv.inner();
-
-        } else if (gameState == shopState) {
-            marchePanel.setVisible(true);
         }
+        
     }
 }

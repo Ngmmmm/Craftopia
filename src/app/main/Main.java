@@ -77,7 +77,7 @@ public class Main extends JFrame { // Définition de la classe principale qui é
         // Ajout des panneaux au JLayeredPane avec des priorités
         menuBar.setBounds(0, 0, 768, 30);
         invPanel.setBounds(0, 30, 768, 30);
-        marchePanel.setBounds(0, 30, 768, 30);
+        marchePanel.setBounds(30, 0, 768, 576);
         ecranDuJeu.setBounds(0, 0, 768, 576);
 
         layeredPane.add(ecranDuJeu, JLayeredPane.DEFAULT_LAYER);
