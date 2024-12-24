@@ -1,66 +1,73 @@
 package main;
 
-import javax.swing.JButton;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.util.List;
+
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+
+import item.bag.Inventaire;
+import item.sprites.SuperObjet;
 
 public class UiInventaire {
 
-    JScrollPane scrlpane;
-    GamePanel gp;
+    private static JScrollPane scrollPane;
+    private static List<SuperObjet> inventoryItems;
 
+    public UiInventaire() {
+        inventoryItems = Inventaire.getInv();
 
-    public UiInventaire(GamePanel gp) {
-        this.gp = gp;
-    }
+        // Panneau principal pour le JScrollPane
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS)); // Empile verticalement
 
-    
-
-    public void inner() {
-
-        // to storing the string values
-        String ctg[] = { "CCNA", "Design Patterns", "Java",
-                "Python", "Algorithms",
-                "JAVASCRIPT", "Operating System", "CS Subject",
-                "Data Structure", "PHP language", "Concurrency",
-                "C #" };
-
-        // Declaration of objects of the JPanel class.
-
-
-        // method to set the Layout of the JFrame.
-
-        // Adding header labels
-        gp.add(new JLabel("Category"));
-        gp.add(new JLabel("Buy"));
-        gp.add(new JLabel("Sell"));
-
-        // for loop
-        for (int r = 0; r < 12; r++) {
-            JLabel act = new JLabel(ctg[r]);
-            // adding the new JLabel for category
-            act.setBounds(30,100*r,500,500);
-            gp.add(act);
-
-
-            // creating and adding the Buy button
-            JButton buyButton = new JButton("BUY");
-            gp.add(buyButton);
-
-            // creating and adding the Sell button
-            JButton sellButton = new JButton("SELL");
-            gp.add(sellButton);
+        // Ajoute des lignes au panneau principal (chaque ligne contient IMG, Nom)
+        for (SuperObjet item : inventoryItems) {
+            mainPanel.add(createRow(item));
         }
 
-        // Declaring the objects of the JScrollPane class.
-
-        // for getting the content pane
+        scrollPane = new JScrollPane(mainPanel);
     }
 
+    private static JPanel createRow(SuperObjet item) {
+        JPanel rowPanel = new JPanel();
+        rowPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-    public void applyEffect(){
-        inner();
+        ImageIcon image = new ImageIcon(item.getImage());
+        JLabel imageLabel = new JLabel();
+        imageLabel.setIcon(image);
+        imageLabel.setPreferredSize(new Dimension(50, 50));
+        imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        rowPanel.add(imageLabel);
+
+        JLabel nameLabel = new JLabel(item.getName());
+        nameLabel.setPreferredSize(new Dimension(150, 50));
+        rowPanel.add(nameLabel);
+
+        return rowPanel;
     }
 
-    
+    public JScrollPane getScrollPane() {
+        return scrollPane;
+    }
+
+    public static void updateInventory() {
+        inventoryItems = Inventaire.getInv();
+        rebuildInventoryPanel();
+    }
+
+    private static void rebuildInventoryPanel() {
+        JPanel mainPanel = (JPanel) scrollPane.getViewport().getView();
+        mainPanel.removeAll();
+        for (SuperObjet item : inventoryItems) {
+            mainPanel.add(createRow(item));
+        }
+        mainPanel.revalidate();
+        mainPanel.repaint();
+    }
 }

@@ -47,7 +47,6 @@ public class GamePanel extends JPanel implements Runnable {
     Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
     public UiInteract itemManager = new UiInteract(this);
     public UiGame buttonGame = new UiGame(this);
-    UiInventaire uiInv = new UiInventaire(this);
 
     public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
     public static ArrayList<SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
@@ -138,6 +137,7 @@ public class GamePanel extends JPanel implements Runnable {
         // Appliquer les transformations pour mettre à l'échelle
         // g2.scale(scaleX, scaleY);
 
+        invPanel.setVisible(false);
         menuBar.setVisible(false);
         marchePanel.setVisible(false);
         // TITLESCREEN
@@ -187,7 +187,7 @@ public class GamePanel extends JPanel implements Runnable {
                 }
 
             } else if (gameState == inventaireState) {
-                // uiInv.inner();
+                invPanel.setVisible(true);
 
             } else if (gameState == shopState) {
                 marchePanel.setVisible(true);

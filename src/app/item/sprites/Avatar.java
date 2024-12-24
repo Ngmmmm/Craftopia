@@ -30,7 +30,7 @@ import main.KeyHandler; // Gère les entrées clavier du joueur
  * </p>
  * 
  * @author Ouahid Houat
- * @version 1.0
+ * @version 2.0
  */
 public final class Avatar extends Sprite {
     GamePanel gp; // Fenêtre du jeu
@@ -101,6 +101,14 @@ public final class Avatar extends Sprite {
             // En cas d'erreur, affiche un message
             System.out.println("Image non chargée: " + e);
         }
+    }
+
+    public static int getArgent() {
+        return argent;
+    }
+
+    public Inventaire getInv() {
+        return inv;
     }
 
     /**

@@ -15,9 +15,9 @@ public class Recette {
         int act = 0;
 
         for (SuperObjet r : ingredients) {
-            for(int i = 0; i< inv.inv.size()-1; i++){
-                if (inv.inv.get(i).name.equals(r.name)){
-                    if(inv.inv.get(i).quantity == r.quantity){
+            for(int i = 0; i< Inventaire.inv.size()-1; i++){
+                if (Inventaire.inv.get(i).name.equals(r.name)){
+                    if(Inventaire.inv.get(i).quantity == r.quantity){
                         act++;
                     }
                 }

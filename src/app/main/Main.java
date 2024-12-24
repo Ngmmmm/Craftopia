@@ -56,7 +56,9 @@ public class Main extends JFrame { // Définition de la classe principale qui é
 
         // Initialisation des panneaux
         menuBar = new JPanel();
-        invPanel = new JScrollPane();
+
+        UiInventaire uiInventaire = new UiInventaire();
+        invPanel = uiInventaire.getScrollPane();
 
         UiMarche uiMarche = new UiMarche();
 
@@ -81,8 +83,8 @@ public class Main extends JFrame { // Définition de la classe principale qui é
 
         // Ajout des panneaux au JLayeredPane avec des priorités
         menuBar.setBounds(0, 0, 768, 30);
-        invPanel.setBounds(0, 0, 768, 30);
-        marchePanel.setBounds(60, 60, getWidth()/2, getHeight()/2);
+        invPanel.setBounds(60, 60, getWidth() / 2, getHeight() / 2);
+        marchePanel.setBounds(60, 60, getWidth() / 2, getHeight() / 2);
         ecranDuJeu.setBounds(0, 0, 768, 576);
 
         layeredPane.add(ecranDuJeu, JLayeredPane.DEFAULT_LAYER);
@@ -116,19 +118,17 @@ public class Main extends JFrame { // Définition de la classe principale qui é
                 int height = getHeight();
 
                 menuBar.setBounds(0, 0, width, 30);
-                invPanel.setBounds(0, 30, width, 30);
 
+                int scrollWidth = width / 2;
+                int scrollHeight = height / 2;
+                int scrollX = (width - scrollWidth) / 2;
+                int scrollY = (height - scrollHeight) / 2;
 
-                int marcheWidth = width / 2;
-                int marcheHeight = height / 2;
-                int marcheX = (width - marcheWidth) / 2;
-                int marcheY = (height - marcheHeight) / 2;
-                marchePanel.setBounds(marcheX, marcheY, marcheWidth, marcheHeight);
-                
+                invPanel.setBounds(scrollX,scrollY, scrollWidth,scrollHeight);
+                marchePanel.setBounds(scrollX,scrollY, scrollWidth,scrollHeight);
+
                 ecranDuJeu.setBounds(0, 0, width, height);
-                // Appel de la méthode resizeContent pour appliquer les changements
                 
-                // uiMarche.resizeContent();
             }
         });
 
