@@ -12,7 +12,8 @@ public class UiMarche {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS)); // Empile verticalement
 
-        // Ajoute des lignes au panneau principal (chaque ligne contient IMG, Nom, SELL, BUY)
+        // Ajoute des lignes au panneau principal (chaque ligne contient IMG, Nom, SELL,
+        // BUY)
         for (int i = 0; i < 10; i++) {
             mainPanel.add(createRow("Produit " + (i + 1)));
         }
@@ -55,5 +56,9 @@ public class UiMarche {
     // Getter pour récupérer le JScrollPane configuré
     public JScrollPane getScrollPane() {
         return scrollPane;
+    }
+
+    public void resizeContent() {
+        
     }
 }
