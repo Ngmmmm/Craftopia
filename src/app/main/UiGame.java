@@ -8,9 +8,9 @@ public class UiGame {
 
     private GamePanel gp;
 
-    private final String INV_BUTTON_IMAGE_PATH = "./img/UI/inventory.png";
-    private final String BACKTOMENU_BUTTON_IMAGE_PATH = "./img/ExitButton.png";
-    private final String SETTINGS_BUTTON_IMAGE_PATH = "./img/SettingsButton.png";
+    private final String INV_BUTTON_IMAGE_PATH = "./img/boutons/inventory.png";
+    private final String BACKTOMENU_BUTTON_IMAGE_PATH = "./img/boutons/ExitButton.png";
+    private final String SETTINGS_BUTTON_IMAGE_PATH = "./img/boutons/SettingsButton.png";
     private ImageIcon invButtonIcon;
     private ImageIcon backToMenuIcon;
     private ImageIcon setButtonIcon;

@@ -1,21 +1,40 @@
 package main;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+
+import item.marche.Marche;
+import item.sprites.SuperObjet;
 
 public class UiMarche {
 
     private JScrollPane scrollPane;
+    private ArrayList<SuperObjet> obj = Marche.getList();
 
     public UiMarche() {
+
         // Panneau principal pour le JScrollPane
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS)); // Empile verticalement
 
         // Ajoute des lignes au panneau principal (chaque ligne contient IMG, Nom, SELL,
         // BUY)
-        for (int i = 0; i < 10; i++) {
-            mainPanel.add(createRow("Produit " + (i + 1)));
+        System.out.println(obj.size());
+        for (int i = 0; i < obj.size(); i++) {
+            System.out.println(obj.get(i).getName());
+            mainPanel.add(createRow(obj.get(i).getName(), i));
         }
 
         // Configure le JScrollPane
@@ -26,15 +45,19 @@ public class UiMarche {
     }
 
     // Méthode pour créer une ligne avec des composants
-    private JPanel createRow(String productName) {
+    private JPanel createRow(String productName, int index) {
         JPanel rowPanel = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Layout horizontal
         rowPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
+        ImageIcon image = new ImageIcon(obj.get(index).getImage());
+        ImageIcon btnSell = new ImageIcon("/img/");
         // Ajouter une image (placeholder ici)
-        JLabel imageLabel = new JLabel("IMG");
-        // imageLabel.setPreferredSize(new Dimension(50, 50));
+        JLabel imageLabel = new JLabel();
+
+        imageLabel.setIcon(image); // Remplacer par une image
+        imageLabel.setPreferredSize(new Dimension(50, 50));
         imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        imageLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Simule une image
+        
         rowPanel.add(imageLabel);
 
         // Ajouter le nom du produit
@@ -59,6 +82,7 @@ public class UiMarche {
     }
 
     public void resizeContent() {
-        
+        // TODO : Réajuster la position des composants par rapport à la taille de la
+        // fenêtre
     }
 }

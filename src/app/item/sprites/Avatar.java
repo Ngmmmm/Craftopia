@@ -167,7 +167,7 @@ public final class Avatar extends Sprite {
     public void pickUpItem(int index) {
         if (index != lastRessourceIndex) {
             lastRessourceIndex = index;
-            gp.itemManager.initButton(gp.LARGEUR_ECRAN / 2, gp.HAUTEUR_ECRAN / 2, gp.obj.get(index), index);
+            gp.itemManager.initButton(gp.LARGEUR_ECRAN / 2, gp.HAUTEUR_ECRAN / 2, GamePanel.obj.get(index), index);
         }
     }
 

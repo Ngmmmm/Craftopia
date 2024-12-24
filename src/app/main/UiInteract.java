@@ -11,7 +11,7 @@ public class UiInteract {
 
     private JButton itemButton;
     private final ImageIcon ItemButtonIcon;
-    private static final String INTERACT_BUTTON_IMAGE_PATH = "./img/InteractButton.png";
+    private static final String INTERACT_BUTTON_IMAGE_PATH = "./img/boutons/InteractButton.png";
 
     /**
      * Constructeur de la classe `UiGame`.
@@ -95,7 +95,7 @@ public class UiInteract {
     private void setDefaultAction(SuperObjet item, int index) {
         itemButton.addActionListener(l -> {
             gamePanel.avatar.inv.add(item, 1);
-            gamePanel.obj.remove(index); // Permet de faire disparaître l'objet de la carte
+            GamePanel.obj.remove(index); // Permet de faire disparaître l'objet de la carte
             itemButton.setVisible(false);
             resetButton();
         });

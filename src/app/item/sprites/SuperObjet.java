@@ -16,6 +16,7 @@ public class SuperObjet {
     public int solidAreaDefaultX = 0;
     public int solidAreaDefaultY = 0;
     public int quantity;
+    public boolean isItem = false;
 
     public void draw(Graphics2D g2, GamePanel gp, double scaleX, double scaleY) {
         // Coordonnées de la bloc à l'écran

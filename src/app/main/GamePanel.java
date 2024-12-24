@@ -50,7 +50,7 @@ public class GamePanel extends JPanel implements Runnable {
     UiInventaire uiInv = new UiInventaire(this);
 
     public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
-    public ArrayList<SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
+    public static ArrayList<SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
 
     boolean initButton = false;
     boolean initButtonGame = false;
