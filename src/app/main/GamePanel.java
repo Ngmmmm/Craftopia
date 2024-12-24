@@ -7,9 +7,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics; // Importation pour dessiner des composants
 import java.awt.Graphics2D; // Importation pour des dessins graphiques avancés
-import java.awt.ScrollPane;
 import java.util.ArrayList; // Importation de JPanel pour créer le panneau de jeu
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import tile.TileManager;
 
 // La classe GamePanel hérite de JPanel et implémente Runnable pour le fonctionnement via un thread
@@ -40,8 +41,8 @@ public class GamePanel extends JPanel implements Runnable {
     public AssetSetter aSetter = new AssetSetter(this); // Gestion des objets (ressources, ennemis...)
 
     public JPanel menuBar = new JPanel();
-    public ScrollPane invPanel = new ScrollPane();
-    public ScrollPane marchePanel = new ScrollPane();
+    public JScrollPane invPanel;
+    public JScrollPane marchePanel;
 
     Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
     public UiInteract itemManager = new UiInteract(this);
@@ -66,7 +67,7 @@ public class GamePanel extends JPanel implements Runnable {
     /**
      * Constructeur pour initialiser le panneau de jeu.
      */
-    public GamePanel(JPanel menuBar, ScrollPane invPanel, ScrollPane marchePanel) {
+    public GamePanel(JPanel menuBar, JScrollPane invPanel, JScrollPane marchePanel) {
         this.setPreferredSize(new Dimension(LARGEUR_ECRAN, HAUTEUR_ECRAN)); // Définir la taille du panneau
         this.setBackground(Color.BLACK); // Couleur de fond noire
         this.setDoubleBuffered(true); // Activer le double buffering pour un rendu fluide
@@ -144,11 +145,16 @@ public class GamePanel extends JPanel implements Runnable {
             if (!initButton) {
                 initButton = ui.initButtons();
             }
-            if (scaleXAct != scaleX || scaleYAct != scaleY) {
-                ui.resizeButtons(scaleX, scaleY);
-                scaleXAct = scaleX;
-                scaleYAct = scaleY;
-            }
+            // ? Pourquoi cette vérification est-elle nécessaire ?
+            // if (scaleXAct != scaleX || scaleYAct != scaleY) {
+            // ui.resizeButtons(scaleX, scaleY);
+            // scaleXAct = scaleX;
+            // scaleYAct = scaleY;
+            // }
+            ui.resizeButtons(scaleX, scaleY);
+            scaleXAct = scaleX;
+            scaleYAct = scaleY;
+
             ui.drawTitleScreen(g2, scaleX, scaleY);
         } else {
             menuBar.setVisible(true);

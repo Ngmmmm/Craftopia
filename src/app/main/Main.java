@@ -10,6 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import java.awt.ScrollPane;
 
 /**
@@ -30,7 +32,7 @@ public class Main extends JFrame { // Définition de la classe principale qui é
 
     // Déclaration des panneaux
     private JPanel menuBar;
-    ScrollPane invPanel, marchePanel;
+    JScrollPane invPanel, marchePanel;
     GamePanel ecranDuJeu;
 
     /**
@@ -41,7 +43,8 @@ public class Main extends JFrame { // Définition de la classe principale qui é
         // Définition du titre de la fenêtre
         super("Craftopia");
 
-        // Définition de la fermeture de la fenêtre (quitter le programme lorsque la fenêtre est fermée)
+        // Définition de la fermeture de la fenêtre (quitter le programme lorsque la
+        // fenêtre est fermée)
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Définition de la taille de la fenêtre (redimensionnable)
@@ -54,8 +57,11 @@ public class Main extends JFrame { // Définition de la classe principale qui é
 
         // Initialisation des panneaux
         menuBar = new JPanel();
-        invPanel = new ScrollPane();
-        marchePanel = new ScrollPane();
+        invPanel = new JScrollPane();
+
+        UiMarche uiMarche = new UiMarche();
+
+        marchePanel = uiMarche.getScrollPane();
 
         // Création d'une nouvelle instance de GamePanel
         ecranDuJeu = new GamePanel(menuBar, invPanel, marchePanel);
@@ -67,11 +73,8 @@ public class Main extends JFrame { // Définition de la classe principale qui é
 
         // Configuration du invPanel
         invPanel.setBackground(Color.BLUE);
-        invPanel.setPreferredSize(new Dimension(30, 30));
 
         // Configuration du marchePanel
-        marchePanel.setBackground(Color.RED);
-        marchePanel.setPreferredSize(new Dimension(30, 30));
 
         // Création et configuration du JLayeredPane
         JLayeredPane layeredPane = new JLayeredPane();
@@ -97,14 +100,16 @@ public class Main extends JFrame { // Définition de la classe principale qui é
         pane.setLayout(new BorderLayout());
         pane.add(layeredPane, BorderLayout.CENTER);
 
-        // Ajustement de la taille de la fenêtre pour qu'elle contienne tous les éléments
+        // Ajustement de la taille de la fenêtre pour qu'elle contienne tous les
+        // éléments
         pack();
         // Placement de la fenêtre au centre de l'écran
         setLocationRelativeTo(null);
         // Affichage de la fenêtre
         setVisible(true);
 
-        // Ajout d'un écouteur pour redimensionner les composants lorsque la fenêtre est redimensionnée
+        // Ajout d'un écouteur pour redimensionner les composants lorsque la fenêtre est
+        // redimensionnée
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
@@ -113,7 +118,7 @@ public class Main extends JFrame { // Définition de la classe principale qui é
 
                 menuBar.setBounds(0, 0, width, 30);
                 invPanel.setBounds(0, 30, width, 30);
-                marchePanel.setBounds(0, height/2, width, height/2);
+                marchePanel.setBounds(50, height / 2, width/2-50, height / 2-50);
                 ecranDuJeu.setBounds(0, 0, width, height);
             }
         });
