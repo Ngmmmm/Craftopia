@@ -14,7 +14,7 @@ public class RecolteuseXL extends Recolteuse {
         this.stock.add(res, 0);
         this.prix = Argent.getPrice(Produits.RECOLTEUSE_XL);
         try {
-            this.image = ImageIO.read(new File("./img/machines/recolteuse_xl.png"));
+            this.image = ImageIO.read(new File("./img/machines/recolteuse.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }

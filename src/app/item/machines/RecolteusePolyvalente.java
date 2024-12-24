@@ -14,7 +14,7 @@ public class RecolteusePolyvalente extends Recolteuse {
         this.stock.add(res, 0);
         this.prix = Argent.getPrice(Produits.RECOLTEUSE_POLYVALENTE);
         try {
-            this.image = ImageIO.read(new File("./img/machines/recolteuse_polyvalente.png"));
+            this.image = ImageIO.read(new File("./img/machines/recolteuse.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }

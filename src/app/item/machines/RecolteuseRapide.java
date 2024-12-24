@@ -17,7 +17,7 @@ public class RecolteuseRapide extends Recolteuse {
         this.stock.add(res, 0);
         this.prix = Argent.getPrice(Produits.RECOLTEUSE_RAPIDE);
         try {
-            File f1 = new File("./img/machines/recolteuse_rapide.png");
+            File f1 = new File("./img/machines/recolteuse.png");
             this.image = ImageIO.read(f1);
         } catch (Exception e) {
             e.printStackTrace();
