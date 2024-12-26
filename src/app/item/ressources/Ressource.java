@@ -7,6 +7,7 @@ public abstract class Ressource extends SuperObjet {
     private int quantity;
     public int prix;
     public int time;
+    public boolean isItem = true;
 
     public String getName() {
         return name;

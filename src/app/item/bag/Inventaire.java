@@ -5,33 +5,35 @@ import java.util.ArrayList;
 
 public class Inventaire {
 
-    public final ArrayList<Case<SuperObjet>> inv = new ArrayList<>();
-
-    public boolean add(SuperObjet item, int quantity) {
-        for (int i = 0; i < inv.size(); i++) {
-            if (inv.get(i).getText().equals(item.name)) {
-                inv.get(i).getItem().increaseQuantity(quantity);
-                return true;
+    public final static ArrayList<SuperObjet> inv = new ArrayList<>();
+    
+        public boolean add(SuperObjet item, int quantity) {
+            if (item==null) {
+                return false;
             }
-        }
-        Case<SuperObjet> newItem = new Case<SuperObjet>();
-        newItem.setItem(item);
-        inv.add(newItem);
-        inv.get(inv.size() - 1).getItem().increaseQuantity(quantity);
-        inv.get(inv.size() - 1).setText(item.name);
-        return true;
-    }
-
-    public boolean remove(SuperObjet item, int quantity){
-        for (int i = 0; i < inv.size(); i++) {
-            if (inv.get(i).getText().equals(item.name)) {
-                inv.get(i).getItem().reduceQuantity(quantity);
-                if(inv.get(i).getItem().quantity < 0){
-                    inv.remove(i);
+            for (int i = 0; i < inv.size(); i++) {
+                if (inv.get(i).getName().equals(item.name)) {
+                    inv.get(i).increaseQuantity(quantity);
+                    return true;
                 }
             }
+            inv.add(item);
+            item.increaseQuantity(quantity);
+            return true;
         }
-        return true;
+    
+        public boolean remove(SuperObjet item, int quantity){
+            for (int i = 0; i < inv.size(); i++) {
+                if (inv.get(i).equals(item)) {
+                    inv.get(i).reduceQuantity(quantity);
+                    if(inv.get(i).quantity <= 0){
+                        inv.remove(i);
+                    }
+                }
+            }
+            return true;
+        }
+        public static ArrayList<SuperObjet> getInv() {
+            return inv;
     }
-
 }

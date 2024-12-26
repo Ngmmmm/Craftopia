@@ -30,9 +30,9 @@ import main.KeyHandler; // Gère les entrées clavier du joueur
  * </p>
  * 
  * @author Ouahid Houat
- * @version 1.0
+ * @version 2.0
  */
-public final class Avatar extends Sprite{
+public final class Avatar extends Sprite {
     GamePanel gp; // Fenêtre du jeu
     KeyHandler keyH; // Entrées clavier du joueur
     public static int argent = Argent.getMonnaiePlayer(); // Argent du joueur
@@ -52,8 +52,10 @@ public final class Avatar extends Sprite{
     public Avatar(GamePanel gp, KeyHandler keyH) {
         this.gp = gp; // Initialisation du panneau de jeu
         this.keyH = keyH; // Initialisation du gestionnaire des entrées clavier
-        this.screenX = (this.gp.LARGEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran (X)
-        this.screenY = (this.gp.HAUTEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran (Y)
+        this.screenX = (this.gp.LARGEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran
+                                                                           // (X)
+        this.screenY = (this.gp.HAUTEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran
+                                                                           // (Y)
         this.inv = new Inventaire();
 
         solidArea = new Rectangle(8, 16, 32, 32); // Définit la zone de collision de l'avatar
@@ -101,15 +103,24 @@ public final class Avatar extends Sprite{
         }
     }
 
+    public static int getArgent() {
+        return argent;
+    }
+
+    public Inventaire getInv() {
+        return inv;
+    }
+
     /**
      * Met à jour l'état de l'avatar, incluant son mouvement, son animation,
      * et la gestion des collisions.
      */
-    public void update() {
+    public void update(int gameState) {
         boolean immobile = false; // Variable pour gérer l'immobilité
 
         // Vérifie les entrées clavier pour détecter un mouvement
-        if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
+        if ((keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed)
+                && gameState == gp.playState) {
 
             // Détermine la direction en fonction de la touche pressée
             if (keyH.upPressed) {
@@ -141,9 +152,9 @@ public final class Avatar extends Sprite{
 
         // Vérifie les collisions avec les objets sur la map
         int ressourceIndex = gp.collision.collisionItem(this, true);
-        if(ressourceIndex != 999){
+        if (ressourceIndex != 999) {
             pickUpItem(ressourceIndex);
-        }else{
+        } else {
             gp.itemManager.resetButton();
             lastRessourceIndex = 999;
         }
@@ -161,10 +172,10 @@ public final class Avatar extends Sprite{
     }
 
     // TODO: la méthode qui permet de ramasser un item
-    public void pickUpItem(int index){
+    public void pickUpItem(int index) {
         if (index != lastRessourceIndex) {
             lastRessourceIndex = index;
-            gp.itemManager.initButton(gp.LARGEUR_ECRAN/2 ,gp.HAUTEUR_ECRAN/2, gp.obj.get(index), index);
+            gp.itemManager.initButton(gp.LARGEUR_ECRAN / 2, gp.HAUTEUR_ECRAN / 2, GamePanel.obj.get(index), index);
         }
     }
 
@@ -217,6 +228,7 @@ public final class Avatar extends Sprite{
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         // Dessine l'image sélectionnée
-        g2.drawImage(image, (int)(screenX*scaleX), (int)(screenY*scaleY), (int)(gp.TAILLE_BLOC*scaleX),(int) (gp.TAILLE_BLOC*scaleY), null);
+        g2.drawImage(image, (int) (screenX * scaleX), (int) (screenY * scaleY), (int) (gp.TAILLE_BLOC * scaleX),
+                (int) (gp.TAILLE_BLOC * scaleY), null);
     }
 }

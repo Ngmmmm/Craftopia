@@ -1,13 +1,15 @@
 package main;
 
 import item.sprites.Avatar;
-import item.sprites.SuperObjet; // Importation pour définir les dimensions des composants
-import java.awt.Color; // Importation pour dessiner des composants
-import java.awt.Dimension; // Importation pour des dessins graphiques avancés
-import java.awt.Graphics; // Importation de JPanel pour créer le panneau de jeu
-import java.awt.Graphics2D;
-import java.util.ArrayList;
+import item.sprites.SuperObjet;
+import java.awt.BorderLayout; // Importation pour définir les dimensions des composants
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics; // Importation pour dessiner des composants
+import java.awt.Graphics2D; // Importation pour des dessins graphiques avancés
+import java.util.ArrayList; // Importation de JPanel pour créer le panneau de jeu
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import tile.TileManager;
 
 // La classe GamePanel hérite de JPanel et implémente Runnable pour le fonctionnement via un thread
@@ -20,8 +22,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int NB_LIGNE_MAX = 12; // Nombre maximal de lignes visibles à l'écran
     public final int LARGEUR_ECRAN = TAILLE_BLOC * NB_COLONNE_MAX; // Largeur totale de l'écran
     public final int HAUTEUR_ECRAN = TAILLE_BLOC * NB_LIGNE_MAX; // Hauteur totale de l'écran
-    public double scaleXAct = getWidth()/LARGEUR_ECRAN;
-    public double scaleYAct = getHeight()/HAUTEUR_ECRAN;
+    public double scaleXAct = getWidth() / LARGEUR_ECRAN;
+    public double scaleYAct = getHeight() / HAUTEUR_ECRAN;
 
     public final int NB_COLONNE_MAP_MAX = 52; // Nombre de colonnes maximal sur la carte
     public final int NB_LIGNE_MAP_MAX = 50; // Nombre de lignes maximal sur la carte
@@ -36,34 +38,44 @@ public class GamePanel extends JPanel implements Runnable {
     public CheckCollision collision = new CheckCollision(this); // Gestionnaire des collisions
 
     public AssetSetter aSetter = new AssetSetter(this); // Gestion des objets (ressources, ennemis...)
+
+    public JPanel menuBar = new JPanel();
+    public JScrollPane invPanel;
+    public JScrollPane marchePanel;
+
     Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
     public UiInteract itemManager = new UiInteract(this);
     public UiGame buttonGame = new UiGame(this);
-    public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
-    public ArrayList <SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
 
+    public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
+    public static ArrayList<SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
 
     boolean initButton = false;
     boolean initButtonGame = false;
-    public int gameState; // État actuel du jeu (titre, en cours, etc.)
-    public final int TITLE_STATE = 0; // État correspondant à l'écran de titre
-    public final int playState = 1; // État correspondant au jeu en cours
-    public final int recolteuseState = 2;
-    public final int craftState = 3;
-    public final int inventaireState = 4;
-    public final int shopState = 5;
-    public final int settingsState = 6;
-    
+    boolean initInvPanel = false;
+    public static int gameState; // État actuel du jeu (titre, en cours, etc.)
+    public static final int TITLE_STATE = 0; // État correspondant à l'écran de titre
+    public static final int playState = 1; // État correspondant au jeu en cours
+    public static final int recolteuseState = 2;
+    public static final int craftState = 3;
+    public static final int inventaireState = 4;
+    public static final int shopState = 5;
+    public static final int settingsState = 6;
 
     /**
      * Constructeur pour initialiser le panneau de jeu.
      */
-    public GamePanel() {
+    public GamePanel(JPanel menuBar, JScrollPane invPanel, JScrollPane marchePanel) {
         this.setPreferredSize(new Dimension(LARGEUR_ECRAN, HAUTEUR_ECRAN)); // Définir la taille du panneau
         this.setBackground(Color.BLACK); // Couleur de fond noire
         this.setDoubleBuffered(true); // Activer le double buffering pour un rendu fluide
         this.addKeyListener(keyH); // Ajouter le gestionnaire de clavier
         this.setFocusable(true); // Permettre au panneau de capturer les événements clavier
+        this.setLayout(new BorderLayout());
+        this.menuBar = menuBar;
+        this.invPanel = invPanel;
+        this.marchePanel = marchePanel;
+
     }
 
     /**
@@ -98,7 +110,7 @@ public class GamePanel extends JPanel implements Runnable {
             lastTime = currentTime; // Mettre à jour le temps précédent
 
             if (delta >= 1) { // Si une itération est prête
-                update(); // Met à jour les éléments du jeu
+                update(gameState); // Met à jour les éléments du jeu
                 repaint(); // Redessine l'écran
                 delta--; // Réduit le delta
             }
@@ -108,8 +120,8 @@ public class GamePanel extends JPanel implements Runnable {
     /**
      * Met à jour les éléments du jeu.
      */
-    public void update() {
-        avatar.update(); // Met à jour l'état de l'avatar (position, etc.)
+    public void update(int gameState) {
+        avatar.update(gameState); // Met à jour l'état de l'avatar (position, etc.)
     }
 
     /**
@@ -122,24 +134,29 @@ public class GamePanel extends JPanel implements Runnable {
         double scaleX = (double) getWidth() / LARGEUR_ECRAN;
         double scaleY = (double) getHeight() / HAUTEUR_ECRAN;
         // Appliquer les transformations pour mettre à l'échelle
-        //g2.scale(scaleX, scaleY);
-        
+        // g2.scale(scaleX, scaleY);
+
+        invPanel.setVisible(false);
+        menuBar.setVisible(false);
+        marchePanel.setVisible(false);
         // TITLESCREEN
         if (gameState == TITLE_STATE) {
             if (!initButton) {
                 initButton = ui.initButtons();
             }
-            if(scaleXAct != scaleX || scaleYAct != scaleY){
-                ui.resizeButtons(scaleX, scaleY);
-                scaleXAct = scaleX;
-                scaleYAct = scaleY;
-            }
+            // ? Pourquoi cette vérification est-elle nécessaire ?
+            // if (scaleXAct != scaleX || scaleYAct != scaleY) {
+            // ui.resizeButtons(scaleX, scaleY);
+            // scaleXAct = scaleX;
+            // scaleYAct = scaleY;
+            // }
+            ui.resizeButtons(scaleX, scaleY);
+            scaleXAct = scaleX;
+            scaleYAct = scaleY;
+
             ui.drawTitleScreen(g2, scaleX, scaleY);
-        } else if (gameState == playState) {
-            if (!initButtonGame) {
-                buttonGame.initButton();
-                initButtonGame = true;
-            }
+        } else {
+            menuBar.setVisible(true);
             // MAP
             tileM.draw(g2, scaleX, scaleY);
             // Ressource
@@ -148,20 +165,33 @@ public class GamePanel extends JPanel implements Runnable {
                     obj.get(i).draw(g2, this, scaleX, scaleY);
                 }
             }
-            if(scaleXAct != scaleX || scaleYAct != scaleY){
-                itemManager.resizeButtons(scaleX,scaleY);
+            if (scaleXAct != scaleX || scaleYAct != scaleY) {
+                itemManager.resizeButtons(scaleX, scaleY);
                 buttonGame.resizeButtons(scaleX, scaleY);
                 scaleXAct = scaleX;
                 scaleYAct = scaleY;
             }
 
-
             // PLAYER
 
-            avatar.draw(g2,scaleX,scaleY);
-            //g2.dispose();
+            avatar.draw(g2, scaleX, scaleY);
+            // g2.dispose();
+            // UI
+            if (gameState == playState) {
+                if (!initButtonGame) {
+                    buttonGame.initButton();
+                    buttonGame.resizeButtons(scaleX, scaleY);
+                    initButtonGame = true;
 
+                }
 
+            } else if (gameState == inventaireState) {
+                invPanel.setVisible(true);
+
+            } else if (gameState == shopState) {
+                marchePanel.setVisible(true);
+            }
         }
+
     }
 }

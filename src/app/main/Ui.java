@@ -39,10 +39,10 @@ public class Ui {
     private JButton exitButton;
 
     // Chemins des images pour les boutons et le fond
-    private static final String START_BUTTON_IMAGE_PATH = "./img/newGameButton.png";
-    private static final String CONTINUE_BUTTON_IMAGE_PATH = "./img/ContinueButton.png";
-    private static final String SETTINGS_BUTTON_IMAGE_PATH = "./img/SettingsButton.png";
-    private static final String EXIT_BUTTON_IMAGE_PATH = "./img/ExitButton.png";
+    private static final String START_BUTTON_IMAGE_PATH = "./img/boutons/newGameButton.png";
+    private static final String CONTINUE_BUTTON_IMAGE_PATH = "./img/boutons/ContinueButton.png";
+    private static final String SETTINGS_BUTTON_IMAGE_PATH = "./img/boutons/SettingsButton.png";
+    private static final String EXIT_BUTTON_IMAGE_PATH = "./img/boutons/ExitButton.png";
     private static final String BACKGROUND_IMAGE_PATH = "./img/MenuBackground.png";
 
     /**
@@ -135,7 +135,6 @@ public class Ui {
         gamePanel.add(exitButton);
 
         // Définition de la mise en page pour ne pas utiliser de gestionnaire de layout
-        gamePanel.setLayout(null);
         gamePanel.setVisible(true);
 
         return true;
