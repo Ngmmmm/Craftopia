@@ -10,7 +10,6 @@ import java.awt.Graphics2D; // Importation pour des dessins graphiques avancés
 import java.util.ArrayList; // Importation de JPanel pour créer le panneau de jeu
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
 import tile.TileManager;
 
 // La classe GamePanel hérite de JPanel et implémente Runnable pour le fonctionnement via un thread
@@ -54,14 +53,14 @@ public class GamePanel extends JPanel implements Runnable {
     boolean initButton = false;
     boolean initButtonGame = false;
     boolean initInvPanel = false;
-    public int gameState; // État actuel du jeu (titre, en cours, etc.)
-    public final int TITLE_STATE = 0; // État correspondant à l'écran de titre
-    public final int playState = 1; // État correspondant au jeu en cours
-    public final int recolteuseState = 2;
-    public final int craftState = 3;
-    public final int inventaireState = 4;
-    public final int shopState = 5;
-    public final int settingsState = 6;
+    public static int gameState; // État actuel du jeu (titre, en cours, etc.)
+    public static final int TITLE_STATE = 0; // État correspondant à l'écran de titre
+    public static final int playState = 1; // État correspondant au jeu en cours
+    public static final int recolteuseState = 2;
+    public static final int craftState = 3;
+    public static final int inventaireState = 4;
+    public static final int shopState = 5;
+    public static final int settingsState = 6;
 
     /**
      * Constructeur pour initialiser le panneau de jeu.
