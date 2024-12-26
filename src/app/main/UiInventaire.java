@@ -1,18 +1,17 @@
 package main;
 
+import item.bag.Inventaire;
+import item.sprites.SuperObjet;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.List;
-
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
-
-import item.bag.Inventaire;
-import item.sprites.SuperObjet;
 
 public class UiInventaire {
 
@@ -30,6 +29,12 @@ public class UiInventaire {
         for (SuperObjet item : inventoryItems) {
             mainPanel.add(createRow(item));
         }
+
+        JButton test  = new JButton("exit");
+        test.addActionListener(l -> {
+           GamePanel.gameState = GamePanel.playState;
+        } );
+        mainPanel.add(test);
 
         scrollPane = new JScrollPane(mainPanel);
     }
@@ -67,6 +72,11 @@ public class UiInventaire {
         for (SuperObjet item : inventoryItems) {
             mainPanel.add(createRow(item));
         }
+        JButton test  = new JButton("exit");
+        test.addActionListener(l -> {
+           GamePanel.gameState = GamePanel.playState;
+        } );
+        mainPanel.add(test);
         mainPanel.revalidate();
         mainPanel.repaint();
     }
