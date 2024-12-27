@@ -10,7 +10,7 @@ import item.marche.Marche.Produits;
 public class Epee extends Ressource {
 
     public Epee() {
-        name = "Épee";
+        name = "Épée";
         prix = Argent.getPrice(Produits.EPEE);
         try {
             File f1 = new File("./img/ressources/sword.png");

@@ -7,7 +7,7 @@ import item.marche.Marche.Produits;
 
 public class BouleFeuille extends Ressource {
     public BouleFeuille() {
-        name = "BouleFeuille";
+        name = "Boule de Feuille";
         prix = Argent.getPrice(Produits.BOULE_FEUILLE);
         try {
             File f1 = new File("./img/ressources/leafBall.png");

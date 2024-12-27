@@ -10,7 +10,7 @@ import item.marche.Marche.Produits;
 public class BlocPierre extends Ressource {
 
     public BlocPierre() {
-        name = "Bloc Pierre";
+        name = "Bloc de Pierre";
         prix = Argent.getPrice(Produits.BLOC_PIERRE);
         try {
             File f1 = new File("./img/ressources/blocPierre.png");
