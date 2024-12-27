@@ -30,10 +30,10 @@ public class UiInventaire {
             mainPanel.add(createRow(item));
         }
 
-        JButton test  = new JButton("exit");
+        JButton test = new JButton("exit");
         test.addActionListener(l -> {
-           GamePanel.gameState = GamePanel.playState;
-        } );
+            GamePanel.gameState = GamePanel.playState;
+        });
         mainPanel.add(test);
 
         scrollPane = new JScrollPane(mainPanel);
@@ -72,10 +72,10 @@ public class UiInventaire {
         for (SuperObjet item : inventoryItems) {
             mainPanel.add(createRow(item));
         }
-        JButton test  = new JButton("exit");
+        JButton test = new JButton("exit");
         test.addActionListener(l -> {
-           GamePanel.gameState = GamePanel.playState;
-        } );
+            GamePanel.gameState = GamePanel.playState;
+        });
         mainPanel.add(test);
         mainPanel.revalidate();
         mainPanel.repaint();

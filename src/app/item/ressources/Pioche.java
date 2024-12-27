@@ -12,7 +12,7 @@ public class Pioche extends Ressource{
         name = "Pioche";
         prix = Argent.getPrice(Produits.PIOCHE); 
         try {
-            File f1 = new File("./img/ressources/bois.png");
+            File f1 = new File("./img/ressources/pickaxe.png");
             image = ImageIO.read(f1);
         } catch (Exception e) {
             e.printStackTrace();

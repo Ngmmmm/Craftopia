@@ -7,9 +7,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics; // Importation pour dessiner des composants
 import java.awt.Graphics2D; // Importation pour des dessins graphiques avancés
+import java.awt.Window;
 import java.util.ArrayList; // Importation de JPanel pour créer le panneau de jeu
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
+
 import tile.TileManager;
 
 // La classe GamePanel hérite de JPanel et implémente Runnable pour le fonctionnement via un thread
@@ -42,6 +45,7 @@ public class GamePanel extends JPanel implements Runnable {
     public JPanel menuBar = new JPanel();
     public JScrollPane invPanel;
     public JScrollPane marchePanel;
+    public JScrollPane usinePanel;
 
     Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
     public UiInteract itemManager = new UiInteract(this);
@@ -65,7 +69,7 @@ public class GamePanel extends JPanel implements Runnable {
     /**
      * Constructeur pour initialiser le panneau de jeu.
      */
-    public GamePanel(JPanel menuBar, JScrollPane invPanel, JScrollPane marchePanel) {
+    public GamePanel(JPanel menuBar, JScrollPane invPanel, JScrollPane marchePanel, JScrollPane usinePanel) {
         this.setPreferredSize(new Dimension(LARGEUR_ECRAN, HAUTEUR_ECRAN)); // Définir la taille du panneau
         this.setBackground(Color.BLACK); // Couleur de fond noire
         this.setDoubleBuffered(true); // Activer le double buffering pour un rendu fluide
@@ -75,6 +79,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.menuBar = menuBar;
         this.invPanel = invPanel;
         this.marchePanel = marchePanel;
+        this.usinePanel = usinePanel;
 
     }
 
@@ -139,6 +144,8 @@ public class GamePanel extends JPanel implements Runnable {
         invPanel.setVisible(false);
         menuBar.setVisible(false);
         marchePanel.setVisible(false);
+        usinePanel.setVisible(false);
+
         // TITLESCREEN
         if (gameState == TITLE_STATE) {
             if (!initButton) {
@@ -190,6 +197,8 @@ public class GamePanel extends JPanel implements Runnable {
 
             } else if (gameState == shopState) {
                 marchePanel.setVisible(true);
+            } else if (gameState == craftState) {
+                usinePanel.setVisible(true);
             }
         }
 

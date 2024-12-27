@@ -16,10 +16,14 @@ import item.machines.UsineFragile;
 import item.machines.UsinePolyvalente;
 import item.machines.UsineRapide;
 import item.machines.UsineXL;
+import item.ressources.Arc;
 import item.ressources.BlocPierre;
 import item.ressources.Bois;
+import item.ressources.BouleFeuille;
+import item.ressources.Epee;
 import item.ressources.Fer;
 import item.ressources.Feuille;
+import item.ressources.Hache;
 import item.ressources.Pierre;
 import item.ressources.Pioche;
 import item.sprites.Avatar;
@@ -41,11 +45,15 @@ public class Marche extends SuperObjet {
 
     public static enum Produits {
         FEUILLE,
+        BOULE_FEUILLE,
         BOIS,
         PIERRE,
         FER,
         BLOC_PIERRE,
         PIOCHE,
+        ARC,
+        EPEE,
+        HACHE,
         USINE_FRAGILE,
         USINE,
         USINE_RAPIDE,
@@ -56,6 +64,7 @@ public class Marche extends SuperObjet {
         RECOLTEUSE_RAPIDE,
         RECOLTEUSE_XL,
         RECOLTEUSE_POLYVALENTE,
+
     }
 
     public void buy(Avatar avatar, Produits produit) {
@@ -107,7 +116,6 @@ public class Marche extends SuperObjet {
                 return new UsineFragile();
             case USINE:
                 return new Usine();
-
             case USINE_RAPIDE:
                 return new UsineRapide();
             case USINE_XL:
@@ -124,6 +132,14 @@ public class Marche extends SuperObjet {
                 return new RecolteuseXL();
             case RECOLTEUSE_POLYVALENTE:
                 return new RecolteusePolyvalente();
+            case BOULE_FEUILLE:
+                return new BouleFeuille();
+            case ARC:
+                return new Arc();
+            case EPEE:
+                return new Epee();
+            case HACHE:
+                return new Hache();
             default:
                 throw new IllegalArgumentException("Produit inconnu : " + produit);
         }

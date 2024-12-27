@@ -30,7 +30,7 @@ public class Main extends JFrame { // Définition de la classe principale qui é
 
     // Déclaration des panneaux
     private JPanel menuBar;
-    JScrollPane invPanel, marchePanel;
+    JScrollPane invPanel, marchePanel, usinePanel;
     GamePanel ecranDuJeu;
     UiMarche uiMarche;
 
@@ -61,11 +61,13 @@ public class Main extends JFrame { // Définition de la classe principale qui é
         invPanel = uiInventaire.getScrollPane();
 
         UiMarche uiMarche = new UiMarche();
-
         marchePanel = uiMarche.getScrollPane();
 
+        UiUsine uiUsine = new UiUsine();
+        usinePanel = uiUsine.getScrollPane();
+
         // Création d'une nouvelle instance de GamePanel
-        ecranDuJeu = new GamePanel(menuBar, invPanel, marchePanel);
+        ecranDuJeu = new GamePanel(menuBar, invPanel, marchePanel, usinePanel);
 
         // Configuration du menuBar
         menuBar.setBackground(Color.GRAY);
@@ -84,6 +86,7 @@ public class Main extends JFrame { // Définition de la classe principale qui é
         // Ajout des panneaux au JLayeredPane avec des priorités
         menuBar.setBounds(0, 0, 768, 30);
         invPanel.setBounds(60, 60, getWidth() / 2, getHeight() / 2);
+        usinePanel.setBounds(60, 60, getWidth() / 2, getHeight() / 2);
         marchePanel.setBounds(60, 60, getWidth() / 2, getHeight() / 2);
         ecranDuJeu.setBounds(0, 0, 768, 576);
 
@@ -91,9 +94,11 @@ public class Main extends JFrame { // Définition de la classe principale qui é
         layeredPane.add(menuBar, JLayeredPane.PALETTE_LAYER);
         layeredPane.add(invPanel, JLayeredPane.MODAL_LAYER);
         layeredPane.add(marchePanel, JLayeredPane.MODAL_LAYER);
+        layeredPane.add(usinePanel, JLayeredPane.MODAL_LAYER);
 
         invPanel.setVisible(false);
         marchePanel.setVisible(false);
+        usinePanel.setVisible(false);
 
         // Ajout du JLayeredPane au conteneur principal
         Container pane = getContentPane();
@@ -124,11 +129,11 @@ public class Main extends JFrame { // Définition de la classe principale qui é
                 int scrollX = (width - scrollWidth) / 2;
                 int scrollY = (height - scrollHeight) / 2;
 
-                invPanel.setBounds(scrollX,scrollY, scrollWidth,scrollHeight);
-                marchePanel.setBounds(scrollX,scrollY, scrollWidth,scrollHeight);
-
+                invPanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
+                marchePanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
+                usinePanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
                 ecranDuJeu.setBounds(0, 0, width, height);
-                
+
             }
         });
 

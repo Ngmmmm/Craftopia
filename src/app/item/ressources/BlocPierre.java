@@ -13,7 +13,7 @@ public class BlocPierre extends Ressource {
         name = "Bloc Pierre";
         prix = Argent.getPrice(Produits.BLOC_PIERRE);
         try {
-            File f1 = new File("./img/ressources/pierre.png");
+            File f1 = new File("./img/ressources/blocPierre.png");
             image = ImageIO.read(f1);
         } catch (Exception e) {
             e.printStackTrace();
