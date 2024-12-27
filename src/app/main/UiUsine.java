@@ -44,7 +44,7 @@ public class UiUsine {
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setPreferredSize(new Dimension(500, 300)); // Taille du JScrollPane
         scrollPane.add(exit);
-        scrollPane.setCorner(JScrollPane.UPPER_RIGHT_CORNER, exit);
+        // scrollPane.setCorner(JScrollPane.UPPER_RIGHT_CORNER, exit);
     }
 
     // Méthode pour créer une ligne avec des composants

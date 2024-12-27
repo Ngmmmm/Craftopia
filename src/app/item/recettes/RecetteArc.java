@@ -5,18 +5,15 @@ import item.ressources.Bois;
 import item.ressources.BouleFeuille;
 import item.ressources.Ressource;
 
-public class RecetteArc {
-    private String nom;
-    private Ressource[] ingredients;
-    private Ressource ress;
+public class RecetteArc extends Recette {
+    
 
     public RecetteArc() {
-        this.nom = "Arc";
         this.ingredients = new Ressource[2];
         this.ingredients[0] = new Bois();
         this.ingredients[0].setQuantity(2);
         this.ingredients[1] = new BouleFeuille();
         this.ingredients[1].setQuantity(1);
-        this.ress = new Arc();
+        new Arc();
     }
 }
