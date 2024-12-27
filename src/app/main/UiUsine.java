@@ -33,7 +33,7 @@ public class UiUsine {
         for (SuperObjet item : inventoryItems) {
             mainPanel.add(createRow(item));
         }
-        JButton exit = new JButton("X");
+        JButton exit = new JButton("EXIT");
         exit.addActionListener(l -> {
             GamePanel.gameState = GamePanel.playState;
         });
@@ -43,8 +43,9 @@ public class UiUsine {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setPreferredSize(new Dimension(500, 300)); // Taille du JScrollPane
-        scrollPane.add(exit);
-        // scrollPane.setCorner(JScrollPane.UPPER_RIGHT_CORNER, exit);
+        scrollPane.setCorner(JScrollPane.UPPER_RIGHT_CORNER, exit);
+        mainPanel.add(exit);
+
     }
 
     // Méthode pour créer une ligne avec des composants
@@ -119,11 +120,11 @@ public class UiUsine {
         for (SuperObjet item : inventoryItems) {
             mainPanel.add(createRow(item));
         }
-        JButton test = new JButton("exit");
-        test.addActionListener(l -> {
+        JButton exit = new JButton("exit");
+        exit.addActionListener(l -> {
             GamePanel.gameState = GamePanel.playState;
         });
-        mainPanel.add(test);
+        mainPanel.add(exit);
         mainPanel.revalidate();
         mainPanel.repaint();
     }
