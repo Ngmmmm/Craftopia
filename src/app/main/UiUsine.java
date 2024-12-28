@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 
 import item.bag.Inventaire;
 import item.recettes.Recette;
+import item.ressources.Ressource;
 import item.sprites.SuperObjet;
 
 public class UiUsine {
@@ -61,19 +62,68 @@ public class UiUsine {
         JPanel rowPanel = new JPanel();
         rowPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        
+        Ressource[] ingredients = item.getIngredients();
 
-        ImageIcon image = new ImageIcon(item.getRessource().getImage());
-        ImageIcon btnBuild = new ImageIcon("./img/boutons/BuildButton.png");
+        int maxIngredients = 0;
+        for (Recette recette : livres) {
+            int nombreDeRessources = getNombreDeRessourcesDifferentes(recette);
+            if (nombreDeRessources > maxIngredients) {
+                maxIngredients = nombreDeRessources;
+            }
+        }
 
+        for (int i = 0; i < maxIngredients; i++) {
+            if (i < ingredients.length) {
+                // Récupérer l'ingrédient et sa quantité
+                Ressource ingredient = ingredients[i];
+
+                // Créer un JLabel pour afficher la quantité de l'ingrédient
+                JLabel nbIngredient = new JLabel(String.valueOf(ingredient.getQuantity()));
+                ImageIcon imageIngredient = new ImageIcon(ingredient.getImage());
+                JLabel ingredientLabel = new JLabel();
+
+                // Ajouter une image (placeholder ici)
+                ingredientLabel.setIcon(imageIngredient);
+                ingredientLabel.setPreferredSize(new Dimension(50, 50));
+                ingredientLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+                // Ajouter le JLabel de la quantité et l'image de l'ingrédient à la ligne
+                rowPanel.add(nbIngredient);
+                rowPanel.add(ingredientLabel);
+
+                // Ajouter un JLabel "+" entre les ingrédients sauf pour le dernier
+                if (i < ingredients.length - 1) {
+                    JLabel plusLabel = new JLabel("+");
+                    plusLabel.setPreferredSize(new Dimension(10, 50));
+                    rowPanel.add(plusLabel);
+                }
+            } else {
+                // Ajouter des espaces vides pour combler l'espace manquant
+                JLabel emptyLabel = new JLabel();
+                emptyLabel.setPreferredSize(new Dimension(75, 50));
+                rowPanel.add(emptyLabel);
+
+                if (i < maxIngredients - 1) {
+                    JLabel plusLabel = new JLabel("+");
+                    plusLabel.setPreferredSize(new Dimension(10, 50));
+                    rowPanel.add(plusLabel);
+                }
+            }
+        }
+
+        // Ajouter un gap de 5 pixels entre chaque élément
+        rowPanel.add(javax.swing.Box.createRigidArea(new Dimension(10, 10)));
+
+        JLabel equalsLabel = new JLabel("=");
+        equalsLabel.setPreferredSize(new Dimension(10, 50));
+        rowPanel.add(equalsLabel);
         // Ajouter une image (placeholder ici)
-        JLabel imageLabel = new JLabel();
+        JLabel recetteLabel = new JLabel();
 
-        imageLabel.setIcon(image); // Remplacer par une image
-        imageLabel.setPreferredSize(new Dimension(50, 50));
-        imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        recetteLabel.setPreferredSize(new Dimension(50, 50));
+        recetteLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        rowPanel.add(imageLabel);
+        rowPanel.add(recetteLabel);
 
         // Ajouter le nom du produit
         JLabel nameLabel = new JLabel(item.getRessource().getName());
@@ -81,6 +131,9 @@ public class UiUsine {
         rowPanel.add(nameLabel);
 
         // Ajouter le bouton "BUILD"
+        ImageIcon imageRecette = new ImageIcon(item.getRessource().getImage());
+        ImageIcon btnBuild = new ImageIcon("./img/boutons/BuildButton.png");
+        recetteLabel.setIcon(imageRecette); // Remplacer par une image
         JButton buildButton = new JButton();
         buildButton.setIcon(btnBuild);
         buildButton.setBounds(50, 50, 90, 40);
@@ -114,9 +167,14 @@ public class UiUsine {
         button.setIcon(resizedIcon);
     }
 
-    public void resizeContent() {
-        // TODO : Réajuster la position des composants par rapport à la taille de la
-        // fenêtre
+    /**
+     * Retourne le nombre de ressources différentes pour une recette.
+     * 
+     * @param recette La recette pour laquelle compter les ressources.
+     * @return Le nombre de ressources différentes.
+     */
+    public static int getNombreDeRessourcesDifferentes(Recette recette) {
+        return recette.getIngredients().length;
     }
 
     public static void updateInventory() {
