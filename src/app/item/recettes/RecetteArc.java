@@ -6,7 +6,6 @@ import item.ressources.BouleFeuille;
 import item.ressources.Ressource;
 
 public class RecetteArc extends Recette {
-    
 
     public RecetteArc() {
         this.ingredients = new Ressource[2];
@@ -14,6 +13,6 @@ public class RecetteArc extends Recette {
         this.ingredients[0].setQuantity(2);
         this.ingredients[1] = new BouleFeuille();
         this.ingredients[1].setQuantity(1);
-        new Arc();
+        this.ress = new Arc();
     }
 }

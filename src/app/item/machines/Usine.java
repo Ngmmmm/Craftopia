@@ -24,7 +24,7 @@ public class Usine extends Machine implements MachineBehavior {
             File f1 = new File("./img/machines/usine.png");
             image = ImageIO.read(f1);
         } catch (Exception e) {
-            System.out.println("Immpossible d'afficher l'usine " + e);
+            System.out.println("Impossible d'afficher l'usine " + e);
 
         }
     }
@@ -51,8 +51,8 @@ public class Usine extends Machine implements MachineBehavior {
     public void createRessource() {
         if (isPossible()) {
             stock.add(recetteAct.getRessource(), 1);
-            for (int i = 0; i < recetteAct.getTabRessource().length; i++) {
-                inventaireAvatar.remove(recetteAct.getTabRessource()[i], 1);
+            for (int i = 0; i < recetteAct.getIngredients().length; i++) {
+                inventaireAvatar.remove(recetteAct.getIngredients()[i], 1);
             }
         }
     }

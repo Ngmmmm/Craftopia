@@ -1,16 +1,12 @@
 package item.recettes;
 
+import java.util.ArrayList;
+
 import item.bag.Inventaire;
-import item.ressources.Arc;
-import item.ressources.BlocPierre;
 import item.ressources.Bois;
-import item.ressources.BouleFeuille;
-import item.ressources.Epee;
 import item.ressources.Fer;
 import item.ressources.Feuille;
-import item.ressources.Hache;
 import item.ressources.Pierre;
-import item.ressources.Pioche;
 import item.ressources.Ressource;
 import item.sprites.SuperObjet;
 
@@ -36,21 +32,21 @@ public abstract class Recette {
         FER,
     }
 
-    private static SuperObjet getRecette(Livre recette) {
+    private static Recette getRecette(Livre recette) {
         switch (recette) {
 
             case BLOC_PIERRE:
-                return new BlocPierre();
+                return new RecetteBlocPierre();
             case PIOCHE:
-                return new Pioche();
+                return new RecettePioche();
             case BOULE_FEUILLE:
-                return new BouleFeuille();
+                return new RecetteBouleFeuille();
             case ARC:
-                return new Arc();
+                return new RecetteArc();
             case EPEE:
-                return new Epee();
+                return new RecetteEpee();
             case HACHE:
-                return new Hache();
+                return new RecetteHache();
             default:
                 throw new IllegalArgumentException("Recette inconnu : " + recette);
         }
@@ -87,11 +83,23 @@ public abstract class Recette {
         return sizeRecette == act;
     }
 
+    public static ArrayList<Recette> getRecettes() {
+        ArrayList<Recette> recettes = new ArrayList<>();
+        recettes.add(getRecette(Livre.BLOC_PIERRE));
+        recettes.add(getRecette(Livre.PIOCHE));
+        recettes.add(getRecette(Livre.BOULE_FEUILLE));
+        recettes.add(getRecette(Livre.ARC));
+        recettes.add(getRecette(Livre.EPEE));
+        recettes.add(getRecette(Livre.HACHE));
+        return recettes;
+    }
+
+
     public Ressource getRessource() {
         return this.ress;
     }
 
-    public Ressource[] getTabRessource() {
+    public Ressource[] getIngredients() {
         return this.ingredients;
     }
 }
