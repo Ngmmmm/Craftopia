@@ -4,6 +4,7 @@ import item.bag.Inventaire;
 import item.sprites.SuperObjet;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -17,26 +18,32 @@ public class UiInventaire {
 
     private static JScrollPane scrollPane;
     private static List<SuperObjet> inventoryItems;
+    private static JPanel mainPanel;
 
     public UiInventaire() {
         inventoryItems = Inventaire.getInv();
 
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new GridLayout(1, 2)); // Divise en 2 colonnes
+
         // Panneau principal pour le JScrollPane
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS)); // Empile verticalement
+        JPanel invPanel = new JPanel();
+        invPanel.setLayout(new BoxLayout(invPanel, BoxLayout.Y_AXIS)); // Empile verticalement
 
         // Ajoute des lignes au panneau principal (chaque ligne contient IMG, Nom)
         for (SuperObjet item : inventoryItems) {
-            mainPanel.add(createRow(item));
+            invPanel.add(createRow(item));
         }
 
         JButton test = new JButton("exit");
         test.addActionListener(l -> {
             GamePanel.gameState = GamePanel.playState;
         });
-        mainPanel.add(test);
+        invPanel.add(test);
 
-        scrollPane = new JScrollPane(mainPanel);
+        scrollPane = new JScrollPane(invPanel);
+
+        mainPanel.add(scrollPane);
     }
 
     private static JPanel createRow(SuperObjet item) {
@@ -57,8 +64,8 @@ public class UiInventaire {
         return rowPanel;
     }
 
-    public JScrollPane getScrollPane() {
-        return scrollPane;
+    public JPanel getJPanel() {
+        return mainPanel;
     }
 
     public static void updateInventory() {
@@ -67,17 +74,17 @@ public class UiInventaire {
     }
 
     private static void rebuildInventoryPanel() {
-        JPanel mainPanel = (JPanel) scrollPane.getViewport().getView();
-        mainPanel.removeAll();
+        JPanel invPanel = (JPanel) scrollPane.getViewport().getView();
+        invPanel.removeAll();
         for (SuperObjet item : inventoryItems) {
-            mainPanel.add(createRow(item));
+            invPanel.add(createRow(item));
         }
         JButton test = new JButton("exit");
         test.addActionListener(l -> {
             GamePanel.gameState = GamePanel.playState;
         });
-        mainPanel.add(test);
-        mainPanel.revalidate();
-        mainPanel.repaint();
+        invPanel.add(test);
+        invPanel.revalidate();
+        invPanel.repaint();
     }
 }

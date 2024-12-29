@@ -18,29 +18,33 @@ import item.marche.Marche;
 import item.sprites.SuperObjet;
 
 public class UiMarche {
-
+    private JPanel mainPanel;
     private JScrollPane scrollPane;
     private ArrayList<SuperObjet> obj = Marche.getList();
 
     public UiMarche() {
 
-        // Panneau principal pour le JScrollPane
-        JPanel mainPanel = new JPanel();
+        mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS)); // Empile verticalement
+        // Panneau principal pour le JScrollPane
+        JPanel invPanel = new JPanel();
+        invPanel.setLayout(new BoxLayout(invPanel, BoxLayout.Y_AXIS)); // Empile verticalement
 
         // Ajoute des lignes au panneau principal (chaque ligne contient IMG, Nom, SELL,
         // BUY)
         System.out.println(obj.size());
         for (int i = 0; i < obj.size(); i++) {
             System.out.println(obj.get(i).getName());
-            mainPanel.add(createRow(obj.get(i).getName(), i));
+            invPanel.add(createRow(obj.get(i).getName(), i));
         }
 
         // Configure le JScrollPane
-        scrollPane = new JScrollPane(mainPanel);
+        scrollPane = new JScrollPane(invPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setPreferredSize(new Dimension(500, 300)); // Taille du JScrollPane
+
+        mainPanel.add(scrollPane);
     }
 
     // Méthode pour créer une ligne avec des composants
@@ -73,8 +77,6 @@ public class UiMarche {
         sellButton.setPreferredSize(new Dimension(90, 40));
         resizeButtonImages(sellButton, btnSell);
         rowPanel.add(sellButton);
-        
-        
 
         // Ajouter le bouton "BUY"
         JButton buyButton = new JButton();
@@ -89,8 +91,8 @@ public class UiMarche {
     }
 
     // Getter pour récupérer le JScrollPane configuré
-    public JScrollPane getScrollPane() {
-        return scrollPane;
+    public JPanel getJPanel() {
+        return mainPanel;
     }
 
     /**

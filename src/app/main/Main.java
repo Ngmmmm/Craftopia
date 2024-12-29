@@ -29,8 +29,7 @@ import javax.swing.JScrollPane;
 public class Main extends JFrame { // Définition de la classe principale qui étend JFrame
 
     // Déclaration des panneaux
-    private JPanel menuBar;
-    JScrollPane invPanel, marchePanel, usinePanel;
+    private JPanel menuBar, invPanel, marchePanel, usinePanel;
     GamePanel ecranDuJeu;
     UiMarche uiMarche;
 
@@ -58,13 +57,13 @@ public class Main extends JFrame { // Définition de la classe principale qui é
         menuBar = new JPanel();
 
         UiInventaire uiInventaire = new UiInventaire();
-        invPanel = uiInventaire.getScrollPane();
+        invPanel = uiInventaire.getJPanel();
 
         UiMarche uiMarche = new UiMarche();
-        marchePanel = uiMarche.getScrollPane();
+        marchePanel = uiMarche.getJPanel();
 
         UiUsine uiUsine = new UiUsine();
-        usinePanel = uiUsine.getScrollPane();
+        usinePanel = uiUsine.getJPanel();
 
         // Création d'une nouvelle instance de GamePanel
         ecranDuJeu = new GamePanel(menuBar, invPanel, marchePanel, usinePanel);

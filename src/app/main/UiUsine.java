@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -20,13 +21,16 @@ import item.sprites.SuperObjet;
 
 public class UiUsine {
 
+    private static JPanel mainPanel;
     private static JScrollPane recettes;
-    private static JScrollPane inventaire;
+    private static JScrollPane inventaireUsine;
     private static ArrayList<Recette> livres;
     private static ArrayList<SuperObjet> inventoryItems;
 
     public UiUsine() {
 
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new GridLayout(1, 2)); // Divise en 2 colonnes
         // Récupère les recettes disponibles
         livres = Recette.getRecettes();
 
@@ -34,13 +38,13 @@ public class UiUsine {
         inventoryItems = Inventaire.getInv();
 
         // Panneau principal pour le JScrollPane
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS)); // Empile verticalement
+        JPanel usinePanel = new JPanel();
+        usinePanel.setLayout(new BoxLayout(usinePanel, BoxLayout.Y_AXIS)); // Empile verticalement
 
         // Ajoute des lignes au panneau principal (chaque ligne contient IMG, Nom,
         // Bouton)
         for (Recette item : livres) {
-            mainPanel.add(createRow(item));
+            usinePanel.add(createRow(item));
         }
         JButton exit = new JButton("EXIT");
         exit.addActionListener(l -> {
@@ -48,13 +52,17 @@ public class UiUsine {
         });
 
         // Configure le JScrollPane
-        recettes = new JScrollPane(mainPanel);
+        recettes = new JScrollPane(usinePanel);
         recettes.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         recettes.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         recettes.setPreferredSize(new Dimension(500, 300)); // Taille du JScrollPane
         recettes.setCorner(JScrollPane.UPPER_RIGHT_CORNER, exit);
-        mainPanel.add(exit);
 
+        usinePanel.add(exit);
+
+        inventaireUsine = new JScrollPane();
+        mainPanel.add(recettes);
+        mainPanel.add(inventaireUsine);
     }
 
     // Méthode pour créer une ligne avec des composants
@@ -146,8 +154,8 @@ public class UiUsine {
     }
 
     // Getter pour récupérer le JScrollPane configuré
-    public JScrollPane getScrollPane() {
-        return recettes;
+    public JPanel getJPanel() {
+        return mainPanel;
     }
 
     /**
@@ -183,17 +191,17 @@ public class UiUsine {
     }
 
     private static void rebuildUsinePanel() {
-        JPanel mainPanel = (JPanel) recettes.getViewport().getView();
-        mainPanel.removeAll();
+        JPanel usinePanel = (JPanel) recettes.getViewport().getView();
+        usinePanel.removeAll();
         for (Recette item : livres) {
-            mainPanel.add(createRow(item));
+            usinePanel.add(createRow(item));
         }
         JButton exit = new JButton("exit");
         exit.addActionListener(l -> {
             GamePanel.gameState = GamePanel.playState;
         });
-        mainPanel.add(exit);
-        mainPanel.revalidate();
-        mainPanel.repaint();
+        usinePanel.add(exit);
+        usinePanel.revalidate();
+        usinePanel.repaint();
     }
 }
