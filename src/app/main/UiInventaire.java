@@ -37,7 +37,7 @@ public class UiInventaire {
 
         JButton test = new JButton("exit");
         test.addActionListener(l -> {
-            GamePanel.gameState = GamePanel.playState;
+            Ui.gameState = Ui.playState;
         });
         invPanel.add(test);
 
@@ -81,7 +81,7 @@ public class UiInventaire {
         }
         JButton test = new JButton("exit");
         test.addActionListener(l -> {
-            GamePanel.gameState = GamePanel.playState;
+            Ui.gameState = Ui.playState;
         });
         invPanel.add(test);
         invPanel.revalidate();

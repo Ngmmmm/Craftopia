@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 /**
  * La classe `Ui` gère l'affichage et la gestion des boutons du Menu du jeu.
@@ -45,6 +46,26 @@ public class Ui {
     private static final String EXIT_BUTTON_IMAGE_PATH = "./img/boutons/ExitButton.png";
     private static final String BACKGROUND_IMAGE_PATH = "./img/MenuBackground.png";
 
+    private boolean initButton = false;
+    private boolean initButtonGame = false;
+    private boolean initInvPanel = false;
+
+    public static int gameState; // État actuel du jeu (titre, en cours, etc.)
+    public static final int TITLE_STATE = 0; // État correspondant à l'écran de titre
+    public static final int playState = 1; // État correspondant au jeu en cours
+    public static final int recolteuseState = 2;
+    public static final int craftState = 3;
+    public static final int inventaireState = 4;
+    public static final int shopState = 5;
+    public static final int settingsState = 6;
+
+    public JPanel menuBar = new JPanel();
+    public JPanel invPanel;
+    public JPanel marchePanel;
+
+    public UiInteract itemManager = new UiInteract(gamePanel);
+    public UiGame buttonGame = new UiGame(gamePanel);
+
     /**
      * Constructeur de la classe `Ui`.
      * 
@@ -72,10 +93,11 @@ public class Ui {
      */
     public boolean initButtons() {
         // Initialisation des boutons avec des images
-        startButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 130 / 2, gamePanel.HAUTEUR_ECRAN / 2 -80, 160, 65);
-        continueButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 130 / 2, gamePanel.HAUTEUR_ECRAN / 2 -80, 160, 65);
-        settingsButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 130 / 2, gamePanel.HAUTEUR_ECRAN / 2 -80 + 65 * 2, 160, 65);
-        exitButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 130 / 2, gamePanel.HAUTEUR_ECRAN / 2 -80 + 65 * 3, 160, 65);
+        startButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 130 / 2, gamePanel.HAUTEUR_ECRAN / 2 - 80, 160, 65);
+        continueButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 130 / 2, gamePanel.HAUTEUR_ECRAN / 2 - 80, 160, 65);
+        settingsButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 130 / 2, gamePanel.HAUTEUR_ECRAN / 2 - 80 + 65 * 2, 160,
+                65);
+        exitButton.setBounds(gamePanel.LARGEUR_ECRAN / 2 - 130 / 2, gamePanel.HAUTEUR_ECRAN / 2 - 80 + 65 * 3, 160, 65);
 
         // Redimensionner les images des boutons
         resizeButtonImages(startButton, startButtonIcon);
@@ -168,13 +190,15 @@ public class Ui {
     public void resizeButtons(double scaleX, double scaleY) {
 
         startButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 130 / 2) * scaleX),
-                (int) ((gamePanel.HAUTEUR_ECRAN / 2 -80) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
+                (int) ((gamePanel.HAUTEUR_ECRAN / 2 - 80) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
         continueButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 130 / 2) * scaleX),
-                (int) ((gamePanel.HAUTEUR_ECRAN / 2 -80 + 65) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
+                (int) ((gamePanel.HAUTEUR_ECRAN / 2 - 80 + 65) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
         settingsButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 130 / 2) * scaleX),
-                (int) ((gamePanel.HAUTEUR_ECRAN / 2 -80 + 65 * 2) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
+                (int) ((gamePanel.HAUTEUR_ECRAN / 2 - 80 + 65 * 2) * scaleY), (int) (160 * scaleX),
+                (int) (65 * scaleY));
         exitButton.setBounds((int) ((gamePanel.LARGEUR_ECRAN / 2 - 130 / 2) * scaleX),
-                (int) ((gamePanel.HAUTEUR_ECRAN / 2 -80 + 65 * 3) * scaleY), (int) (160 * scaleX), (int) (65 * scaleY));
+                (int) ((gamePanel.HAUTEUR_ECRAN / 2 - 80 + 65 * 3) * scaleY), (int) (160 * scaleX),
+                (int) (65 * scaleY));
 
         // Redimensionner les images des boutons
         resizeButtonImages(startButton, startButtonIcon);
@@ -196,10 +220,81 @@ public class Ui {
 
     }
 
-    public void backToMenu(){
+    public void backToMenu() {
         startButton.setVisible(true);
         continueButton.setVisible(true);
         settingsButton.setVisible(true);
         exitButton.setVisible(true);
+    }
+
+    public void draw() {
+
+        Graphics2D g2 = (Graphics2D) g;
+        double scaleX = (double) getWidth() / LARGEUR_ECRAN;
+        double scaleY = (double) getHeight() / HAUTEUR_ECRAN;
+        // Appliquer les transformations pour mettre à l'échelle
+        // g2.scale(scaleX, scaleY);
+
+        invPanel.setVisible(false);
+        menuBar.setVisible(false);
+        marchePanel.setVisible(false);
+
+        // UI DRAW
+
+        // TITLESCREEN
+        if (gameState == TITLE_STATE) {
+            if (!initButton) {
+                initButton = ui.initButtons();
+            }
+            // ? Pourquoi cette vérification est-elle nécessaire ?
+            // if (scaleXAct != scaleX || scaleYAct != scaleY) {
+            // ui.resizeButtons(scaleX, scaleY);
+            // scaleXAct = scaleX;
+            // scaleYAct = scaleY;
+            // }
+            ui.resizeButtons(scaleX, scaleY);
+            scaleXAct = scaleX;
+            scaleYAct = scaleY;
+
+            ui.drawTitleScreen(g2, scaleX, scaleY);
+        } else {
+            menuBar.setVisible(true);
+            // MAP
+            tileM.draw(g2, scaleX, scaleY);
+            // Ressource
+            for (int i = 0; i < obj.size(); i++) {
+                if (obj.get(i) != null) {
+                    obj.get(i).draw(g2, this, scaleX, scaleY);
+                }
+            }
+            if (scaleXAct != scaleX || scaleYAct != scaleY) {
+                itemManager.resizeButtons(scaleX, scaleY);
+                buttonGame.resizeButtons(scaleX, scaleY);
+                scaleXAct = scaleX;
+                scaleYAct = scaleY;
+            }
+
+            // PLAYER
+
+            avatar.draw(g2, scaleX, scaleY);
+            // g2.dispose();
+            // UI
+            if (gameState == playState) {
+                if (!initButtonGame) {
+                    buttonGame.initButton();
+                    buttonGame.resizeButtons(scaleX, scaleY);
+                    initButtonGame = true;
+
+                }
+
+            } else if (gameState == inventaireState) {
+                invPanel.setVisible(true);
+
+            } else if (gameState == shopState) {
+                marchePanel.setVisible(true);
+            } else if (gameState == craftState) {
+
+            }
+        }
     }
 }

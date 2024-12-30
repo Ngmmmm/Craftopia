@@ -69,7 +69,7 @@ public class UiInteract {
 
     private void setMarcheAction() {
         itemButton.addActionListener(l -> {
-            GamePanel.gameState = GamePanel.shopState;
+            Ui.gameState = Ui.shopState;
             itemButton.setVisible(false);
         });
     }
@@ -80,14 +80,14 @@ public class UiInteract {
 
     private void setRecolteuseAction() {
         itemButton.addActionListener(l -> {
-            GamePanel.gameState = GamePanel.recolteuseState;
+            Ui.gameState = Ui.recolteuseState;
             itemButton.setVisible(false);
         });
     }
 
     private void setUsineAction() {
         itemButton.addActionListener(l -> {
-            GamePanel.gameState = GamePanel.craftState;
+            Ui.gameState = Ui.craftState;
             itemButton.setVisible(false);
         });
     }
@@ -99,7 +99,7 @@ public class UiInteract {
             itemButton.setVisible(false);
             resetButton();
             UiInventaire.updateInventory();
-            UiUsine.updateInventory();
+
         });
     }
 

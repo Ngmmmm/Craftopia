@@ -11,6 +11,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import main.GamePanel; // Importation du panneau principal du jeu
 import main.KeyHandler; // Gère les entrées clavier du joueur
+import main.Ui;
 
 /**
  * La classe Avatar représente le personnage contrôlé par le joueur dans le jeu.
@@ -120,7 +121,7 @@ public final class Avatar extends Sprite {
 
         // Vérifie les entrées clavier pour détecter un mouvement
         if ((keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed)
-                && gameState == gp.playState) {
+                && gameState == Ui.playState) {
 
             // Détermine la direction en fonction de la touche pressée
             if (keyH.upPressed) {

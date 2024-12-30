@@ -19,6 +19,7 @@ public class AssetSetter {
         setRessource();
         setMachine();
         setMarche();
+
     }
 
     public void setRessource() {
@@ -43,6 +44,8 @@ public class AssetSetter {
 
     public void setMachine() {
         GamePanel.obj.add(new Usine());
+        Usine usine = (Usine) GamePanel.obj.get(4);
+        gp.add(usine.ui.getMainPanel());
         GamePanel.obj.get(4).pos.x = 27 * gp.TAILLE_BLOC;
         GamePanel.obj.get(4).pos.y = 25 * gp.TAILLE_BLOC;
 

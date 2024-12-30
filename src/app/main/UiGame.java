@@ -33,32 +33,32 @@ public class UiGame {
 
         backToMenuButton = new JButton(backToMenuIcon);
         setButton = new JButton(setButtonIcon);
-        invButton.setBounds(gp.menuBar.getWidth() / 2 - 500 / 2, gp.menuBar.getHeight() / 2 - 30 / 2, 70, 30);
-        backToMenuButton.setBounds(gp.menuBar.getWidth() / 2 - 100 / 2, gp.menuBar.getHeight() / 2 - 30 / 2, 70, 30);
-        setButton.setBounds(gp.menuBar.getWidth() / 2 + 350 / 2, gp.menuBar.getHeight() / 2 - 30 / 2, 70, 30);
+        invButton.setBounds(Ui.menuBar.getWidth() / 2 - 500 / 2, Ui.menuBar.getHeight() / 2 - 30 / 2, 70, 30);
+        backToMenuButton.setBounds(Ui.menuBar.getWidth() / 2 - 100 / 2, Ui.menuBar.getHeight() / 2 - 30 / 2, 70, 30);
+        setButton.setBounds(Ui.menuBar.getWidth() / 2 + 350 / 2, Ui.menuBar.getHeight() / 2 - 30 / 2, 70, 30);
     }
 
     public void initButton() {
-        gp.menuBar.add(invButton);
-        gp.menuBar.add(backToMenuButton);
-        gp.menuBar.add(setButton);
+        Ui.menuBar.add(invButton);
+        Ui.menuBar.add(backToMenuButton);
+        Ui.menuBar.add(setButton);
         resizeButtonImages(setButton, setButtonIcon);
         resizeButtonImages(backToMenuButton, backToMenuIcon);
         resizeButtonImages(invButton, invButtonIcon);
         invButton.addActionListener(l -> {
-            gp.menuBar.setVisible(false);
+            Ui.menuBar.setVisible(false);
 
-            gp.gameState = gp.inventaireState;
+            Ui.gameState = Ui.inventaireState;
         });
         backToMenuButton.addActionListener(l -> {
-            gp.gameState = gp.TITLE_STATE;
+            Ui.gameState = gp.TITLE_STATE;
             gp.ui.backToMenu();
-            gp.initButtonGame = false;
-            gp.menuBar.setVisible(false);
+            ui.initButtonGame = false;
+            Ui.menuBar.setVisible(false);
         });
         setButton.addActionListener(l -> {
-            gp.gameState = gp.settingsState;
-            gp.menuBar.setVisible(false);
+            Ui.gameState = gp.settingsState;
+            Ui.menuBar.setVisible(false);
         });
         invButton.setVisible(true);
         backToMenuButton.setVisible(true);
@@ -66,12 +66,12 @@ public class UiGame {
     }
 
     public void resizeButtons(double scaleX, double scaleY) {
-        invButton.setBounds(gp.menuBar.getWidth() / 2 - 500 / 2,
-        gp.menuBar.getHeight() / 2 - 30 / 2, 70, 30);
-        backToMenuButton.setBounds(gp.menuBar.getWidth() / 2 - 100 / 2,
-        gp.menuBar.getHeight() / 2 - 30 / 2, 70, 30);
-        setButton.setBounds(gp.menuBar.getWidth() / 2 + 350 / 2,
-        gp.menuBar.getHeight() / 2 - 30 / 2, 70, 30);
+        invButton.setBounds(Ui.menuBar.getWidth() / 2 - 500 / 2,
+        Ui.menuBar.getHeight() / 2 - 30 / 2, 70, 30);
+        backToMenuButton.setBounds(Ui.menuBar.getWidth() / 2 - 100 / 2,
+        Ui.menuBar.getHeight() / 2 - 30 / 2, 70, 30);
+        setButton.setBounds(Ui.menuBar.getWidth() / 2 + 350 / 2,
+        Ui.menuBar.getHeight() / 2 - 30 / 2, 70, 30);
         resizeButtonImages(setButton, setButtonIcon);
         resizeButtonImages(backToMenuButton, backToMenuIcon);
         resizeButtonImages(invButton, invButtonIcon);

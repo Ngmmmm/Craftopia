@@ -28,7 +28,7 @@ import javax.swing.JPanel;
 public class Main extends JFrame { // Définition de la classe principale qui étend JFrame
 
     // Déclaration des panneaux
-    private JPanel menuBar, invPanel, marchePanel, usinePanel;
+    private JPanel menuBar, invPanel, marchePanel;
     GamePanel ecranDuJeu;
     UiMarche uiMarche;
 
@@ -61,11 +61,8 @@ public class Main extends JFrame { // Définition de la classe principale qui é
         UiMarche uiMarche = new UiMarche();
         marchePanel = uiMarche.getJPanel();
 
-        UiUsine uiUsine = new UiUsine();
-        usinePanel = uiUsine.getJPanel();
-
         // Création d'une nouvelle instance de GamePanel
-        ecranDuJeu = new GamePanel(menuBar, invPanel, marchePanel, usinePanel);
+        ecranDuJeu = new GamePanel();
 
         // Configuration du menuBar
         menuBar.setBackground(Color.GRAY);
@@ -91,18 +88,15 @@ public class Main extends JFrame { // Définition de la classe principale qui é
 
         invPanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
         marchePanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
-        usinePanel.setBounds(60, scrollY, width - 120, scrollHeight);
         ecranDuJeu.setBounds(0, 0, width, height);
 
         layeredPane.add(ecranDuJeu, JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(menuBar, JLayeredPane.PALETTE_LAYER);
         layeredPane.add(invPanel, JLayeredPane.MODAL_LAYER);
         layeredPane.add(marchePanel, JLayeredPane.MODAL_LAYER);
-        layeredPane.add(usinePanel, JLayeredPane.MODAL_LAYER);
 
         invPanel.setVisible(false);
         marchePanel.setVisible(false);
-        usinePanel.setVisible(false);
 
         // Ajout du JLayeredPane au conteneur principal
         Container pane = getContentPane();
@@ -135,7 +129,6 @@ public class Main extends JFrame { // Définition de la classe principale qui é
 
                 invPanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
                 marchePanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
-                usinePanel.setBounds(60, scrollY, width - 120, scrollHeight);
                 ecranDuJeu.setBounds(0, 0, width, height);
 
             }

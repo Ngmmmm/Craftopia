@@ -4,8 +4,11 @@ import item.bag.Argent;
 import item.bag.Inventaire;
 import item.marche.Marche.Produits;
 import item.recettes.Recette;
+import item.recettes.RecetteArc;
 import item.ressources.Ressource;
 import item.sprites.Avatar;
+import main.UiUsine;
+
 import java.io.File;
 import javax.imageio.ImageIO;
 
@@ -13,13 +16,17 @@ public class Usine extends Machine implements MachineBehavior {
 
     public Inventaire inventaireAvatar;
     public Recette recetteAct;
+    public UiUsine ui;
+    
+    // TODO : public UiConfigUsine uiConfig;
 
     public Usine() {
         name = "Usine";
         inventaireAvatar = new Inventaire();
         stock = new Inventaire();
-        recetteAct = null;
+        recetteAct = new RecetteArc();// TODO : UI pour définir la recette
         prix = Argent.getPrice(Produits.USINE);
+        ui = new UiUsine(this);
         try {
             File f1 = new File("./img/machines/usine.png");
             image = ImageIO.read(f1);
