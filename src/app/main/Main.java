@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 /**
  * La classe Main sert de point d'entrée au jeu Craftopia.
@@ -83,11 +82,17 @@ public class Main extends JFrame { // Définition de la classe principale qui é
         layeredPane.setLayout(null); // Utilisation d'un layout null pour un positionnement absolu
 
         // Ajout des panneaux au JLayeredPane avec des priorités
-        menuBar.setBounds(0, 0, 768, 30);
-        invPanel.setBounds(60, 60, getWidth() / 2, getHeight() / 2);
-        usinePanel.setBounds(60, 60, getWidth() / 2, getHeight() / 2);
-        marchePanel.setBounds(60, 60, getWidth() / 2, getHeight() / 2);
-        ecranDuJeu.setBounds(0, 0, 768, 576);
+        int width = getWidth();
+        int height = getHeight();
+        int scrollWidth = width / 2;
+        int scrollHeight = height / 2;
+        int scrollX = (width - scrollWidth) / 2;
+        int scrollY = (height - scrollHeight) / 2;
+
+        invPanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
+        marchePanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
+        usinePanel.setBounds(60, scrollY, width - 120, scrollHeight);
+        ecranDuJeu.setBounds(0, 0, width, height);
 
         layeredPane.add(ecranDuJeu, JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(menuBar, JLayeredPane.PALETTE_LAYER);
@@ -130,7 +135,7 @@ public class Main extends JFrame { // Définition de la classe principale qui é
 
                 invPanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
                 marchePanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
-                usinePanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
+                usinePanel.setBounds(60, scrollY, width - 120, scrollHeight);
                 ecranDuJeu.setBounds(0, 0, width, height);
 
             }

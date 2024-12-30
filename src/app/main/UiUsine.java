@@ -30,7 +30,7 @@ public class UiUsine {
     public UiUsine() {
 
         mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(1, 2)); // Divise en 2 colonnes
+        mainPanel.setLayout(new GridLayout(1, 2, 40, 0)); // Divise en 2 colonnes
         // Récupère les recettes disponibles
         livres = Recette.getRecettes();
 
@@ -55,8 +55,8 @@ public class UiUsine {
         recettes = new JScrollPane(usinePanel);
         recettes.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         recettes.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        recettes.setPreferredSize(new Dimension(500, 300)); // Taille du JScrollPane
-        recettes.setCorner(JScrollPane.UPPER_RIGHT_CORNER, exit);
+        // recettes.setPreferredSize(new Dimension(500, 300)); // Taille du JScrollPane
+        // recettes.setCorner(JScrollPane.UPPER_RIGHT_CORNER, exit);
 
         usinePanel.add(exit);
 
