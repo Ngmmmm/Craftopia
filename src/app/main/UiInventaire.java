@@ -37,6 +37,7 @@ public class UiInventaire {
         mainPanel.add(test);
 
         scrollPane = new JScrollPane(mainPanel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     }
 
     private static JPanel createRow(SuperObjet item) {
@@ -51,8 +52,13 @@ public class UiInventaire {
         rowPanel.add(imageLabel);
 
         JLabel nameLabel = new JLabel(item.getName());
+        JLabel numberLabel = new JLabel(Integer.toString(item.getQuantity()));
         nameLabel.setPreferredSize(new Dimension(150, 50));
+        numberLabel.setPreferredSize(new Dimension(150, 50));
         rowPanel.add(nameLabel);
+        rowPanel.add(numberLabel);
+
+    
 
         return rowPanel;
     }

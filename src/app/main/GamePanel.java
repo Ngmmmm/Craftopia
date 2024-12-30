@@ -1,5 +1,6 @@
 package main;
 
+import item.bag.Argent;
 import item.sprites.Avatar;
 import item.sprites.SuperObjet;
 import java.awt.BorderLayout; // Importation pour définir les dimensions des composants
@@ -52,7 +53,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     boolean initButton = false;
     boolean initButtonGame = false;
-    boolean initInvPanel = false;
+    static boolean editMarche = true;
+    static boolean editInv = true;
     public static int gameState; // État actuel du jeu (titre, en cours, etc.)
     public static final int TITLE_STATE = 0; // État correspondant à l'écran de titre
     public static final int playState = 1; // État correspondant au jeu en cours
@@ -179,17 +181,27 @@ public class GamePanel extends JPanel implements Runnable {
             // UI
             if (gameState == playState) {
                 if (!initButtonGame) {
+                    Argent.increaseMoney(90);
                     buttonGame.initButton();
                     buttonGame.resizeButtons(scaleX, scaleY);
                     initButtonGame = true;
+                    UiGame.actArgent();
 
                 }
 
             } else if (gameState == inventaireState) {
+                if(editInv){
+                    UiInventaire.updateInventory();
+                    editInv = false;
+                }
                 invPanel.setVisible(true);
 
             } else if (gameState == shopState) {
-                marchePanel.setVisible(true);
+                marchePanel.setVisible(true);   
+                if(editMarche){
+                    UiMarche.rebuildMarketPanel();
+                    editMarche = false;
+                }
             }
         }
 

@@ -1,18 +1,17 @@
 package item.machines;
 
-import java.io.File;
-
-import javax.imageio.ImageIO;
-
 import item.bag.Argent;
 import item.marche.Marche.Produits;
+import java.io.File;
+import javax.imageio.ImageIO;
 
 public class RecolteuseXL extends Recolteuse {
 
     public RecolteuseXL() {
         this.name = "Récolteuse XL";
         this.stock.add(res, 0);
-        this.prix = Argent.getPrice(Produits.RECOLTEUSE_XL);
+        produit = Produits.RECOLTEUSE_XL;
+        prix = Argent.getPrice(produit);
         try {
             this.image = ImageIO.read(new File("./img/machines/recolteuse.png"));
         } catch (Exception e) {

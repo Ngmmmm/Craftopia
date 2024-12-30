@@ -1,6 +1,7 @@
 
 package item.sprites;
 
+import item.marche.Marche.Produits;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -17,6 +18,7 @@ public class SuperObjet {
     public int solidAreaDefaultY = 0;
     public int quantity;
     public boolean isItem = false;
+    public Produits produit;
 
     public void draw(Graphics2D g2, GamePanel gp, double scaleX, double scaleY) {
         // Coordonnées de la bloc à l'écran
@@ -66,6 +68,19 @@ public class SuperObjet {
 
     public int getPrix() {
         return 0;
+    }
+
+    public int getQuantity(){
+        return quantity;
+    }
+
+    public void setQuantity(int quantity){
+        this.quantity = quantity;
+
+    }
+
+    public Produits getProduit(){
+        return this.produit;
     }
 
 }

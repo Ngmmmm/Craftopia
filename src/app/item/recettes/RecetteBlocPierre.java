@@ -2,17 +2,17 @@ package item.recettes;
 
 import item.ressources.BlocPierre;
 import item.ressources.Pierre;
-import item.ressources.Ressource;
+import item.sprites.SuperObjet;
 
 public class RecetteBlocPierre {
 
     private String nom;
-    private Ressource[] ingredients;
-    private Ressource ress;
+    private SuperObjet[] ingredients;
+    private SuperObjet ress;
 
     public RecetteBlocPierre(){
         this.nom = "BlocPierre";
-        this.ingredients = new Ressource[1];
+        this.ingredients = new SuperObjet[1];
         this.ingredients[0] = new Pierre();
         this.ingredients[0].setQuantity(4);
         this.ress = new BlocPierre();

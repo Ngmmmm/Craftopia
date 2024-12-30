@@ -11,6 +11,7 @@ public abstract class Machine extends SuperObjet {
     public int prix;
     public int time;
 
+    @Override
     public int getPrix() {
         return prix;
     }

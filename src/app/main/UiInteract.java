@@ -99,6 +99,7 @@ public class UiInteract {
             itemButton.setVisible(false);
             resetButton();
             UiInventaire.updateInventory();
+            GamePanel.editMarche = true;
         });
     }
 

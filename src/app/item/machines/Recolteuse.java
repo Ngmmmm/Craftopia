@@ -13,6 +13,8 @@ public class Recolteuse extends Machine implements MachineBehavior {
     public Recolteuse() {
         name = "Récolteuse";
         this.stock = new Inventaire();
+        produit = Produits.RECOLTEUSE;
+        prix = Argent.getPrice(produit);
         this.stock.add(res, 0);
         prix = Argent.getPrice(Produits.RECOLTEUSE);
         try {

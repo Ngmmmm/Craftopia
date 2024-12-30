@@ -1,13 +1,12 @@
 package item.recettes;
 
 import item.bag.Inventaire;
-import item.ressources.Ressource;
 import item.sprites.SuperObjet;
 
 public class Recette {
     private String nom;
-    private Ressource[] ingredients;
-    private Ressource ress;
+    private SuperObjet[] ingredients;
+    private SuperObjet ress;
     private int time;
 
     public boolean isPossible(Inventaire inv){
@@ -26,11 +25,11 @@ public class Recette {
         return sizeRecette == act;
     }
 
-    public Ressource getRessource(){
+    public SuperObjet getRessource(){
         return this.ress;
     }
 
-    public Ressource[] getTabRessource(){
+    public SuperObjet[] getTabRessource(){
         return this.ingredients;
     }
 }

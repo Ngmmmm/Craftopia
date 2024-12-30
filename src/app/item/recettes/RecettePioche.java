@@ -4,11 +4,12 @@ import item.ressources.Bois;
 import item.ressources.Fer;
 import item.ressources.Pioche;
 import item.ressources.Ressource;
+import item.sprites.SuperObjet;
 
 public class RecettePioche extends Recette{
 
     private String nom;
-    private Ressource[] ingredients;
+    private SuperObjet[] ingredients;
     private Ressource ress;
 
     public RecettePioche(){

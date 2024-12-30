@@ -1,10 +1,5 @@
 package item.marche;
 
-import java.io.File;
-import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-
 import item.bag.Argent;
 import item.machines.Recolteuse;
 import item.machines.RecolteuseFragile;
@@ -24,6 +19,9 @@ import item.ressources.Pierre;
 import item.ressources.Pioche;
 import item.sprites.Avatar;
 import item.sprites.SuperObjet;
+import java.io.File;
+import java.util.ArrayList;
+import javax.imageio.ImageIO;
 
 public class Marche extends SuperObjet {
 
@@ -58,17 +56,17 @@ public class Marche extends SuperObjet {
         RECOLTEUSE_POLYVALENTE,
     }
 
-    public void buy(Avatar avatar, Produits produit) {
+    public static void buy(Produits produit, int quantity) {
         // Définir les coûts des produits
         int prix = Argent.getPrice(produit);
 
         // Vérifier si le joueur a suffisamment d'argent
         if (Argent.getMonnaiePlayer() >= prix) {
             // Réduire l'argent du joueur
-            Argent.decreaseMoney(prix);
+            Argent.decreaseMoney(prix * quantity);
 
             // Ajouter le produit à l'inventaire du joueur
-            avatar.inv.add(getProduit(produit), 1);
+            Avatar.inv.add(getProduit(produit), quantity);
 
             System.out.println("Vous avez acheté : " + produit);
         } else {
@@ -76,15 +74,15 @@ public class Marche extends SuperObjet {
         }
     }
 
-    public void sell(Avatar avatar, Produits produit) {
+    public static void sell(Produits produit, int quantity) {
         // Définir les coûts des produits
         int prix = Argent.getPrice(produit);
 
         // Augmenter l'argent du joueur
-        Argent.increaseMoney(prix);
+        Argent.increaseMoney(prix*quantity);
 
         // Retirer le produit de l'inventaire du joueur
-        avatar.inv.remove(getProduit(produit), 1);
+        Avatar.inv.remove(getProduit(produit), quantity);
 
         System.out.println("Vous avez vendu : " + produit);
     }

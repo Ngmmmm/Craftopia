@@ -18,8 +18,9 @@ public class Usine extends Machine implements MachineBehavior {
         name = "Usine";
         inventaireAvatar = new Inventaire();
         stock = new Inventaire();
+        produit = Produits.USINE;
         recetteAct = null;
-        prix = Argent.getPrice(Produits.USINE);
+        prix = Argent.getPrice(produit);
         try {
             File f1 = new File("./img/machines/usine.png");
             image = ImageIO.read(f1);

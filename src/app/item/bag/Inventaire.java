@@ -24,7 +24,7 @@ public class Inventaire {
     
         public boolean remove(SuperObjet item, int quantity){
             for (int i = 0; i < inv.size(); i++) {
-                if (inv.get(i).equals(item)) {
+                if (inv.get(i).getName().equals(item.name)){
                     inv.get(i).reduceQuantity(quantity);
                     if(inv.get(i).quantity <= 0){
                         inv.remove(i);
@@ -35,5 +35,30 @@ public class Inventaire {
         }
         public static ArrayList<SuperObjet> getInv() {
             return inv;
-    }
+        }
+
+        public boolean isIn(SuperObjet item){
+            if (item==null) {
+                return false;
+            }
+            for (int i = 0; i < inv.size(); i++) {
+                if (inv.get(i).getName().equals(item.name)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public int getQuantityOf(SuperObjet item){
+            if (item==null) {
+                return 0;
+            }
+            for (int i = 0; i < inv.size(); i++) {
+                if (inv.get(i).getName().equals(item.name)) {
+                    return inv.get(i).quantity;
+                }
+            }
+            return 0;
+
+        }
 }

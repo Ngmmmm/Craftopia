@@ -39,19 +39,23 @@ public class AssetSetter {
         GamePanel.obj.get(3).pos.x = 26 * gp.TAILLE_BLOC;
         GamePanel.obj.get(3).pos.y = 25 * gp.TAILLE_BLOC;
 
+        GamePanel.obj.add(new Fer());
+        GamePanel.obj.get(4).pos.x = 29 * gp.TAILLE_BLOC;
+        GamePanel.obj.get(4).pos.y = 25 * gp.TAILLE_BLOC;
+
     }
 
     public void setMachine() {
         GamePanel.obj.add(new Usine());
-        GamePanel.obj.get(4).pos.x = 27 * gp.TAILLE_BLOC;
-        GamePanel.obj.get(4).pos.y = 25 * gp.TAILLE_BLOC;
+        GamePanel.obj.get(5).pos.x = 27 * gp.TAILLE_BLOC;
+        GamePanel.obj.get(5).pos.y = 25 * gp.TAILLE_BLOC;
 
     }
 
     public void setMarche() {
         GamePanel.obj.add(new Marche());
-        GamePanel.obj.get(5).pos.x = 28 * gp.TAILLE_BLOC;
-        GamePanel.obj.get(5).pos.y = 25 * gp.TAILLE_BLOC;
+        GamePanel.obj.get(6).pos.x = 28 * gp.TAILLE_BLOC;
+        GamePanel.obj.get(6).pos.y = 25 * gp.TAILLE_BLOC;
     }
 
 }
