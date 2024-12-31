@@ -61,6 +61,7 @@ public class UiGame {
             gp.ui.backToMenu();
             gp.initButtonGame = false;
             gp.menuBar.setVisible(false);
+            gp.avatar.setValeurParDefaut();
         });
         setButton.addActionListener(l -> {
             gp.gameState = gp.settingsState;

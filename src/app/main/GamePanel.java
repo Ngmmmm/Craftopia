@@ -33,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     int FPS = 60; // Images par seconde pour maintenir la fluidité du jeu
 
-    TileManager tileM = new TileManager(this); // Gestionnaire des blocs (tiles) pour dessiner la carte
+    public TileManager tileM = new TileManager(this); // Gestionnaire des blocs (tiles) pour dessiner la carte
     KeyHandler keyH = new KeyHandler(this); // Gestionnaire des touches clavier
     Thread gameThread; // Thread du jeu, pour exécuter le jeu en parallèle
     public CheckCollision collision = new CheckCollision(this); // Gestionnaire des collisions

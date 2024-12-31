@@ -1,3 +1,4 @@
+package tile;
 /**
  * La classe Point représente un point dans un espace 2D avec des coordonnées x et y.
  * 
