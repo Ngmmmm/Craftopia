@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 public class RecolteuseFragile extends Recolteuse {
 
     public RecolteuseFragile() {
-        this.name = "Récolteuse fragile";
+        this.name = "RecolteuseFragile";
         this.stock = new Inventaire();
         produit = Produits.RECOLTEUSE_FRAGILE;
         prix = Argent.getPrice(produit);

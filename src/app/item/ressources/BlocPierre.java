@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 public class BlocPierre extends Ressource {
 
     public BlocPierre() {
-        name = "Bloc Pierre";
+        name = "BlocPierre";
         produit = Produits.BLOC_PIERRE;
         prix = Argent.getPrice(Produits.BLOC_PIERRE);
         try {

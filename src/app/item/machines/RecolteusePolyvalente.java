@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 public class RecolteusePolyvalente extends Recolteuse {
 
     public RecolteusePolyvalente() {
-        this.name = "Récolteuse polyvalente";
+        this.name = "RecolteusePolyvalente";
         this.stock.add(res, 0);
         produit = Produits.RECOLTEUSE_POLYVALENTE;
         prix = Argent.getPrice(produit);

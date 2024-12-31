@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 public class UsinePolyvalente extends Usine {
 
     public UsinePolyvalente() {
-        name = "Usine polyvalente";
+        name = "UsinePolyvalente";
         produit = Produits.USINE_POLYVALENTE;
         prix = Argent.getPrice(produit);
         try {

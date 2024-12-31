@@ -115,6 +115,7 @@ public class Ui {
 
         // Action pour le bouton "Exit"
         exitButton.addActionListener(l -> {
+            gamePanel.saveInvAvatar.saveInvAvatar();
             System.exit(0);
             startButton.setVisible(false);
             continueButton.setVisible(false);

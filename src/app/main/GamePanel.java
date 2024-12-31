@@ -11,6 +11,7 @@ import java.awt.Graphics2D; // Importation pour des dessins graphiques avancés
 import java.util.ArrayList; // Importation de JPanel pour créer le panneau de jeu
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import save.SaveInvAvatar;
 import tile.TileManager;
 
 // La classe GamePanel hérite de JPanel et implémente Runnable pour le fonctionnement via un thread
@@ -44,6 +45,7 @@ public class GamePanel extends JPanel implements Runnable {
     public JScrollPane invPanel;
     public JScrollPane marchePanel;
 
+    public SaveInvAvatar saveInvAvatar = new SaveInvAvatar(this);
     Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
     public UiInteract itemManager = new UiInteract(this);
     public UiGame buttonGame = new UiGame(this);
@@ -186,6 +188,7 @@ public class GamePanel extends JPanel implements Runnable {
                     buttonGame.resizeButtons(scaleX, scaleY);
                     initButtonGame = true;
                     UiGame.actArgent();
+                    saveInvAvatar.loadInvAvatar();
 
                 }
 

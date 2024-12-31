@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 public class RecolteuseXL extends Recolteuse {
 
     public RecolteuseXL() {
-        this.name = "Récolteuse XL";
+        this.name = "RecolteuseXL";
         this.stock.add(res, 0);
         produit = Produits.RECOLTEUSE_XL;
         prix = Argent.getPrice(produit);

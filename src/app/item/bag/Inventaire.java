@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Inventaire {
 
-    public final static ArrayList<SuperObjet> inv = new ArrayList<>();
+    public final ArrayList<SuperObjet> inv = new ArrayList<>();
     
         public boolean add(SuperObjet item, int quantity) {
             if (item==null) {
@@ -33,7 +33,7 @@ public class Inventaire {
             }
             return true;
         }
-        public static ArrayList<SuperObjet> getInv() {
+        public ArrayList<SuperObjet> getInv() {
             return inv;
         }
 

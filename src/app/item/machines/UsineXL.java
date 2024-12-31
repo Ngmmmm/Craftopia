@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 public class UsineXL extends Usine {
 
     public UsineXL() {
-        name = "Usine XL";
+        name = "UsineXL";
         produit = Produits.USINE_XL;
         prix = Argent.getPrice(produit);
         try {

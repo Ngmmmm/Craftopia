@@ -1,6 +1,6 @@
 package main;
 
-import item.bag.Inventaire;
+import item.sprites.Avatar;
 import item.sprites.SuperObjet;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -19,7 +19,7 @@ public class UiInventaire {
     private static List<SuperObjet> inventoryItems;
 
     public UiInventaire() {
-        inventoryItems = Inventaire.getInv();
+        inventoryItems = Avatar.inv.getInv();
 
         // Panneau principal pour le JScrollPane
         JPanel mainPanel = new JPanel();
@@ -68,7 +68,7 @@ public class UiInventaire {
     }
 
     public static void updateInventory() {
-        inventoryItems = Inventaire.getInv();
+        inventoryItems = Avatar.inv.getInv();
         rebuildInventoryPanel();
     }
 

@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 public class UsineFragile extends Usine {
 
     public UsineFragile() {
-        name = "Usine fragile";
+        name = "UsineFragile";
         produit = Produits.USINE_FRAGILE;
         prix = Argent.getPrice(produit);
         try {

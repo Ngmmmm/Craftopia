@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 public class RecolteuseRapide extends Recolteuse {
 
     public RecolteuseRapide() {
-        this.name = "Récolteuse rapide";
+        this.name = "RecolteuseRapide";
         this.stock = new Inventaire();
         produit = Produits.RECOLTEUSE_RAPIDE;
         prix = Argent.getPrice(produit);
