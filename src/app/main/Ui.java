@@ -67,7 +67,7 @@ public class Ui {
     }
 
     public void draw(Graphics g) {
-        
+
         Graphics2D g2 = (Graphics2D) g;
         double scaleX = (double) gamePanel.getWidth() / gamePanel.LARGEUR_ECRAN;
         double scaleY = (double) gamePanel.getHeight() / gamePanel.HAUTEUR_ECRAN;
@@ -76,21 +76,30 @@ public class Ui {
 
         // UI DRAW
 
+        menuPanel.setVisible(false);
+        // inventairePanel.setVisible(false);
+        marchePanel.setVisible(false);
+
         // TITLESCREEN
         if (gameState == TITLE_STATE) {
             if (!initButton) {
                 initButton = titleScreen.initButtons();
             }
             // ? Pourquoi cette vérification est-elle nécessaire ?
-            if (scaleXAct != scaleX || scaleYAct != scaleY) {
-                titleScreen.resizeButtons(scaleX, scaleY);
-                scaleXAct = scaleX;
-                scaleYAct = scaleY;
-            }
+            // if (scaleXAct != scaleX || scaleYAct != scaleY) {
+            // ui.resizeButtons(scaleX, scaleY);
+            // scaleXAct = scaleX;
+            // scaleYAct = scaleY;
+            // }
+            titleScreen.resizeButtons(scaleX, scaleY);
+            scaleXAct = scaleX;
+            scaleYAct = scaleY;
+
             titleScreen.drawTitleScreen(g2, scaleX, scaleY);
+            titleScreen.backToMenu();
 
         } else {
-            menuPanel.menuBar.setVisible(true);
+
             // MAP
             gamePanel.tileM.draw(g2, scaleX, scaleY);
             // Ressource
@@ -107,17 +116,19 @@ public class Ui {
 
             // PLAYER
             gamePanel.avatar.draw(g2, scaleX, scaleY);
-            g2.dispose();
+            // g2.dispose();
 
             // UI
             if (gameState == playState) {
                 if (!initButtonGame) {
+                    menuPanel.initButton();
+                    menuPanel.resizeButtons();
                     initButtonGame = true;
+
                 }
+
                 menuPanel.menuBar.setBounds(0, 0, gamePanel.getWidth(), 30); // Adjust width to gamePanel's width
                 menuPanel.setVisible(true);
-                
-                
 
             } else if (gameState == inventaireState) {
                 // invPanel.setVisible(true);
@@ -130,6 +141,7 @@ public class Ui {
                 // Additional logic for craftState
             }
         }
+        System.out.println(gameState);
     }
 
 }
