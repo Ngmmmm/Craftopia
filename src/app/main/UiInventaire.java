@@ -16,9 +16,9 @@ import javax.swing.SwingConstants;
 
 public class UiInventaire extends Ui {
 
-    private static JScrollPane scrollPane;
-    private static List<SuperObjet> inventoryItems;
-    private static JPanel mainPanel;
+    private JScrollPane scrollPane;
+    private List<SuperObjet> inventoryItems;
+    JPanel mainPanel;
 
     public UiInventaire(GamePanel gamePanel) {
         super(gamePanel);
@@ -39,6 +39,7 @@ public class UiInventaire extends Ui {
         JButton test = new JButton("exit");
         test.addActionListener(l -> {
             Ui.gameState = Ui.playState;
+            this.setVisible(false);
         });
         invPanel.add(test);
 
@@ -46,12 +47,16 @@ public class UiInventaire extends Ui {
 
         mainPanel.add(scrollPane);
         gamePanel.add(mainPanel);
-        
+
     }
 
-    private static JPanel createRow(SuperObjet item) {
+    private JPanel createRow(SuperObjet item) {
         JPanel rowPanel = new JPanel();
         rowPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        JLabel nbLabel = new JLabel("x" + Inventaire.getQuantity(item));
+        nbLabel.setPreferredSize(new Dimension(50, 50));
+        rowPanel.add(nbLabel);
 
         ImageIcon image = new ImageIcon(item.getImage());
         JLabel imageLabel = new JLabel();
@@ -71,12 +76,12 @@ public class UiInventaire extends Ui {
         return mainPanel;
     }
 
-    public static void updateInventory() {
+    public void updateInventory() {
         inventoryItems = Inventaire.getInv();
         rebuildInventoryPanel();
     }
 
-    private static void rebuildInventoryPanel() {
+    private void rebuildInventoryPanel() {
         JPanel invPanel = (JPanel) scrollPane.getViewport().getView();
         invPanel.removeAll();
         for (SuperObjet item : inventoryItems) {
@@ -85,9 +90,14 @@ public class UiInventaire extends Ui {
         JButton test = new JButton("exit");
         test.addActionListener(l -> {
             Ui.gameState = Ui.playState;
+            this.setVisible(false);
         });
         invPanel.add(test);
         invPanel.revalidate();
         invPanel.repaint();
+    }
+
+    public void setVisible(boolean visible) {
+        mainPanel.setVisible(visible);
     }
 }

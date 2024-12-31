@@ -95,7 +95,7 @@ public class UiInteract extends Ui {
             GamePanel.obj.remove(index); // Permet de faire disparaître l'objet de la carte
             itemButton.setVisible(false);
             resetButton();
-            UiInventaire.updateInventory();
+            gamePanel.ui.inventairePanel.updateInventory();
 
         });
     }

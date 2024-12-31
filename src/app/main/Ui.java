@@ -131,7 +131,16 @@ public class Ui {
                 menuPanel.setVisible(true);
 
             } else if (gameState == inventaireState) {
-                // invPanel.setVisible(true);
+                int width = gamePanel.getWidth();
+                int height = gamePanel.getHeight();
+
+                int scrollWidth = width / 2;
+                int scrollHeight = height / 2;
+                int scrollX = (width - scrollWidth) / 2;
+                int scrollY = (height - scrollHeight) / 2;
+
+                inventairePanel.mainPanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
+                inventairePanel.setVisible(true);
 
             } else if (gameState == shopState) {
                 marchePanel.mainPanel.setBounds(60, 60, gamePanel.getWidth() / 2, gamePanel.getHeight() / 2);

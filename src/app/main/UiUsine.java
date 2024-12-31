@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import item.bag.Inventaire;
 import item.machines.Usine;
 import item.recettes.Recette;
 import item.ressources.Ressource;
