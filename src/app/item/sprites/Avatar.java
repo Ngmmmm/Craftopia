@@ -156,7 +156,7 @@ public final class Avatar extends Sprite {
         if (ressourceIndex != 999) {
             pickUpItem(ressourceIndex);
         } else {
-            gp.itemManager.resetButton();
+            gp.ui.itemManager.resetButton();
             lastRessourceIndex = 999;
         }
         // Si aucune collision et que l'avatar est mobile, met à jour la position
@@ -176,7 +176,7 @@ public final class Avatar extends Sprite {
     public void pickUpItem(int index) {
         if (index != lastRessourceIndex) {
             lastRessourceIndex = index;
-            gp.itemManager.initButton(gp.LARGEUR_ECRAN / 2, gp.HAUTEUR_ECRAN / 2, GamePanel.obj.get(index), index);
+            gp.ui.itemManager.initButton(gp.LARGEUR_ECRAN / 2, gp.HAUTEUR_ECRAN / 2, GamePanel.obj.get(index), index);
         }
     }
 

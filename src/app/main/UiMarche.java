@@ -10,6 +10,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -17,13 +18,13 @@ import javax.swing.SwingConstants;
 import item.marche.Marche;
 import item.sprites.SuperObjet;
 
-public class UiMarche {
-    private JPanel mainPanel;
+public class UiMarche extends Ui {
+    JPanel mainPanel;
     private JScrollPane scrollPane;
     private ArrayList<SuperObjet> obj = Marche.getList();
 
-    public UiMarche() {
-
+    public UiMarche(GamePanel gamePanel) {
+        super(gamePanel);
         mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS)); // Empile verticalement
         // Panneau principal pour le JScrollPane
@@ -45,6 +46,9 @@ public class UiMarche {
         scrollPane.setPreferredSize(new Dimension(500, 300)); // Taille du JScrollPane
 
         mainPanel.add(scrollPane);
+        gamePanel.layeredPane.add(mainPanel, JLayeredPane.PALETTE_LAYER);
+        mainPanel.setVisible(false);
+        
     }
 
     // Méthode pour créer une ligne avec des composants
@@ -115,5 +119,9 @@ public class UiMarche {
     public void resizeContent() {
         // TODO : Réajuster la position des composants par rapport à la taille de la
         // fenêtre
+    }
+
+    public void setVisible(boolean visible) {
+        mainPanel.setVisible(visible);
     }
 }

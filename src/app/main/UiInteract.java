@@ -5,10 +5,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class UiInteract {
-
-    private final GamePanel gamePanel;
-
+public class UiInteract extends Ui {
     private JButton itemButton;
     private final ImageIcon ItemButtonIcon;
     private static final String INTERACT_BUTTON_IMAGE_PATH = "./img/boutons/InteractButton.png";
@@ -20,7 +17,7 @@ public class UiInteract {
      *                  et le jeu
      */
     public UiInteract(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
+        super(gamePanel);
         this.ItemButtonIcon = new ImageIcon(INTERACT_BUTTON_IMAGE_PATH);
         this.itemButton = new JButton(ItemButtonIcon);
         setupButton();
@@ -40,10 +37,10 @@ public class UiInteract {
 
     private void setPositionAndResize(int posX, int posY) {
         itemButton.setBounds(
-                (int) (posX * gamePanel.scaleXAct),
-                (int) (posY * gamePanel.scaleYAct),
-                (int) (100 * gamePanel.scaleXAct),
-                (int) (21 * gamePanel.scaleYAct));
+                (int) (posX * gamePanel.ui.scaleXAct),
+                (int) (posY * gamePanel.ui.scaleYAct),
+                (int) (100 * gamePanel.ui.scaleXAct),
+                (int) (21 * gamePanel.ui.scaleYAct));
         resizeButtonImages(itemButton, ItemButtonIcon);
     }
 
@@ -69,7 +66,7 @@ public class UiInteract {
 
     private void setMarcheAction() {
         itemButton.addActionListener(l -> {
-            Ui.gameState = Ui.shopState;
+            gameState = shopState;
             itemButton.setVisible(false);
         });
     }
@@ -80,14 +77,14 @@ public class UiInteract {
 
     private void setRecolteuseAction() {
         itemButton.addActionListener(l -> {
-            Ui.gameState = Ui.recolteuseState;
+            gameState = recolteuseState;
             itemButton.setVisible(false);
         });
     }
 
     private void setUsineAction() {
         itemButton.addActionListener(l -> {
-            Ui.gameState = Ui.craftState;
+            gameState = craftState;
             itemButton.setVisible(false);
         });
     }

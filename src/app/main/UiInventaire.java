@@ -14,13 +14,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-public class UiInventaire {
+public class UiInventaire extends Ui {
 
     private static JScrollPane scrollPane;
     private static List<SuperObjet> inventoryItems;
     private static JPanel mainPanel;
 
-    public UiInventaire() {
+    public UiInventaire(GamePanel gamePanel) {
+        super(gamePanel);
         inventoryItems = Inventaire.getInv();
 
         mainPanel = new JPanel();
@@ -44,6 +45,8 @@ public class UiInventaire {
         scrollPane = new JScrollPane(invPanel);
 
         mainPanel.add(scrollPane);
+        gamePanel.add(mainPanel);
+        
     }
 
     private static JPanel createRow(SuperObjet item) {

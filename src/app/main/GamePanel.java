@@ -7,7 +7,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics; // Importation pour dessiner des composants
 import java.util.ArrayList; // Importation de JPanel pour créer le panneau de jeu
+
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+
 import tile.TileManager;
 
 // La classe GamePanel hérite de JPanel et implémente Runnable pour le fonctionnement via un thread
@@ -20,8 +23,6 @@ public class GamePanel extends JPanel implements Runnable {
     public final int NB_LIGNE_MAX = 12; // Nombre maximal de lignes visibles à l'écran
     public final int LARGEUR_ECRAN = TAILLE_BLOC * NB_COLONNE_MAX; // Largeur totale de l'écran
     public final int HAUTEUR_ECRAN = TAILLE_BLOC * NB_LIGNE_MAX; // Hauteur totale de l'écran
-    public double scaleXAct = getWidth() / LARGEUR_ECRAN;
-    public double scaleYAct = getHeight() / HAUTEUR_ECRAN;
 
     public final int NB_COLONNE_MAP_MAX = 52; // Nombre de colonnes maximal sur la carte
     public final int NB_LIGNE_MAP_MAX = 50; // Nombre de lignes maximal sur la carte
@@ -37,21 +38,26 @@ public class GamePanel extends JPanel implements Runnable {
 
     public AssetSetter aSetter = new AssetSetter(this); // Gestion des objets (ressources, ennemis...)
 
-    Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
+    public Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
 
     public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
     public static ArrayList<SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
 
+    public JLayeredPane layeredPane; // Panneau en couches pour superposer les éléments du jeu
+
     /**
      * Constructeur pour initialiser le panneau de jeu.
      */
-    public GamePanel() {
+    public GamePanel(JLayeredPane layeredPane) {
+        super(); // Appel du constructeur de la classe parente
+        this.layeredPane = layeredPane; // Initialisation du panneau en couches
         this.setPreferredSize(new Dimension(LARGEUR_ECRAN, HAUTEUR_ECRAN)); // Définir la taille du panneau
         this.setBackground(Color.BLACK); // Couleur de fond noire
         this.setDoubleBuffered(true); // Activer le double buffering pour un rendu fluide
         this.addKeyListener(keyH); // Ajouter le gestionnaire de clavier
         this.setFocusable(true); // Permettre au panneau de capturer les événements clavier
         this.setLayout(new BorderLayout());
+        ui.initializeComponents(); // Initialize components after GamePanel is fully configured
     }
 
     /**
@@ -59,7 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
      */
     public void setupGame() {
         aSetter.setAllItems();
-        Ui.gameState = Ui.TITLE_STATE;
+        Ui.gameState = Ui.TITLE_STATE; // Définit l'état du jeu à l'écran de titre
     }
 
     /**
@@ -106,6 +112,7 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+        // Ajoutez ici le code pour dessiner les éléments du jeu
+        ui.draw(g);
     }
 }
