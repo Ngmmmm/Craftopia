@@ -18,7 +18,7 @@ public class UiUsine {
     private Recette recette;
     // private Inventaire stock;
 
-    private JPanel mainPanel;
+    JPanel mainPanel;
     // private JPanel usinePanel;
 
     // private JPanel stockContent;
@@ -32,11 +32,17 @@ public class UiUsine {
 
         createRecetteContent();
 
-        
         mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
         mainPanel.add(recettePanel);
+        JButton exit = new JButton("exit");
+        exit.addActionListener(l -> {
+            Ui.gameState = Ui.playState;
+            mainPanel.setVisible(false);
+        });
+        mainPanel.add(exit);
+
     }
 
     private void createRecetteContent() {
@@ -72,6 +78,12 @@ public class UiUsine {
                 recetteContent.add(new JLabel("="));
             }
         }
+        ImageIcon resultat = new ImageIcon(recette.getRessource().getImage());
+        JLabel quantity = new JLabel(recette.getRessource().getQuantity() + "");
+        JLabel imgLabel = new JLabel(resultat);
+        recetteContent.add(quantity);
+        recetteContent.add(imgLabel);
+        
         JLabel recetteName = new JLabel(recette.getRessource().getName());
         ImageIcon btnBuild = new ImageIcon("./img/boutons/BuildButton.png");
         JButton build = new JButton(btnBuild);
@@ -82,5 +94,9 @@ public class UiUsine {
 
     public JPanel getMainPanel() {
         return mainPanel;
+    }
+
+    public void setVisible(boolean visible) {
+        mainPanel.setVisible(visible);
     }
 }

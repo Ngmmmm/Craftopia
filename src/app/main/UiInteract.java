@@ -1,5 +1,7 @@
 package main;
 
+import item.machines.Recolteuse;
+import item.machines.Usine;
 import item.sprites.SuperObjet;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -48,10 +50,10 @@ public class UiInteract extends Ui {
         if (!hasActionListener()) {
             switch (item.name) {
                 case "Récolteuse":
-                    setRecolteuseAction();
+                    setRecolteuseAction(item, index);
                     break;
                 case "Usine":
-                    setUsineAction();
+                    setUsineAction(item, index);
                     break;
 
                 case "Marché":
@@ -75,17 +77,30 @@ public class UiInteract extends Ui {
         return itemButton.getActionListeners().length > 0;
     }
 
-    private void setRecolteuseAction() {
+    private void setRecolteuseAction(SuperObjet item, int index) {
+        Recolteuse recolteuse = (Recolteuse) item;
         itemButton.addActionListener(l -> {
             gameState = recolteuseState;
             itemButton.setVisible(false);
         });
     }
 
-    private void setUsineAction() {
+    private void setUsineAction(SuperObjet item, int index) {
         itemButton.addActionListener(l -> {
             gameState = craftState;
             itemButton.setVisible(false);
+            
+            Usine usine = (Usine) item;
+            usine.ui.setVisible(true);
+            int width = gamePanel.getWidth();
+            int height = gamePanel.getHeight();
+
+            int scrollWidth = width / 2;
+            int scrollHeight = height / 2;
+            int scrollX = (width - scrollWidth) / 2;
+            int scrollY = (height - scrollHeight) / 2;
+
+            usine.ui.mainPanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
         });
     }
 

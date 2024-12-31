@@ -17,7 +17,8 @@ public class Usine extends Machine implements MachineBehavior {
     public Inventaire inventaireAvatar;
     public Recette recetteAct;
     public UiUsine ui;
-    
+    private int idCounter = 1;
+    public final int id;
     // TODO : public UiConfigUsine uiConfig;
 
     public Usine() {
@@ -27,6 +28,7 @@ public class Usine extends Machine implements MachineBehavior {
         recetteAct = new RecetteArc();// TODO : UI pour définir la recette
         prix = Argent.getPrice(Produits.USINE);
         ui = new UiUsine(this);
+        id = idCounter++;
         try {
             File f1 = new File("./img/machines/usine.png");
             image = ImageIO.read(f1);

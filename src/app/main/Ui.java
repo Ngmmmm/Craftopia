@@ -42,6 +42,7 @@ public class Ui {
     public UiMenuBar menuPanel;
     public UiInventaire inventairePanel;
     public UiMarche marchePanel;
+    public UiUsine usinePanel;
 
     public double scaleXAct;
     public double scaleYAct;
@@ -64,6 +65,7 @@ public class Ui {
         this.menuPanel = new UiMenuBar(gamePanel);
         this.inventairePanel = new UiInventaire(gamePanel);
         this.marchePanel = new UiMarche(gamePanel);
+        
     }
 
     public void draw(Graphics g) {
@@ -147,7 +149,7 @@ public class Ui {
                 marchePanel.setVisible(true);
 
             } else if (gameState == craftState) {
-                // Additional logic for craftState
+                
             }
         }
         System.out.println(gameState);
