@@ -115,4 +115,5 @@ public class GamePanel extends JPanel implements Runnable {
         // Ajoutez ici le code pour dessiner les éléments du jeu
         ui.draw(g);
     }
+    
 }

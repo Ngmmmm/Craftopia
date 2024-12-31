@@ -54,28 +54,19 @@ public class UiInventaire extends Ui {
         JPanel rowPanel = new JPanel();
         rowPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        // Dimensions dynamiques basées sur la taille du mainPanel
-        int panelWidth = mainPanel.getWidth();
-        int imageSize = panelWidth / 10; // Exemple : image = 10% de la largeur
-        int labelWidth = panelWidth / 5; // Exemple : texte = 20% de la largeur
-
-        // Quantité
         JLabel nbLabel = new JLabel("x" + Inventaire.getQuantity(item));
-        nbLabel.setPreferredSize(new Dimension(labelWidth, imageSize));
+        nbLabel.setPreferredSize(new Dimension(50, 50));
         rowPanel.add(nbLabel);
 
-        // Image de l'objet
         ImageIcon image = new ImageIcon(item.getImage());
         JLabel imageLabel = new JLabel();
-        imageLabel.setIcon(
-                new ImageIcon(image.getImage().getScaledInstance(imageSize, imageSize, java.awt.Image.SCALE_SMOOTH)));
-        imageLabel.setPreferredSize(new Dimension(imageSize, imageSize));
+        imageLabel.setIcon(image);
+        imageLabel.setPreferredSize(new Dimension(50, 50));
         imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         rowPanel.add(imageLabel);
 
-        // Nom de l'objet
         JLabel nameLabel = new JLabel(item.getName());
-        nameLabel.setPreferredSize(new Dimension(panelWidth - (labelWidth + imageSize + 50), imageSize));
+        nameLabel.setPreferredSize(new Dimension(150, 50));
         rowPanel.add(nameLabel);
 
         return rowPanel;

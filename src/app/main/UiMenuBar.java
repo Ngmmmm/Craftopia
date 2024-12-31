@@ -37,11 +37,6 @@ public class UiMenuBar extends Ui {
         menuBar.revalidate();
         menuBar.repaint();
 
-        System.out.println("MenuBar bounds: " + menuBar.getBounds());
-        System.out.println("InvButton bounds: " + invButton.getBounds());
-        System.out.println("BackToMenuButton bounds: " + backToMenuButton.getBounds());
-        System.out.println("SetButton bounds: " + setButton.getBounds());
-
     }
 
     public void initializeComponents() {

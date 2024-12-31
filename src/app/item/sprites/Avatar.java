@@ -3,6 +3,7 @@ package item.sprites;
 import item.bag.Argent; // Permet de dessiner l'avatar avec une qualité graphique
 import item.bag.Inventaire; // Définit l'aire solide pour la détection des collisions
 import java.awt.Graphics2D; // Optimise le rendu graphique
+import java.awt.Point;
 import java.awt.Rectangle; // Stocke les images de l'avatar
 import java.awt.RenderingHints; // Gère les fichiers d'images
 import java.awt.image.BufferedImage; // Gère les exceptions liées aux fichiers
@@ -231,5 +232,9 @@ public final class Avatar extends Sprite {
         // Dessine l'image sélectionnée
         g2.drawImage(image, (int) (screenX * scaleX), (int) (screenY * scaleY), (int) (gp.TAILLE_BLOC * scaleX),
                 (int) (gp.TAILLE_BLOC * scaleY), null);
+    }
+
+    public Point getPosition() {
+        return mapPoint;
     }
 }

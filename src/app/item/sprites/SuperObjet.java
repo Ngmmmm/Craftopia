@@ -5,6 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.TimerTask;
+
 import main.GamePanel;
 
 public class SuperObjet {
@@ -66,6 +68,31 @@ public class SuperObjet {
 
     public int getPrix() {
         return 0;
+    }
+
+    public void setInvisible(GamePanel gp) {
+        new Thread(() -> {
+            try {
+                Point originalPos = new Point(pos);
+                pos.setLocation(Integer.MAX_VALUE, Integer.MAX_VALUE); // Déplacer l'objet hors de l'écran
+                Thread.sleep(5000); // Attendre 5 secondes
+    
+                while (isAvatarNearby(gp.avatar, originalPos)) {
+                    Thread.sleep(100); // Attendre 100 ms avant de vérifier à nouveau
+                }
+    
+                pos.setLocation(originalPos); // Remettre l'objet à sa position d'origine
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+    
+    private boolean isAvatarNearby(Avatar avatar, Point originalPos) {
+        int proximityThreshold = 50; // Distance de proximité en pixels
+        Point avatarPos = avatar.getPosition();
+        double distance = originalPos.distance(avatarPos);
+        return distance < proximityThreshold;
     }
 
 }

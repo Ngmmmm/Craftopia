@@ -92,7 +92,7 @@ public class UiInteract extends Ui {
     private void setDefaultAction(SuperObjet item, int index) {
         itemButton.addActionListener(l -> {
             gamePanel.avatar.inv.add(item, 1);
-            GamePanel.obj.remove(index); // Permet de faire disparaître l'objet de la carte
+            GamePanel.obj.get(index).setInvisible(gamePanel); // Permet de faire disparaître l'objet de la carte
             itemButton.setVisible(false);
             resetButton();
             gamePanel.ui.inventairePanel.updateInventory();
