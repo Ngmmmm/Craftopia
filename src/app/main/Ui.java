@@ -67,7 +67,7 @@ public class Ui {
     }
 
     public void draw(Graphics g) {
-
+        
         Graphics2D g2 = (Graphics2D) g;
         double scaleX = (double) gamePanel.getWidth() / gamePanel.LARGEUR_ECRAN;
         double scaleY = (double) gamePanel.getHeight() / gamePanel.HAUTEUR_ECRAN;
@@ -116,7 +116,7 @@ public class Ui {
                 }
                 menuPanel.menuBar.setBounds(0, 0, gamePanel.getWidth(), 30); // Adjust width to gamePanel's width
                 menuPanel.setVisible(true);
-                gamePanel.requestFocusInWindow();
+                
                 
 
             } else if (gameState == inventaireState) {
@@ -131,4 +131,5 @@ public class Ui {
             }
         }
     }
+
 }
