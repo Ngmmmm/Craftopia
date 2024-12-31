@@ -11,6 +11,7 @@ import java.awt.Graphics2D; // Importation pour des dessins graphiques avancés
 import java.util.ArrayList; // Importation de JPanel pour créer le panneau de jeu
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import save.SaveEtatMap;
 import save.SaveInvAvatar;
 import tile.TileManager;
 
@@ -46,6 +47,9 @@ public class GamePanel extends JPanel implements Runnable {
     public JScrollPane marchePanel;
 
     public SaveInvAvatar saveInvAvatar = new SaveInvAvatar(this);
+    public SaveEtatMap saveEtatMap = new SaveEtatMap(this);
+
+
     Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
     public UiInteract itemManager = new UiInteract(this);
     public UiGame buttonGame = new UiGame(this);

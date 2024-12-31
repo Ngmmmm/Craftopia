@@ -11,6 +11,7 @@ import item.machines.UsineFragile;
 import item.machines.UsinePolyvalente;
 import item.machines.UsineRapide;
 import item.machines.UsineXL;
+import item.marche.Marche;
 import item.marche.Marche.Produits;
 import item.ressources.BlocPierre;
 import item.ressources.Bois;
@@ -132,6 +133,8 @@ public class SuperObjet {
             return new UsineRapide();
         }else if(name.equals("UsineXL")){
             return new UsineXL();
+        }else if(name.equals("Marche")){
+            return new Marche();
         }
         return null;
     }

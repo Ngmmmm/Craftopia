@@ -26,7 +26,7 @@ import javax.imageio.ImageIO;
 public class Marche extends SuperObjet {
 
     public Marche() {
-        name = "Marché";
+        name = "Marche";
         @SuppressWarnings("unused")
         final int quantity = 1; // Dans la version de base du jeu, il n'y a qu'un seul marché
         try {
