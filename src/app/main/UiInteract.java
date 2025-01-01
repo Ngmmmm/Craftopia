@@ -1,9 +1,13 @@
 package main;
 
 import item.sprites.SuperObjet;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.Timer;
+
 
 public class UiInteract {
 
@@ -49,15 +53,15 @@ public class UiInteract {
 
     private void configureButtonAction(SuperObjet item, int index) {
         if (!hasActionListener()) {
-            switch (item.name) {
-                case "Récolteuse":
+            switch (item.getName()) {
+                case "Recolteuse":
                     setRecolteuseAction();
                     break;
                 case "Usine":
                     setUsineAction();
                     break;
 
-                case "Marché":
+                case "Marche":
                     setMarcheAction();
                     break;
                 default:
@@ -94,12 +98,31 @@ public class UiInteract {
 
     private void setDefaultAction(SuperObjet item, int index) {
         itemButton.addActionListener(l -> {
-            gamePanel.avatar.inv.add(item, 1);
-            GamePanel.obj.remove(index); // Permet de faire disparaître l'objet de la carte
-            itemButton.setVisible(false);
-            resetButton();
-            UiInventaire.updateInventory();
-            GamePanel.editMarche = true;
+            if(item.waitIme){
+                ActionListener taskPerformer = new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        gamePanel.avatar.inv.add(item, 1);
+                        GamePanel.obj.remove(index); // Permet de faire disparaître l'objet de la carte
+                        itemButton.setVisible(false);
+                        resetButton();
+                        UiInventaire.updateInventory();
+                        GamePanel.editMarche = true;
+                    }
+                };
+                Timer timer = new Timer(2000, taskPerformer);
+                timer.setRepeats(false);
+                timer.start();
+            }else{
+                gamePanel.avatar.inv.add(item, 1);
+                GamePanel.obj.remove(index); // Permet de faire disparaître l'objet de la carte
+                itemButton.setVisible(false);
+                resetButton();
+                UiInventaire.updateInventory();
+                GamePanel.editMarche = true;
+                
+            }
+            
+            
         });
     }
 

@@ -36,6 +36,7 @@ public class SuperObjet {
     public int quantity;
     public boolean isItem = false;
     public Produits produit;
+    public boolean waitIme = false;
 
     public void draw(Graphics2D g2, GamePanel gp, double scaleX, double scaleY) {
         // Coordonnées de la bloc à l'écran

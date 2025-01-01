@@ -16,10 +16,10 @@ public class AssetSetter {
     }
 
     public void setAllItems() {
-        //setRessource();
-        //setMachine();
-        //setMarche();
-        gp.saveEtatMap.LoadEtatMap();
+        setRessource();
+        setMachine();
+        setMarche();
+        //gp.saveEtatMap.LoadEtatMap();
     }
 
     public void setRessource() {

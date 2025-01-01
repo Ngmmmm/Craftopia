@@ -11,6 +11,7 @@ public class Bois extends Ressource {
         name = "Bois";
         prix = Argent.getPrice(Produits.BOIS);
         produit = Produits.BOIS;
+        waitIme = true;
         try {
             File f1 = new File("./img/ressources/bois.png");
             image = ImageIO.read(f1);
