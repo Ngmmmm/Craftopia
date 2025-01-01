@@ -7,7 +7,6 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,12 +18,10 @@ import javax.swing.SwingConstants;
 public class UiInventaire extends Ui {
 
     private JScrollPane scrollPane;
-    private List<SuperObjet> inventoryItems;
     JPanel mainPanel;
 
     public UiInventaire(GamePanel gamePanel) {
         super(gamePanel);
-        inventoryItems = Inventaire.getInvAvatar();
 
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout()); // Utilisation de GridBagLayout pour le positionnement
@@ -34,7 +31,7 @@ public class UiInventaire extends Ui {
         invPanel.setLayout(new BoxLayout(invPanel, BoxLayout.Y_AXIS)); // Empile verticalement
 
         // Ajoute des lignes au panneau principal (chaque ligne contient IMG, Nom)
-        for (SuperObjet item : inventoryItems) {
+        for (SuperObjet item : Inventaire.getInvAvatar()) {
             invPanel.add(createRow(item));
         }
 
@@ -98,14 +95,13 @@ public class UiInventaire extends Ui {
     }
 
     public void updateInventory() {
-        inventoryItems = Inventaire.getInvAvatar();
         rebuildInventoryPanel();
     }
 
     private void rebuildInventoryPanel() {
         JPanel invPanel = (JPanel) scrollPane.getViewport().getView();
         invPanel.removeAll();
-        for (SuperObjet item : inventoryItems) {
+        for (SuperObjet item : Inventaire.getInvAvatar()) {
             invPanel.add(createRow(item));
         }
         JButton exit = new JButton("exit");

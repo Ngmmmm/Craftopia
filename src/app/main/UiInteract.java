@@ -91,6 +91,8 @@ public class UiInteract extends Ui {
             itemButton.setVisible(false);
 
             Usine usine = (Usine) item;
+
+            usine.uiStock.setVisible(true);
             usine.ui.setVisible(true);
 
             int width = gamePanel.getWidth();
@@ -100,20 +102,9 @@ public class UiInteract extends Ui {
             int scrollHeight = height / 2;
             int scrollX = 20;
             int scrollY = (height - scrollHeight) / 2;
-            gamePanel.addComponentListener(new java.awt.event.ComponentAdapter() {
-                public void componentResized(java.awt.event.ComponentEvent evt) {
-                    // int newWidth = gamePanel.getWidth();
-                    int newHeight = gamePanel.getHeight();
+            usine.uiStock.setBounds(scrollX + scrollWidth, scrollY, scrollWidth, scrollHeight);
+            usine.ui.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
 
-                    int newScrollWidth = scrollWidth;
-                    int newScrollHeight = scrollHeight;
-                    int newScrollX = scrollX * 10;
-                    int newScrollY = (newHeight - newScrollHeight) / 2;
-                    usine.ui.mainPanel.setBounds(newScrollX, newScrollY, newScrollWidth, newScrollHeight);
-                }
-
-            });
-            usine.ui.mainPanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
         });
     }
 
@@ -143,14 +134,4 @@ public class UiInteract extends Ui {
         resizeButtonImages(itemButton, ItemButtonIcon);
     }
 
-    // private void resizeButtonImages(JButton button, Icon icon) {
-    // int buttonWidth = button.getWidth();
-    // int buttonHeight = button.getHeight();
-
-    // // Redimensionner l'icône en fonction de la taille du bouton
-    // ImageIcon resizedIcon = new ImageIcon(((ImageIcon)
-    // icon).getImage().getScaledInstance(
-    // buttonWidth, buttonHeight, java.awt.Image.SCALE_SMOOTH));
-    // button.setIcon(resizedIcon);
-    // }
 }

@@ -68,14 +68,16 @@ public abstract class Recette {
     }
 
     public boolean isPossible(ArrayList<SuperObjet> inv) {
-        for (SuperObjet ressource : ingredients) {
-            for (int i = 0; i < inv.size(); i++) {
-                Ressource ressInv = (Ressource) inv.get(i);
-                if (ressInv.name.equals(ressource.name)) {
-                    if (ressInv.getQuantity() != ressource.quantity) {
-                        return false;
-                    }
+        for (Ressource ingredient : ingredients) {
+            boolean found = false;
+            for (SuperObjet obj : inv) {
+                if (obj.getClass().equals(ingredient.getClass()) && obj.quantity >= ingredient.getQuantity()) {
+                    found = true;
+                    break;
                 }
+            }
+            if (!found) {
+                return false;
             }
         }
         return true;
@@ -91,7 +93,6 @@ public abstract class Recette {
         recettes.add(getRecette(Livre.HACHE));
         return recettes;
     }
-
 
     public Ressource getRessource() {
         return this.ress;

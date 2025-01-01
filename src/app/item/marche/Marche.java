@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import item.bag.Argent;
+import item.bag.Inventaire;
 import item.machines.Recolteuse;
 import item.machines.RecolteuseFragile;
 import item.machines.RecolteusePolyvalente;
@@ -77,7 +78,7 @@ public class Marche extends SuperObjet {
             Argent.decreaseMoney(prix);
 
             // Ajouter le produit à l'inventaire du joueur
-            avatar.inv.add(getProduit(produit), 1);
+            Inventaire.addToAvatarInv(getProduit(produit), 1);
 
             System.out.println("Vous avez acheté : " + produit);
         } else {
@@ -93,7 +94,7 @@ public class Marche extends SuperObjet {
         Argent.increaseMoney(prix);
 
         // Retirer le produit de l'inventaire du joueur
-        avatar.inv.remove(getProduit(produit), 1);
+        Inventaire.removeFromAvatarInv(getProduit(produit), 1);
 
         System.out.println("Vous avez vendu : " + produit);
     }

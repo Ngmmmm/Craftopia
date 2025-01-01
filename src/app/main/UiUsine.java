@@ -153,4 +153,8 @@ public class UiUsine {
         if (icon == null) return null;
         return new ImageIcon(icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH));
     }
+
+    public void setBounds(int x, int y, int width, int height) {
+        mainPanel.setBounds(x, y, width, height);
+    }
 }

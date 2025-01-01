@@ -46,7 +46,6 @@ public class Ui {
     public UiMenuBar menuPanel;
     public UiInventaire inventairePanel;
     public UiMarche marchePanel;
-    public UiUsine usinePanel;
 
     public double scaleXAct;
     public double scaleYAct;
@@ -145,6 +144,7 @@ public class Ui {
                 menuPanel.setVisible(true);
 
             } else if (gameState == inventaireState) {
+
                 int width = gamePanel.getWidth();
                 int height = gamePanel.getHeight();
 
@@ -164,7 +164,6 @@ public class Ui {
 
             }
         }
-        System.out.println(gameState);
     }
 
 }
