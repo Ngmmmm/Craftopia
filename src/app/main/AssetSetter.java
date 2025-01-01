@@ -46,7 +46,7 @@ public class AssetSetter {
         GamePanel.obj.add(new Usine());
         Usine usine = (Usine) GamePanel.obj.get(4);
         
-        gp.add(usine.ui.getMainPanel());
+        gp.add(usine.uiRecette.getMainPanel());
         gp.add(usine.uiStock.getMainPanel());
         GamePanel.obj.get(4).pos.x = 27 * gp.TAILLE_BLOC;
         GamePanel.obj.get(4).pos.y = 25 * gp.TAILLE_BLOC;

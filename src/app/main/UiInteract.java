@@ -93,17 +93,32 @@ public class UiInteract extends Ui {
             Usine usine = (Usine) item;
 
             usine.uiStock.setVisible(true);
-            usine.ui.setVisible(true);
+            usine.uiRecette.setVisible(true);
 
             int width = gamePanel.getWidth();
             int height = gamePanel.getHeight();
 
-            int scrollWidth = width / 2;
+            int scrollWidth = width / 3;
             int scrollHeight = height / 2;
-            int scrollX = 20;
+            int scrollX = (width - 2 * scrollWidth) / 3;
             int scrollY = (height - scrollHeight) / 2;
-            usine.uiStock.setBounds(scrollX + scrollWidth, scrollY, scrollWidth, scrollHeight);
-            usine.ui.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
+            usine.uiStock.setBounds(scrollX + scrollWidth + scrollX, scrollY, scrollWidth, scrollHeight);
+            usine.uiRecette.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
+
+            gamePanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+                public void componentResized(java.awt.event.ComponentEvent evt) {
+                    int newWidth = gamePanel.getWidth();
+                    int newHeight = gamePanel.getHeight();
+
+                    int newScrollWidth = newWidth / 3;
+                    int newScrollHeight = newHeight / 2;
+                    int newScrollX = (newWidth - 2 * newScrollWidth) / 3;
+                    int newScrollY = (newHeight - newScrollHeight) / 2;
+                    usine.uiStock.setBounds(newScrollX + newScrollWidth + newScrollX, newScrollY, newScrollWidth,
+                            newScrollHeight);
+                    usine.uiRecette.setBounds(newScrollX, newScrollY, newScrollWidth, newScrollHeight);
+                }
+            });
 
         });
     }

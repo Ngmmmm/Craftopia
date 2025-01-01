@@ -2,7 +2,6 @@ package item.recettes;
 
 import java.util.ArrayList;
 
-import item.bag.Inventaire;
 import item.ressources.Bois;
 import item.ressources.Fer;
 import item.ressources.Feuille;

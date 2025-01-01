@@ -15,14 +15,14 @@ import item.machines.Usine;
 import item.recettes.Recette;
 import item.ressources.Ressource;
 
-public class UiUsine {
+public class UiRecette {
     private Usine usine;
     private Recette recette;
 
     JPanel mainPanel;
     private JScrollPane recettePanel;
 
-    public UiUsine(Usine usine) {
+    public UiRecette(Usine usine) {
         this.usine = usine;
         this.recette = usine.recetteAct;
 
@@ -101,7 +101,7 @@ public class UiUsine {
         build.setBorderPainted(false);
         build.setFocusPainted(false);
         build.setContentAreaFilled(false);
-        
+
         build.addActionListener(l -> {
             usine.createRessource();
         });
@@ -150,7 +150,8 @@ public class UiUsine {
     }
 
     private ImageIcon resizeIcon(ImageIcon icon, int width, int height) {
-        if (icon == null) return null;
+        if (icon == null)
+            return null;
         return new ImageIcon(icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH));
     }
 

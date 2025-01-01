@@ -7,16 +7,15 @@ import item.marche.Marche.Produits;
 import item.recettes.Recette;
 import item.recettes.RecetteBlocPierre;
 import item.ressources.Ressource;
+import main.UiRecette;
 import main.UiStock;
-import main.UiUsine;
-
 import java.io.File;
 import javax.imageio.ImageIO;
 
 public class Usine extends Machine implements MachineBehavior {
 
     public Recette recetteAct;
-    public UiUsine ui;
+    public UiRecette uiRecette;
     public UiStock uiStock;
     private int idCounter = 1;
     public final int id;
@@ -27,7 +26,7 @@ public class Usine extends Machine implements MachineBehavior {
         this.stock = new InventaireMachine(this);
         recetteAct = new RecetteBlocPierre();// TODO : UI pour définir la recette
         prix = Argent.getPrice(Produits.USINE);
-        ui = new UiUsine(this);
+        uiRecette = new UiRecette(this);
         id = idCounter++;
         uiStock = new UiStock(this);
         try {
