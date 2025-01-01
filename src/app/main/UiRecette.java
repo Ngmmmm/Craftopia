@@ -2,8 +2,6 @@ package main;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,24 +31,6 @@ public class UiRecette {
 
         mainPanel.add(recettePanel);
 
-        // Bouton exit centré
-        JButton exit = new JButton("exit");
-        exit.setPreferredSize(new Dimension(150, 40)); // Largeur augmentée, hauteur réduite
-        exit.setAlignmentX(JPanel.CENTER_ALIGNMENT); // Centre horizontalement dans le panel
-        exit.addActionListener(l -> {
-            Ui.gameState = Ui.playState;
-            mainPanel.setVisible(false);
-        });
-
-        mainPanel.add(exit);
-
-        // Ajoutez un ComponentListener pour écouter les événements de redimensionnement
-        mainPanel.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                adjustComponentSizes();
-            }
-        });
     }
 
     private void createRecetteContent() {
@@ -110,35 +90,6 @@ public class UiRecette {
         recetteContent.add(build);
 
         return recetteContent;
-    }
-
-    private void adjustComponentSizes() {
-        int panelWidth = mainPanel.getWidth();
-        int rowHeight = 40;
-
-        JPanel recetteContent = (JPanel) recettePanel.getViewport().getView();
-        for (int i = 0; i < recetteContent.getComponentCount(); i++) {
-            if (recetteContent.getComponent(i) instanceof JPanel) {
-                JPanel rowPanel = (JPanel) recetteContent.getComponent(i);
-                for (int j = 0; j < rowPanel.getComponentCount(); j++) {
-                    if (rowPanel.getComponent(j) instanceof JLabel) {
-                        JLabel label = (JLabel) rowPanel.getComponent(j);
-                        if (j == 0) { // quantity
-                            label.setPreferredSize(new Dimension(panelWidth / 8, rowHeight));
-                        } else if (j == 1) { // imgLabel
-                            label.setPreferredSize(new Dimension(panelWidth / 8, rowHeight));
-                        } else if (j == 2) { // recetteName
-                            label.setPreferredSize(new Dimension(panelWidth / 2, rowHeight));
-                        }
-                    } else if (rowPanel.getComponent(j) instanceof JButton) {
-                        JButton button = (JButton) rowPanel.getComponent(j);
-                        button.setPreferredSize(new Dimension(panelWidth / 8, rowHeight));
-                    }
-                }
-                rowPanel.revalidate();
-                rowPanel.repaint();
-            }
-        }
     }
 
     public JPanel getMainPanel() {

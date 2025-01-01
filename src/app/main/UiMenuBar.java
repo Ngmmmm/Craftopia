@@ -77,7 +77,7 @@ public class UiMenuBar extends Ui {
     }
 
     private void addMenuBarToLayeredPane() {
-        gamePanel.layeredPane.add(menuBar, JLayeredPane.PALETTE_LAYER);
+        gamePanel.layeredPane.add(menuBar, JLayeredPane.POPUP_LAYER);
     }
 
     private void configureResizeListener() {
@@ -117,7 +117,7 @@ public class UiMenuBar extends Ui {
         invButton.addActionListener(l -> {
             menuBar.setVisible(false);
             gameState = inventaireState;
-            
+
         });
 
         backToMenuButton.addActionListener(l -> {
@@ -125,26 +125,22 @@ public class UiMenuBar extends Ui {
             super.titleScreen.backToMenu();
             super.initButtonGame = false;
             menuBar.setVisible(false);
-            
+
         });
 
         setButton.addActionListener(l -> {
             gameState = settingsState;
             menuBar.setVisible(false);
-            
+
         });
     }
 
     public void resizeButtons() {
-        configureButtonBounds(); 
+        configureButtonBounds();
     }
-
-    
-    
 
     public void setVisible(boolean visible) {
         menuBar.setVisible(visible);
     }
 
-    
 }

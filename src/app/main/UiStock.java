@@ -9,7 +9,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -35,15 +34,6 @@ public class UiStock {
         for (SuperObjet item : machine.getStock().getInv()) {
             invPanel.add(createRow(item));
         }
-
-        // Ajout du bouton exit
-        JButton exit = new JButton("exit");
-        exit.addActionListener(l -> {
-            Ui.gameState = Ui.playState;
-            this.setVisible(false);
-        });
-        exit.setAlignmentX(JButton.CENTER_ALIGNMENT); // Centre le bouton horizontalement
-        invPanel.add(exit);
 
         scrollPane = new JScrollPane(invPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -104,13 +94,7 @@ public class UiStock {
         for (SuperObjet item : machine.getStock().getInv()) {
             invPanel.add(createRow(item));
         }
-        JButton exit = new JButton("exit");
-        exit.addActionListener(l -> {
-            Ui.gameState = Ui.playState;
-            this.setVisible(false);
-        });
-        exit.setAlignmentX(JButton.CENTER_ALIGNMENT); // Centre le bouton horizontalement
-        invPanel.add(exit);
+
         invPanel.revalidate();
         invPanel.repaint();
     }

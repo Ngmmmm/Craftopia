@@ -1,5 +1,7 @@
 package main;
 
+import javax.swing.JLayeredPane;
+
 import item.machines.Usine;
 import item.marche.Marche;
 import item.ressources.Bois;
@@ -46,8 +48,8 @@ public class AssetSetter {
         GamePanel.obj.add(new Usine());
         Usine usine = (Usine) GamePanel.obj.get(4);
         
-        gp.add(usine.uiRecette.getMainPanel());
-        gp.add(usine.uiStock.getMainPanel());
+        gp.layeredPane.add(usine.uiUsine.getMainPanel(),JLayeredPane.PALETTE_LAYER);
+        
         GamePanel.obj.get(4).pos.x = 27 * gp.TAILLE_BLOC;
         GamePanel.obj.get(4).pos.y = 25 * gp.TAILLE_BLOC;
 
