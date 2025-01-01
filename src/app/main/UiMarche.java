@@ -106,15 +106,15 @@ public class UiMarche extends Ui {
      * @param button Le bouton à redimensionner
      * @param icon   L'icône à redimensionner
      */
-    private void resizeButtonImages(JButton button, Icon icon) {
-        int buttonWidth = button.getWidth();
-        int buttonHeight = button.getHeight();
+    // private void resizeButtonImages(JButton button, Icon icon) {
+    //     int buttonWidth = button.getWidth();
+    //     int buttonHeight = button.getHeight();
 
-        // Redimensionner l'icône en fonction de la taille du bouton
-        ImageIcon resizedIcon = new ImageIcon(((ImageIcon) icon).getImage().getScaledInstance(buttonWidth, buttonHeight,
-                java.awt.Image.SCALE_SMOOTH));
-        button.setIcon(resizedIcon);
-    }
+    //     // Redimensionner l'icône en fonction de la taille du bouton
+    //     ImageIcon resizedIcon = new ImageIcon(((ImageIcon) icon).getImage().getScaledInstance(buttonWidth, buttonHeight,
+    //             java.awt.Image.SCALE_SMOOTH));
+    //     button.setIcon(resizedIcon);
+    // }
 
     public void resizeContent() {
         // TODO : Réajuster la position des composants par rapport à la taille de la

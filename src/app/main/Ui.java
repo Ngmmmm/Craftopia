@@ -3,6 +3,10 @@ package main;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
 /**
  * La classe `Ui` gère l'affichage et la gestion des boutons du Menu du jeu.
  * Elle est responsable de la création, l'affichage et l'ajustement des boutons
@@ -65,7 +69,15 @@ public class Ui {
         this.menuPanel = new UiMenuBar(gamePanel);
         this.inventairePanel = new UiInventaire(gamePanel);
         this.marchePanel = new UiMarche(gamePanel);
-        
+
+    }
+
+    protected void resizeButtonImages(JButton button, Icon icon) {
+        int buttonWidth = button.getWidth();
+        int buttonHeight = button.getHeight();
+        ImageIcon resizedIcon = new ImageIcon(((ImageIcon) icon).getImage().getScaledInstance(
+                buttonWidth, buttonHeight, java.awt.Image.SCALE_SMOOTH));
+        button.setIcon(resizedIcon);
     }
 
     public void draw(Graphics g) {
@@ -149,7 +161,7 @@ public class Ui {
                 marchePanel.setVisible(true);
 
             } else if (gameState == craftState) {
-                
+
             }
         }
         System.out.println(gameState);

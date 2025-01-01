@@ -125,15 +125,15 @@ public class UiTitleScreen extends Ui {
      * @param button Le bouton à redimensionner
      * @param icon   L'icône à redimensionner
      */
-    private void resizeButtonImages(JButton button, Icon icon) {
-        int buttonWidth = button.getWidth();
-        int buttonHeight = button.getHeight();
+    // private void resizeButtonImages(JButton button, Icon icon) {
+    //     int buttonWidth = button.getWidth();
+    //     int buttonHeight = button.getHeight();
 
-        // Redimensionner l'icône en fonction de la taille du bouton
-        ImageIcon resizedIcon = new ImageIcon(((ImageIcon) icon).getImage().getScaledInstance(buttonWidth, buttonHeight,
-                java.awt.Image.SCALE_SMOOTH));
-        button.setIcon(resizedIcon);
-    }
+    //     // Redimensionner l'icône en fonction de la taille du bouton
+    //     ImageIcon resizedIcon = new ImageIcon(((ImageIcon) icon).getImage().getScaledInstance(buttonWidth, buttonHeight,
+    //             java.awt.Image.SCALE_SMOOTH));
+    //     button.setIcon(resizedIcon);
+    // }
 
     /**
      * Redimensionne les boutons en fonction des nouveaux facteurs de mise à

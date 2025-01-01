@@ -118,7 +118,7 @@ public class UiMenuBar extends Ui {
         invButton.addActionListener(l -> {
             menuBar.setVisible(false);
             gameState = inventaireState;
-            // gamePanel.requestFocusInWindow(); // Refocus game panel for keyboard input
+            
         });
 
         backToMenuButton.addActionListener(l -> {
@@ -126,27 +126,21 @@ public class UiMenuBar extends Ui {
             super.titleScreen.backToMenu();
             super.initButtonGame = false;
             menuBar.setVisible(false);
-            // gamePanel.requestFocusInWindow(); // Refocus game panel for keyboard input
+            
         });
 
         setButton.addActionListener(l -> {
             gameState = settingsState;
             menuBar.setVisible(false);
-            // gamePanel.requestFocusInWindow(); // Refocus game panel for keyboard input
+            
         });
     }
 
     public void resizeButtons() {
-        configureButtonBounds(); // Reapply bounds and resize images
+        configureButtonBounds(); 
     }
 
-    private void resizeButtonImages(JButton button, Icon icon) {
-        int buttonWidth = button.getWidth();
-        int buttonHeight = button.getHeight();
-        ImageIcon resizedIcon = new ImageIcon(((ImageIcon) icon).getImage().getScaledInstance(
-                buttonWidth, buttonHeight, java.awt.Image.SCALE_SMOOTH));
-        button.setIcon(resizedIcon);
-    }
+    
     
 
     public void setVisible(boolean visible) {
