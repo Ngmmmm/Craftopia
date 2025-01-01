@@ -8,7 +8,7 @@ import item.ressources.Ressource;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-public class Recolteuse extends Machine implements MachineBehavior {
+public class Recolteuse extends Machine {
 
     public Recolteuse() {
         name = "Récolteuse";

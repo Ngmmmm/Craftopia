@@ -112,7 +112,16 @@ public class Ui {
             titleScreen.backToMenu();
 
         } else {
+            // MENU
+            if (!initButtonGame) {
+                menuPanel.initButton();
+                menuPanel.resizeButtons();
+                initButtonGame = true;
 
+            }
+
+            menuPanel.menuBar.setBounds(0, 0, gamePanel.getWidth(), 30); // Adjust width to gamePanel's width
+            menuPanel.setVisible(true);
             // MAP
             gamePanel.tileM.draw(g2, scaleX, scaleY);
             // Ressource
@@ -133,15 +142,7 @@ public class Ui {
 
             // UI
             if (gameState == playState) {
-                if (!initButtonGame) {
-                    menuPanel.initButton();
-                    menuPanel.resizeButtons();
-                    initButtonGame = true;
-
-                }
-
-                menuPanel.menuBar.setBounds(0, 0, gamePanel.getWidth(), 30); // Adjust width to gamePanel's width
-                menuPanel.setVisible(true);
+                
 
             } else if (gameState == inventaireState) {
 

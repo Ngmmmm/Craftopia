@@ -91,31 +91,28 @@ public class UiInteract extends Ui {
             itemButton.setVisible(false);
 
             Usine usine = (Usine) item;
-
             int width = gamePanel.getWidth();
             int height = gamePanel.getHeight();
 
-            int scrollWidth = width / 3;
-            int scrollHeight = height / 2;
-            int scrollX = (width - 2 * scrollWidth) / 3;
-            int scrollY = (height - scrollHeight) / 2;
+            int scrollWidth = (int) (width * 0.9); // Increase width to cover almost the entire screen
+            int scrollHeight = height / 2; // Increase height to cover almost the entire screen
+            int scrollX = (width - scrollWidth) / 2; // Center horizontally
+            int scrollY = (height - scrollHeight) / 2; // Center vertically
 
             usine.uiUsine.setVisible(true);
             usine.uiUsine.setBoundsInside(scrollX, scrollY, scrollWidth, scrollHeight);
-            usine.uiUsine.setBounds(scrollX, scrollY, scrollWidth * 2, scrollHeight);
-
+            usine.uiUsine.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
 
             gamePanel.addComponentListener(new java.awt.event.ComponentAdapter() {
                 public void componentResized(java.awt.event.ComponentEvent evt) {
                     int newWidth = gamePanel.getWidth();
                     int newHeight = gamePanel.getHeight();
 
-                    int newScrollWidth = newWidth / 3;
-                    int newScrollHeight = newHeight / 2;
-                    int newScrollX = (newWidth - 2 * newScrollWidth) / 3;
-                    int newScrollY = (newHeight - newScrollHeight) / 2;
+                    int newScrollWidth = (int) (newWidth * 0.9); // Increase width to cover almost the entire screen
+                    int newScrollHeight = newHeight / 2; // Increase height to cover almost the entire screen
+                    int newScrollX = (newWidth - newScrollWidth) / 2; // Center horizontally
+                    int newScrollY = (newHeight - newScrollHeight) / 2; // Center vertically
 
-                    
                     usine.uiUsine.setBounds(newScrollX, newScrollY, newScrollWidth, newScrollHeight);
                     usine.uiUsine.setBoundsInside(newScrollX, newScrollY, newScrollWidth, newScrollHeight);
                 }

@@ -5,6 +5,7 @@ import item.bag.Inventaire;
 import item.bag.InventaireMachine;
 import item.marche.Marche.Produits;
 import item.recettes.Recette;
+import item.recettes.RecetteArc;
 import item.recettes.RecetteBlocPierre;
 import item.ressources.Ressource;
 import main.UiUsine;
@@ -12,7 +13,7 @@ import main.UiUsine;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-public class Usine extends Machine implements MachineBehavior {
+public class Usine extends Machine {
 
     public Recette recetteAct;
     // public UiRecette uiRecette;
@@ -25,7 +26,7 @@ public class Usine extends Machine implements MachineBehavior {
     public Usine() {
         name = "Usine";
         this.stock = new InventaireMachine(this);
-        recetteAct = new RecetteBlocPierre();// TODO : UI pour définir la recette
+        recetteAct = new RecetteArc();// TODO : UI pour définir la recette
         prix = Argent.getPrice(Produits.USINE);
 
         uiUsine = new UiUsine(this);
