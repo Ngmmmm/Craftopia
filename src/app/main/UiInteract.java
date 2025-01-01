@@ -91,25 +91,26 @@ public class UiInteract extends Ui {
 
             Usine usine = (Usine) item;
             usine.ui.setVisible(true);
+
             int width = gamePanel.getWidth();
             int height = gamePanel.getHeight();
 
             int scrollWidth = width / 2;
             int scrollHeight = height / 2;
-            int scrollX = (width - scrollWidth) / 2;
+            int scrollX = 20;
             int scrollY = (height - scrollHeight) / 2;
             gamePanel.addComponentListener(new java.awt.event.ComponentAdapter() {
                 public void componentResized(java.awt.event.ComponentEvent evt) {
-                    int newWidth = gamePanel.getWidth();
+                    // int newWidth = gamePanel.getWidth();
                     int newHeight = gamePanel.getHeight();
 
-                    int newScrollWidth = newWidth / 2;
-                    int newScrollHeight = newHeight / 2;
-                    int newScrollX = (newWidth - newScrollWidth) / 2;
+                    int newScrollWidth = scrollWidth;
+                    int newScrollHeight = scrollHeight;
+                    int newScrollX = scrollX * 10;
                     int newScrollY = (newHeight - newScrollHeight) / 2;
                     usine.ui.mainPanel.setBounds(newScrollX, newScrollY, newScrollWidth, newScrollHeight);
                 }
-                
+
             });
             usine.ui.mainPanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
         });
