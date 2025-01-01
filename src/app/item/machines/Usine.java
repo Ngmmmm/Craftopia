@@ -30,7 +30,7 @@ public class Usine extends Machine implements MachineBehavior {
 
         uiUsine = new UiUsine(this);
         id = idCounter++;
-        
+
         try {
             File f1 = new File("./img/machines/usine.png");
             image = ImageIO.read(f1);
@@ -41,14 +41,15 @@ public class Usine extends Machine implements MachineBehavior {
     }
 
     public void addFromPlayer(Ressource r) {
-        Inventaire.addToAvatarInv(r, 1);
+        stock.add(r, 1);
         Inventaire.removeFromAvatarInv(r, 1);
+
     }
 
     @Override
     public void backToPlayer(Ressource r) {
         Inventaire.addToAvatarInv(r, 1);
-        Inventaire.removeFromAvatarInv(r, 1);
+        stock.remove(r, 1);
     }
 
     public void setRecetteAct(Recette act) {

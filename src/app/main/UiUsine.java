@@ -1,10 +1,7 @@
 package main;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -38,15 +35,13 @@ public class UiUsine {
         mainPanel.setVisible(false);
     }
 
-    public void setUsinePanel() {
-        // Cette méthode ne nécessite pas de modification grâce à la structure existante
-    }
+    
 
     public void setBoundsInside(int x, int y, int width, int height) {
         // Calcule la largeur des sous-panels pour qu'ils soient égaux
         int halfWidth = width / 2;
         uiRecette.getMainPanel().setBounds(x, y, halfWidth, height);
-        uiStock.getMainPanel().setBounds(x + halfWidth, y, halfWidth, height);
+        uiStock.getMainPanel().setBounds(x, y, halfWidth, height);
     }
 
     public void setBounds(int x, int y, int width, int height) {
@@ -64,6 +59,6 @@ public class UiUsine {
     }
 
     public void updateInventory() {
-        uiStock.updateInventory();
+        // uiStock.updateInventory();
     }
 }

@@ -1,106 +1,92 @@
 package main;
 
-import item.machines.Machine;
-import item.sprites.SuperObjet;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
+
+import item.bag.InventaireMachine;
+import item.machines.Machine;
+import item.ressources.Ressource;
 
 public class UiStock {
-
-    private JScrollPane scrollPane;
     private Machine machine;
-    JPanel mainPanel;
+    private InventaireMachine stock;
+
+    private JPanel mainPanel;
+    private JScrollPane stockPanel;
 
     public UiStock(Machine machine) {
         this.machine = machine;
+        this.stock = machine.stock;
+
+        createStockContent();
 
         mainPanel = new JPanel();
-        mainPanel.setLayout(new GridBagLayout()); // Utilisation de GridBagLayout pour le positionnement
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
-        // Panneau principal pour le JScrollPane
-        JPanel invPanel = new JPanel();
-        invPanel.setLayout(new BoxLayout(invPanel, BoxLayout.Y_AXIS)); // Empile verticalement
-
-        // Ajoute des lignes au panneau principal (chaque ligne contient IMG, Nom)
-        for (SuperObjet item : machine.getStock().getInv()) {
-            invPanel.add(createRow(item));
-        }
-
-        scrollPane = new JScrollPane(invPanel);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-
-        // Positionne le JScrollPane dans le panneau principal
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.insets = new Insets(10, 10, 10, 10);
-        mainPanel.add(scrollPane, gbc);
+        mainPanel.add(stockPanel);
 
     }
 
-    private JPanel createRow(SuperObjet item) {
-        JPanel rowPanel = new JPanel();
-        rowPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // Aligne les éléments à gauche
+    private void createStockContent() {
+        stockPanel = new JScrollPane(createLigneRecette());
+        stockPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        stockPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+    }
 
-        // Dimensions dynamiques en fonction de la largeur du panneau
-        int panelWidth = mainPanel.getWidth();
-        int rowHeight = 50;
+    private JPanel createLigneRecette() {
+        JPanel stockContent = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-        // Label pour la quantité
-        JLabel nbLabel = new JLabel("x" + machine.getStock().getQuantity(item));
-        nbLabel.setPreferredSize(new Dimension(panelWidth / 6, rowHeight));
-        rowPanel.add(nbLabel);
+        for (int i = 0; i < stock.getInv().size(); i++) {
+            Ressource ressource = (Ressource) stock.getInv().get(i);
 
-        // Image de l'objet
-        ImageIcon image = new ImageIcon(item.getImage());
-        JLabel imageLabel = new JLabel();
-        imageLabel.setIcon(image);
-        imageLabel.setPreferredSize(new Dimension(panelWidth / 6, rowHeight));
-        imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        rowPanel.add(imageLabel);
+            // Quantité
+            JLabel quantity = new JLabel(ressource.getQuantity() + "");
 
-        // Nom de l'objet
-        JLabel nameLabel = new JLabel(item.getName());
-        nameLabel.setPreferredSize(new Dimension(panelWidth / 2, rowHeight));
-        rowPanel.add(nameLabel);
+            // Image redimensionnée
+            ImageIcon img = resizeIcon(new ImageIcon(ressource.getImage()), 30, 30);
+            JLabel imgLabel = new JLabel(img);
 
-        return rowPanel;
+            stockContent.add(quantity);
+            stockContent.add(imgLabel);
+
+            // Bouton addButton redimensionné
+            ImageIcon btnAddImg = resizeIcon(new ImageIcon("./img/boutons/AddButton.png"), 80, 40);
+            JButton addButton = new JButton(btnAddImg);
+            addButton.setPreferredSize(new Dimension(80, 40));
+            addButton.setBorderPainted(false);
+            addButton.setFocusPainted(false);
+            addButton.setContentAreaFilled(false);
+
+            addButton.addActionListener(l -> {
+                machine.backToPlayer(ressource);
+                ;
+            });
+
+            stockContent.add(addButton);
+
+        }
+
+        return stockContent;
     }
 
     public JPanel getMainPanel() {
         return mainPanel;
     }
 
-    public void updateInventory() {
-        rebuildInventoryPanel();
-    }
-
-    private void rebuildInventoryPanel() {
-        JPanel invPanel = (JPanel) scrollPane.getViewport().getView();
-        invPanel.removeAll();
-        for (SuperObjet item : machine.getStock().getInv()) {
-            invPanel.add(createRow(item));
-        }
-
-        invPanel.revalidate();
-        invPanel.repaint();
-    }
-
     public void setVisible(boolean visible) {
         mainPanel.setVisible(visible);
+    }
+
+    private ImageIcon resizeIcon(ImageIcon icon, int width, int height) {
+        if (icon == null)
+            return null;
+        return new ImageIcon(icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH));
     }
 
     public void setBounds(int x, int y, int width, int height) {

@@ -4,7 +4,7 @@ import item.bag.InventaireMachine;
 import item.ressources.Ressource;
 import item.sprites.SuperObjet;
 
-public abstract class Machine extends SuperObjet {
+public abstract class Machine extends SuperObjet implements MachineBehavior {
     public InventaireMachine stock;
     public Ressource res;
     public String etat;

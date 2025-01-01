@@ -100,7 +100,6 @@ public class UiInteract extends Ui {
             int scrollX = (width - 2 * scrollWidth) / 3;
             int scrollY = (height - scrollHeight) / 2;
 
-            usine.uiUsine.setUsinePanel();
             usine.uiUsine.setVisible(true);
             usine.uiUsine.setBoundsInside(scrollX, scrollY, scrollWidth, scrollHeight);
             usine.uiUsine.setBounds(scrollX, scrollY, scrollWidth * 2, scrollHeight);

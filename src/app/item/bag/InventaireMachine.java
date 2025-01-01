@@ -3,6 +3,7 @@ package item.bag;
 import java.util.ArrayList;
 
 import item.machines.Machine;
+import item.ressources.Feuille;
 import item.sprites.SuperObjet;
 
 public class InventaireMachine extends Inventaire {
@@ -11,6 +12,7 @@ public class InventaireMachine extends Inventaire {
     public InventaireMachine(Machine machine) {
 
         invObject = new ArrayList<SuperObjet>();
+        invObject.add(new Feuille());
     }
 
     public ArrayList<SuperObjet> getInv() {
