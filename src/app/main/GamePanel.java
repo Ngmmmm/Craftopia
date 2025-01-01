@@ -57,6 +57,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyH); // Ajouter le gestionnaire de clavier
         this.setFocusable(true); // Permettre au panneau de capturer les événements clavier
         this.setLayout(new BorderLayout());
+
         ui.initializeComponents(); // Initialize components after GamePanel is fully configured
     }
 
@@ -66,6 +67,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setupGame() {
         aSetter.setAllItems();
         Ui.gameState = Ui.TITLE_STATE; // Définit l'état du jeu à l'écran de titre
+        
     }
 
     /**

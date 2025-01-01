@@ -123,8 +123,6 @@ public class UiMenuBar extends Ui {
 
         backToMenuButton.addActionListener(l -> {
             gameState = TITLE_STATE;
-            super.titleScreen.backToMenu();
-            super.initButtonGame = false;
             menuBar.setVisible(false);
 
         });
