@@ -1,7 +1,10 @@
 package main;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,22 +43,28 @@ public class UiStock {
     }
 
     private JPanel createLigneRecette() {
-        JPanel stockContent = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel stockContent = new JPanel();
+        stockContent.setLayout(new BoxLayout(stockContent, BoxLayout.Y_AXIS)); // Organisation verticale
 
         for (int i = 0; i < stock.getInv().size(); i++) {
             Ressource ressource = (Ressource) stock.getInv().get(i);
 
-            // Quantité
-            JLabel quantity = new JLabel(ressource.getQuantity() + "");
+            // Créer un sous-panel pour chaque ressource
+            JPanel ligne = new JPanel(new BorderLayout());
+            ligne.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Espacement autour
 
-            // Image redimensionnée
+            // Quantité et image
+            JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 5)); // Espacement horizontal et vertical
+            JLabel quantity = new JLabel(ressource.getQuantity() + "");
             ImageIcon img = resizeIcon(new ImageIcon(ressource.getImage()), 30, 30);
             JLabel imgLabel = new JLabel(img);
+            JLabel name = new JLabel(ressource.getName());
 
-            stockContent.add(quantity);
-            stockContent.add(imgLabel);
+            leftPanel.add(quantity);
+            leftPanel.add(imgLabel);
+            leftPanel.add(name);
 
-            // Bouton addButton redimensionné
+            // Bouton addButton
             ImageIcon btnAddImg = resizeIcon(new ImageIcon("./img/boutons/AddButton.png"), 80, 40);
             JButton addButton = new JButton(btnAddImg);
             addButton.setPreferredSize(new Dimension(80, 40));
@@ -65,11 +74,18 @@ public class UiStock {
 
             addButton.addActionListener(l -> {
                 machine.backToPlayer(ressource);
-                ;
             });
 
-            stockContent.add(addButton);
+            // Ajouter le bouton dans un panel intermédiaire pour alignement
+            JPanel rightPanel = new JPanel(new BorderLayout());
+            rightPanel.add(addButton, BorderLayout.NORTH); // Alignement en haut
 
+            // Ajouter les composants au sous-panel
+            ligne.add(leftPanel, BorderLayout.WEST);
+            ligne.add(rightPanel, BorderLayout.EAST);
+
+            // Ajouter le sous-panel au panel principal
+            stockContent.add(ligne);
         }
 
         return stockContent;

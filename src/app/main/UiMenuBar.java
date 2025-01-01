@@ -117,6 +117,7 @@ public class UiMenuBar extends Ui {
         invButton.addActionListener(l -> {
             menuBar.setVisible(false);
             gameState = inventaireState;
+            gamePanel.ui.inventairePanel.updateInventory();
 
         });
 

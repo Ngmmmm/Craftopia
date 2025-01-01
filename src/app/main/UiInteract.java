@@ -113,8 +113,8 @@ public class UiInteract extends Ui {
                     int newScrollX = (newWidth - newScrollWidth) / 2; // Center horizontally
                     int newScrollY = (newHeight - newScrollHeight) / 2; // Center vertically
 
-                    usine.uiUsine.setBounds(newScrollX, newScrollY, newScrollWidth, newScrollHeight);
-                    usine.uiUsine.setBoundsInside(newScrollX, newScrollY, newScrollWidth, newScrollHeight);
+                    usine.uiUsine.setBounds(newScrollX, newScrollY, scrollWidth, scrollHeight);
+                    usine.uiUsine.setBoundsInside(newScrollX, newScrollY, scrollWidth, scrollHeight);
                 }
             });
 
@@ -127,7 +127,6 @@ public class UiInteract extends Ui {
             GamePanel.obj.get(index).setInvisible(gamePanel); // Permet de faire disparaître l'objet de la carte
             itemButton.setVisible(false);
             resetButton();
-            gamePanel.ui.inventairePanel.updateInventory();
 
         });
     }
