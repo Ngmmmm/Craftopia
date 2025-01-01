@@ -2,6 +2,8 @@ package main;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,14 +16,12 @@ import item.recettes.Recette;
 import item.ressources.Ressource;
 
 public class UiUsine {
-    private Usine usine;
     private Recette recette;
 
     JPanel mainPanel;
     private JScrollPane recettePanel;
 
     public UiUsine(Usine usine) {
-        this.usine = usine;
         this.recette = usine.recetteAct;
 
         createRecetteContent();
@@ -41,6 +41,14 @@ public class UiUsine {
         });
 
         mainPanel.add(exit);
+
+        // Ajoutez un ComponentListener pour écouter les événements de redimensionnement
+        mainPanel.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                adjustComponentSizes();
+            }
+        });
     }
 
     private void createRecetteContent() {
@@ -59,7 +67,7 @@ public class UiUsine {
             JLabel quantity = new JLabel(ressource.getQuantity() + "");
 
             // Image redimensionnée
-            ImageIcon img = resizeIcon(new ImageIcon(ressource.getImage()), 50, 50);
+            ImageIcon img = resizeIcon(new ImageIcon(ressource.getImage()), 30, 30);
             JLabel imgLabel = new JLabel(img);
 
             recetteContent.add(quantity);
@@ -74,7 +82,7 @@ public class UiUsine {
         }
 
         // Résultat de la recette
-        ImageIcon resultat = resizeIcon(new ImageIcon(recette.getRessource().getImage()), 50, 50);
+        ImageIcon resultat = resizeIcon(new ImageIcon(recette.getRessource().getImage()), 30, 30);
         JLabel quantity = new JLabel(recette.getRessource().getQuantity() + "");
         JLabel imgLabel = new JLabel(resultat);
 
@@ -85,9 +93,9 @@ public class UiUsine {
         JLabel recetteName = new JLabel(recette.getRessource().getName());
 
         // Bouton build redimensionné
-        ImageIcon btnBuild = resizeIcon(new ImageIcon("./img/boutons/BuildButton.png"), 100, 50);
+        ImageIcon btnBuild = resizeIcon(new ImageIcon("./img/boutons/BuildButton.png"), 80, 40);
         JButton build = new JButton(btnBuild);
-        build.setPreferredSize(new Dimension(100, 50));
+        build.setPreferredSize(new Dimension(80, 40));
         build.setBorderPainted(false);
         build.setFocusPainted(false);
         build.setContentAreaFilled(false);
@@ -96,6 +104,35 @@ public class UiUsine {
         recetteContent.add(build);
 
         return recetteContent;
+    }
+
+    private void adjustComponentSizes() {
+        int panelWidth = mainPanel.getWidth();
+        int rowHeight = 40;
+
+        JPanel recetteContent = (JPanel) recettePanel.getViewport().getView();
+        for (int i = 0; i < recetteContent.getComponentCount(); i++) {
+            if (recetteContent.getComponent(i) instanceof JPanel) {
+                JPanel rowPanel = (JPanel) recetteContent.getComponent(i);
+                for (int j = 0; j < rowPanel.getComponentCount(); j++) {
+                    if (rowPanel.getComponent(j) instanceof JLabel) {
+                        JLabel label = (JLabel) rowPanel.getComponent(j);
+                        if (j == 0) { // quantity
+                            label.setPreferredSize(new Dimension(panelWidth / 8, rowHeight));
+                        } else if (j == 1) { // imgLabel
+                            label.setPreferredSize(new Dimension(panelWidth / 8, rowHeight));
+                        } else if (j == 2) { // recetteName
+                            label.setPreferredSize(new Dimension(panelWidth / 2, rowHeight));
+                        }
+                    } else if (rowPanel.getComponent(j) instanceof JButton) {
+                        JButton button = (JButton) rowPanel.getComponent(j);
+                        button.setPreferredSize(new Dimension(panelWidth / 8, rowHeight));
+                    }
+                }
+                rowPanel.revalidate();
+                rowPanel.repaint();
+            }
+        }
     }
 
     public JPanel getMainPanel() {

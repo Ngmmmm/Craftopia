@@ -3,7 +3,6 @@ package main;
 import item.machines.Recolteuse;
 import item.machines.Usine;
 import item.sprites.SuperObjet;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -89,7 +88,7 @@ public class UiInteract extends Ui {
         itemButton.addActionListener(l -> {
             gameState = craftState;
             itemButton.setVisible(false);
-            
+
             Usine usine = (Usine) item;
             usine.ui.setVisible(true);
             int width = gamePanel.getWidth();
@@ -99,7 +98,19 @@ public class UiInteract extends Ui {
             int scrollHeight = height / 2;
             int scrollX = (width - scrollWidth) / 2;
             int scrollY = (height - scrollHeight) / 2;
+            gamePanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+                public void componentResized(java.awt.event.ComponentEvent evt) {
+                    int newWidth = gamePanel.getWidth();
+                    int newHeight = gamePanel.getHeight();
 
+                    int newScrollWidth = newWidth / 2;
+                    int newScrollHeight = newHeight / 2;
+                    int newScrollX = (newWidth - newScrollWidth) / 2;
+                    int newScrollY = (newHeight - newScrollHeight) / 2;
+                    usine.ui.mainPanel.setBounds(newScrollX, newScrollY, newScrollWidth, newScrollHeight);
+                }
+                
+            });
             usine.ui.mainPanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
         });
     }
@@ -131,12 +142,13 @@ public class UiInteract extends Ui {
     }
 
     // private void resizeButtonImages(JButton button, Icon icon) {
-    //     int buttonWidth = button.getWidth();
-    //     int buttonHeight = button.getHeight();
+    // int buttonWidth = button.getWidth();
+    // int buttonHeight = button.getHeight();
 
-    //     // Redimensionner l'icône en fonction de la taille du bouton
-    //     ImageIcon resizedIcon = new ImageIcon(((ImageIcon) icon).getImage().getScaledInstance(
-    //             buttonWidth, buttonHeight, java.awt.Image.SCALE_SMOOTH));
-    //     button.setIcon(resizedIcon);
+    // // Redimensionner l'icône en fonction de la taille du bouton
+    // ImageIcon resizedIcon = new ImageIcon(((ImageIcon)
+    // icon).getImage().getScaledInstance(
+    // buttonWidth, buttonHeight, java.awt.Image.SCALE_SMOOTH));
+    // button.setIcon(resizedIcon);
     // }
 }
