@@ -1,5 +1,6 @@
 package main;
 
+import item.bag.Inventaire;
 import item.machines.Recolteuse;
 import item.machines.Usine;
 import item.sprites.SuperObjet;
@@ -118,7 +119,7 @@ public class UiInteract extends Ui {
 
     private void setDefaultAction(SuperObjet item, int index) {
         itemButton.addActionListener(l -> {
-            gamePanel.avatar.inv.add(item, 1);
+            Inventaire.addToAvatarInv(item, 1);
             GamePanel.obj.get(index).setInvisible(gamePanel); // Permet de faire disparaître l'objet de la carte
             itemButton.setVisible(false);
             resetButton();

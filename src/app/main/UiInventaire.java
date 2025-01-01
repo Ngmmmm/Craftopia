@@ -24,7 +24,7 @@ public class UiInventaire extends Ui {
 
     public UiInventaire(GamePanel gamePanel) {
         super(gamePanel);
-        inventoryItems = Inventaire.getInv();
+        inventoryItems = Inventaire.getInvAvatar();
 
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout()); // Utilisation de GridBagLayout pour le positionnement
@@ -73,7 +73,7 @@ public class UiInventaire extends Ui {
         int rowHeight = 50;
 
         // Label pour la quantité
-        JLabel nbLabel = new JLabel("x" + Inventaire.getQuantity(item));
+        JLabel nbLabel = new JLabel("x" + Inventaire.getQuantityFromAvatarInv(item));
         nbLabel.setPreferredSize(new Dimension(panelWidth / 6, rowHeight));
         rowPanel.add(nbLabel);
 
@@ -98,7 +98,7 @@ public class UiInventaire extends Ui {
     }
 
     public void updateInventory() {
-        inventoryItems = Inventaire.getInv();
+        inventoryItems = Inventaire.getInvAvatar();
         rebuildInventoryPanel();
     }
 

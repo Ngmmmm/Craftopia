@@ -4,7 +4,7 @@ import item.bag.Argent;
 import item.bag.Inventaire;
 import item.marche.Marche.Produits;
 import item.recettes.Recette;
-import item.recettes.RecetteArc;
+import item.recettes.RecetteBlocPierre;
 import item.ressources.Ressource;
 import item.sprites.Avatar;
 import main.UiUsine;
@@ -14,7 +14,6 @@ import javax.imageio.ImageIO;
 
 public class Usine extends Machine implements MachineBehavior {
 
-    public Inventaire inventaireAvatar;
     public Recette recetteAct;
     public UiUsine ui;
     private int idCounter = 1;
@@ -23,9 +22,8 @@ public class Usine extends Machine implements MachineBehavior {
 
     public Usine() {
         name = "Usine";
-        inventaireAvatar = new Inventaire();
         stock = new Inventaire();
-        recetteAct = new RecetteArc();// TODO : UI pour définir la recette
+        recetteAct = new RecetteBlocPierre();// TODO : UI pour définir la recette
         prix = Argent.getPrice(Produits.USINE);
         ui = new UiUsine(this);
         id = idCounter++;
@@ -39,14 +37,14 @@ public class Usine extends Machine implements MachineBehavior {
     }
 
     public void addFromPlayer(Avatar player, Ressource r) {
-        inventaireAvatar.add(r, 1);
+        Inventaire.addToAvatarInv(r, 1);
         player.inv.remove(r, 1);
     }
 
     @Override
     public void backToPlayer(Avatar player, Ressource r) {
         player.inv.add(r, 1);
-        inventaireAvatar.remove(r, 1);
+        Inventaire.removeFromAvatarInv(r, 1);
     }
 
     public void setRecetteAct(Recette act) {
@@ -54,16 +52,20 @@ public class Usine extends Machine implements MachineBehavior {
     }
 
     public boolean isPossible() {
-        return recetteAct.isPossible(inventaireAvatar);
+        return recetteAct.isPossible(Inventaire.getInvAvatar());
     }
 
     public void createRessource() {
         if (isPossible()) {
+            System.out.println("Création de la ressource");
             stock.add(recetteAct.getRessource(), 1);
             for (int i = 0; i < recetteAct.getIngredients().length; i++) {
-                inventaireAvatar.remove(recetteAct.getIngredients()[i], 1);
+                Inventaire.removeFromAvatarInv(recetteAct.getIngredients()[i], 1);
             }
+        } else {
+            System.out.println("Recette impossible");
         }
+        System.out.println("Réssource créée");
     }
 
 }

@@ -16,12 +16,14 @@ import item.recettes.Recette;
 import item.ressources.Ressource;
 
 public class UiUsine {
+    private Usine usine;
     private Recette recette;
 
     JPanel mainPanel;
     private JScrollPane recettePanel;
 
     public UiUsine(Usine usine) {
+        this.usine = usine;
         this.recette = usine.recetteAct;
 
         createRecetteContent();
@@ -99,6 +101,10 @@ public class UiUsine {
         build.setBorderPainted(false);
         build.setFocusPainted(false);
         build.setContentAreaFilled(false);
+        
+        build.addActionListener(l -> {
+            usine.createRessource();
+        });
 
         recetteContent.add(recetteName);
         recetteContent.add(build);

@@ -67,20 +67,18 @@ public abstract class Recette {
         }
     }
 
-    public boolean isPossible(Inventaire inv) {
-        int sizeRecette = ingredients.length;
-        int act = 0;
-
-        for (SuperObjet r : ingredients) {
-            for (int i = 0; i < Inventaire.inv.size() - 1; i++) {
-                if (Inventaire.inv.get(i).name.equals(r.name)) {
-                    if (Inventaire.inv.get(i).quantity == r.quantity) {
-                        act++;
+    public boolean isPossible(ArrayList<SuperObjet> inv) {
+        for (SuperObjet ressource : ingredients) {
+            for (int i = 0; i < inv.size(); i++) {
+                Ressource ressInv = (Ressource) inv.get(i);
+                if (ressInv.name.equals(ressource.name)) {
+                    if (ressInv.getQuantity() != ressource.quantity) {
+                        return false;
                     }
                 }
             }
         }
-        return sizeRecette == act;
+        return true;
     }
 
     public static ArrayList<Recette> getRecettes() {
