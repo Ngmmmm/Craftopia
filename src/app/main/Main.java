@@ -1,7 +1,6 @@
 package main;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
@@ -9,8 +8,6 @@ import java.awt.event.ComponentEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 /**
  * La classe Main sert de point d'entrée au jeu Craftopia.
@@ -29,10 +26,7 @@ import javax.swing.JScrollPane;
 public class Main extends JFrame { // Définition de la classe principale qui étend JFrame
 
     // Déclaration des panneaux
-    private JPanel menuBar;
-    JScrollPane invPanel, marchePanel;
     GamePanel ecranDuJeu;
-    UiMarche uiMarche;
 
     /**
      * Constructeur de la classe Main.
@@ -54,46 +48,21 @@ public class Main extends JFrame { // Définition de la classe principale qui é
         ImageIcon logo = new ImageIcon("img/CraftopiaLogo.jpeg");
         setIconImage(logo.getImage());
 
-        // Initialisation des panneaux
-        menuBar = new JPanel();
-
-        UiInventaire uiInventaire = new UiInventaire();
-        invPanel = uiInventaire.getScrollPane();
-
-        UiMarche uiMarche = new UiMarche();
-
-        marchePanel = uiMarche.getScrollPane();
-
-        // Création d'une nouvelle instance de GamePanel
-        ecranDuJeu = new GamePanel(menuBar, invPanel, marchePanel);
-
-        // Configuration du menuBar
-        menuBar.setBackground(Color.GRAY);
-        menuBar.setLayout(null);
-        menuBar.setPreferredSize(new Dimension(30, 30));
-
-        // Configuration du invPanel
-        invPanel.setBackground(Color.BLUE);
-
-        // Configuration du marchePanel
-
         // Création et configuration du JLayeredPane
         JLayeredPane layeredPane = new JLayeredPane();
+        // Création d'une nouvelle instance de GamePanel
+        ecranDuJeu = new GamePanel(layeredPane);
+
+        
         layeredPane.setLayout(null); // Utilisation d'un layout null pour un positionnement absolu
 
         // Ajout des panneaux au JLayeredPane avec des priorités
-        menuBar.setBounds(0, 0, 768, 30);
-        invPanel.setBounds(60, 60, getWidth() / 2, getHeight() / 2);
-        marchePanel.setBounds(60, 60, getWidth() / 2, getHeight() / 2);
-        ecranDuJeu.setBounds(0, 0, 768, 576);
+        int width = getWidth();
+        int height = getHeight();
+
+        ecranDuJeu.setBounds(0, 0, width, height);
 
         layeredPane.add(ecranDuJeu, JLayeredPane.DEFAULT_LAYER);
-        layeredPane.add(menuBar, JLayeredPane.PALETTE_LAYER);
-        layeredPane.add(invPanel, JLayeredPane.MODAL_LAYER);
-        layeredPane.add(marchePanel, JLayeredPane.MODAL_LAYER);
-
-        invPanel.setVisible(false);
-        marchePanel.setVisible(false);
 
         // Ajout du JLayeredPane au conteneur principal
         Container pane = getContentPane();
@@ -117,18 +86,8 @@ public class Main extends JFrame { // Définition de la classe principale qui é
                 int width = getWidth();
                 int height = getHeight();
 
-                menuBar.setBounds(0, 0, width, 30);
-
-                int scrollWidth = width / 2;
-                int scrollHeight = height / 2;
-                int scrollX = (width - scrollWidth) / 2;
-                int scrollY = (height - scrollHeight) / 2;
-
-                invPanel.setBounds(scrollX,scrollY, scrollWidth,scrollHeight);
-                marchePanel.setBounds(scrollX,scrollY, scrollWidth,scrollHeight);
-
                 ecranDuJeu.setBounds(0, 0, width, height);
-                
+
             }
         });
 

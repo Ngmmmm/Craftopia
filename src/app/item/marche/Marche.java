@@ -1,11 +1,7 @@
 package item.marche;
 
-import java.io.File;
-import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-
 import item.bag.Argent;
+import item.bag.Inventaire;
 import item.machines.Recolteuse;
 import item.machines.RecolteuseFragile;
 import item.machines.RecolteusePolyvalente;
@@ -16,19 +12,25 @@ import item.machines.UsineFragile;
 import item.machines.UsinePolyvalente;
 import item.machines.UsineRapide;
 import item.machines.UsineXL;
+import item.ressources.Arc;
 import item.ressources.BlocPierre;
 import item.ressources.Bois;
+import item.ressources.BouleFeuille;
+import item.ressources.Epee;
 import item.ressources.Fer;
 import item.ressources.Feuille;
+import item.ressources.Hache;
 import item.ressources.Pierre;
 import item.ressources.Pioche;
-import item.sprites.Avatar;
 import item.sprites.SuperObjet;
+import java.io.File;
+import java.util.ArrayList;
+import javax.imageio.ImageIO;
 
 public class Marche extends SuperObjet {
 
     public Marche() {
-        name = "Marché";
+        name = "Marche";
         @SuppressWarnings("unused")
         final int quantity = 1; // Dans la version de base du jeu, il n'y a qu'un seul marché
         try {
@@ -41,11 +43,15 @@ public class Marche extends SuperObjet {
 
     public static enum Produits {
         FEUILLE,
+        BOULE_FEUILLE,
         BOIS,
         PIERRE,
         FER,
         BLOC_PIERRE,
         PIOCHE,
+        ARC,
+        EPEE,
+        HACHE,
         USINE_FRAGILE,
         USINE,
         USINE_RAPIDE,
@@ -56,19 +62,20 @@ public class Marche extends SuperObjet {
         RECOLTEUSE_RAPIDE,
         RECOLTEUSE_XL,
         RECOLTEUSE_POLYVALENTE,
+
     }
 
-    public void buy(Avatar avatar, Produits produit) {
+    public static void buy(Produits produit, int quantity) {
         // Définir les coûts des produits
         int prix = Argent.getPrice(produit);
 
         // Vérifier si le joueur a suffisamment d'argent
         if (Argent.getMonnaiePlayer() >= prix) {
             // Réduire l'argent du joueur
-            Argent.decreaseMoney(prix);
+            Argent.decreaseMoney(prix * quantity);
 
             // Ajouter le produit à l'inventaire du joueur
-            avatar.inv.add(getProduit(produit), 1);
+            Inventaire.addToAvatarInv(getProduit(produit), quantity);
 
             System.out.println("Vous avez acheté : " + produit);
         } else {
@@ -76,15 +83,15 @@ public class Marche extends SuperObjet {
         }
     }
 
-    public void sell(Avatar avatar, Produits produit) {
+    public static void sell(Produits produit, int quantity) {
         // Définir les coûts des produits
         int prix = Argent.getPrice(produit);
 
         // Augmenter l'argent du joueur
-        Argent.increaseMoney(prix);
+        Argent.increaseMoney(prix*quantity);
 
         // Retirer le produit de l'inventaire du joueur
-        avatar.inv.remove(getProduit(produit), 1);
+        Inventaire.removeFromAvatarInv(getProduit(produit), quantity);
 
         System.out.println("Vous avez vendu : " + produit);
     }
@@ -107,7 +114,6 @@ public class Marche extends SuperObjet {
                 return new UsineFragile();
             case USINE:
                 return new Usine();
-
             case USINE_RAPIDE:
                 return new UsineRapide();
             case USINE_XL:
@@ -124,6 +130,14 @@ public class Marche extends SuperObjet {
                 return new RecolteuseXL();
             case RECOLTEUSE_POLYVALENTE:
                 return new RecolteusePolyvalente();
+            case BOULE_FEUILLE:
+                return new BouleFeuille();
+            case ARC:
+                return new Arc();
+            case EPEE:
+                return new Epee();
+            case HACHE:
+                return new Hache();
             default:
                 throw new IllegalArgumentException("Produit inconnu : " + produit);
         }

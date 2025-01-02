@@ -14,16 +14,24 @@ public class Argent {
         switch (produit) {
             case FEUILLE:
                 return 1; // Produit très commun
+            case BOULE_FEUILLE:
+                return 2; // Assemblage de feuilles, légèrement plus cher
             case BOIS:
-                return 2; // Un peu plus utile que la feuille
+                return 3; // Un peu plus utile que la feuille
             case PIERRE:
-                return 3; // Plus solide, donc un peu plus cher
+                return 4; // Plus solide, donc un peu plus cher
             case FER:
-                return 5; // Plus rare et utilisé pour des objets avancés
+                return 6; // Plus rare et utilisé pour des objets avancés
             case BLOC_PIERRE:
-                return 6; // Assemblage de pierres, donc légèrement plus cher
+                return 8; // Assemblage de pierres, donc légèrement plus cher
             case PIOCHE:
-                return 8; // Outil utile, mais abordable
+                return 10; // Outil utile, mais abordable
+            case ARC:
+                return 12; // Arme à distance, prix moyen
+            case EPEE:
+                return 15; // Arme de mêlée, prix moyen
+            case HACHE:
+                return 10; // Outil de coupe, prix abordable
 
             // Usines
             case USINE_FRAGILE:

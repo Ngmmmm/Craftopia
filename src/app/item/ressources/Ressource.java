@@ -4,7 +4,7 @@ import item.sprites.SuperObjet;
 
 public abstract class Ressource extends SuperObjet {
 
-    private int quantity;
+    private int quantity = 1;
     public int prix;
     public int time;
     public boolean isItem = true;
@@ -13,14 +13,7 @@ public abstract class Ressource extends SuperObjet {
         return name;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
+    @Override
     public int getPrix() {
         return prix;
     }
