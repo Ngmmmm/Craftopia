@@ -71,10 +71,15 @@ public final class Avatar extends Sprite {
      * et sa direction initiale.
      */
     public void setValeurParDefaut() {
-        mapPoint.x = gp.tileM.spawnPoint.getX(); // Position initiale sur l'axe X
-        mapPoint.y = gp.tileM.spawnPoint.getY(); // Position initiale sur l'axe Y
+        setSpawnPoint(); // Position initiale
+
         this.speed = 4; // Vitesse de déplacement de l'avatar
         direction = "down"; // Direction initiale
+    }
+
+    public void setSpawnPoint() {
+        mapPoint.x = gp.tileM.spawnPoint.getX(); // Position initiale sur l'axe X
+        mapPoint.y = gp.tileM.spawnPoint.getY(); // Position initiale sur l'axe Y
     }
 
     /**

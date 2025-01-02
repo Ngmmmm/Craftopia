@@ -93,11 +93,10 @@ public class UiTitleScreen extends Ui {
 
         // Action pour le bouton "Exit"
         exitButton.addActionListener(l -> {
+            gamePanel.saveEtatMap.saveEtatMap();
+            gamePanel.saveInvAvatar.saveInvAvatar();
             System.exit(0);
-            startButton.setVisible(false);
-            continueButton.setVisible(false);
-            settingsButton.setVisible(false);
-            exitButton.setVisible(false);
+
         });
 
         // Empêcher les boutons d'être sélectionnables (pour une meilleure apparence)
@@ -126,13 +125,14 @@ public class UiTitleScreen extends Ui {
      * @param icon   L'icône à redimensionner
      */
     // private void resizeButtonImages(JButton button, Icon icon) {
-    //     int buttonWidth = button.getWidth();
-    //     int buttonHeight = button.getHeight();
+    // int buttonWidth = button.getWidth();
+    // int buttonHeight = button.getHeight();
 
-    //     // Redimensionner l'icône en fonction de la taille du bouton
-    //     ImageIcon resizedIcon = new ImageIcon(((ImageIcon) icon).getImage().getScaledInstance(buttonWidth, buttonHeight,
-    //             java.awt.Image.SCALE_SMOOTH));
-    //     button.setIcon(resizedIcon);
+    // // Redimensionner l'icône en fonction de la taille du bouton
+    // ImageIcon resizedIcon = new ImageIcon(((ImageIcon)
+    // icon).getImage().getScaledInstance(buttonWidth, buttonHeight,
+    // java.awt.Image.SCALE_SMOOTH));
+    // button.setIcon(resizedIcon);
     // }
 
     /**

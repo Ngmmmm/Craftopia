@@ -95,15 +95,11 @@ public class Ui {
 
         // TITLESCREEN
         if (gameState == TITLE_STATE) {
+            
+            gamePanel.avatar.setValeurParDefaut();
             if (!initButton) {
                 initButton = titleScreen.initButtons();
             }
-            // ? Pourquoi cette vérification est-elle nécessaire ?
-            // if (scaleXAct != scaleX || scaleYAct != scaleY) {
-            // ui.resizeButtons(scaleX, scaleY);
-            // scaleXAct = scaleX;
-            // scaleYAct = scaleY;
-            // }
             titleScreen.resizeButtons(scaleX, scaleY);
             scaleXAct = scaleX;
             scaleYAct = scaleY;
