@@ -1,5 +1,6 @@
 package main;
 
+import item.bag.Argent;
 import item.sprites.Avatar;
 import item.sprites.SuperObjet;
 import java.awt.BorderLayout; // Importation pour définir les dimensions des composants
@@ -10,7 +11,8 @@ import java.util.ArrayList; // Importation de JPanel pour créer le panneau de j
 
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-
+import save.SaveEtatMap;
+import save.SaveInvAvatar;
 import tile.TileManager;
 
 // La classe GamePanel hérite de JPanel et implémente Runnable pour le fonctionnement via un thread
@@ -31,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     int FPS = 60; // Images par seconde pour maintenir la fluidité du jeu
 
-    TileManager tileM = new TileManager(this); // Gestionnaire des blocs (tiles) pour dessiner la carte
+    public TileManager tileM = new TileManager(this); // Gestionnaire des blocs (tiles) pour dessiner la carte
     KeyHandler keyH = new KeyHandler(this); // Gestionnaire des touches clavier
     Thread gameThread; // Thread du jeu, pour exécuter le jeu en parallèle
     public CheckCollision collision = new CheckCollision(this); // Gestionnaire des collisions
@@ -40,8 +42,14 @@ public class GamePanel extends JPanel implements Runnable {
 
     public Ui ui = new Ui(this); // Gestionnaire de l'interface utilisateur
 
+    public SaveInvAvatar saveInvAvatar = new SaveInvAvatar(this);
+    public SaveEtatMap saveEtatMap = new SaveEtatMap(this);
+
     public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
     public static ArrayList<SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
+
+    static boolean editMarche = true;
+    static boolean editInv = true;
 
     public JLayeredPane layeredPane; // Panneau en couches pour superposer les éléments du jeu
 

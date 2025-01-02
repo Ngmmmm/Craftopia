@@ -11,10 +11,11 @@ import javax.imageio.ImageIO;
 public class Recolteuse extends Machine {
 
     public Recolteuse() {
-        name = "Récolteuse";
+        name = "Recolteuse";
         this.stock = new InventaireMachine(this);
         this.stock.add(res, 0);
         prix = Argent.getPrice(Produits.RECOLTEUSE);
+        produit = Produits.RECOLTEUSE;
         try {
             File f1 = new File("./img/machines/recolteuse.png");
             image = ImageIO.read(f1);

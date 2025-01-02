@@ -160,6 +160,7 @@ public class Ui {
             } else if (gameState == shopState) {
                 marchePanel.mainPanel.setBounds(60, 60, gamePanel.getWidth() / 2, gamePanel.getHeight() / 2);
                 marchePanel.setVisible(true);
+               
 
             } else if (gameState == craftState) {
 

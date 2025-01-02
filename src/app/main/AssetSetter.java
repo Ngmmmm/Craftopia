@@ -21,7 +21,7 @@ public class AssetSetter {
         setRessource();
         setMachine();
         setMarche();
-
+        //gp.saveEtatMap.LoadEtatMap();
     }
 
     public void setRessource() {

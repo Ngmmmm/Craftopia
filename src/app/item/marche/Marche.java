@@ -1,10 +1,5 @@
 package item.marche;
 
-import java.io.File;
-import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-
 import item.bag.Argent;
 import item.bag.Inventaire;
 import item.machines.Recolteuse;
@@ -27,13 +22,15 @@ import item.ressources.Feuille;
 import item.ressources.Hache;
 import item.ressources.Pierre;
 import item.ressources.Pioche;
-import item.sprites.Avatar;
 import item.sprites.SuperObjet;
+import java.io.File;
+import java.util.ArrayList;
+import javax.imageio.ImageIO;
 
 public class Marche extends SuperObjet {
 
     public Marche() {
-        name = "Marché";
+        name = "Marche";
         @SuppressWarnings("unused")
         final int quantity = 1; // Dans la version de base du jeu, il n'y a qu'un seul marché
         try {
@@ -68,17 +65,17 @@ public class Marche extends SuperObjet {
 
     }
 
-    public void buy(Avatar avatar, Produits produit) {
+    public static void buy(Produits produit, int quantity) {
         // Définir les coûts des produits
         int prix = Argent.getPrice(produit);
 
         // Vérifier si le joueur a suffisamment d'argent
         if (Argent.getMonnaiePlayer() >= prix) {
             // Réduire l'argent du joueur
-            Argent.decreaseMoney(prix);
+            Argent.decreaseMoney(prix * quantity);
 
             // Ajouter le produit à l'inventaire du joueur
-            Inventaire.addToAvatarInv(getProduit(produit), 1);
+            Inventaire.addToAvatarInv(getProduit(produit), quantity);
 
             System.out.println("Vous avez acheté : " + produit);
         } else {
@@ -86,15 +83,15 @@ public class Marche extends SuperObjet {
         }
     }
 
-    public void sell(Avatar avatar, Produits produit) {
+    public static void sell(Produits produit, int quantity) {
         // Définir les coûts des produits
         int prix = Argent.getPrice(produit);
 
         // Augmenter l'argent du joueur
-        Argent.increaseMoney(prix);
+        Argent.increaseMoney(prix*quantity);
 
         // Retirer le produit de l'inventaire du joueur
-        Inventaire.removeFromAvatarInv(getProduit(produit), 1);
+        Inventaire.removeFromAvatarInv(getProduit(produit), quantity);
 
         System.out.println("Vous avez vendu : " + produit);
     }

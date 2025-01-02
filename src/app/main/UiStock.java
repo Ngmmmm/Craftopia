@@ -74,6 +74,7 @@ public class UiStock {
 
             addButton.addActionListener(l -> {
                 machine.backToPlayer(ressource);
+                rebuildInventoryPanel();
             });
 
             // Ajouter le bouton dans un panel intermédiaire pour alignement
@@ -107,5 +108,10 @@ public class UiStock {
 
     public void setBounds(int x, int y, int width, int height) {
         mainPanel.setBounds(x, y, width, height);
+    }
+
+    // TODO: Implementer cette méthode
+    public void rebuildInventoryPanel() {
+       
     }
 }

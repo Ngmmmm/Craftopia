@@ -26,9 +26,10 @@ public class Usine extends Machine {
     public Usine() {
         name = "Usine";
         this.stock = new InventaireMachine(this);
+        
         recetteAct = new RecetteArc();// TODO : UI pour définir la recette
         prix = Argent.getPrice(Produits.USINE);
-
+        produit = Produits.USINE;
         uiUsine = new UiUsine(this);
         id = idCounter++;
 

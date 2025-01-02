@@ -40,7 +40,7 @@ public final class Avatar extends Sprite {
     public static int argent = Argent.getMonnaiePlayer(); // Argent du joueur
     public final int screenX; // Position de l'avatar au centre de l'écran sur l'axe X
     public final int screenY; // Position de l'avatar au centre de l'écran sur l'axe Y
-    public final Inventaire inv;
+    public static final Inventaire inv = new Inventaire();
     public int lastRessourceIndex = 999;
 
     /**
@@ -58,7 +58,6 @@ public final class Avatar extends Sprite {
                                                                            // (X)
         this.screenY = (this.gp.HAUTEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran
                                                                            // (Y)
-        this.inv = new Inventaire();
 
         solidArea = new Rectangle(8, 16, 32, 32); // Définit la zone de collision de l'avatar
         solidAreaDefaultX = solidArea.x;
@@ -72,8 +71,8 @@ public final class Avatar extends Sprite {
      * et sa direction initiale.
      */
     public void setValeurParDefaut() {
-        mapPoint.x = gp.TAILLE_BLOC * 29; // Position initiale sur l'axe X
-        mapPoint.y = gp.TAILLE_BLOC * 26; // Position initiale sur l'axe Y
+        mapPoint.x = gp.tileM.spawnPoint.getX(); // Position initiale sur l'axe X
+        mapPoint.y = gp.tileM.spawnPoint.getY(); // Position initiale sur l'axe Y
         this.speed = 4; // Vitesse de déplacement de l'avatar
         direction = "down"; // Direction initiale
     }
@@ -109,7 +108,7 @@ public final class Avatar extends Sprite {
         return argent;
     }
 
-    public Inventaire getInv() {
+    public static Inventaire getInv() {
         return inv;
     }
 

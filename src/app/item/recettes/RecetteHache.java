@@ -8,6 +8,7 @@ import item.ressources.Ressource;
 public class RecetteHache extends Recette {
 
     public RecetteHache() {
+        this.nom = "Hache";
         this.ingredients = new Ressource[2];
         this.ingredients[0] = new Bois();
         this.ingredients[0].setQuantity(2);

@@ -47,4 +47,16 @@ public class Inventaire {
         }
         return 0;
     }
+
+    public static boolean isIn(SuperObjet item) {
+        if (item == null) {
+            return false;
+        }
+        for (int i = 0; i < invAvatar.size(); i++) {
+            if (invAvatar.get(i).getName().equals(item.name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

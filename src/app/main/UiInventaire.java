@@ -86,6 +86,9 @@ public class UiInventaire extends Ui {
         JLabel nameLabel = new JLabel(item.getName());
         nameLabel.setPreferredSize(new Dimension(panelWidth / 2, rowHeight));
         rowPanel.add(nameLabel);
+        
+
+    
 
         return rowPanel;
     }

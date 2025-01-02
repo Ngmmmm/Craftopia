@@ -7,7 +7,7 @@ import item.ressources.Ressource;
 public class RecetteBlocPierre extends Recette {
 
     public RecetteBlocPierre() {
-        this.nom = "Bloc de Pierre";
+        this.nom = "BlocPierre";
         this.ingredients = new Ressource[1];
         this.ingredients[0] = new Pierre();
         this.ingredients[0].setQuantity(4);

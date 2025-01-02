@@ -10,8 +10,9 @@ import item.marche.Marche.Produits;
 public class Hache extends Ressource {
 
     public Hache() {
-        name = "Hâche";
+        name = "Hache";
         prix = Argent.getPrice(Produits.HACHE);
+        produit = Produits.HACHE;
         try {
             File f1 = new File("./img/ressources/axe.png");
             image = ImageIO.read(f1);

@@ -1,19 +1,20 @@
 package item.machines;
 
-import java.io.File;
-
-import javax.imageio.ImageIO;
+import item.bag.Argent;
 import item.bag.Inventaire;
 import item.bag.InventaireMachine;
-import item.bag.Argent;
 import item.marche.Marche.Produits;
 import item.ressources.Ressource;
+import java.io.File;
+import javax.imageio.ImageIO;
 
 public class RecolteuseFragile extends Recolteuse {
 
     public RecolteuseFragile() {
-        this.name = "Récolteuse fragile";
+        this.name = "RecolteuseFragile";
         this.stock = new InventaireMachine(this);
+        produit = Produits.RECOLTEUSE_FRAGILE;
+        prix = Argent.getPrice(produit);
         this.stock.add(res, 0);
         this.prix = Argent.getPrice(Produits.RECOLTEUSE_FRAGILE);
         try {

@@ -8,6 +8,7 @@ import item.ressources.Ressource;
 public class RecetteEpee extends Recette {
 
     public RecetteEpee() {
+        this.nom = "Epee";
         this.ingredients = new Ressource[2];
         this.ingredients[0] = new Bois();
         this.ingredients[0].setQuantity(2);

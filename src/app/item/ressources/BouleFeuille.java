@@ -9,6 +9,7 @@ public class BouleFeuille extends Ressource {
     public BouleFeuille() {
         name = "Boule de Feuille";
         prix = Argent.getPrice(Produits.BOULE_FEUILLE);
+        produit = Produits.BOULE_FEUILLE;
         try {
             File f1 = new File("./img/ressources/leafBall.png");
             image = ImageIO.read(f1);
