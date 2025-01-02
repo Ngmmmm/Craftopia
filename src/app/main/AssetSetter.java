@@ -21,7 +21,8 @@ public class AssetSetter {
         setRessource();
         setMachine();
         setMarche();
-        //gp.saveEtatMap.LoadEtatMap();
+        // gp.saveEtatMap.loadEtatMap();
+        gp.saveInvAvatar.loadInvAvatar();
     }
 
     public void setRessource() {

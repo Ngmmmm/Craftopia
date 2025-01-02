@@ -1,2 +1,6 @@
+Feuille 23.0 25.0
+Bois 24.0 25.0
+Pierre 25.0 25.0
+Fer 26.0 25.0
 Usine 27.0 25.0
 Marche 28.0 25.0

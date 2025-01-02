@@ -1,3 +1,4 @@
+Fer 2
 Pierre 4
-Bois 3
-Feuille 2
+Bois 4
+Feuille 3
