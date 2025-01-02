@@ -1,24 +1,36 @@
 package item.marche;
 
-import java.io.File;
-import javax.imageio.ImageIO;
-
 import item.bag.Argent;
+import item.bag.Inventaire;
 import item.machines.Recolteuse;
+import item.machines.RecolteuseFragile;
+import item.machines.RecolteusePolyvalente;
+import item.machines.RecolteuseRapide;
+import item.machines.RecolteuseXL;
 import item.machines.Usine;
+import item.machines.UsineFragile;
+import item.machines.UsinePolyvalente;
+import item.machines.UsineRapide;
+import item.machines.UsineXL;
+import item.ressources.Arc;
 import item.ressources.BlocPierre;
 import item.ressources.Bois;
+import item.ressources.BouleFeuille;
+import item.ressources.Epee;
 import item.ressources.Fer;
 import item.ressources.Feuille;
+import item.ressources.Hache;
 import item.ressources.Pierre;
 import item.ressources.Pioche;
-import item.sprites.Avatar;
 import item.sprites.SuperObjet;
+import java.io.File;
+import java.util.ArrayList;
+import javax.imageio.ImageIO;
 
 public class Marche extends SuperObjet {
 
     public Marche() {
-        name = "marché";
+        name = "Marche";
         @SuppressWarnings("unused")
         final int quantity = 1; // Dans la version de base du jeu, il n'y a qu'un seul marché
         try {
@@ -31,11 +43,15 @@ public class Marche extends SuperObjet {
 
     public static enum Produits {
         FEUILLE,
+        BOULE_FEUILLE,
         BOIS,
         PIERRE,
         FER,
         BLOC_PIERRE,
         PIOCHE,
+        ARC,
+        EPEE,
+        HACHE,
         USINE_FRAGILE,
         USINE,
         USINE_RAPIDE,
@@ -46,19 +62,20 @@ public class Marche extends SuperObjet {
         RECOLTEUSE_RAPIDE,
         RECOLTEUSE_XL,
         RECOLTEUSE_POLYVALENTE,
+
     }
 
-    public void buy(Avatar avatar, Produits produit) {
+    public static void buy(Produits produit, int quantity) {
         // Définir les coûts des produits
         int prix = Argent.getPrice(produit);
 
         // Vérifier si le joueur a suffisamment d'argent
         if (Argent.getMonnaiePlayer() >= prix) {
             // Réduire l'argent du joueur
-            Argent.decreaseMoney(prix);
+            Argent.decreaseMoney(prix * quantity);
 
             // Ajouter le produit à l'inventaire du joueur
-            avatar.inv.add(getProduit(produit), 1);
+            Inventaire.addToAvatarInv(getProduit(produit), quantity);
 
             System.out.println("Vous avez acheté : " + produit);
         } else {
@@ -66,16 +83,16 @@ public class Marche extends SuperObjet {
         }
     }
 
-    public void sell(Avatar avatar, Produits produit) {
+    public static void sell(Produits produit, int quantity) {
         // Définir les coûts des produits
         int prix = Argent.getPrice(produit);
 
         // Augmenter l'argent du joueur
-        Argent.increaseMoney(prix);
+        Argent.increaseMoney(prix*quantity);
 
         // Retirer le produit de l'inventaire du joueur
-        avatar.inv.remove(getProduit(produit), 1);
-        
+        Inventaire.removeFromAvatarInv(getProduit(produit), quantity);
+
         System.out.println("Vous avez vendu : " + produit);
     }
 
@@ -94,31 +111,44 @@ public class Marche extends SuperObjet {
             case PIOCHE:
                 return new Pioche();
             case USINE_FRAGILE:
-                return null;
+                return new UsineFragile();
             case USINE:
                 return new Usine();
-            // TODO: Créer dans le package machine les autres types d'usines
-            // case USINE_RAPIDE:
-            // return null;
-            // case USINE_XL:
-            // return null;
-            // case USINE_POLYVALENTE:
-            // return null;
-            // case RECOLTEUSE_FRAGILE:
-            // return null;
+            case USINE_RAPIDE:
+                return new UsineRapide();
+            case USINE_XL:
+                return new UsineXL();
+            case USINE_POLYVALENTE:
+                return new UsinePolyvalente();
+            case RECOLTEUSE_FRAGILE:
+                return new RecolteuseFragile();
             case RECOLTEUSE:
                 return new Recolteuse();
-
-            // TODO: Créer dans le package machine les autres types de récolteuses
-            // case RECOLTEUSE_RAPIDE:
-            // return null;
-            // case RECOLTEUSE_XL:
-            // return null;
-            // case RECOLTEUSE_POLYVALENTE:
-            // return null;
+            case RECOLTEUSE_RAPIDE:
+                return new RecolteuseRapide();
+            case RECOLTEUSE_XL:
+                return new RecolteuseXL();
+            case RECOLTEUSE_POLYVALENTE:
+                return new RecolteusePolyvalente();
+            case BOULE_FEUILLE:
+                return new BouleFeuille();
+            case ARC:
+                return new Arc();
+            case EPEE:
+                return new Epee();
+            case HACHE:
+                return new Hache();
             default:
                 throw new IllegalArgumentException("Produit inconnu : " + produit);
         }
+    }
+
+    public static ArrayList<SuperObjet> getList() {
+        ArrayList<SuperObjet> produits = new ArrayList<>();
+        for (Produits produit : Produits.values()) {
+            produits.add(getProduit(produit));
+        }
+        return produits;
     }
 
 }

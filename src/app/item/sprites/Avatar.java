@@ -3,6 +3,7 @@ package item.sprites;
 import item.bag.Argent; // Permet de dessiner l'avatar avec une qualité graphique
 import item.bag.Inventaire; // Définit l'aire solide pour la détection des collisions
 import java.awt.Graphics2D; // Optimise le rendu graphique
+import java.awt.Point;
 import java.awt.Rectangle; // Stocke les images de l'avatar
 import java.awt.RenderingHints; // Gère les fichiers d'images
 import java.awt.image.BufferedImage; // Gère les exceptions liées aux fichiers
@@ -11,6 +12,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import main.GamePanel; // Importation du panneau principal du jeu
 import main.KeyHandler; // Gère les entrées clavier du joueur
+import main.Ui;
 
 /**
  * La classe Avatar représente le personnage contrôlé par le joueur dans le jeu.
@@ -30,15 +32,15 @@ import main.KeyHandler; // Gère les entrées clavier du joueur
  * </p>
  * 
  * @author Ouahid Houat
- * @version 1.0
+ * @version 2.0
  */
-public final class Avatar extends Sprite{
+public final class Avatar extends Sprite {
     GamePanel gp; // Fenêtre du jeu
     KeyHandler keyH; // Entrées clavier du joueur
     public static int argent = Argent.getMonnaiePlayer(); // Argent du joueur
     public final int screenX; // Position de l'avatar au centre de l'écran sur l'axe X
     public final int screenY; // Position de l'avatar au centre de l'écran sur l'axe Y
-    public final Inventaire inv;
+    public static final Inventaire inv = new Inventaire();
     public int lastRessourceIndex = 999;
 
     /**
@@ -52,9 +54,10 @@ public final class Avatar extends Sprite{
     public Avatar(GamePanel gp, KeyHandler keyH) {
         this.gp = gp; // Initialisation du panneau de jeu
         this.keyH = keyH; // Initialisation du gestionnaire des entrées clavier
-        this.screenX = (this.gp.LARGEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran (X)
-        this.screenY = (this.gp.HAUTEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran (Y)
-        this.inv = new Inventaire();
+        this.screenX = (this.gp.LARGEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran
+                                                                           // (X)
+        this.screenY = (this.gp.HAUTEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran
+                                                                           // (Y)
 
         solidArea = new Rectangle(8, 16, 32, 32); // Définit la zone de collision de l'avatar
         solidAreaDefaultX = solidArea.x;
@@ -68,8 +71,8 @@ public final class Avatar extends Sprite{
      * et sa direction initiale.
      */
     public void setValeurParDefaut() {
-        mapPoint.x = gp.TAILLE_BLOC * 29; // Position initiale sur l'axe X
-        mapPoint.y = gp.TAILLE_BLOC * 26; // Position initiale sur l'axe Y
+        mapPoint.x = gp.tileM.spawnPoint.getX(); // Position initiale sur l'axe X
+        mapPoint.y = gp.tileM.spawnPoint.getY(); // Position initiale sur l'axe Y
         this.speed = 4; // Vitesse de déplacement de l'avatar
         direction = "down"; // Direction initiale
     }
@@ -101,15 +104,24 @@ public final class Avatar extends Sprite{
         }
     }
 
+    public static int getArgent() {
+        return argent;
+    }
+
+    public static Inventaire getInv() {
+        return inv;
+    }
+
     /**
      * Met à jour l'état de l'avatar, incluant son mouvement, son animation,
      * et la gestion des collisions.
      */
-    public void update() {
+    public void update(int gameState) {
         boolean immobile = false; // Variable pour gérer l'immobilité
 
         // Vérifie les entrées clavier pour détecter un mouvement
-        if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
+        if ((keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed)
+                && gameState == Ui.playState) {
 
             // Détermine la direction en fonction de la touche pressée
             if (keyH.upPressed) {
@@ -141,10 +153,10 @@ public final class Avatar extends Sprite{
 
         // Vérifie les collisions avec les objets sur la map
         int ressourceIndex = gp.collision.collisionItem(this, true);
-        if(ressourceIndex != 999){
+        if (ressourceIndex != 999) {
             pickUpItem(ressourceIndex);
-        }else{
-            gp.itemManager.resetButton();
+        } else {
+            gp.ui.itemManager.resetButton();
             lastRessourceIndex = 999;
         }
         // Si aucune collision et que l'avatar est mobile, met à jour la position
@@ -161,10 +173,10 @@ public final class Avatar extends Sprite{
     }
 
     // TODO: la méthode qui permet de ramasser un item
-    public void pickUpItem(int index){
+    public void pickUpItem(int index) {
         if (index != lastRessourceIndex) {
             lastRessourceIndex = index;
-            gp.itemManager.initButton(gp.LARGEUR_ECRAN/2 ,gp.HAUTEUR_ECRAN/2, gp.obj.get(index), index);
+            gp.ui.itemManager.initButton(gp.LARGEUR_ECRAN / 2, gp.HAUTEUR_ECRAN / 2, GamePanel.obj.get(index), index);
         }
     }
 
@@ -217,6 +229,11 @@ public final class Avatar extends Sprite{
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         // Dessine l'image sélectionnée
-        g2.drawImage(image, (int)(screenX*scaleX), (int)(screenY*scaleY), (int)(gp.TAILLE_BLOC*scaleX),(int) (gp.TAILLE_BLOC*scaleY), null);
+        g2.drawImage(image, (int) (screenX * scaleX), (int) (screenY * scaleY), (int) (gp.TAILLE_BLOC * scaleX),
+                (int) (gp.TAILLE_BLOC * scaleY), null);
+    }
+
+    public Point getPosition() {
+        return mapPoint;
     }
 }

@@ -26,7 +26,7 @@ public class TileManager {
     GamePanel gp; // Référence au panneau de jeu principal
     public Tile[] tile; // Tableau contenant les différents blocs
     public int[][] mapTileNum; // Tableau 2D représentant la carte des blocs
-
+    public Point spawnPoint = new Point();
     /**
      * Constructeur de la classe TileManager.
      * Initialise le tableau des blocs et charge la disposition des blocs depuis
@@ -78,6 +78,9 @@ public class TileManager {
             tile[4].collision = true;
             tile[4].isOccupied = true; // Empêche de pouvoir poser un objet sur le bloc
 
+            tile[5] = new Tile();
+            tile[5].image = ImageIO.read(new File("./img/tiles/grass.png"));
+
             // Chargement des blocs supplémentaires
             // tile[5] = new Tile();
             // tile[5].image = ImageIO.read(new File("./img//.png"));
@@ -105,7 +108,7 @@ public class TileManager {
             tile[10].collision = true;
 
             tile[11] = new Tile();
-            tile[11].image = ImageIO.read(new File("./img/tiles/EmptyTile.png"));
+            tile[11].image = ImageIO.read(new File("./img/tiles/grass.png"));
 
             tile[12] = new Tile();
             tile[12].image = ImageIO.read(new File("./img/tiles/Flowers.png"));
@@ -139,10 +142,15 @@ public class TileManager {
 
             while (col < gp.NB_COLONNE_MAP_MAX && ligne < gp.NB_LIGNE_MAP_MAX) {
                 String line = reader.readLine();
+                
 
                 while (col < gp.NB_COLONNE_MAP_MAX) {
                     String[] numbers = line.split(" "); // Découpe la ligne en nombres
                     int num = Integer.parseInt(numbers[col]); // Convertit en entier
+                    if(num == 5){
+                        spawnPoint.setX(col * gp.TAILLE_BLOC);
+                        spawnPoint.setY(ligne * gp.TAILLE_BLOC);
+                    }
                     mapTileNum[col][ligne] = num; // Affecte à la carte
                     col++;
                 }
@@ -200,4 +208,6 @@ public class TileManager {
             }
         }
     }
+
+
 }

@@ -1,36 +1,103 @@
 package item.recettes;
 
-import item.bag.Inventaire;
+import java.util.ArrayList;
+
+import item.ressources.Bois;
+import item.ressources.Fer;
+import item.ressources.Feuille;
+import item.ressources.Pierre;
 import item.ressources.Ressource;
 import item.sprites.SuperObjet;
 
-public class Recette {
-    private String nom;
-    private Ressource[] ingredients;
-    private Ressource ress;
-    private int time;
+public abstract class Recette {
+    protected String nom;
+    protected Ressource[] ingredients;
+    protected Ressource ress;
+    protected int time;
 
-    public boolean isPossible(Inventaire inv){
-        int sizeRecette = ingredients.length;
-        int act = 0;
-
-        for (SuperObjet r : ingredients) {
-            for(int i = 0; i< inv.inv.size()-1; i++){
-                if (inv.inv.get(i).getItem().name.equals(r.name)){
-                    if(inv.inv.get(i).getItem().quantity == r.quantity){
-                        act++;
-                    }
-                }
-            }
-        }
-        return sizeRecette == act;
+    public static enum Livre {
+        BOULE_FEUILLE,
+        BLOC_PIERRE,
+        PIOCHE,
+        ARC,
+        EPEE,
+        HACHE,
     }
 
-    public Ressource getRessource(){
+    public static enum Ingredient {
+        FEUILLE,
+        BOIS,
+        PIERRE,
+        FER,
+    }
+
+    private static Recette getRecette(Livre recette) {
+        switch (recette) {
+
+            case BLOC_PIERRE:
+                return new RecetteBlocPierre();
+            case PIOCHE:
+                return new RecettePioche();
+            case BOULE_FEUILLE:
+                return new RecetteBouleFeuille();
+            case ARC:
+                return new RecetteArc();
+            case EPEE:
+                return new RecetteEpee();
+            case HACHE:
+                return new RecetteHache();
+            default:
+                throw new IllegalArgumentException("Recette inconnu : " + recette);
+        }
+    }
+
+    private static SuperObjet getIngredients(Ingredient ingredient) {
+        switch (ingredient) {
+            case FEUILLE:
+                return new Feuille();
+            case BOIS:
+                return new Bois();
+            case PIERRE:
+                return new Pierre();
+            case FER:
+                return new Fer();
+            default:
+                throw new IllegalArgumentException("Ingrédient inconnu : " + ingredient);
+        }
+    }
+
+    public boolean isPossible(ArrayList<SuperObjet> inv) {
+        for (Ressource ingredient : ingredients) {
+            boolean found = false;
+            for (SuperObjet obj : inv) {
+                if (obj.getClass().equals(ingredient.getClass()) && obj.quantity >= ingredient.getQuantity()) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static ArrayList<Recette> getRecettes() {
+        ArrayList<Recette> recettes = new ArrayList<>();
+        recettes.add(getRecette(Livre.BLOC_PIERRE));
+        recettes.add(getRecette(Livre.PIOCHE));
+        recettes.add(getRecette(Livre.BOULE_FEUILLE));
+        recettes.add(getRecette(Livre.ARC));
+        recettes.add(getRecette(Livre.EPEE));
+        recettes.add(getRecette(Livre.HACHE));
+        return recettes;
+    }
+
+    public Ressource getRessource() {
         return this.ress;
     }
 
-    public Ressource[] getTabRessource(){
+    public Ressource[] getIngredients() {
         return this.ingredients;
     }
 }

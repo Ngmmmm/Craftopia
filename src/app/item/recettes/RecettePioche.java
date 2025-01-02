@@ -5,13 +5,9 @@ import item.ressources.Fer;
 import item.ressources.Pioche;
 import item.ressources.Ressource;
 
-public class RecettePioche extends Recette{
+public class RecettePioche extends Recette {
 
-    private String nom;
-    private Ressource[] ingredients;
-    private Ressource ress;
-
-    public RecettePioche(){
+    public RecettePioche() {
         this.nom = "Pioche";
         this.ingredients = new Ressource[2];
         this.ingredients[0] = new Bois();
@@ -20,5 +16,5 @@ public class RecettePioche extends Recette{
         this.ingredients[1].setQuantity(3);
         this.ress = new Pioche();
     }
-    
+
 }
