@@ -131,6 +131,7 @@ public class UiInteract extends Ui {
             GamePanel.obj.get(index).setInvisible(gamePanel); // Permet de faire disparaître l'objet de la carte
             itemButton.setVisible(false);
             resetButton();
+            gamePanel.avatar.resetDeplacement(); // Reset avatar movement
         });
     }
 

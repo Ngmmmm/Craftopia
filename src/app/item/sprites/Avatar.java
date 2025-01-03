@@ -275,4 +275,11 @@ public final class Avatar extends Sprite {
         }
         return true;
     }
+
+    public void resetDeplacement() {
+        keyH.upPressed = false;
+        keyH.downPressed = false;
+        keyH.leftPressed = false;
+        keyH.rightPressed = false;
+    }
 }
