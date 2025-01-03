@@ -1,11 +1,10 @@
 package main;
 
+import item.machines.Usine;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
-import item.machines.Usine;
 
 public class UiUsine {
     UiRecette uiRecette;
@@ -59,6 +58,13 @@ public class UiUsine {
     }
 
     public void updateInventory() {
-        // uiStock.updateInventory();
+        uiStock.rebuildStockPanel();
+        uiRecette.rebuildRecettePanel();
+        mainPanel.revalidate();
+        mainPanel.repaint();
+        
+
+        
+        
     }
 }

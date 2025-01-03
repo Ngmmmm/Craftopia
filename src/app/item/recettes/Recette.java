@@ -1,13 +1,12 @@
 package item.recettes;
 
-import java.util.ArrayList;
-
 import item.ressources.Bois;
 import item.ressources.Fer;
 import item.ressources.Feuille;
 import item.ressources.Pierre;
 import item.ressources.Ressource;
 import item.sprites.SuperObjet;
+import java.util.ArrayList;
 
 public abstract class Recette {
     protected String nom;
@@ -99,5 +98,9 @@ public abstract class Recette {
 
     public Ressource[] getIngredients() {
         return this.ingredients;
+    }
+
+    public String getName() {
+        return this.nom;
     }
 }

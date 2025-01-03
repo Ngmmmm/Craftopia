@@ -1,10 +1,8 @@
 package item.bag;
 
-import java.util.ArrayList;
-
 import item.machines.Machine;
-import item.ressources.Feuille;
 import item.sprites.SuperObjet;
+import java.util.ArrayList;
 
 public class InventaireMachine extends Inventaire {
     public ArrayList<SuperObjet> invObject;
@@ -12,7 +10,6 @@ public class InventaireMachine extends Inventaire {
     public InventaireMachine(Machine machine) {
 
         invObject = new ArrayList<SuperObjet>();
-        invObject.add(new Feuille());
     }
 
     public ArrayList<SuperObjet> getInv() {
@@ -36,10 +33,13 @@ public class InventaireMachine extends Inventaire {
 
     public boolean remove(SuperObjet item, int quantity) {
         for (int i = 0; i < invObject.size(); i++) {
-            if (invObject.get(i).equals(item)) {
+            if (invObject.get(i).getName().equals(item.getName())) {
                 invObject.get(i).reduceQuantity(quantity);
+                System.out.println(invObject.size());
                 if (invObject.get(i).quantity <= 0) {
                     invObject.remove(i);
+                    System.out.println("true");
+                    System.out.println(invObject.size());
                 }
             }
         }

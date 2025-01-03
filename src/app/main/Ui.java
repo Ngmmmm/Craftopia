@@ -2,7 +2,6 @@ package main;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,13 +39,14 @@ public class Ui {
     public static final int inventaireState = 4;
     public static final int shopState = 5;
     public static final int settingsState = 6;
+    public static final int poseMachineState = 7;
 
     public UiInteract itemManager;
     public UiTitleScreen titleScreen;
     public UiMenuBar menuPanel;
     public UiInventaire inventairePanel;
     public UiMarche marchePanel;
-
+    public UiPoseUsine poseUsinePanel;
     public double scaleXAct;
     public double scaleYAct;
 
@@ -68,6 +68,8 @@ public class Ui {
         this.menuPanel = new UiMenuBar(gamePanel);
         this.inventairePanel = new UiInventaire(gamePanel);
         this.marchePanel = new UiMarche(gamePanel);
+        this.poseUsinePanel = new UiPoseUsine(gamePanel);
+
 
     }
 
@@ -124,6 +126,7 @@ public class Ui {
             for (int i = 0; i < GamePanel.obj.size(); i++) {
                 if (GamePanel.obj.get(i) != null) {
                     GamePanel.obj.get(i).draw(g2, gamePanel, scaleX, scaleY);
+                    
                 }
             }
             if (scaleXAct != scaleX || scaleYAct != scaleY) {
@@ -159,9 +162,24 @@ public class Ui {
                
 
             } else if (gameState == craftState) {
+               
 
+            } else if (gameState == poseMachineState) {
+                int width = gamePanel.getWidth();
+                int height = gamePanel.getHeight();
+
+                int scrollWidth = width / 2;
+                int scrollHeight = height / 2;
+                int scrollX = (width - scrollWidth) / 2;
+                int scrollY = (height - scrollHeight) / 2;
+
+                poseUsinePanel.mainPanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
+                poseUsinePanel.setVisible(true);
             }
         }
+
+
     }
+
 
 }

@@ -151,7 +151,7 @@ public class SuperObjet {
             return new RecolteuseXL();
         } else if (name.equals("Usine")) {
             return new Usine();
-        } else if (name.equals("UsineFragile()")) {
+        } else if (name.equals("UsineFragile")) {
             return new UsineFragile();
         } else if (name.equals("UsinePolyvalente")) {
             return new UsinePolyvalente();

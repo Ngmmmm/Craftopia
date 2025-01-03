@@ -5,13 +5,10 @@ import item.bag.Inventaire;
 import item.bag.InventaireMachine;
 import item.marche.Marche.Produits;
 import item.recettes.Recette;
-import item.recettes.RecetteArc;
-import item.recettes.RecetteBlocPierre;
 import item.ressources.Ressource;
-import main.UiUsine;
-
 import java.io.File;
 import javax.imageio.ImageIO;
+import main.UiUsine;
 
 public class Usine extends Machine {
 
@@ -26,12 +23,11 @@ public class Usine extends Machine {
     public Usine() {
         name = "Usine";
         this.stock = new InventaireMachine(this);
-        
-        recetteAct = new RecetteArc();// TODO : UI pour définir la recette
         prix = Argent.getPrice(Produits.USINE);
         produit = Produits.USINE;
         uiUsine = new UiUsine(this);
         id = idCounter++;
+        this.recetteAct = null;
 
         try {
             File f1 = new File("./img/machines/usine.png");
@@ -50,12 +46,12 @@ public class Usine extends Machine {
 
     @Override
     public void backToPlayer(Ressource r) {
-        Inventaire.addToAvatarInv(r, 1);
         stock.remove(r, 1);
+        Inventaire.addToAvatarInv(r, 1);
     }
 
-    public void setRecetteAct(Recette act) {
-        this.recetteAct = act;
+    public void setRecetteAct(Recette recette) {
+        this.recetteAct = recette;
     }
 
     public boolean isPossible() {
@@ -70,6 +66,7 @@ public class Usine extends Machine {
                 Inventaire.removeFromAvatarInv(recetteAct.getIngredients()[i],
                         recetteAct.getIngredients()[i].getQuantity());
             }
+            System.out.println(recetteAct.getRessource().getName());
 
         } else {
             System.out.println("Recette impossible");
@@ -79,6 +76,14 @@ public class Usine extends Machine {
     @Override
     public InventaireMachine getStock() {
         return stock;
+    }
+
+    public Recette getRecette() {
+        return recetteAct;
+    }
+
+    public void update(){
+        uiUsine = new UiUsine(this);
     }
 
 }

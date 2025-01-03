@@ -3,6 +3,7 @@ package main;
 import item.bag.Inventaire;
 import item.machines.Recolteuse;
 import item.machines.Usine;
+import item.marche.Marche;
 import item.sprites.SuperObjet;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -49,14 +50,13 @@ public class UiInteract extends Ui {
     private void configureButtonAction(SuperObjet item, int index) {
         
         if (!hasActionListener()) {
-            switch (item.name) {
+            switch (item instanceof Usine ? "Usine" : item instanceof Recolteuse ? "Recolteuse" : item instanceof Marche ? "Marche" : "default") {
                 case "Recolteuse":
                     setRecolteuseAction(item, index);
                     break;
                 case "Usine":
                     setUsineAction(item, index);
                     break;
-
                 case "Marche":
                     setMarcheAction();
                     break;
@@ -101,6 +101,7 @@ public class UiInteract extends Ui {
             int scrollX = (width - scrollWidth) / 2; // Center horizontally
             int scrollY = (height - scrollHeight) / 2; // Center vertically
 
+            usine.uiUsine.updateInventory();
             usine.uiUsine.setVisible(true);
             usine.uiUsine.setBoundsInside(scrollX, scrollY, scrollWidth, scrollHeight);
             usine.uiUsine.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);

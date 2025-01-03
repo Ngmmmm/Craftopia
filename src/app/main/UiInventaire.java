@@ -82,11 +82,21 @@ public class UiInventaire extends Ui {
         imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         rowPanel.add(imageLabel);
 
+
         // Nom de l'objet
         JLabel nameLabel = new JLabel(item.getName());
         nameLabel.setPreferredSize(new Dimension(panelWidth / 2, rowHeight));
         rowPanel.add(nameLabel);
-        
+
+        if(item instanceof item.machines.Usine || item instanceof item.machines.Recolteuse){
+            JButton use = new JButton("Poser");
+            use.addActionListener(l -> {
+                Ui.gameState = Ui.poseMachineState;
+                this.setVisible(false);
+                UiPoseUsine.act = (item.machines.Usine) item;
+            });
+            rowPanel.add(use);
+        }
 
     
 

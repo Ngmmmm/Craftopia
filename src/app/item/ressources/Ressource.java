@@ -17,4 +17,9 @@ public abstract class Ressource extends SuperObjet {
     public int getPrix() {
         return prix;
     }
+
+    @Override
+    public int getQuantity() {
+        return quantity;
+    }
 }

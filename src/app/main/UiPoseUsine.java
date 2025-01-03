@@ -1,0 +1,145 @@
+package main;
+
+import item.bag.Inventaire;
+import item.machines.Usine;
+import item.recettes.Recette;
+import java.awt.Dimension;
+import java.awt.Point;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+public class UiPoseUsine extends Ui{
+    JPanel mainPanel;
+    JScrollPane scrollPane;
+    Point pos;
+    public static Usine act;
+
+    public UiPoseUsine(GamePanel gamePanel) {
+        super(gamePanel);
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS)); // Empile verticalement
+        // Panneau principal pour le JScrollPane
+        JPanel posUsinePanel = new JPanel();
+        posUsinePanel.setLayout(new BoxLayout(posUsinePanel, BoxLayout.Y_AXIS)); // Empile verticalement
+
+        // Ajoute des lignes au panneau principal (chaque ligne contient IMG, Nom, SELL,
+        // BUY)
+        for (int i = 0; i < Recette.getRecettes().size(); i++) {
+            posUsinePanel.add(createRow(Recette.getRecettes().get(i)));
+        }
+
+        // Configure le JScrollPane
+        scrollPane = new JScrollPane(posUsinePanel);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setPreferredSize(new Dimension(500, 300)); // Taille du JScrollPane
+
+        mainPanel.add(scrollPane);
+        JButton exit = new JButton("exit");
+        exit.addActionListener(l -> {
+            Ui.gameState = Ui.playState;
+            this.setVisible(false);
+        });
+        exit.setAlignmentX(JButton.CENTER_ALIGNMENT); // Centre le bouton horizontalement
+        mainPanel.add(exit);
+        gamePanel.layeredPane.add(mainPanel, JLayeredPane.PALETTE_LAYER);
+        mainPanel.setVisible(false);
+    }
+
+
+    public void setVisible(boolean visible) {
+        mainPanel.setVisible(visible);
+    }
+
+    public JPanel createRow(Recette recette){
+        JPanel row = new JPanel();
+        row.setLayout(new BoxLayout(row, BoxLayout.X_AXIS));
+
+        JLabel recetteName = new JLabel(recette.getName() + "  ");
+        ImageIcon icon = new ImageIcon(recette.getRessource().getImage());
+        JLabel recetteImg = new JLabel(resizeIcon(icon, 30, 30));
+        JButton pose = new JButton("use");
+        pose.addActionListener(l -> {
+            if(isPossibleToBuild() && pos != null && act != null){
+                GamePanel.obj.add(act);
+                GamePanel.obj.get(GamePanel.obj.size()-1).pos = pos;
+                ((Usine)GamePanel.obj.get(GamePanel.obj.size()-1)).setRecetteAct(recette);
+                ((Usine)GamePanel.obj.get(GamePanel.obj.size()-1)).uiUsine.updateInventory();
+                Inventaire.removeFromAvatarInv(act,1);
+                gamePanel.layeredPane.add(act.uiUsine.getMainPanel(),JLayeredPane.PALETTE_LAYER);
+            }
+            Ui.gameState = Ui.playState;
+            this.setVisible(false);
+
+            
+        });
+        row.add(recetteName);
+        row.add(recetteImg);
+        row.add(pose);
+        return row;
+    }
+
+
+    private ImageIcon resizeIcon(ImageIcon icon, int width, int height) {
+        if (icon == null)
+            return null;
+        return new ImageIcon(icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH));
+    }
+
+    public boolean isPossibleToBuild(){
+        switch(gamePanel.avatar.getDirection()) {
+            case "up" -> {
+                if (gamePanel.avatar.checkNine()){
+                    Point verif = new Point((int)gamePanel.avatar.getPosition().getX() /gamePanel.TAILLE_BLOC  ,(int)(gamePanel.avatar.getPosition().getY() /gamePanel.TAILLE_BLOC) );
+                    pos = new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y)*gamePanel.TAILLE_BLOC);
+                    gamePanel.avatar.setPos(new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y*gamePanel.TAILLE_BLOC) + gamePanel.TAILLE_BLOC));  
+                    return true;
+                }return false;
+                
+
+        
+            }
+            case "down" -> {
+                if (gamePanel.avatar.checkNine()){
+                    Point verif = new Point((int)gamePanel.avatar.getPosition().getX() /gamePanel.TAILLE_BLOC  ,(int)(gamePanel.avatar.getPosition().getY() /gamePanel.TAILLE_BLOC)+1 );
+                    pos = new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y)*gamePanel.TAILLE_BLOC);
+                    gamePanel.avatar.setPos(new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y*gamePanel.TAILLE_BLOC) + gamePanel.TAILLE_BLOC));  
+                    return true;
+                }return false;
+            }
+            case "right" -> {
+                if (gamePanel.avatar.checkNine()){
+                    Point verif = new Point((int)gamePanel.avatar.getPosition().getX() /gamePanel.TAILLE_BLOC +1 ,(int)(gamePanel.avatar.getPosition().getY() /gamePanel.TAILLE_BLOC) );
+                    pos = new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y)*gamePanel.TAILLE_BLOC);
+                    gamePanel.avatar.setPos(new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y*gamePanel.TAILLE_BLOC) + gamePanel.TAILLE_BLOC));  
+                    return true;
+                }return false;
+            }
+            case "left" -> {
+                if (gamePanel.avatar.checkNine()){
+                    Point verif = new Point((int)gamePanel.avatar.getPosition().getX() /gamePanel.TAILLE_BLOC -1 ,(int)(gamePanel.avatar.getPosition().getY() /gamePanel.TAILLE_BLOC) );
+                    pos = new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y)*gamePanel.TAILLE_BLOC);
+                    gamePanel.avatar.setPos(new Point((verif.x+1) * gamePanel.TAILLE_BLOC,(verif.y*gamePanel.TAILLE_BLOC)));  
+                    return true;
+                }return false;
+            }
+            default -> {
+            }
+        }
+        return false;
+
+    }
+
+
+
+
+
+    
+
+    
+}

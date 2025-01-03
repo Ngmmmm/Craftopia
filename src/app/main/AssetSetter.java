@@ -1,13 +1,13 @@
 package main;
 
-import javax.swing.JLayeredPane;
-
 import item.machines.Usine;
 import item.marche.Marche;
+import item.recettes.RecetteHache;
 import item.ressources.Bois;
 import item.ressources.Fer;
 import item.ressources.Feuille;
 import item.ressources.Pierre;
+import javax.swing.JLayeredPane;
 
 public class AssetSetter {
 
@@ -48,7 +48,7 @@ public class AssetSetter {
     public void setMachine() {
         GamePanel.obj.add(new Usine());
         Usine usine = (Usine) GamePanel.obj.get(4);
-        
+        usine.setRecetteAct(new RecetteHache());
         gp.layeredPane.add(usine.uiUsine.getMainPanel(),JLayeredPane.PALETTE_LAYER);
         
         GamePanel.obj.get(4).pos.x = 27 * gp.TAILLE_BLOC;

@@ -1,4 +1,1 @@
-Fer 2
-Pierre 4
-Bois 4
-Feuille 3
+UsineFragile 1

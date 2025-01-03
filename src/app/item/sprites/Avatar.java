@@ -82,6 +82,10 @@ public final class Avatar extends Sprite {
         mapPoint.y = gp.tileM.spawnPoint.getY(); // Position initiale sur l'axe Y
     }
 
+    public void setPos(Point p){
+        mapPoint = p;
+    }
+
     /**
      * Charge les images nécessaires à l'animation de l'avatar, incluant ses
      * mouvements
@@ -240,5 +244,35 @@ public final class Avatar extends Sprite {
 
     public Point getPosition() {
         return mapPoint;
+    }
+
+    public String getDirection(){
+        return direction;
+    }
+
+    public boolean checkNine(){
+        Point verif = new Point((int)mapPoint.getX() /gp.TAILLE_BLOC  ,(int)(mapPoint.getY() /gp.TAILLE_BLOC) );
+        for(int i = 0; i<GamePanel.obj.size();i++){
+            if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y){
+                return false;
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y-1){
+                return false;
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y+1){
+                return false;
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x-1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y){
+                return false;
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x+1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y){
+                return false;
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x-1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y-1){
+                return false;
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x+1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y+1){
+                return false;
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x-1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y+1){
+                return false;
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x+1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y-1){
+                return false;
+            }    
+        }
+        return true;
     }
 }
