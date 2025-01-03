@@ -18,7 +18,6 @@ import javax.swing.SwingConstants;
 
 import item.bag.Argent;
 import item.bag.Inventaire;
-import item.sprites.Avatar;
 import item.marche.Marche;
 import item.sprites.SuperObjet;
 
@@ -50,13 +49,6 @@ public class UiMarche extends Ui {
         scrollPane.setPreferredSize(new Dimension(500, 300)); // Taille du JScrollPane
 
         mainPanel.add(scrollPane);
-        JButton exit = new JButton("exit");
-        exit.addActionListener(l -> {
-            Ui.gameState = Ui.playState;
-            this.setVisible(false);
-        });
-        exit.setAlignmentX(JButton.CENTER_ALIGNMENT); // Centre le bouton horizontalement
-        mainPanel.add(exit);
         gamePanel.layeredPane.add(mainPanel, JLayeredPane.PALETTE_LAYER);
         mainPanel.setVisible(false);
 
@@ -88,24 +80,6 @@ public class UiMarche extends Ui {
         rowPanel.add(nameLabel);
 
         SuperObjet item = obj.get(index);
-
-        // // Ajouter le bouton "SELL"
-        // JButton sellButton = new JButton();
-        // sellButton.setIcon(btnSell);
-        // sellButton.setBounds(50, 50, 90, 40);
-        // // Redimensionner le bouton "SELL"
-        // sellButton.setPreferredSize(new Dimension(90, 40));
-        // resizeButtonImages(sellButton, btnSell);
-        // rowPanel.add(sellButton);
-
-        // // Ajouter le bouton "BUY"
-        // JButton buyButton = new JButton();
-        // buyButton.setIcon(btnBuy);
-        // // Redimensionner le bouton "BUY"
-        // buyButton.setPreferredSize(new Dimension(90, 40));
-        // buyButton.setBounds(50, 50, 90, 40);
-        // resizeButtonImages(buyButton, btnBuy);
-        // rowPanel.add(buyButton);
 
         // Ajouter le bouton "SELL"
         if (Inventaire.isIn(item)) {
@@ -189,7 +163,6 @@ public class UiMarche extends Ui {
         mainPanel.setVisible(visible);
     }
 
-    // TODO : à vérifier
     public void rebuildMarketPanel() {
         JPanel invPanel = (JPanel) scrollPane.getViewport().getView();
         invPanel.removeAll();
@@ -205,5 +178,9 @@ public class UiMarche extends Ui {
         invPanel.add(exit);
         invPanel.revalidate();
         invPanel.repaint();
+    }
+
+    public void setBounds(int newScrollX, int newScrollY, int newScrollWidth, int newScrollHeight) {
+        mainPanel.setBounds(newScrollX, newScrollY, newScrollWidth, newScrollHeight);
     }
 }

@@ -70,7 +70,6 @@ public class Ui {
         this.marchePanel = new UiMarche(gamePanel);
         this.poseUsinePanel = new UiPoseUsine(gamePanel);
 
-
     }
 
     protected void resizeButtonImages(JButton button, Icon icon) {
@@ -97,7 +96,7 @@ public class Ui {
 
         // TITLESCREEN
         if (gameState == TITLE_STATE) {
-            
+
             gamePanel.avatar.setValeurParDefaut();
             if (!initButton) {
                 initButton = titleScreen.initButtons();
@@ -126,7 +125,7 @@ public class Ui {
             for (int i = 0; i < GamePanel.obj.size(); i++) {
                 if (GamePanel.obj.get(i) != null) {
                     GamePanel.obj.get(i).draw(g2, gamePanel, scaleX, scaleY);
-                    
+
                 }
             }
             if (scaleXAct != scaleX || scaleYAct != scaleY) {
@@ -140,29 +139,32 @@ public class Ui {
             // g2.dispose();
 
             // UI
+
             if (gameState == playState) {
-                
 
             } else if (gameState == inventaireState) {
 
-                int width = gamePanel.getWidth();
-                int height = gamePanel.getHeight();
+                int panelWidth = 500;
+                int panelHeight = 300;
 
-                int scrollWidth = width / 2;
-                int scrollHeight = height / 2;
-                int scrollX = (width - scrollWidth) / 2;
-                int scrollY = (height - scrollHeight) / 2;
+                int scrollX = (gamePanel.getWidth() - panelWidth) / 2;
+                int scrollY = (gamePanel.getHeight() - panelHeight + menuPanel.menuBar.getHeight()) / 2;
 
-                inventairePanel.mainPanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
+                inventairePanel.mainPanel.setBounds(scrollX, scrollY, panelWidth, panelHeight);
                 inventairePanel.setVisible(true);
 
             } else if (gameState == shopState) {
-                marchePanel.mainPanel.setBounds(60, 60, gamePanel.getWidth() / 2, gamePanel.getHeight() / 2);
+                int panelWidth = 580; // Fixed width for the panel
+                int panelHeight = 300; // Fixed height for the panel
+
+                int scrollX = (gamePanel.getWidth() - panelWidth) / 2; // Center horizontally
+                int scrollY = (gamePanel.getHeight() - panelHeight + menuPanel.menuBar.getHeight()) / 2; // Center
+                                                                                                         // vertically
+
+                marchePanel.setBounds(scrollX, scrollY, panelWidth, panelHeight);
                 marchePanel.setVisible(true);
-               
 
             } else if (gameState == craftState) {
-               
 
             } else if (gameState == poseMachineState) {
                 int width = gamePanel.getWidth();
@@ -178,8 +180,6 @@ public class Ui {
             }
         }
 
-
     }
-
 
 }

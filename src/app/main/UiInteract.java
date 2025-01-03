@@ -48,9 +48,10 @@ public class UiInteract extends Ui {
     }
 
     private void configureButtonAction(SuperObjet item, int index) {
-        
+
         if (!hasActionListener()) {
-            switch (item instanceof Usine ? "Usine" : item instanceof Recolteuse ? "Recolteuse" : item instanceof Marche ? "Marche" : "default") {
+            switch (item instanceof Usine ? "Usine"
+                    : item instanceof Recolteuse ? "Recolteuse" : item instanceof Marche ? "Marche" : "default") {
                 case "Recolteuse":
                     setRecolteuseAction(item, index);
                     break;
@@ -117,7 +118,7 @@ public class UiInteract extends Ui {
                     int newScrollY = (newHeight - newScrollHeight) / 2; // Center vertically
 
                     usine.uiUsine.setBounds(newScrollX, newScrollY, scrollWidth, scrollHeight);
-                    usine.uiUsine.setBoundsInside(newScrollX, newScrollY, scrollWidth, scrollHeight);
+                    usine.uiUsine.setBoundsInside(newScrollX, newScrollY, newScrollWidth, newScrollHeight);
                 }
             });
 
@@ -130,33 +131,6 @@ public class UiInteract extends Ui {
             GamePanel.obj.get(index).setInvisible(gamePanel); // Permet de faire disparaître l'objet de la carte
             itemButton.setVisible(false);
             resetButton();
-
-            // ! Pour le timer de l'ajout de l'objet à l'inventaire
-            // if(item.waitIme){
-            //     ActionListener taskPerformer = new ActionListener() {
-            //         public void actionPerformed(ActionEvent evt) {
-            //             gamePanel.avatar.inv.add(item, 1);
-            //             GamePanel.obj.remove(index); // Permet de faire disparaître l'objet de la carte
-            //             itemButton.setVisible(false);
-            //             resetButton();
-            //             UiInventaire.updateInventory();
-            //             GamePanel.editMarche = true;
-            //         }
-            //     };
-            //     Timer timer = new Timer(2000, taskPerformer);
-            //     timer.setRepeats(false);
-            //     timer.start();
-            // }else{
-            //     gamePanel.avatar.inv.add(item, 1);
-            //     GamePanel.obj.remove(index); // Permet de faire disparaître l'objet de la carte
-            //     itemButton.setVisible(false);
-            //     resetButton();
-            //     UiInventaire.updateInventory();
-            //     GamePanel.editMarche = true;
-                
-            // }
-
-
         });
     }
 

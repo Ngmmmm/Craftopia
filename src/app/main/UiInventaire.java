@@ -66,29 +66,28 @@ public class UiInventaire extends Ui {
         rowPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // Aligne les éléments à gauche
 
         // Dimensions dynamiques en fonction de la largeur du panneau
-        int panelWidth = mainPanel.getWidth();
+        int panelWidth = 50;
         int rowHeight = 50;
 
         // Label pour la quantité
         JLabel nbLabel = new JLabel("x" + Inventaire.getQuantityFromAvatarInv(item));
-        nbLabel.setPreferredSize(new Dimension(panelWidth / 6, rowHeight));
+        nbLabel.setPreferredSize(new Dimension(20, rowHeight));
         rowPanel.add(nbLabel);
 
         // Image de l'objet
         ImageIcon image = new ImageIcon(item.getImage());
         JLabel imageLabel = new JLabel();
         imageLabel.setIcon(image);
-        imageLabel.setPreferredSize(new Dimension(panelWidth / 6, rowHeight));
+        imageLabel.setPreferredSize(new Dimension(panelWidth, rowHeight));
         imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         rowPanel.add(imageLabel);
 
-
         // Nom de l'objet
         JLabel nameLabel = new JLabel(item.getName());
-        nameLabel.setPreferredSize(new Dimension(panelWidth / 2, rowHeight));
+        nameLabel.setPreferredSize(new Dimension(panelWidth * 3, rowHeight));
         rowPanel.add(nameLabel);
 
-        if(item instanceof item.machines.Usine || item instanceof item.machines.Recolteuse){
+        if (item instanceof item.machines.Usine || item instanceof item.machines.Recolteuse) {
             JButton use = new JButton("Poser");
             use.addActionListener(l -> {
                 Ui.gameState = Ui.poseMachineState;
@@ -97,8 +96,6 @@ public class UiInventaire extends Ui {
             });
             rowPanel.add(use);
         }
-
-    
 
         return rowPanel;
     }
