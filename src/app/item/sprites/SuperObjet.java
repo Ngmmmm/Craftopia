@@ -41,6 +41,12 @@ public class SuperObjet {
     public boolean isItem = false;
     public Produits produit;
     public boolean waitIme = false;
+    public static int idCounter = 1;
+    public final int id;
+
+    public SuperObjet() {
+        id = idCounter++;
+    }
 
     public void draw(Graphics2D g2, GamePanel gp, double scaleX, double scaleY) {
         // Coordonnées de la bloc à l'écran

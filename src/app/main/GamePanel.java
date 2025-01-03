@@ -1,5 +1,6 @@
 package main;
 
+import item.bag.Argent;
 import item.sprites.Avatar;
 import item.sprites.SuperObjet;
 import java.awt.BorderLayout;
@@ -45,6 +46,7 @@ public class GamePanel extends JPanel implements Runnable {
     public SaveEtatMap saveEtatMap = new SaveEtatMap(this);
 
     public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
+    
     public static ArrayList<SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
 
     static boolean editMarche = true;
@@ -66,6 +68,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setLayout(new BorderLayout());
 
         ui.initializeComponents(); // Initialize components after GamePanel is fully configured
+        Argent.increaseMoney(1000);
     }
 
     /**

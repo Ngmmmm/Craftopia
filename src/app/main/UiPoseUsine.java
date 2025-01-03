@@ -18,6 +18,7 @@ public class UiPoseUsine extends Ui{
     JScrollPane scrollPane;
     Point pos;
     public static Usine act;
+    public boolean rebuild = false;
 
     public UiPoseUsine(GamePanel gamePanel) {
         super(gamePanel);
@@ -63,24 +64,37 @@ public class UiPoseUsine extends Ui{
         JLabel recetteName = new JLabel(recette.getName() + "  ");
         ImageIcon icon = new ImageIcon(recette.getRessource().getImage());
         JLabel recetteImg = new JLabel(resizeIcon(icon, 30, 30));
-        JButton pose = new JButton("use");
-        pose.addActionListener(l -> {
-            if(isPossibleToBuild() && pos != null && act != null){
+        
+        if(gamePanel.avatar.checkNine() && act != null && !rebuild){
+            JButton poseUsine = new JButton("use");
+            System.out.println("tets");
+            poseUsine.addActionListener(l -> {
+                build();
                 GamePanel.obj.add(act);
                 GamePanel.obj.get(GamePanel.obj.size()-1).pos = pos;
+                pos = null;
                 ((Usine)GamePanel.obj.get(GamePanel.obj.size()-1)).setRecetteAct(recette);
                 ((Usine)GamePanel.obj.get(GamePanel.obj.size()-1)).uiUsine.updateInventory();
                 Inventaire.removeFromAvatarInv(act,1);
                 gamePanel.layeredPane.add(act.uiUsine.getMainPanel(),JLayeredPane.PALETTE_LAYER);
-            }
-            Ui.gameState = Ui.playState;
-            this.setVisible(false);
-
-            
-        });
+                rebuild = true;
+                Ui.gameState = Ui.playState;
+                this.setVisible(false);
+            });
+            row.add(poseUsine);
+        }else if(rebuild){
+            JButton rebuildButton = new JButton("rebuild");
+            rebuildButton.addActionListener(k->{
+                System.out.println(act.id);
+                act.setRecetteAct(recette);
+                act.uiUsine.updateInventory();
+                Ui.gameState = Ui.playState;
+                this.setVisible(false);
+            });
+            row.add(rebuildButton);
+        }
         row.add(recetteName);
         row.add(recetteImg);
-        row.add(pose);
         return row;
     }
 
@@ -91,7 +105,7 @@ public class UiPoseUsine extends Ui{
         return new ImageIcon(icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH));
     }
 
-    public boolean isPossibleToBuild(){
+    public boolean build(){
         switch(gamePanel.avatar.getDirection()) {
             case "up" -> {
                 if (gamePanel.avatar.checkNine()){
@@ -134,6 +148,19 @@ public class UiPoseUsine extends Ui{
         return false;
 
     }
+
+
+    public void rebuildPoseUsine(){
+        JPanel posePanel = (JPanel) scrollPane.getViewport().getView();
+        posePanel.removeAll();
+        for (int i = 0; i < Recette.getRecettes().size(); i++) {
+            posePanel.add(createRow(Recette.getRecettes().get(i)));
+        }
+        posePanel.revalidate();
+        posePanel.repaint();
+        
+    }
+
 
 
 

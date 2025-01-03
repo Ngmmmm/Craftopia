@@ -39,14 +39,14 @@ public class Ui {
     public static final int inventaireState = 4;
     public static final int shopState = 5;
     public static final int settingsState = 6;
-    public static final int poseMachineState = 7;
+    public static final int poseUsineState = 7;
 
     public UiInteract itemManager;
     public UiTitleScreen titleScreen;
     public UiMenuBar menuPanel;
     public UiInventaire inventairePanel;
     public UiMarche marchePanel;
-    public UiPoseUsine poseUsinePanel;
+    public static UiPoseUsine poseUsinePanel;
     public double scaleXAct;
     public double scaleYAct;
 
@@ -164,7 +164,7 @@ public class Ui {
             } else if (gameState == craftState) {
                
 
-            } else if (gameState == poseMachineState) {
+            } else if (gameState == poseUsineState) {
                 int width = gamePanel.getWidth();
                 int height = gamePanel.getHeight();
 

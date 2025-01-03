@@ -91,9 +91,14 @@ public class UiInventaire extends Ui {
         if(item instanceof item.machines.Usine || item instanceof item.machines.Recolteuse){
             JButton use = new JButton("Poser");
             use.addActionListener(l -> {
-                Ui.gameState = Ui.poseMachineState;
-                this.setVisible(false);
                 UiPoseUsine.act = (item.machines.Usine) item;
+                System.out.println(gamePanel.avatar.getPosition());
+                Ui.poseUsinePanel.rebuildPoseUsine();
+                System.out.println(gamePanel.avatar.getPosition());
+                Ui.gameState = Ui.poseUsineState;
+                this.setVisible(false);
+                
+                System.out.println(item.id);
             });
             rowPanel.add(use);
         }

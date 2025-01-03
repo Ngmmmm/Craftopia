@@ -1,9 +1,12 @@
 package main;
 
+import item.bag.Argent;
+import item.bag.Inventaire;
+import item.marche.Marche;
+import item.sprites.SuperObjet;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -15,12 +18,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-
-import item.bag.Argent;
-import item.bag.Inventaire;
-import item.sprites.Avatar;
-import item.marche.Marche;
-import item.sprites.SuperObjet;
 
 public class UiMarche extends Ui {
     JPanel mainPanel;
@@ -196,13 +193,6 @@ public class UiMarche extends Ui {
         for (int i = 0; i < obj.size(); i++) {
             invPanel.add(createRow(obj.get(i).getName(), i));
         }
-        JButton exit = new JButton("exit");
-        exit.addActionListener(l -> {
-            Ui.gameState = Ui.playState;
-            this.setVisible(false);
-        });
-        exit.setAlignmentX(JButton.CENTER_ALIGNMENT); // Centre le bouton horizontalement
-        invPanel.add(exit);
         invPanel.revalidate();
         invPanel.repaint();
     }

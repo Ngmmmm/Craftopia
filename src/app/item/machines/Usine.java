@@ -17,8 +17,7 @@ public class Usine extends Machine {
     // public UiRecette uiRecette;
     // public UiStock uiStock;
     public UiUsine uiUsine;
-    private int idCounter = 1;
-    public final int id;
+    
     // TODO : public UiConfigUsine uiConfig;
 
     public Usine() {
@@ -27,7 +26,6 @@ public class Usine extends Machine {
         prix = Argent.getPrice(Produits.USINE);
         produit = Produits.USINE;
         uiUsine = new UiUsine(this);
-        id = idCounter++;
         this.recetteAct = null;
 
         try {
