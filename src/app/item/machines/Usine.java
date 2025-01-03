@@ -6,6 +6,7 @@ import item.bag.InventaireMachine;
 import item.marche.Marche.Produits;
 import item.recettes.Recette;
 import item.ressources.Ressource;
+import item.sprites.SuperObjet;
 import java.io.File;
 import javax.imageio.ImageIO;
 import main.UiUsine;
@@ -45,9 +46,11 @@ public class Usine extends Machine {
     }
 
     @Override
-    public void backToPlayer(Ressource r) {
-        stock.remove(r, 1);
-        Inventaire.addToAvatarInv(r, 1);
+    public void backToPlayer(Ressource r, int quantity) {
+        Ressource ressource = (Ressource) SuperObjet.getSuperObjet(recetteAct.getRessource().getName());
+        System.out.println(r.getQuantity());
+        Inventaire.addToAvatarInv(ressource, quantity);
+        stock.remove(r,quantity);
     }
 
     public void setRecetteAct(Recette recette) {
@@ -61,7 +64,8 @@ public class Usine extends Machine {
     public void createRessource() {
         if (isPossible()) {
             System.out.println("Création de la ressource");
-            stock.add(recetteAct.getRessource(), 1);
+            Ressource ressource = (Ressource) SuperObjet.getSuperObjet(recetteAct.getRessource().getName());
+            stock.add(ressource, 1);
             for (int i = 0; i < recetteAct.getIngredients().length; i++) {
                 Inventaire.removeFromAvatarInv(recetteAct.getIngredients()[i],
                         recetteAct.getIngredients()[i].getQuantity());

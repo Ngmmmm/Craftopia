@@ -1,16 +1,14 @@
 package item.ressources;
 
-import java.io.File;
-
-import javax.imageio.ImageIO;
-
 import item.bag.Argent;
 import item.marche.Marche.Produits;
+import java.io.File;
+import javax.imageio.ImageIO;
 
 public class Epee extends Ressource {
 
     public Epee() {
-        name = "Épée";
+        name = "Epee";
         prix = Argent.getPrice(Produits.EPEE);
         produit = Produits.EPEE;
         try {

@@ -12,5 +12,6 @@ public class RecetteBouleFeuille extends Recette {
         this.ingredients[0] = new Feuille();
         this.ingredients[0].setQuantity(4);
         this.ress = new BouleFeuille();
+        this.ress.setQuantity(1);
     }
 }

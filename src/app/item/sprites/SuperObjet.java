@@ -13,10 +13,14 @@ import item.machines.UsineRapide;
 import item.machines.UsineXL;
 import item.marche.Marche;
 import item.marche.Marche.Produits;
+import item.ressources.Arc;
 import item.ressources.BlocPierre;
 import item.ressources.Bois;
+import item.ressources.BouleFeuille;
+import item.ressources.Epee;
 import item.ressources.Fer;
 import item.ressources.Feuille;
+import item.ressources.Hache;
 import item.ressources.Pierre;
 import item.ressources.Pioche;
 import java.awt.Graphics2D;
@@ -161,7 +165,16 @@ public class SuperObjet {
             return new UsineXL();
         } else if (name.equals("Marche")) {
             return new Marche();
+        }else if (name.equals("BouleFeuille")) {
+            return new BouleFeuille();
+        }else if (name.equals("Hache")) {
+            return new Hache();
+        }else if (name.equals("Epee")){
+            return new Epee();
+        }else if(name.equals("Arc")){
+            return new Arc();
         }
+
         return null;
     }
 

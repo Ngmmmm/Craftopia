@@ -1,11 +1,9 @@
 package item.ressources;
 
-import java.io.File;
-
-import javax.imageio.ImageIO;
-
 import item.bag.Argent;
 import item.marche.Marche.Produits;
+import java.io.File;
+import javax.imageio.ImageIO;
 
 public class Hache extends Ressource {
 

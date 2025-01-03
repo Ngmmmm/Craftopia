@@ -73,8 +73,7 @@ public class UiStock {
 
             addButton.addActionListener(l -> {
                 System.out.println(ressource.getQuantity());
-                machine.backToPlayer(ressource);
-                System.out.println(ressource.getQuantity());
+                machine.backToPlayer(ressource, 1);
                 ((Usine) machine).uiUsine.updateInventory();
             });
 

@@ -87,7 +87,9 @@ public class UiRecette {
             build.setContentAreaFilled(false);
     
             build.addActionListener(l -> {
+                System.out.println(recette.getName());
                 usine.createRessource();
+
                 usine.uiUsine.updateInventory();
             });
     

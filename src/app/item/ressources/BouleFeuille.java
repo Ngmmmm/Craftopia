@@ -1,13 +1,13 @@
 package item.ressources;
 
-import java.io.File;
-import javax.imageio.ImageIO;
 import item.bag.Argent;
 import item.marche.Marche.Produits;
+import java.io.File;
+import javax.imageio.ImageIO;
 
 public class BouleFeuille extends Ressource {
     public BouleFeuille() {
-        name = "Boule de Feuille";
+        name = "BouleFeuille";
         prix = Argent.getPrice(Produits.BOULE_FEUILLE);
         produit = Produits.BOULE_FEUILLE;
         try {

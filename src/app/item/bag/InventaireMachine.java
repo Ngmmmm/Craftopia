@@ -1,6 +1,7 @@
 package item.bag;
 
 import item.machines.Machine;
+import item.ressources.Ressource;
 import item.sprites.SuperObjet;
 import java.util.ArrayList;
 
@@ -18,28 +19,31 @@ public class InventaireMachine extends Inventaire {
 
     public boolean add(SuperObjet item, int quantity) {
         if (item == null) {
+            System.out.println("tes2");
             return false;
         }
         for (int i = 0; i < invObject.size(); i++) {
             if (invObject.get(i).getName().equals(item.name)) {
                 invObject.get(i).increaseQuantity(quantity);
+                System.out.println("tes");
                 return true;
             }
         }
         invObject.add(item);
         item.increaseQuantity(quantity);
+        System.out.println("tes3");
         return true;
     }
 
     public boolean remove(SuperObjet item, int quantity) {
         for (int i = 0; i < invObject.size(); i++) {
-            if (invObject.get(i).getName().equals(item.getName())) {
+            Ressource ressource = (Ressource) SuperObjet.getSuperObjet(item.getName());
+            if (invObject.get(i).getName().equals(ressource.getName())) {
+               
                 invObject.get(i).reduceQuantity(quantity);
-                System.out.println(invObject.size());
+                
                 if (invObject.get(i).quantity <= 0) {
                     invObject.remove(i);
-                    System.out.println("true");
-                    System.out.println(invObject.size());
                 }
             }
         }

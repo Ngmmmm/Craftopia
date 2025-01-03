@@ -31,9 +31,9 @@ public class RecolteuseFragile extends Recolteuse {
     }
 
     @Override
-    public void backToPlayer(Ressource r) {
-        Inventaire.addToAvatarInv(r, 1);
-        stock.remove(r, 1);
+    public void backToPlayer(Ressource r,int quantity) {
+        Inventaire.addToAvatarInv(r, quantity);
+        stock.remove(r, quantity);
     }
 
 }
