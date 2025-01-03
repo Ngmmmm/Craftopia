@@ -85,8 +85,6 @@ public class Ui {
         Graphics2D g2 = (Graphics2D) g;
         double scaleX = (double) gamePanel.getWidth() / gamePanel.LARGEUR_ECRAN;
         double scaleY = (double) gamePanel.getHeight() / gamePanel.HAUTEUR_ECRAN;
-        // Appliquer les transformations pour mettre à l'échelle
-        // g2.scale(scaleX, scaleY);
 
         // UI DRAW
 
@@ -129,6 +127,8 @@ public class Ui {
                 }
             }
             if (scaleXAct != scaleX || scaleYAct != scaleY) {
+
+                itemManager.resetButton();
                 itemManager.resizeButtons(scaleX, scaleY);
                 scaleXAct = scaleX;
                 scaleYAct = scaleY;
@@ -136,7 +136,6 @@ public class Ui {
 
             // PLAYER
             gamePanel.avatar.draw(g2, scaleX, scaleY);
-            // g2.dispose();
 
             // UI
 
