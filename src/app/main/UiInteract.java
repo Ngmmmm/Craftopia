@@ -81,11 +81,41 @@ public class UiInteract extends Ui {
     }
 
     private void setRecolteuseAction(SuperObjet item, int index) {
-        Recolteuse recolteuse = (Recolteuse) item;
+
         itemButton.addActionListener(l -> {
             gameState = recolteuseState;
             itemButton.setVisible(false);
+            Recolteuse recolteuse = (Recolteuse) item;
+            int width = gamePanel.getWidth();
+            int height = gamePanel.getHeight();
+
+            int scrollWidth = (int) (width * 0.9); // Increase width to cover almost the entire screen
+            int scrollHeight = height / 2; // Increase height to cover almost the entire screen
+            int scrollX = (width - scrollWidth) / 2; // Center horizontally
+            int scrollY = (height - scrollHeight) / 2; // Center vertically
+
+            recolteuse.uiRecolteuse.updateInventory();
+            recolteuse.uiRecolteuse.setVisible(true);
+            recolteuse.uiRecolteuse.setBoundsInside(scrollX, scrollY, scrollWidth, scrollHeight);
+            recolteuse.uiRecolteuse.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
+
+            gamePanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+                public void componentResized(java.awt.event.ComponentEvent evt) {
+                    int newWidth = gamePanel.getWidth();
+                    int newHeight = gamePanel.getHeight();
+
+                    int newScrollWidth = (int) (newWidth * 0.9); // Increase width to cover almost the entire screen
+                    int newScrollHeight = newHeight / 2; // Increase height to cover almost the entire screen
+                    int newScrollX = (newWidth - newScrollWidth) / 2; // Center horizontally
+                    int newScrollY = (newHeight - newScrollHeight) / 2; // Center vertically
+
+                    recolteuse.uiRecolteuse.setBounds(newScrollX, newScrollY, scrollWidth, scrollHeight);
+                    recolteuse.uiRecolteuse.setBoundsInside(newScrollX, newScrollY, newScrollWidth, newScrollHeight);
+                }
+            });
+
         });
+
     }
 
     private void setUsineAction(SuperObjet item, int index) {

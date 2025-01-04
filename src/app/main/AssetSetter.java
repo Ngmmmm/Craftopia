@@ -1,5 +1,6 @@
 package main;
 
+import item.machines.Recolteuse;
 import item.machines.Usine;
 import item.marche.Marche;
 import item.recettes.RecetteHache;
@@ -46,20 +47,26 @@ public class AssetSetter {
     }
 
     public void setMachine() {
+
         GamePanel.obj.add(new Usine());
         Usine usine = (Usine) GamePanel.obj.get(4);
         usine.setRecetteAct(new RecetteHache());
-        gp.layeredPane.add(usine.uiUsine.getMainPanel(),JLayeredPane.PALETTE_LAYER);
-        
+        gp.layeredPane.add(usine.uiUsine.getMainPanel(), JLayeredPane.PALETTE_LAYER);
         GamePanel.obj.get(4).pos.x = 27 * gp.TAILLE_BLOC;
         GamePanel.obj.get(4).pos.y = 25 * gp.TAILLE_BLOC;
+
+        GamePanel.obj.add(new Recolteuse());
+        Recolteuse recolteuse = (Recolteuse) GamePanel.obj.get(5);
+        gp.layeredPane.add(recolteuse.uiRecolteuse.getMainPanel(), JLayeredPane.PALETTE_LAYER);
+        GamePanel.obj.get(5).pos.x = 28 * gp.TAILLE_BLOC;
+        GamePanel.obj.get(5).pos.y = 25 * gp.TAILLE_BLOC;
 
     }
 
     public void setMarche() {
         GamePanel.obj.add(new Marche());
-        GamePanel.obj.get(5).pos.x = 28 * gp.TAILLE_BLOC;
-        GamePanel.obj.get(5).pos.y = 25 * gp.TAILLE_BLOC;
+        GamePanel.obj.get(6).pos.x = 29 * gp.TAILLE_BLOC;
+        GamePanel.obj.get(6).pos.y = 25 * gp.TAILLE_BLOC;
     }
 
 }

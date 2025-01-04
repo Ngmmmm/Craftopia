@@ -2,6 +2,7 @@ package main;
 
 import item.bag.InventaireMachine;
 import item.machines.Machine;
+import item.machines.Recolteuse;
 import item.machines.Usine;
 import item.ressources.Ressource;
 import java.awt.BorderLayout;
@@ -73,7 +74,14 @@ public class UiStock {
 
             addButton.addActionListener(l -> {
                 machine.backToPlayer(ressource, ressource.getQuantity());
-                ((Usine) machine).uiUsine.updateInventory();
+                if (machine instanceof Usine) {
+                    ((Usine) machine).uiUsine.updateInventory();
+                }
+                if (machine instanceof Recolteuse) {
+                    ((Recolteuse) machine).uiRecolteuse.updateInventory();
+                    
+                }
+
             });
 
             // Ajouter le bouton dans un panel intermédiaire pour alignement
@@ -109,7 +117,6 @@ public class UiStock {
         mainPanel.setBounds(x, y, width, height);
     }
 
-    // TODO: Implementer cette méthode
     public void rebuildStockPanel() {
         JPanel invPanel = (JPanel) stockPanel.getViewport().getView();
         invPanel.removeAll();

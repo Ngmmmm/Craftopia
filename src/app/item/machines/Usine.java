@@ -14,11 +14,9 @@ import main.UiUsine;
 public class Usine extends Machine {
 
     public Recette recetteAct;
-    // public UiRecette uiRecette;
-    // public UiStock uiStock;
+
     public UiUsine uiUsine;
-    private int idCounter = 1;
-    public final int id;
+
     // TODO : public UiConfigUsine uiConfig;
 
     public Usine() {
@@ -27,7 +25,6 @@ public class Usine extends Machine {
         prix = Argent.getPrice(Produits.USINE);
         produit = Produits.USINE;
         uiUsine = new UiUsine(this);
-        id = idCounter++;
         this.recetteAct = null;
 
         try {
@@ -48,9 +45,8 @@ public class Usine extends Machine {
     @Override
     public void backToPlayer(Ressource r, int quantity) {
         Ressource ressource = (Ressource) SuperObjet.getSuperObjet(recetteAct.getRessource().getName());
-        System.out.println(r.getQuantity());
         Inventaire.addToAvatarInv(ressource, quantity);
-        stock.remove(r,quantity);
+        stock.remove(r, quantity);
     }
 
     public void setRecetteAct(Recette recette) {
@@ -63,14 +59,12 @@ public class Usine extends Machine {
 
     public void createRessource() {
         if (isPossible()) {
-            System.out.println("Création de la ressource");
             Ressource ressource = (Ressource) SuperObjet.getSuperObjet(recetteAct.getRessource().getName());
             stock.add(ressource, 1);
             for (int i = 0; i < recetteAct.getIngredients().length; i++) {
                 Inventaire.removeFromAvatarInv(recetteAct.getIngredients()[i],
                         recetteAct.getIngredients()[i].getQuantity());
             }
-            System.out.println(recetteAct.getRessource().getName());
 
         } else {
             System.out.println("Recette impossible");
@@ -86,7 +80,7 @@ public class Usine extends Machine {
         return recetteAct;
     }
 
-    public void update(){
+    public void update() {
         uiUsine = new UiUsine(this);
     }
 

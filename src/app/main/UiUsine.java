@@ -34,8 +34,6 @@ public class UiUsine {
         mainPanel.setVisible(false);
     }
 
-    
-
     public void setBoundsInside(int x, int y, int width, int height) {
         // Calcule la largeur des sous-panels pour qu'ils soient égaux
         int halfWidth = width / 2;
@@ -62,9 +60,6 @@ public class UiUsine {
         uiRecette.rebuildRecettePanel();
         mainPanel.revalidate();
         mainPanel.repaint();
-        
 
-        
-        
     }
 }
