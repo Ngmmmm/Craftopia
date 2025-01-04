@@ -122,7 +122,7 @@ public class UiPoseUsine extends Ui{
                 if (gamePanel.avatar.checkNine()){
                     Point verif = new Point((int)gamePanel.avatar.getPosition().getX() /gamePanel.TAILLE_BLOC  ,(int)(gamePanel.avatar.getPosition().getY() /gamePanel.TAILLE_BLOC)+1 );
                     pos = new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y)*gamePanel.TAILLE_BLOC);
-                    gamePanel.avatar.setPos(new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y*gamePanel.TAILLE_BLOC) + gamePanel.TAILLE_BLOC));  
+                    gamePanel.avatar.setPos(new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y*gamePanel.TAILLE_BLOC) - gamePanel.TAILLE_BLOC));  
                     return true;
                 }return false;
             }
@@ -130,7 +130,7 @@ public class UiPoseUsine extends Ui{
                 if (gamePanel.avatar.checkNine()){
                     Point verif = new Point((int)gamePanel.avatar.getPosition().getX() /gamePanel.TAILLE_BLOC +1 ,(int)(gamePanel.avatar.getPosition().getY() /gamePanel.TAILLE_BLOC) );
                     pos = new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y)*gamePanel.TAILLE_BLOC);
-                    gamePanel.avatar.setPos(new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y*gamePanel.TAILLE_BLOC) + gamePanel.TAILLE_BLOC));  
+                    gamePanel.avatar.setPos(new Point((verif.x -1) * gamePanel.TAILLE_BLOC,(verif.y*gamePanel.TAILLE_BLOC)));  
                     return true;
                 }return false;
             }

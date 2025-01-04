@@ -43,6 +43,7 @@ public class SuperObjet {
     public boolean waitIme = false;
     public static int idCounter = 1;
     public final int id;
+    public int time = 0;
 
     public SuperObjet() {
         id = idCounter++;

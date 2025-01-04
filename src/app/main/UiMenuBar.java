@@ -1,12 +1,14 @@
 package main;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
+import item.bag.Argent;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 
 public class UiMenuBar extends Ui {
 
@@ -21,6 +23,8 @@ public class UiMenuBar extends Ui {
     private JButton invButton;
     private JButton backToMenuButton;
     private JButton setButton;
+
+    private JLabel argent;
 
     public JPanel menuBar;
 
@@ -48,12 +52,15 @@ public class UiMenuBar extends Ui {
         invButton = createButton(invButtonIcon);
         backToMenuButton = createButton(backToMenuIcon);
         setButton = createButton(setButtonIcon);
+        argent = new JLabel(Integer.toString(Argent.getMonnaiePlayer()) + " $");
 
         // Initialize menu bar
         menuBar = new JPanel();
         menuBar.setLayout(null); // Use null layout for absolute positioning
         menuBar.setBackground(Color.GRAY);
         menuBar.setFocusable(false);
+
+
     }
 
     private JButton createButton(ImageIcon icon) {
@@ -74,6 +81,7 @@ public class UiMenuBar extends Ui {
         menuBar.add(invButton);
         menuBar.add(backToMenuButton);
         menuBar.add(setButton);
+        menuBar.add(argent);
     }
 
     private void addMenuBarToLayeredPane() {
@@ -106,7 +114,7 @@ public class UiMenuBar extends Ui {
         backToMenuButton.setBounds(panelWidth / 2 - 100 / 2, panelHeight / 2 - buttonHeight / 2, buttonWidth,
                 buttonHeight);
         setButton.setBounds(panelWidth / 2 + 350 / 2, panelHeight / 2 - buttonHeight / 2, buttonWidth, buttonHeight);
-
+        argent.setBounds(panelWidth / 2 + 600 / 2, panelHeight -30 , 70, 30);
         // Resize icons for the buttons
         resizeButtonImages(invButton, invButtonIcon);
         resizeButtonImages(backToMenuButton, backToMenuIcon);
@@ -140,4 +148,7 @@ public class UiMenuBar extends Ui {
         menuBar.setVisible(visible);
     }
 
+    public void actArgent(){
+        argent.setText(Integer.toString(Argent.getMonnaiePlayer()) + " $");
+    }
 }

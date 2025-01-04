@@ -18,10 +18,10 @@ public class AssetSetter {
     }
 
     public void setAllItems() {
-        setRessource();
-        setMachine();
-        setMarche();
-        // gp.saveEtatMap.loadEtatMap();
+        // setRessource();
+        // setMachine();
+        // setMarche();
+        gp.saveEtatMap.loadEtatMap();
         gp.saveInvAvatar.loadInvAvatar();
     }
 

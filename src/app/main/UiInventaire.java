@@ -88,17 +88,24 @@ public class UiInventaire extends Ui {
         nameLabel.setPreferredSize(new Dimension(panelWidth / 2, rowHeight));
         rowPanel.add(nameLabel);
 
-        if(item instanceof item.machines.Usine || item instanceof item.machines.Recolteuse){
+        if(item instanceof item.machines.Usine){
             JButton use = new JButton("Poser");
             use.addActionListener(l -> {
                 UiPoseUsine.act = (item.machines.Usine) item;
-                System.out.println(gamePanel.avatar.getPosition());
+                Ui.poseUsinePanel.rebuild = false;
                 Ui.poseUsinePanel.rebuildPoseUsine();
-                System.out.println(gamePanel.avatar.getPosition());
                 Ui.gameState = Ui.poseUsineState;
                 this.setVisible(false);
-                
-                System.out.println(item.id);
+            });
+            rowPanel.add(use);
+        }
+        if(item instanceof item.machines.Recolteuse){
+            JButton use = new JButton("Poser");
+            use.addActionListener(l -> {
+                UiPoseRecolteuse.act = (item.machines.Recolteuse) item;
+                Ui.poseRecolteusePanel.rebuildRecolteusePanel();
+                Ui.gameState = Ui.poseRecolteuseState;
+                this.setVisible(false);
             });
             rowPanel.add(use);
         }

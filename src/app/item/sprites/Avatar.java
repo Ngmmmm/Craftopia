@@ -2,6 +2,8 @@ package item.sprites;
 
 import item.bag.Argent; // Permet de dessiner l'avatar avec une qualité graphique
 import item.bag.Inventaire; // Définit l'aire solide pour la détection des collisions
+import item.ressources.Ressource;
+import item.ressources.RessourceVide;
 import java.awt.Graphics2D; // Optimise le rendu graphique
 import java.awt.Point;
 import java.awt.Rectangle; // Stocke les images de l'avatar
@@ -9,10 +11,12 @@ import java.awt.RenderingHints; // Gère les fichiers d'images
 import java.awt.image.BufferedImage; // Gère les exceptions liées aux fichiers
 import java.io.File; // Permet de lire les fichiers d'images
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
-import main.GamePanel; // Importation du panneau principal du jeu
-import main.KeyHandler; // Gère les entrées clavier du joueur
-import main.Ui;
+import main.GamePanel;
+import main.KeyHandler; // Importation du panneau principal du jeu
+import main.Ui; // Gère les entrées clavier du joueur
+import tile.TileManager;
 
 /**
  * La classe Avatar représente le personnage contrôlé par le joueur dans le jeu.
@@ -271,8 +275,165 @@ public final class Avatar extends Sprite {
                 return false;
             }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x+1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y-1){
                 return false;
-            }    
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x + 1&& (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x - 1&& (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x && (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y +1){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x && (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y -1){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x && (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y -1){
+                return false;
+            }
         }
         return true;
     }
+
+
+    public ArrayList<SuperObjet> getAllNine(){
+        ArrayList<SuperObjet> res = new ArrayList<SuperObjet>();
+        Point verif = new Point((int)mapPoint.getX() /gp.TAILLE_BLOC  ,(int)(mapPoint.getY() /gp.TAILLE_BLOC) );
+        for(int i = 0; i<GamePanel.obj.size();i++){
+            if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y){
+                res.add(GamePanel.obj.get(i));
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y-1){
+                res.add(GamePanel.obj.get(i));
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y+1){
+                res.add(GamePanel.obj.get(i));
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x-1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y){
+                res.add(GamePanel.obj.get(i));
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x+1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y){
+                res.add(GamePanel.obj.get(i));
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x-1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y-1){             
+                res.add(GamePanel.obj.get(i));
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x+1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y+1){
+                res.add(GamePanel.obj.get(i));
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x-1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y+1){
+                res.add(GamePanel.obj.get(i));
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x+1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y-1){
+                res.add(GamePanel.obj.get(i));
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x + 1&& (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y){
+                res.add(new RessourceVide());
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x - 1&& (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y){
+                res.add(new RessourceVide());
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x && (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y +1){
+                res.add(new RessourceVide());
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x && (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y -1){
+                res.add(new RessourceVide());
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x && (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y -1){
+                res.add(new RessourceVide());
+            }
+        }
+        return res;
+    }
+
+    public ArrayList<Ressource> checkLookNine(ArrayList<SuperObjet> list){
+        ArrayList<Ressource> res = new ArrayList<Ressource>();
+        
+        for(int i = 0; i<list.size();i++){
+            System.out.println(list.get(i).getName());
+            if(list.get(i) instanceof Ressource && list.get(i).time > 0 ){
+                System.out.println("testval");
+                res.add((Ressource)list.get(i));
+                
+            }
+        }
+        return res;
+    }
+
+
+    public ArrayList<Ressource> isPossibleToPose(){
+        return checkLookNine(getAllNine());
+    }
+
+
+    public boolean checkUp(){
+        Point verif = new Point((int)mapPoint.getX() /gp.TAILLE_BLOC  ,(int)(mapPoint.getY() /gp.TAILLE_BLOC) );
+        for(int i = 0; i<GamePanel.obj.size();i++){
+            if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y){
+                return false;
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y+1){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x + 1&& (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x - 1&& (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x && (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y +1){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x && (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y -1){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x && (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y -1){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean checkdown(){
+        Point verif = new Point((int)mapPoint.getX() /gp.TAILLE_BLOC  ,(int)(mapPoint.getY() /gp.TAILLE_BLOC) );
+        for(int i = 0; i<GamePanel.obj.size();i++){
+            if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y){
+                return false;
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y-1){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x + 1&& (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x - 1&& (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x && (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y +1){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x && (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y -1){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x && (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y -1){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean checkRight(){
+        Point verif = new Point((int)mapPoint.getX() /gp.TAILLE_BLOC  ,(int)(mapPoint.getY() /gp.TAILLE_BLOC) );
+        for(int i = 0; i<GamePanel.obj.size();i++){
+            if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y){
+                return false;
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x -1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x + 1&& (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x - 1&& (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x && (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y +1){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x && (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y -1){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x && (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y -1){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean checkLeft(){
+        Point verif = new Point((int)mapPoint.getX() /gp.TAILLE_BLOC  ,(int)(mapPoint.getY() /gp.TAILLE_BLOC) );
+        for(int i = 0; i<GamePanel.obj.size();i++){
+            if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y){
+                return false;
+            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x +1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y-1){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x + 1&& (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x - 1&& (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x && (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y +1){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x && (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y -1){
+                return false;
+            }else if((int) TileManager.spawnPoint.getX()/gp.TAILLE_BLOC  == (int)verif.x && (int) TileManager.spawnPoint.getY()/gp.TAILLE_BLOC  == (int)verif.y -1){
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

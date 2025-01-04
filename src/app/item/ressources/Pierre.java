@@ -16,6 +16,6 @@ public class Pierre extends Ressource {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        time = 0;
+        time = 3000;
     }
 }

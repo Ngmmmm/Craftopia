@@ -17,6 +17,7 @@ public class Fer extends Ressource {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        time = 5000;
     }
 
 }

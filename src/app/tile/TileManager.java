@@ -26,7 +26,7 @@ public class TileManager {
     GamePanel gp; // Référence au panneau de jeu principal
     public Tile[] tile; // Tableau contenant les différents blocs
     public int[][] mapTileNum; // Tableau 2D représentant la carte des blocs
-    public Point spawnPoint = new Point();
+    public static Point spawnPoint = new Point();
     /**
      * Constructeur de la classe TileManager.
      * Initialise le tableau des blocs et charge la disposition des blocs depuis

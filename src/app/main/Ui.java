@@ -40,6 +40,7 @@ public class Ui {
     public static final int shopState = 5;
     public static final int settingsState = 6;
     public static final int poseUsineState = 7;
+    public static final int poseRecolteuseState = 8;
 
     public UiInteract itemManager;
     public UiTitleScreen titleScreen;
@@ -47,6 +48,7 @@ public class Ui {
     public UiInventaire inventairePanel;
     public UiMarche marchePanel;
     public static UiPoseUsine poseUsinePanel;
+    public static UiPoseRecolteuse poseRecolteusePanel;
     public double scaleXAct;
     public double scaleYAct;
 
@@ -69,6 +71,7 @@ public class Ui {
         this.inventairePanel = new UiInventaire(gamePanel);
         this.marchePanel = new UiMarche(gamePanel);
         this.poseUsinePanel = new UiPoseUsine(gamePanel);
+        this.poseRecolteusePanel = new UiPoseRecolteuse(gamePanel);
 
 
     }
@@ -92,6 +95,7 @@ public class Ui {
         // UI DRAW
 
         menuPanel.setVisible(false);
+        menuPanel.actArgent();
         // inventairePanel.setVisible(false);
         marchePanel.setVisible(false);
 
@@ -175,6 +179,18 @@ public class Ui {
 
                 poseUsinePanel.mainPanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
                 poseUsinePanel.setVisible(true);
+
+            }else if (gameState == poseRecolteuseState) {
+                int width = gamePanel.getWidth();
+                int height = gamePanel.getHeight();
+
+                int scrollWidth = width / 2;
+                int scrollHeight = height / 2;
+                int scrollX = (width - scrollWidth) / 2;
+                int scrollY = (height - scrollHeight) / 2;
+
+                poseRecolteusePanel.mainPanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
+                poseRecolteusePanel.setVisible(true);
             }
         }
 
