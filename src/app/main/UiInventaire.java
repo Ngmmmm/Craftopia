@@ -1,7 +1,6 @@
 package main;
 
 import item.bag.Inventaire;
-import item.machines.Recolteuse;
 import item.machines.Usine;
 import item.sprites.SuperObjet;
 import java.awt.Dimension;

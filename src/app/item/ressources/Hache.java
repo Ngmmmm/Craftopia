@@ -11,6 +11,7 @@ public class Hache extends Ressource {
         name = "Hache";
         prix = Argent.getPrice(Produits.HACHE);
         produit = Produits.HACHE;
+        time = 5;
         try {
             File f1 = new File("./img/ressources/axe.png");
             image = ImageIO.read(f1);

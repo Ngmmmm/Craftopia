@@ -44,6 +44,7 @@ public final class Avatar extends Sprite {
     public final int screenX; // Position de l'avatar au centre de l'écran sur l'axe X
     public final int screenY; // Position de l'avatar au centre de l'écran sur l'axe Y
     public static final Inventaire inv = new Inventaire();
+    public boolean immobile; // Vérifie si l'avatar est immobile
     public int lastRessourceIndex = 999;
 
     /**
@@ -129,7 +130,7 @@ public final class Avatar extends Sprite {
      * et la gestion des collisions.
      */
     public void update(int gameState) {
-        boolean immobile = false; // Variable pour gérer l'immobilité
+        immobile = false; // Variable pour gérer l'immobilité
 
         // Vérifie les entrées clavier pour détecter un mouvement
         if ((keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed)

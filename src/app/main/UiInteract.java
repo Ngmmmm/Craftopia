@@ -4,9 +4,11 @@ import item.bag.Inventaire;
 import item.machines.Recolteuse;
 import item.machines.Usine;
 import item.marche.Marche;
+import item.ressources.Ressource;
 import item.sprites.SuperObjet;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JProgressBar;
 
 public class UiInteract extends Ui {
     private JButton itemButton;
@@ -125,11 +127,58 @@ public class UiInteract extends Ui {
 
     private void setDefaultAction(SuperObjet item, int index) {
         itemButton.addActionListener(l -> {
-            Inventaire.addToAvatarInv(item, 1);
-            GamePanel.obj.get(index).setInvisible(gamePanel); // Permet de faire disparaître l'objet de la carte
-            itemButton.setVisible(false);
-            resetButton();
-            gamePanel.avatar.resetDeplacement(); // Reset avatar movement
+            Ressource ressource = (Ressource) item;
+            if (ressource.time > 0) {
+                JProgressBar progressBar = new JProgressBar(0, ressource.time);
+                // Définir les bounds pour positionner la progressBar
+                int progressBarWidth = 400;
+                int progressBarHeight = 30;
+                int progressBarX = (gamePanel.getWidth() - progressBarWidth) / 2;
+                int progressBarY = gamePanel.ui.menuPanel.menuBar.getHeight() + 10;
+                progressBar.setBounds(progressBarX, progressBarY, progressBarWidth, progressBarHeight);
+                progressBar.setValue(0);
+                progressBar.setStringPainted(true);
+                gamePanel.add(progressBar);
+                gamePanel.repaint();
+
+                new Thread(() -> {
+                    int previousGameState = gameState;
+                    gamePanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+                        public void componentResized(java.awt.event.ComponentEvent evt) {
+                            int progressBarX = (gamePanel.getWidth() - progressBarWidth) / 2;
+                            int progressBarY = gamePanel.ui.menuPanel.menuBar.getHeight() + 10;
+                            progressBar.setBounds(progressBarX, progressBarY, progressBarWidth, progressBarHeight);
+                        }
+                    });
+                    try {
+                        for (int i = 0; i <= ressource.time; i++) {
+                            if (gameState != previousGameState) {
+                                gamePanel.remove(progressBar);
+                                gamePanel.repaint();
+                                return;
+                            }
+                            progressBar.setValue(i);
+                            Thread.sleep(1000); // Sleep for 1 second
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } finally {
+                        if (gameState == previousGameState) {
+                            gamePanel.remove(progressBar);
+                            Inventaire.addToAvatarInv(item, 1);
+                            itemButton.setVisible(false);
+                            resetButton();
+                            gamePanel.avatar.resetDeplacement(); // Reset avatar movement
+                        }
+                    }
+                }).start();
+            } else {
+                Inventaire.addToAvatarInv(item, 1);
+                GamePanel.obj.get(index).setInvisible(gamePanel); // Permet de faire disparaître l'objet de la carte
+                itemButton.setVisible(false);
+                resetButton();
+                gamePanel.avatar.resetDeplacement(); // Reset avatar movement
+            }
         });
     }
 

@@ -11,6 +11,7 @@ public class BlocPierre extends Ressource {
         name = "BlocPierre";
         produit = Produits.BLOC_PIERRE;
         prix = Argent.getPrice(Produits.BLOC_PIERRE);
+        time = 3;
         try {
             File f1 = new File("./img/ressources/blocPierre.png");
             image = ImageIO.read(f1);

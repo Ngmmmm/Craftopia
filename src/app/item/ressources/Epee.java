@@ -11,6 +11,7 @@ public class Epee extends Ressource {
         name = "Epee";
         prix = Argent.getPrice(Produits.EPEE);
         produit = Produits.EPEE;
+        time = 5;
         try {
             File f1 = new File("./img/ressources/sword.png");
             image = ImageIO.read(f1);
@@ -18,5 +19,5 @@ public class Epee extends Ressource {
             e.printStackTrace();
         }
     }
-    
+
 }

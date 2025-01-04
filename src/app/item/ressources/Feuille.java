@@ -11,6 +11,7 @@ public class Feuille extends Ressource {
         name = "Feuille";
         prix = Argent.getPrice(Produits.FEUILLE); 
         produit = Produits.FEUILLE;
+        time = 0;
         try {
             File f1 = new File("./img/ressources/feuille.png");
             image = ImageIO.read(f1);

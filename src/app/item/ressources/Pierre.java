@@ -10,12 +10,13 @@ public class Pierre extends Ressource {
         name = "Pierre";
         prix = Argent.getPrice(Produits.PIERRE);
         produit = Produits.PIERRE;
+        time = 3;
         try {
             File f1 = new File("./img/ressources/pierre.png");
             image = ImageIO.read(f1);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        time = 0;
+        
     }
 }

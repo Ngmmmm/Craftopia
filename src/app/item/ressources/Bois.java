@@ -12,13 +12,13 @@ public class Bois extends Ressource {
         prix = Argent.getPrice(Produits.BOIS);
         produit = Produits.BOIS;
         waitIme = true;
+        time = 0;
         try {
             File f1 = new File("./img/ressources/bois.png");
             image = ImageIO.read(f1);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        time = 300;
     }
 
 }

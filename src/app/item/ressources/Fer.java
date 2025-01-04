@@ -11,6 +11,7 @@ public class Fer extends Ressource {
         name = "Fer";
         prix = Argent.getPrice(Produits.FER);
         produit = Produits.FER;
+        time = 5;
         try {
             File f1 = new File("./img/ressources/fer.png");
             image = ImageIO.read(f1);

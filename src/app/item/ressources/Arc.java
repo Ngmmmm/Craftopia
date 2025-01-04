@@ -13,6 +13,7 @@ public class Arc extends Ressource {
         name = "Arc";
         prix = Argent.getPrice(Produits.ARC);
         produit = Produits.ARC;
+        time = 5;
         try {
             File f1 = new File("./img/ressources/bow.png");
             image = ImageIO.read(f1);

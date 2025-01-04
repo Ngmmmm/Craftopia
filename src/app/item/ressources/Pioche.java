@@ -11,6 +11,7 @@ public class Pioche extends Ressource{
         name = "Pioche";
         prix = Argent.getPrice(Produits.PIOCHE); 
         produit = Produits.PIOCHE;
+        time = 5;
         try {
             File f1 = new File("./img/ressources/pickaxe.png");
             image = ImageIO.read(f1);
