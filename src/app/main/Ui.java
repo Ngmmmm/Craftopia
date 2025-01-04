@@ -7,6 +7,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import item.machines.Recolteuse;
+import item.machines.Usine;
+
 /**
  * La classe `Ui` gère l'affichage et la gestion des boutons du Menu du jeu.
  * Elle est responsable de la création, l'affichage et l'ajustement des boutons
@@ -153,6 +156,13 @@ public class Ui {
     }
 
     private void drawPanels(Graphics2D g2, double scaleX, double scaleY) {
+        int width;
+        int height;
+
+        int scrollWidth;
+        int scrollHeight;
+        int scrollX;
+        int scrollY;
         switch (gameState) {
             case playState:
                 break;
@@ -165,10 +175,35 @@ public class Ui {
                 marchePanel.setVisible(true);
                 break;
             case craftState:
+                width = gamePanel.getWidth();
+                height = gamePanel.getHeight();
 
+                scrollWidth = 500;
+                scrollHeight = 300;
+                scrollX = (width - scrollWidth) / 2;
+                scrollY = (height - scrollHeight) / 2;
+                for (int i = 0; i < GamePanel.obj.size(); i++) {
+                    if (GamePanel.obj.get(i) instanceof Usine) {
+                        Usine usine = (Usine) GamePanel.obj.get(i);
+                        usine.uiUsine.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
+                    }
+                }
                 break;
             case recolteuseState:
+                width = gamePanel.getWidth();
+                height = gamePanel.getHeight();
 
+                scrollWidth = 500;
+                scrollHeight = 300;
+                scrollX = (width - scrollWidth) / 2;
+                scrollY = (height - scrollHeight) / 2;
+
+                for (int i = 0; i < GamePanel.obj.size(); i++) {
+                    if (GamePanel.obj.get(i) instanceof Recolteuse) {
+                        Recolteuse recolteuse = (Recolteuse) GamePanel.obj.get(i);
+                        recolteuse.uiRecolteuse.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
+                    }
+                }
                 break;
             case poseMachineState:
                 setPanelBounds(poseUsinePanel.mainPanel, gamePanel.getWidth() / 2, gamePanel.getHeight() / 2);
