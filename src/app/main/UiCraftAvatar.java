@@ -26,7 +26,7 @@ public class UiCraftAvatar extends Ui {
 
         mainPanel.add(recettePanel);
 
-        gamePanel.layeredPane.add(mainPanel, JLayeredPane.PALETTE_LAYER);
+        gamePanel.add(mainPanel, JLayeredPane.PALETTE_LAYER);
     }
 
     private void createRecetteContent() {
