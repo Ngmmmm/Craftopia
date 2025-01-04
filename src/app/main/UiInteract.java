@@ -91,11 +91,10 @@ public class UiInteract extends Ui {
             int width = gamePanel.getWidth();
             int height = gamePanel.getHeight();
 
-            int scrollWidth = (int) (width * 0.9); // Increase width to cover almost the entire screen
-            int scrollHeight = height / 2; // Increase height to cover almost the entire screen
+            int scrollWidth = 500; // Fixed width
+            int scrollHeight = 300; // Fixed height
             int scrollX = (width - scrollWidth) / 2; // Center horizontally
             int scrollY = (height - scrollHeight) / 2; // Center vertically
-
             recolteuse.uiRecolteuse.updateInventory();
             recolteuse.uiRecolteuse.setVisible(true);
             recolteuse.uiRecolteuse.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);

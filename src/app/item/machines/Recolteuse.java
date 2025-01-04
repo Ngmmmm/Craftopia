@@ -6,10 +6,9 @@ import item.bag.InventaireMachine;
 import item.marche.Marche.Produits;
 import item.ressources.Ressource;
 import item.sprites.SuperObjet;
-import main.UiRecolteuse;
-
 import java.io.File;
 import javax.imageio.ImageIO;
+import main.UiRecolteuse;
 
 public class Recolteuse extends Machine {
 

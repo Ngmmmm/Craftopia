@@ -83,6 +83,7 @@ class UiPoseRecolteuse extends Ui {
                 Inventaire.removeFromAvatarInv(act, 1);
                 Ui.gameState = Ui.playState;
                 this.setVisible(false);
+                gamePanel.layeredPane.add(act.uiRecolteuse.getMainPanel(),JLayeredPane.PALETTE_LAYER);
 
             });
         }

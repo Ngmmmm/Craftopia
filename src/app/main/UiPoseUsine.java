@@ -65,14 +65,14 @@ public class UiPoseUsine extends Ui{
         ImageIcon icon = new ImageIcon(recette.getRessource().getImage());
         JLabel recetteImg = new JLabel(resizeIcon(icon, 30, 30));
         
-        if(gamePanel.avatar.checkNine() && pos != null && act != null && !rebuild){
+        if(gamePanel.avatar.checkNine() && act != null && !rebuild){
             JButton poseUsine = new JButton("use");
-            System.out.println("tets");
             poseUsine.addActionListener(l -> {
                 build();
+                System.out.println(act.getName());
+                gamePanel.avatar.setPos(new Point(pos.x ,(pos.y) + gamePanel.TAILLE_BLOC)); 
                 GamePanel.obj.add(act);
                 GamePanel.obj.get(GamePanel.obj.size()-1).pos = pos;
-                pos = null;
                 ((Usine)GamePanel.obj.get(GamePanel.obj.size()-1)).setRecetteAct(recette);
                 ((Usine)GamePanel.obj.get(GamePanel.obj.size()-1)).uiUsine.updateInventory();
                 Inventaire.removeFromAvatarInv(act,1);
@@ -108,10 +108,13 @@ public class UiPoseUsine extends Ui{
         switch(gamePanel.avatar.getDirection()) {
             case "up" -> {
                 if (gamePanel.avatar.checkNine()){
-                    Point verif = new Point((int)gamePanel.avatar.getPosition().getX() /gamePanel.TAILLE_BLOC  ,(int)(gamePanel.avatar.getPosition().getY() /gamePanel.TAILLE_BLOC) );
+                    
+                    Point verif = new Point((int)gamePanel.avatar.getPosition().getX() /gamePanel.TAILLE_BLOC ,(int)(gamePanel.avatar.getPosition().getY() /gamePanel.TAILLE_BLOC) );
                     if(gamePanel.tileM.getTile(verif.x *gamePanel.TAILLE_BLOC, verif.y*gamePanel.TAILLE_BLOC).isGrass){
+                        
                         pos = new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y)*gamePanel.TAILLE_BLOC);
-                        gamePanel.avatar.setPos(new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y*gamePanel.TAILLE_BLOC) + gamePanel.TAILLE_BLOC)); 
+                        System.out.println("pos : "+pos);
+                        
                         
                     }  
                     return true;
@@ -125,7 +128,7 @@ public class UiPoseUsine extends Ui{
                     Point verif = new Point((int)gamePanel.avatar.getPosition().getX() /gamePanel.TAILLE_BLOC  ,(int)(gamePanel.avatar.getPosition().getY() /gamePanel.TAILLE_BLOC)+1 );
                     if(gamePanel.tileM.getTile(verif.x, verif.y).isGrass){
                         pos = new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y)*gamePanel.TAILLE_BLOC);
-                        gamePanel.avatar.setPos(new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y*gamePanel.TAILLE_BLOC) + gamePanel.TAILLE_BLOC)); 
+                         
                         
                     }  
                     return true;
@@ -136,7 +139,7 @@ public class UiPoseUsine extends Ui{
                     Point verif = new Point((int)gamePanel.avatar.getPosition().getX() /gamePanel.TAILLE_BLOC +1 ,(int)(gamePanel.avatar.getPosition().getY() /gamePanel.TAILLE_BLOC) );
                     if(gamePanel.tileM.getTile(verif.x, verif.y).isGrass){
                         pos = new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y)*gamePanel.TAILLE_BLOC);
-                        gamePanel.avatar.setPos(new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y*gamePanel.TAILLE_BLOC) + gamePanel.TAILLE_BLOC)); 
+                        
                        
                     } 
                     return true;
@@ -166,6 +169,7 @@ public class UiPoseUsine extends Ui{
         posePanel.removeAll();
         for (int i = 0; i < Recette.getRecettes().size(); i++) {
             posePanel.add(createRow(Recette.getRecettes().get(i)));
+            System.out.println("rebuild");
         }
         posePanel.revalidate();
         posePanel.repaint();

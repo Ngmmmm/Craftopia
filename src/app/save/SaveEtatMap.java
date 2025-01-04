@@ -86,8 +86,9 @@ public class SaveEtatMap {
                         ((Recolteuse)GamePanel.obj.get(obj)).stock.invObject.add(SuperObjet.getSuperObjet(itemInfoArray[5 + 2*k]));
                         ((Recolteuse)GamePanel.obj.get(obj)).stock.invObject.get(k).quantity = Integer.parseInt(itemInfoArray[6 + 2*k]);
                     }
+                    gp.layeredPane.add(((Recolteuse)(sObjet)).uiRecolteuse.getMainPanel(),JLayeredPane.PALETTE_LAYER);
                 }
-                //gp.layeredPane.add(((Recolteuse)(sObjet)).uiRecolteuse.getMainPanel(),JLayeredPane.PALETTE_LAYER);
+                
                 obj++;
                 setterInfo = br.readLine();
             }

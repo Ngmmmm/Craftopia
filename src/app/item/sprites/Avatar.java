@@ -283,22 +283,31 @@ public final class Avatar extends Sprite {
         Point verif = new Point((int) mapPoint.getX() / gp.TAILLE_BLOC, (int) (mapPoint.getY() / gp.TAILLE_BLOC));
         for (int i = 0; i < GamePanel.obj.size(); i++) {
             if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y) {
+                System.out.println("test1");
                 return false;
             } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y - 1) {
+                System.out.println("test1");
                 return false;
             } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y + 1) {
+                System.out.println("test1");
                 return false;
             } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x - 1 && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y) {
+                System.out.println("test1");
                 return false;
             } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x + 1 && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y) {
+                System.out.println("test1");
                 return false;
             } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x - 1 && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y - 1) {
+                System.out.println("test1");
                 return false;
             } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x + 1 && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y + 1) {
+                System.out.println("test1");
                 return false;
             } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x - 1 && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y + 1) {
+                System.out.println("test1");
                 return false;
             } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x + 1 && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y - 1) {
+                System.out.println("test1");
                 return false;
             } else if ((int) TileManager.spawnPoint.getX() / gp.TAILLE_BLOC == (int) verif.x + 1 && (int) TileManager.spawnPoint.getY() / gp.TAILLE_BLOC == (int) verif.y) {
                 return false;
@@ -312,6 +321,7 @@ public final class Avatar extends Sprite {
                 return false;
             }
         }
+        System.out.println("test1");
         return true;
     }
 

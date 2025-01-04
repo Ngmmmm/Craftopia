@@ -92,7 +92,8 @@ public class UiInventaire extends Ui {
         if (item instanceof Usine) {
             JButton use = new JButton("Poser");
             use.addActionListener(l -> {
-                UiPoseUsine.act = (Usine) item;
+                SuperObjet newact = SuperObjet.getSuperObjet(item.getName());
+                UiPoseUsine.act = (Usine) newact;
                 Ui.poseUsinePanel.rebuild = false;
                 Ui.poseUsinePanel.rebuildPoseUsine();
                 Ui.gameState = Ui.poseUsineState;
