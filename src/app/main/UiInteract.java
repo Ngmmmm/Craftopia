@@ -99,21 +99,6 @@ public class UiInteract extends Ui {
             recolteuse.uiRecolteuse.setBoundsInside(scrollX, scrollY, scrollWidth, scrollHeight);
             recolteuse.uiRecolteuse.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
 
-            gamePanel.addComponentListener(new java.awt.event.ComponentAdapter() {
-                public void componentResized(java.awt.event.ComponentEvent evt) {
-                    int newWidth = gamePanel.getWidth();
-                    int newHeight = gamePanel.getHeight();
-
-                    int newScrollWidth = (int) (newWidth * 0.9); // Increase width to cover almost the entire screen
-                    int newScrollHeight = newHeight / 2; // Increase height to cover almost the entire screen
-                    int newScrollX = (newWidth - newScrollWidth) / 2; // Center horizontally
-                    int newScrollY = (newHeight - newScrollHeight) / 2; // Center vertically
-
-                    recolteuse.uiRecolteuse.setBounds(newScrollX, newScrollY, scrollWidth, scrollHeight);
-                    recolteuse.uiRecolteuse.setBoundsInside(newScrollX, newScrollY, newScrollWidth, newScrollHeight);
-                }
-            });
-
         });
 
     }
@@ -136,21 +121,6 @@ public class UiInteract extends Ui {
             usine.uiUsine.setVisible(true);
             usine.uiUsine.setBoundsInside(scrollX, scrollY, scrollWidth, scrollHeight);
             usine.uiUsine.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
-
-            gamePanel.addComponentListener(new java.awt.event.ComponentAdapter() {
-                public void componentResized(java.awt.event.ComponentEvent evt) {
-                    int newWidth = gamePanel.getWidth();
-                    int newHeight = gamePanel.getHeight();
-
-                    int newScrollWidth = (int) (newWidth * 0.9); // Increase width to cover almost the entire screen
-                    int newScrollHeight = newHeight / 2; // Increase height to cover almost the entire screen
-                    int newScrollX = (newWidth - newScrollWidth) / 2; // Center horizontally
-                    int newScrollY = (newHeight - newScrollHeight) / 2; // Center vertically
-
-                    usine.uiUsine.setBounds(newScrollX, newScrollY, scrollWidth, scrollHeight);
-                    usine.uiUsine.setBoundsInside(newScrollX, newScrollY, newScrollWidth, newScrollHeight);
-                }
-            });
 
         });
     }

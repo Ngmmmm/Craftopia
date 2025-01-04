@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 /**
  * La classe `Ui` gère l'affichage et la gestion des boutons du Menu du jeu.
@@ -73,7 +74,6 @@ public class Ui {
         this.marchePanel = new UiMarche(gamePanel);
         this.poseUsinePanel = new UiPoseUsine(gamePanel);
         this.craftAvatarPanel = new UiCraftAvatar(gamePanel);
-
     }
 
     protected void resizeButtonImages(JButton button, Icon icon) {
@@ -85,116 +85,101 @@ public class Ui {
     }
 
     public void draw(Graphics g) {
-
         Graphics2D g2 = (Graphics2D) g;
         double scaleX = (double) gamePanel.getWidth() / gamePanel.LARGEUR_ECRAN;
         double scaleY = (double) gamePanel.getHeight() / gamePanel.HAUTEUR_ECRAN;
 
         // UI DRAW
+        hideAllPanels();
 
+        if (gameState == TITLE_STATE) {
+            drawTitleScreen(g2, scaleX, scaleY);
+        } else {
+            drawGameScreen(g2, scaleX, scaleY);
+        }
+    }
+
+    private void hideAllPanels() {
         menuPanel.setVisible(false);
         inventairePanel.setVisible(false);
         marchePanel.setVisible(false);
         poseUsinePanel.setVisible(false);
         craftAvatarPanel.setVisible(false);
-
-        // TITLESCREEN
-        if (gameState == TITLE_STATE) {
-
-            gamePanel.avatar.setValeurParDefaut();
-            if (!initButton) {
-                initButton = titleScreen.initButtons();
-            }
-            titleScreen.resizeButtons(scaleX, scaleY);
-            scaleXAct = scaleX;
-            scaleYAct = scaleY;
-
-            titleScreen.drawTitleScreen(g2, scaleX, scaleY);
-            titleScreen.backToMenu();
-
-        } else {
-            // MENU
-            if (!initButtonGame) {
-                menuPanel.initButton();
-                menuPanel.resizeButtons();
-                initButtonGame = true;
-
-            }
-
-            menuPanel.menuBar.setBounds(0, 0, gamePanel.getWidth(), 30); // Adjust width to gamePanel's width
-            menuPanel.setVisible(true);
-            // MAP
-            gamePanel.tileM.draw(g2, scaleX, scaleY);
-            // Ressource
-            for (int i = 0; i < GamePanel.obj.size(); i++) {
-                if (GamePanel.obj.get(i) != null) {
-                    GamePanel.obj.get(i).draw(g2, gamePanel, scaleX, scaleY);
-
-                }
-            }
-            if (scaleXAct != scaleX || scaleYAct != scaleY) {
-
-                itemManager.resetButton();
-                itemManager.resizeButtons(scaleX, scaleY);
-                scaleXAct = scaleX;
-                scaleYAct = scaleY;
-            }
-
-            // PLAYER
-            gamePanel.avatar.draw(g2, scaleX, scaleY);
-
-            // UI
-
-            if (gameState == playState) {
-
-            } else if (gameState == inventaireState) {
-
-                int panelWidth = 500;
-                int panelHeight = 300;
-
-                int scrollX = (gamePanel.getWidth() - panelWidth) / 2;
-                int scrollY = (gamePanel.getHeight() - panelHeight + menuPanel.menuBar.getHeight()) / 2;
-
-                inventairePanel.mainPanel.setBounds(scrollX, scrollY, panelWidth, panelHeight);
-                inventairePanel.setVisible(true);
-
-            } else if (gameState == shopState) {
-                int panelWidth = 580; // Fixed width for the panel
-                int panelHeight = 300; // Fixed height for the panel
-
-                int scrollX = (gamePanel.getWidth() - panelWidth) / 2; // Center horizontally
-                int scrollY = (gamePanel.getHeight() - panelHeight + menuPanel.menuBar.getHeight()) / 2; // Center
-                                                                                                         // vertically
-
-                marchePanel.setBounds(scrollX, scrollY, panelWidth, panelHeight);
-                marchePanel.setVisible(true);
-
-            } else if (gameState == craftState) {
-
-            } else if (gameState == poseMachineState) {
-                int width = gamePanel.getWidth();
-                int height = gamePanel.getHeight();
-
-                int scrollWidth = width / 2;
-                int scrollHeight = height / 2;
-                int scrollX = (width - scrollWidth) / 2;
-                int scrollY = (height - scrollHeight) / 2;
-
-                poseUsinePanel.mainPanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
-                poseUsinePanel.setVisible(true);
-            } else if (gameState == craftAvatarState) {
-                int panelWidth = 500;
-                int panelHeight = 300;
-
-                int scrollX = (gamePanel.getWidth() - panelWidth) / 2;
-                int scrollY = (gamePanel.getHeight() - panelHeight + menuPanel.menuBar.getHeight()) / 2;
-
-                craftAvatarPanel.mainPanel.setBounds(scrollX, scrollY, panelWidth, panelHeight);
-                craftAvatarPanel.setVisible(true);
-
-            }
-        }
-
     }
 
+    private void drawTitleScreen(Graphics2D g2, double scaleX, double scaleY) {
+        gamePanel.avatar.setValeurParDefaut();
+        if (!initButton) {
+            initButton = titleScreen.initButtons();
+        }
+        titleScreen.resizeButtons(scaleX, scaleY);
+        scaleXAct = scaleX;
+        scaleYAct = scaleY;
+
+        titleScreen.drawTitleScreen(g2, scaleX, scaleY);
+        titleScreen.backToMenu();
+    }
+
+    private void drawGameScreen(Graphics2D g2, double scaleX, double scaleY) {
+        if (!initButtonGame) {
+            menuPanel.initButton();
+            menuPanel.resizeButtons();
+            initButtonGame = true;
+        }
+
+        menuPanel.menuBar.setBounds(0, 0, gamePanel.getWidth(), 30);
+        menuPanel.setVisible(true);
+
+        gamePanel.tileM.draw(g2, scaleX, scaleY);
+        drawGameObjects(g2, scaleX, scaleY);
+
+        if (scaleXAct != scaleX || scaleYAct != scaleY) {
+            itemManager.resetButton();
+            itemManager.resizeButtons(scaleX, scaleY);
+            scaleXAct = scaleX;
+            scaleYAct = scaleY;
+        }
+
+        gamePanel.avatar.draw(g2, scaleX, scaleY);
+        drawPanels(g2, scaleX, scaleY);
+    }
+
+    private void drawGameObjects(Graphics2D g2, double scaleX, double scaleY) {
+        for (int i = 0; i < GamePanel.obj.size(); i++) {
+            if (GamePanel.obj.get(i) != null) {
+                GamePanel.obj.get(i).draw(g2, gamePanel, scaleX, scaleY);
+            }
+        }
+    }
+
+    private void drawPanels(Graphics2D g2, double scaleX, double scaleY) {
+        switch (gameState) {
+            case playState:
+                break;
+            case inventaireState:
+                setPanelBounds(inventairePanel.mainPanel, 500, 300);
+                inventairePanel.setVisible(true);
+                break;
+            case shopState:
+                setPanelBounds(marchePanel.mainPanel, 580, 300);
+                marchePanel.setVisible(true);
+                break;
+            case craftState:
+                break;
+            case poseMachineState:
+                setPanelBounds(poseUsinePanel.mainPanel, gamePanel.getWidth() / 2, gamePanel.getHeight() / 2);
+                poseUsinePanel.setVisible(true);
+                break;
+            case craftAvatarState:
+                setPanelBounds(craftAvatarPanel.mainPanel, 500, 300);
+                craftAvatarPanel.setVisible(true);
+                break;
+        }
+    }
+
+    protected void setPanelBounds(JPanel panel, int width, int height) {
+        int scrollX = (gamePanel.getWidth() - width) / 2;
+        int scrollY = (gamePanel.getHeight() - height + menuPanel.menuBar.getHeight()) / 2;
+        panel.setBounds(scrollX, scrollY, width, height);
+    }
 }

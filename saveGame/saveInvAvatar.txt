@@ -1,1 +1,3 @@
 UsineFragile 1
+Fer 1
+Pierre 1
