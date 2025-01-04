@@ -104,7 +104,8 @@ public class UiInventaire extends Ui {
         if(item instanceof Recolteuse){
             JButton use = new JButton("Poser");
             use.addActionListener(l -> {
-                UiPoseRecolteuse.act = (item.machines.Recolteuse) item;
+                SuperObjet newact = SuperObjet.getSuperObjet(item.getName());
+                UiPoseRecolteuse.act = (Recolteuse) newact;
                 Ui.poseRecolteusePanel.rebuildRecolteusePanel();
                 Ui.gameState = Ui.poseRecolteuseState;
                 this.setVisible(false);

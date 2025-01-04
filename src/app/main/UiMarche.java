@@ -44,7 +44,15 @@ public class UiMarche extends Ui {
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setPreferredSize(new Dimension(500, 300)); // Taille du JScrollPane
 
+        JButton exit = new JButton("exit");
+        exit.addActionListener(l -> {
+            Ui.gameState = Ui.playState;
+            this.setVisible(false);
+        });
+        exit.setAlignmentX(JButton.CENTER_ALIGNMENT); // Centre le bouton horizontalement
+        
         mainPanel.add(scrollPane);
+        mainPanel.add(exit);
         gamePanel.layeredPane.add(mainPanel, JLayeredPane.PALETTE_LAYER);
         mainPanel.setVisible(false);
 

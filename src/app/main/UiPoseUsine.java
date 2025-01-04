@@ -13,7 +13,8 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class UiPoseUsine extends Ui{
+public class UiPoseUsine extends Ui {
+
     JPanel mainPanel;
     JScrollPane scrollPane;
     Point pos;
@@ -52,39 +53,42 @@ public class UiPoseUsine extends Ui{
         mainPanel.setVisible(false);
     }
 
-
     public void setVisible(boolean visible) {
         mainPanel.setVisible(visible);
     }
 
-    public JPanel createRow(Recette recette){
+    public JPanel createRow(Recette recette) {
         JPanel row = new JPanel();
         row.setLayout(new BoxLayout(row, BoxLayout.X_AXIS));
 
         JLabel recetteName = new JLabel(recette.getName() + "  ");
         ImageIcon icon = new ImageIcon(recette.getRessource().getImage());
         JLabel recetteImg = new JLabel(resizeIcon(icon, 30, 30));
-        
-        if(gamePanel.avatar.checkNine() && act != null && !rebuild){
+
+        if (gamePanel.avatar.checkNine() && act != null && !rebuild) {
             JButton poseUsine = new JButton("use");
             poseUsine.addActionListener(l -> {
-                build();
-                System.out.println(act.getName());
-                gamePanel.avatar.setPos(new Point(pos.x ,(pos.y) + gamePanel.TAILLE_BLOC)); 
-                GamePanel.obj.add(act);
-                GamePanel.obj.get(GamePanel.obj.size()-1).pos = pos;
-                ((Usine)GamePanel.obj.get(GamePanel.obj.size()-1)).setRecetteAct(recette);
-                ((Usine)GamePanel.obj.get(GamePanel.obj.size()-1)).uiUsine.updateInventory();
-                Inventaire.removeFromAvatarInv(act,1);
-                gamePanel.layeredPane.add(act.uiUsine.getMainPanel(),JLayeredPane.PALETTE_LAYER);
-                rebuild = true;
-                Ui.gameState = Ui.playState;
-                this.setVisible(false);
+                if (build()) {
+
+                    System.out.println(act.getName());
+                    System.out.println(pos);
+                    gamePanel.avatar.setPos(new Point(pos.x, (pos.y) + gamePanel.TAILLE_BLOC));
+                    GamePanel.obj.add(act);
+                    GamePanel.obj.get(GamePanel.obj.size() - 1).pos = pos;
+                    ((Usine) GamePanel.obj.get(GamePanel.obj.size() - 1)).setRecetteAct(recette);
+                    ((Usine) GamePanel.obj.get(GamePanel.obj.size() - 1)).uiUsine.updateInventory();
+                    Inventaire.removeFromAvatarInv(act, 1);
+                    gamePanel.layeredPane.add(act.uiUsine.getMainPanel(), JLayeredPane.PALETTE_LAYER);
+                    rebuild = true;
+                    Ui.gameState = Ui.playState;
+                    this.setVisible(false);
+                }
             });
             row.add(poseUsine);
-        }else if(rebuild){
+
+        } else if (rebuild) {
             JButton rebuildButton = new JButton("rebuild");
-            rebuildButton.addActionListener(k->{
+            rebuildButton.addActionListener(k -> {
                 act.setRecetteAct(recette);
                 act.uiUsine.updateInventory();
                 Ui.gameState = Ui.playState;
@@ -97,64 +101,59 @@ public class UiPoseUsine extends Ui{
         return row;
     }
 
-
     private ImageIcon resizeIcon(ImageIcon icon, int width, int height) {
-        if (icon == null)
+        if (icon == null) {
             return null;
+        }
         return new ImageIcon(icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH));
     }
 
-    public boolean build(){
-        switch(gamePanel.avatar.getDirection()) {
+    public boolean build() {
+        switch (gamePanel.avatar.getDirection()) {
             case "up" -> {
-                if (gamePanel.avatar.checkNine()){
-                    
-                    Point verif = new Point((int)gamePanel.avatar.getPosition().getX() /gamePanel.TAILLE_BLOC ,(int)(gamePanel.avatar.getPosition().getY() /gamePanel.TAILLE_BLOC) );
-                    if(gamePanel.tileM.getTile(verif.x *gamePanel.TAILLE_BLOC, verif.y*gamePanel.TAILLE_BLOC).isGrass){
-                        
-                        pos = new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y)*gamePanel.TAILLE_BLOC);
-                        System.out.println("pos : "+pos);
-                        
-                        
-                    }  
-                    return true;
-                }return false;
-                
+                if (gamePanel.avatar.checkNine()) {
 
-        
+                    Point verif = new Point((int) gamePanel.avatar.getPosition().getX() / gamePanel.TAILLE_BLOC, (int) (gamePanel.avatar.getPosition().getY() / gamePanel.TAILLE_BLOC));
+                    if (gamePanel.tileM.getTile(verif.x * gamePanel.TAILLE_BLOC, verif.y * gamePanel.TAILLE_BLOC).isGrass) {
+                        System.out.println("test");
+                        pos = new Point(verif.x * gamePanel.TAILLE_BLOC, (verif.y) * gamePanel.TAILLE_BLOC);
+                    }
+                    return true;
+                }
+                return false;
             }
             case "down" -> {
-                if (gamePanel.avatar.checkNine()){
-                    Point verif = new Point((int)gamePanel.avatar.getPosition().getX() /gamePanel.TAILLE_BLOC  ,(int)(gamePanel.avatar.getPosition().getY() /gamePanel.TAILLE_BLOC)+1 );
-                    if(gamePanel.tileM.getTile(verif.x, verif.y).isGrass){
-                        pos = new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y)*gamePanel.TAILLE_BLOC);
-                         
-                        
-                    }  
+                if (gamePanel.avatar.checkNine()) {
+                    Point verif = new Point((int) gamePanel.avatar.getPosition().getX() / gamePanel.TAILLE_BLOC, (int) (gamePanel.avatar.getPosition().getY() / gamePanel.TAILLE_BLOC) + 1);
+                    if (gamePanel.tileM.getTile(verif.x * gamePanel.TAILLE_BLOC, verif.y * gamePanel.TAILLE_BLOC).isGrass) {
+                        pos = new Point(verif.x * gamePanel.TAILLE_BLOC, (verif.y) * gamePanel.TAILLE_BLOC);
+
+                    }
                     return true;
-                }return false;
+                }
+                return false;
             }
             case "right" -> {
-                if (gamePanel.avatar.checkNine()){
-                    Point verif = new Point((int)gamePanel.avatar.getPosition().getX() /gamePanel.TAILLE_BLOC +1 ,(int)(gamePanel.avatar.getPosition().getY() /gamePanel.TAILLE_BLOC) );
-                    if(gamePanel.tileM.getTile(verif.x, verif.y).isGrass){
-                        pos = new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y)*gamePanel.TAILLE_BLOC);
-                        
-                       
-                    } 
+                if (gamePanel.avatar.checkNine()) {
+                    Point verif = new Point((int) gamePanel.avatar.getPosition().getX() / gamePanel.TAILLE_BLOC + 1, (int) (gamePanel.avatar.getPosition().getY() / gamePanel.TAILLE_BLOC));
+                    if (gamePanel.tileM.getTile(verif.x * gamePanel.TAILLE_BLOC, verif.y * gamePanel.TAILLE_BLOC).isGrass) {
+                        pos = new Point(verif.x * gamePanel.TAILLE_BLOC, (verif.y) * gamePanel.TAILLE_BLOC);
+
+                    }
                     return true;
-                }return false;
+                }
+                return false;
             }
             case "left" -> {
-                if (gamePanel.avatar.checkNine()){
-                    Point verif = new Point((int)gamePanel.avatar.getPosition().getX() /gamePanel.TAILLE_BLOC -1 ,(int)(gamePanel.avatar.getPosition().getY() /gamePanel.TAILLE_BLOC) );
-                    if(gamePanel.tileM.getTile(verif.x, verif.y).isGrass){
-                        pos = new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y)*gamePanel.TAILLE_BLOC);
-                        gamePanel.avatar.setPos(new Point(verif.x * gamePanel.TAILLE_BLOC,(verif.y*gamePanel.TAILLE_BLOC) + gamePanel.TAILLE_BLOC)); 
-                       
-                    }  
+                if (gamePanel.avatar.checkNine()) {
+                    Point verif = new Point((int) gamePanel.avatar.getPosition().getX() / gamePanel.TAILLE_BLOC - 1, (int) (gamePanel.avatar.getPosition().getY() / gamePanel.TAILLE_BLOC));
+                    if (gamePanel.tileM.getTile(verif.x * gamePanel.TAILLE_BLOC, verif.y * gamePanel.TAILLE_BLOC).isGrass) {
+                        pos = new Point(verif.x * gamePanel.TAILLE_BLOC, (verif.y) * gamePanel.TAILLE_BLOC);
+
+                    }
                     return true;
-                }return false;
+                }
+                return false;
             }
             default -> {
             }
@@ -163,25 +162,22 @@ public class UiPoseUsine extends Ui{
 
     }
 
-
-    public void rebuildPoseUsine(){
+    public void rebuildPoseUsine() {
         JPanel posePanel = (JPanel) scrollPane.getViewport().getView();
         posePanel.removeAll();
         for (int i = 0; i < Recette.getRecettes().size(); i++) {
             posePanel.add(createRow(Recette.getRecettes().get(i)));
-            System.out.println("rebuild");
         }
         posePanel.revalidate();
         posePanel.repaint();
-        
+
     }
 
 
 
 
+    public void repositionAvatar(){
+        // switch case 
+    }
 
-
-    
-
-    
 }

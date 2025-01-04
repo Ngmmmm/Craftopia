@@ -81,6 +81,7 @@ class UiPoseRecolteuse extends Ui {
                 act.pos = pos;
                 GamePanel.obj.add(act);
                 Inventaire.removeFromAvatarInv(act, 1);
+                gamePanel.avatar.setPos(new Point((int)pos.x,(int)pos.getY() + gamePanel.TAILLE_BLOC));
                 Ui.gameState = Ui.playState;
                 this.setVisible(false);
                 gamePanel.layeredPane.add(act.uiRecolteuse.getMainPanel(),JLayeredPane.PALETTE_LAYER);
@@ -112,8 +113,7 @@ class UiPoseRecolteuse extends Ui {
                             (int) (gamePanel.avatar.getPosition().getY() / gamePanel.TAILLE_BLOC));
                     if (gamePanel.tileM.getTile(verif.x*gamePanel.TAILLE_BLOC, verif.y*gamePanel.TAILLE_BLOC).isGrass) {
                         pos = new Point(verif.x * gamePanel.TAILLE_BLOC, (verif.y) * gamePanel.TAILLE_BLOC);
-                        gamePanel.avatar.setPos(new Point(verif.x * gamePanel.TAILLE_BLOC,
-                                (verif.y * gamePanel.TAILLE_BLOC) + gamePanel.TAILLE_BLOC));
+                        
 
                     }
 
@@ -126,9 +126,7 @@ class UiPoseRecolteuse extends Ui {
                             (int) (gamePanel.avatar.getPosition().getY() / gamePanel.TAILLE_BLOC) + 1);
                     if (gamePanel.tileM.getTile(verif.x*gamePanel.TAILLE_BLOC, verif.y*gamePanel.TAILLE_BLOC).isGrass) {
                         pos = new Point(verif.x * gamePanel.TAILLE_BLOC, (verif.y) * gamePanel.TAILLE_BLOC);
-                        gamePanel.avatar.setPos(new Point(verif.x * gamePanel.TAILLE_BLOC,
-                                (verif.y * gamePanel.TAILLE_BLOC) + gamePanel.TAILLE_BLOC));
-
+                       
                     }
                 }
             }
@@ -139,9 +137,7 @@ class UiPoseRecolteuse extends Ui {
                             (int) (gamePanel.avatar.getPosition().getY() / gamePanel.TAILLE_BLOC));
                     if (gamePanel.tileM.getTile(verif.x*gamePanel.TAILLE_BLOC, verif.y*gamePanel.TAILLE_BLOC).isGrass) {
                         pos = new Point(verif.x * gamePanel.TAILLE_BLOC, (verif.y) * gamePanel.TAILLE_BLOC);
-                        gamePanel.avatar.setPos(new Point(verif.x * gamePanel.TAILLE_BLOC,
-                                (verif.y * gamePanel.TAILLE_BLOC) + gamePanel.TAILLE_BLOC));
-
+                        
                     }
                 }
             }
@@ -152,8 +148,7 @@ class UiPoseRecolteuse extends Ui {
                             (int) (gamePanel.avatar.getPosition().getY() / gamePanel.TAILLE_BLOC));
                     if (gamePanel.tileM.getTile(verif.x*gamePanel.TAILLE_BLOC, verif.y*gamePanel.TAILLE_BLOC).isGrass) {
                         pos = new Point(verif.x * gamePanel.TAILLE_BLOC, (verif.y) * gamePanel.TAILLE_BLOC);
-                        gamePanel.avatar.setPos(new Point(verif.x * gamePanel.TAILLE_BLOC,
-                                (verif.y * gamePanel.TAILLE_BLOC) + gamePanel.TAILLE_BLOC));
+                        
 
                     }
                 }
