@@ -40,6 +40,8 @@ public class Ui {
     public static final int shopState = 5;
     public static final int settingsState = 6;
     public static final int poseMachineState = 7;
+    public static final int pauseState = 8;
+    public static final int craftAvatarState = 9;
 
     public UiInteract itemManager;
     public UiTitleScreen titleScreen;
@@ -47,6 +49,7 @@ public class Ui {
     public UiInventaire inventairePanel;
     public UiMarche marchePanel;
     public UiPoseUsine poseUsinePanel;
+    public UiCraftAvatar craftAvatarPanel;
     public double scaleXAct;
     public double scaleYAct;
 
@@ -69,6 +72,7 @@ public class Ui {
         this.inventairePanel = new UiInventaire(gamePanel);
         this.marchePanel = new UiMarche(gamePanel);
         this.poseUsinePanel = new UiPoseUsine(gamePanel);
+        this.craftAvatarPanel = new UiCraftAvatar(gamePanel);
 
     }
 
@@ -89,8 +93,10 @@ public class Ui {
         // UI DRAW
 
         menuPanel.setVisible(false);
-        // inventairePanel.setVisible(false);
+        inventairePanel.setVisible(false);
         marchePanel.setVisible(false);
+        poseUsinePanel.setVisible(false);
+        craftAvatarPanel.setVisible(false);
 
         // TITLESCREEN
         if (gameState == TITLE_STATE) {
@@ -176,6 +182,16 @@ public class Ui {
 
                 poseUsinePanel.mainPanel.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
                 poseUsinePanel.setVisible(true);
+            } else if (gameState == craftAvatarState) {
+                int panelWidth = 500;
+                int panelHeight = 300;
+
+                int scrollX = (gamePanel.getWidth() - panelWidth) / 2;
+                int scrollY = (gamePanel.getHeight() - panelHeight + menuPanel.menuBar.getHeight()) / 2;
+
+                craftAvatarPanel.mainPanel.setBounds(scrollX, scrollY, panelWidth, panelHeight);
+                craftAvatarPanel.setVisible(true);
+
             }
         }
 
