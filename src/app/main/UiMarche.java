@@ -36,9 +36,7 @@ public class UiMarche extends Ui {
 
         // Ajoute des lignes au panneau principal (chaque ligne contient IMG, Nom, SELL,
         // BUY)
-        System.out.println(obj.size());
         for (int i = 0; i < obj.size(); i++) {
-            System.out.println(obj.get(i).getName());
             invPanel.add(createRow(obj.get(i).getName(), i));
         }
 

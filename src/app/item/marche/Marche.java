@@ -76,10 +76,6 @@ public class Marche extends SuperObjet {
 
             // Ajouter le produit à l'inventaire du joueur
             Inventaire.addToAvatarInv(getProduit(produit), quantity);
-
-            System.out.println("Vous avez acheté : " + produit);
-        } else {
-            System.out.println("Vous n'avez pas assez d'argent pour acheter : " + produit);
         }
     }
 
@@ -88,12 +84,10 @@ public class Marche extends SuperObjet {
         int prix = Argent.getPrice(produit);
 
         // Augmenter l'argent du joueur
-        Argent.increaseMoney(prix*quantity);
+        Argent.increaseMoney(prix * quantity);
 
         // Retirer le produit de l'inventaire du joueur
         Inventaire.removeFromAvatarInv(getProduit(produit), quantity);
-
-        System.out.println("Vous avez vendu : " + produit);
     }
 
     private static SuperObjet getProduit(Produits produit) {
