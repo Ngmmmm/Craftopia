@@ -15,5 +15,6 @@ public class RecetteArc extends Recette {
         this.ingredients[1] = new BouleFeuille();
         this.ingredients[1].setQuantity(1);
         this.ress = new Arc();
+        this.ress.setQuantity(1);
     }
 }
