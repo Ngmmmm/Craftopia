@@ -2,6 +2,9 @@ package item.sprites;
 
 import item.bag.Argent; // Permet de dessiner l'avatar avec une qualité graphique
 import item.bag.Inventaire; // Définit l'aire solide pour la détection des collisions
+import item.recettes.Recette;
+import item.ressources.Ressource;
+
 import java.awt.Graphics2D; // Optimise le rendu graphique
 import java.awt.Point;
 import java.awt.Rectangle; // Stocke les images de l'avatar
@@ -82,7 +85,7 @@ public final class Avatar extends Sprite {
         mapPoint.y = gp.tileM.spawnPoint.getY(); // Position initiale sur l'axe Y
     }
 
-    public void setPos(Point p){
+    public void setPos(Point p) {
         mapPoint = p;
     }
 
@@ -246,32 +249,41 @@ public final class Avatar extends Sprite {
         return mapPoint;
     }
 
-    public String getDirection(){
+    public String getDirection() {
         return direction;
     }
 
-    public boolean checkNine(){
-        Point verif = new Point((int)mapPoint.getX() /gp.TAILLE_BLOC  ,(int)(mapPoint.getY() /gp.TAILLE_BLOC) );
-        for(int i = 0; i<GamePanel.obj.size();i++){
-            if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y){
+    public boolean checkNine() {
+        Point verif = new Point((int) mapPoint.getX() / gp.TAILLE_BLOC, (int) (mapPoint.getY() / gp.TAILLE_BLOC));
+        for (int i = 0; i < GamePanel.obj.size(); i++) {
+            if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x
+                    && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y) {
                 return false;
-            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y-1){
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x
+                    && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y - 1) {
                 return false;
-            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y+1){
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x
+                    && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y + 1) {
                 return false;
-            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x-1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y){
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x - 1
+                    && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y) {
                 return false;
-            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x+1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y){
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x + 1
+                    && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y) {
                 return false;
-            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x-1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y-1){
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x - 1
+                    && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y - 1) {
                 return false;
-            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x+1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y+1){
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x + 1
+                    && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y + 1) {
                 return false;
-            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x-1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y+1){
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x - 1
+                    && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y + 1) {
                 return false;
-            }else if((int)(GamePanel.obj.get(i).pos.x)/gp.TAILLE_BLOC  == (int)verif.x+1 && (int)(GamePanel.obj.get(i).pos.y)/gp.TAILLE_BLOC  == (int)verif.y-1){
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x + 1
+                    && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y - 1) {
                 return false;
-            }    
+            }
         }
         return true;
     }
@@ -282,4 +294,21 @@ public final class Avatar extends Sprite {
         keyH.leftPressed = false;
         keyH.rightPressed = false;
     }
+
+    public void createRessource(Recette recette) {
+        if (recette == null) {
+            return;
+        }
+        if (recette.isPossible(Inventaire.getInvAvatar())) {
+            Ressource ressource = (Ressource) SuperObjet.getSuperObjet(recette.getRessource().getName());
+            Inventaire.addToAvatarInv(ressource, 1);
+            for (int i = 0; i < recette.getIngredients().length; i++) {
+                Inventaire.removeFromAvatarInv(recette.getIngredients()[i],
+                        recette.getIngredients()[i].getQuantity());
+            }
+        } else {
+            System.out.println("Recette impossible");
+        }
+    }
+
 }

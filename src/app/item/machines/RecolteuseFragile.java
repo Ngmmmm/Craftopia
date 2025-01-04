@@ -5,8 +5,6 @@ import item.bag.Inventaire;
 import item.bag.InventaireMachine;
 import item.marche.Marche.Produits;
 import item.ressources.Ressource;
-import main.UiRecolteuse;
-
 import java.io.File;
 import javax.imageio.ImageIO;
 

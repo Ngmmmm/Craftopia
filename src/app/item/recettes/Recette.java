@@ -30,7 +30,7 @@ public abstract class Recette {
         FER,
     }
 
-    private static Recette getRecette(Livre recette) {
+    public static Recette getRecette(Livre recette) {
         switch (recette) {
 
             case BLOC_PIERRE:

@@ -15,7 +15,7 @@ import javax.swing.JScrollPane;
 
 public class UiCraftAvatar extends Ui {
     JPanel mainPanel;
-    private JScrollPane recettePanel;
+    private JScrollPane craftPanel;
 
     public UiCraftAvatar(GamePanel gamePanel) {
         super(gamePanel);
@@ -24,7 +24,7 @@ public class UiCraftAvatar extends Ui {
         mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
-        mainPanel.add(recettePanel);
+        mainPanel.add(craftPanel);
         JButton exit = new JButton("exit");
         exit.addActionListener(l -> {
             Ui.gameState = Ui.playState;
@@ -40,18 +40,21 @@ public class UiCraftAvatar extends Ui {
         JPanel recetteContent = new JPanel();
         recetteContent.setLayout(new BoxLayout(recetteContent, BoxLayout.Y_AXIS)); // Empile verticalement
 
-        ArrayList<Recette> recettes = Recette.getRecettes();
+        ArrayList<Recette> recettes = new ArrayList<>();
+        recettes.add(Recette.getRecette(Recette.Livre.BOULE_FEUILLE));
+        recettes.add(Recette.getRecette(Recette.Livre.BLOC_PIERRE));
+
         for (Recette recette : recettes) {
             recetteContent.add(createLigneRecette(recette));
         }
 
-        recettePanel = new JScrollPane(recetteContent);
-        recettePanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        recettePanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        craftPanel = new JScrollPane(recetteContent);
+        craftPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        craftPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     }
 
     private JPanel createLigneRecette(Recette recette) {
-        JPanel recetteRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel craftRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
         for (int i = 0; i < recette.getIngredients().length; i++) {
             Ressource ressource = recette.getIngredients()[i];
@@ -63,14 +66,14 @@ public class UiCraftAvatar extends Ui {
             ImageIcon img = resizeIcon(new ImageIcon(ressource.getImage()), 30, 30);
             JLabel imgLabel = new JLabel(img);
 
-            recetteRow.add(quantity);
-            recetteRow.add(imgLabel);
+            craftRow.add(quantity);
+            craftRow.add(imgLabel);
 
             // Ajouter "+" ou "="
             if (i < recette.getIngredients().length - 1) {
-                recetteRow.add(new JLabel("+"));
+                craftRow.add(new JLabel("+"));
             } else {
-                recetteRow.add(new JLabel("="));
+                craftRow.add(new JLabel("="));
             }
         }
 
@@ -79,8 +82,8 @@ public class UiCraftAvatar extends Ui {
         JLabel quantity = new JLabel(recette.getRessource().getQuantity() + "");
         JLabel imgLabel = new JLabel(resultat);
 
-        recetteRow.add(quantity);
-        recetteRow.add(imgLabel);
+        craftRow.add(quantity);
+        craftRow.add(imgLabel);
 
         // Nom de la ressource produite
         JLabel recetteName = new JLabel(recette.getRessource().getName());
@@ -95,12 +98,14 @@ public class UiCraftAvatar extends Ui {
 
         build.addActionListener(l -> {
             // Logique pour créer la ressource
+            gamePanel.avatar.createRessource(recette);
+
         });
 
-        recetteRow.add(recetteName);
-        recetteRow.add(build);
+        craftRow.add(recetteName);
+        craftRow.add(build);
 
-        return recetteRow;
+        return craftRow;
     }
 
     public JPanel getMainPanel() {
@@ -121,8 +126,14 @@ public class UiCraftAvatar extends Ui {
         mainPanel.setBounds(x, y, width, height);
     }
 
-    public void rebuildRecettePanel() {
-        JPanel rePanel = (JPanel) recettePanel.getViewport().getView();
+    public void updateInventory() {
+        rebuildCraftPanel();
+        mainPanel.revalidate();
+        mainPanel.repaint();
+    }
+
+    private void rebuildCraftPanel() {
+        JPanel rePanel = (JPanel) craftPanel.getViewport().getView();
         if (rePanel != null) {
             rePanel.removeAll();
             ArrayList<Recette> recettes = Recette.getRecettes();
