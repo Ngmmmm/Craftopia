@@ -1,12 +1,14 @@
 package main;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
+import item.bag.Argent;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 
 public class UiMenuBar extends Ui {
 
@@ -24,6 +26,8 @@ public class UiMenuBar extends Ui {
     private JButton backToMenuButton;
     private JButton setButton;
     private JButton crafAvatarButton;
+
+    private JLabel argent;
 
     public JPanel menuBar;
 
@@ -53,12 +57,14 @@ public class UiMenuBar extends Ui {
         backToMenuButton = createButton(backToMenuIcon);
         setButton = createButton(setButtonIcon);
         crafAvatarButton = createButton(crafAvatarIcon);
+        argent = new JLabel(Integer.toString(Argent.getMonnaiePlayer()) + " $");
 
         // Initialize menu bar
         menuBar = new JPanel();
         menuBar.setLayout(null); // Use null layout for absolute positioning
         menuBar.setBackground(Color.GRAY);
         menuBar.setFocusable(false);
+
     }
 
     private JButton createButton(ImageIcon icon) {
@@ -80,7 +86,7 @@ public class UiMenuBar extends Ui {
         menuBar.add(crafAvatarButton);
         menuBar.add(backToMenuButton);
         menuBar.add(setButton);
-
+        menuBar.add(argent);
     }
 
     private void addMenuBarToLayeredPane() {
@@ -114,11 +120,13 @@ public class UiMenuBar extends Ui {
         int startX = (panelWidth - totalWidth) / 2; // Starting X position for the first button
 
         invButton.setBounds(startX, panelHeight / 2 - buttonHeight / 2, buttonWidth, buttonHeight);
-        crafAvatarButton.setBounds(startX + buttonWidth + spacing, panelHeight / 2 - buttonHeight / 2, buttonWidth, buttonHeight);
-        backToMenuButton.setBounds(startX + 2 * (buttonWidth + spacing), panelHeight / 2 - buttonHeight / 2, buttonWidth, buttonHeight);
-        setButton.setBounds(startX + 3 * (buttonWidth + spacing), panelHeight / 2 - buttonHeight / 2, buttonWidth, buttonHeight);
-        
-
+        crafAvatarButton.setBounds(startX + buttonWidth + spacing, panelHeight / 2 - buttonHeight / 2, buttonWidth,
+                buttonHeight);
+        backToMenuButton.setBounds(startX + 2 * (buttonWidth + spacing), panelHeight / 2 - buttonHeight / 2,
+                buttonWidth, buttonHeight);
+        setButton.setBounds(startX + 3 * (buttonWidth + spacing), panelHeight / 2 - buttonHeight / 2, buttonWidth,
+                buttonHeight);
+        argent.setBounds(panelWidth - 100, panelHeight / 2 - buttonHeight / 2, 100, buttonHeight);  
         // Resize icons for the buttons
         resizeButtonImages(invButton, invButtonIcon);
         resizeButtonImages(backToMenuButton, backToMenuIcon);
@@ -158,4 +166,7 @@ public class UiMenuBar extends Ui {
         menuBar.setVisible(visible);
     }
 
+    public void actArgent() {
+        argent.setText(Integer.toString(Argent.getMonnaiePlayer()) + " $");
+    }
 }

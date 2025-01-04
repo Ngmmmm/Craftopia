@@ -1,3 +1,11 @@
-UsineFragile 1
-Fer 1
-Pierre 1
+467
+BouleFeuille 3
+Bois 4
+Hache 4
+Pierre 4
+BlocPierre 1
+Feuille 3
+RecolteuseFragile 2
+Recolteuse 2
+RecolteuseRapide 2
+RecolteuseXL 2

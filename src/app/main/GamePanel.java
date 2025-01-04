@@ -3,12 +3,12 @@ package main;
 import item.sprites.Avatar;
 import item.sprites.SuperObjet;
 import java.awt.BorderLayout;
-import java.awt.Color; // Importation pour définir les dimensions des composants
-import java.awt.Dimension;
+import java.awt.Color;
+import java.awt.Dimension; // Importation pour définir les dimensions des composants
 import java.awt.Graphics;
-import java.awt.Point; // Importation pour dessiner des composants
-import java.util.ArrayList; // Importation de JPanel pour créer le panneau de jeu
-import javax.swing.JLayeredPane;
+import java.awt.Point;
+import java.util.ArrayList; // Importation pour dessiner des composants
+import javax.swing.JLayeredPane; // Importation de JPanel pour créer le panneau de jeu
 import javax.swing.JPanel;
 import save.SaveEtatMap;
 import save.SaveInvAvatar;
@@ -45,6 +45,7 @@ public class GamePanel extends JPanel implements Runnable {
     public SaveEtatMap saveEtatMap = new SaveEtatMap(this);
 
     public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
+    
     public static ArrayList<SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
 
     static boolean editMarche = true;
@@ -72,7 +73,6 @@ public class GamePanel extends JPanel implements Runnable {
      * Configure les paramètres initiaux du jeu.
      */
     public void setupGame() {
-        aSetter.setAllItems();
         Ui.gameState = Ui.TITLE_STATE; // Définit l'état du jeu à l'écran de titre
         
     }

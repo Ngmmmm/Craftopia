@@ -1,14 +1,13 @@
 package main;
 
+import item.machines.Recolteuse;
+import item.machines.Usine;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
-import item.machines.Recolteuse;
-import item.machines.Usine;
 
 /**
  * La classe `Ui` gère l'affichage et la gestion des boutons du Menu du jeu.
@@ -43,8 +42,8 @@ public class Ui {
     public static final int inventaireState = 4;
     public static final int shopState = 5;
     public static final int settingsState = 6;
-    public static final int poseMachineState = 7;
-    public static final int pauseState = 8;
+    public static final int poseUsineState = 7;
+    public static final int poseRecolteuseState = 8;
     public static final int craftAvatarState = 9;
 
     public UiInteract itemManager;
@@ -52,7 +51,8 @@ public class Ui {
     public UiMenuBar menuPanel;
     public UiInventaire inventairePanel;
     public UiMarche marchePanel;
-    public UiPoseUsine poseUsinePanel;
+    public static UiPoseUsine poseUsinePanel;
+    public static UiPoseRecolteuse poseRecolteusePanel;
     public UiCraftAvatar craftAvatarPanel;
     public double scaleXAct;
     public double scaleYAct;
@@ -90,7 +90,8 @@ public class Ui {
         this.menuPanel = new UiMenuBar(gamePanel);
         this.inventairePanel = new UiInventaire(gamePanel);
         this.marchePanel = new UiMarche(gamePanel);
-        this.poseUsinePanel = new UiPoseUsine(gamePanel);
+        poseUsinePanel = new UiPoseUsine(gamePanel);
+        poseRecolteusePanel = new UiPoseRecolteuse(gamePanel);
         this.craftAvatarPanel = new UiCraftAvatar(gamePanel);
     }
 
@@ -104,6 +105,7 @@ public class Ui {
 
     private void hideAllPanels() {
         menuPanel.setVisible(false);
+        menuPanel.actArgent();
         inventairePanel.setVisible(false);
         marchePanel.setVisible(false);
         poseUsinePanel.setVisible(false);
@@ -205,9 +207,14 @@ public class Ui {
                     }
                 }
                 break;
-            case poseMachineState:
+            case poseUsineState:
                 setPanelBounds(poseUsinePanel.mainPanel, gamePanel.getWidth() / 2, gamePanel.getHeight() / 2);
                 poseUsinePanel.setVisible(true);
+                break;
+
+            case poseRecolteuseState:
+                setPanelBounds(poseRecolteusePanel.mainPanel, gamePanel.getWidth() / 2, gamePanel.getHeight() / 2);
+                poseRecolteusePanel.setVisible(true);
                 break;
             case craftAvatarState:
                 setPanelBounds(craftAvatarPanel.mainPanel, 500, 300);

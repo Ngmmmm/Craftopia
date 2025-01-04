@@ -1,7 +1,12 @@
-Feuille 23.0 25.0
-Bois 24.0 25.0
-Pierre 25.0 25.0
-Fer 26.0 25.0
-Usine 27.0 25.0
-Recolteuse 28.0 25.0
-Marche 29.0 25.0
+Feuille 17.0 25.0 
+Pierre 19.0 25.0 
+Pierre 21.0 25.0 
+Feuille 23.0 25.0 
+Bois 24.0 25.0 
+Pierre 25.0 25.0 
+Fer 26.0 25.0 
+Usine 27.0 25.0 Hache 0 
+Marche 28.0 25.0 
+UsinePolyvalente 28.0 29.0 Hache 2 BouleFeuille 3 Hache 1 
+UsinePolyvalente 24.0 29.0 Hache 0 
+UsineRapide 19.0 28.0 Hache 1 Hache 2 

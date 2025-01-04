@@ -26,7 +26,7 @@ public class TileManager {
     GamePanel gp; // Référence au panneau de jeu principal
     public Tile[] tile; // Tableau contenant les différents blocs
     public int[][] mapTileNum; // Tableau 2D représentant la carte des blocs
-    public Point spawnPoint = new Point();
+    public static Point spawnPoint = new Point();
     /**
      * Constructeur de la classe TileManager.
      * Initialise le tableau des blocs et charge la disposition des blocs depuis
@@ -57,29 +57,32 @@ public class TileManager {
         try {
             tile[0] = new Tile();
             tile[0].image = ImageIO.read(new File("./img/tiles/grass.png"));
+            tile[0].isGrass = true;
+            
 
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(new File("./img/tiles/water.png"));
             tile[1].collision = true; // Bloque les sprites
-            tile[1].isOccupied = true; // Empêche de pouvoir poser un objet sur le bloc
+             // Empêche de pouvoir poser un objet sur le bloc
 
             tile[2] = new Tile();
             tile[2].image = ImageIO.read(new File("./img/tiles/brickwall.png"));
             tile[2].collision = true;
-            tile[2].isOccupied = true; // Empêche de pouvoir poser un objet sur le bloc
+            ; // Empêche de pouvoir poser un objet sur le bloc
 
             tile[3] = new Tile();
             tile[3].image = ImageIO.read(new File("./img/tiles/Cloture.png"));
             tile[3].collision = true;
-            tile[3].isOccupied = true; // Empêche de pouvoir poser un objet sur le bloc
+             // Empêche de pouvoir poser un objet sur le bloc
 
             tile[4] = new Tile();
             tile[4].image = ImageIO.read(new File("./img/tiles/tree.png"));
             tile[4].collision = true;
-            tile[4].isOccupied = true; // Empêche de pouvoir poser un objet sur le bloc
+             // Empêche de pouvoir poser un objet sur le bloc
 
             tile[5] = new Tile();
             tile[5].image = ImageIO.read(new File("./img/tiles/grass.png"));
+            
 
             // Chargement des blocs supplémentaires
             // tile[5] = new Tile();
@@ -207,6 +210,10 @@ public class TileManager {
                 mapLigne++;
             }
         }
+    }
+
+    public Tile getTile(int x, int y) {
+        return tile[mapTileNum[x/gp.TAILLE_BLOC][y/gp.TAILLE_BLOC]];
     }
 
 

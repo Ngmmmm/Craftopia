@@ -4,7 +4,6 @@ import item.bag.Argent;
 import item.bag.Inventaire;
 import item.bag.InventaireMachine;
 import item.marche.Marche.Produits;
-import item.ressources.Feuille;
 import item.ressources.Ressource;
 import item.sprites.SuperObjet;
 import main.UiRecolteuse;
@@ -15,12 +14,11 @@ import javax.imageio.ImageIO;
 public class Recolteuse extends Machine {
 
     public UiRecolteuse uiRecolteuse;
-
+    public Ressource res;
     public Recolteuse() {
         name = "Recolteuse";
         this.stock = new InventaireMachine(this);
-        this.res = new Feuille(); // TODO : changer pour une ressource de base
-        this.stock.add(res, 1);
+        this.stock.add(res, 0);
         prix = Argent.getPrice(Produits.RECOLTEUSE);
         produit = Produits.RECOLTEUSE;
         uiRecolteuse = new UiRecolteuse(this);
@@ -47,6 +45,10 @@ public class Recolteuse extends Machine {
     @Override
     public InventaireMachine getStock() {
         return stock;
+    }
+
+    public void setRessource(Ressource r) {
+        this.res = r;
     }
 
 }

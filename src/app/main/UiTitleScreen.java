@@ -1,7 +1,6 @@
 package main;
 
 import java.awt.Graphics2D;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -63,6 +62,7 @@ public class UiTitleScreen extends Ui {
 
         // Action pour le bouton "Start"
         startButton.addActionListener(l -> {
+            gamePanel.aSetter.setAllItemsByRandom();
             Ui.gameState = Ui.playState;
             startButton.setVisible(false);
             continueButton.setVisible(false);
@@ -73,6 +73,7 @@ public class UiTitleScreen extends Ui {
 
         // Action pour le bouton "Continue"
         continueButton.addActionListener(l -> {
+            gamePanel.aSetter.setAllItemsBySave();
             Ui.gameState = Ui.playState;
             startButton.setVisible(false);
             continueButton.setVisible(false);

@@ -1,5 +1,6 @@
 package main;
 
+import item.bag.Argent;
 import item.machines.Recolteuse;
 import item.machines.Usine;
 import item.marche.Marche;
@@ -8,6 +9,8 @@ import item.ressources.Bois;
 import item.ressources.Fer;
 import item.ressources.Feuille;
 import item.ressources.Pierre;
+import item.sprites.SuperObjet;
+import java.util.ArrayList;
 import javax.swing.JLayeredPane;
 
 public class AssetSetter {
@@ -18,12 +21,18 @@ public class AssetSetter {
         this.gp = gp;
     }
 
-    public void setAllItems() {
+    public void setAllItemsBySave() {
+        Argent.decreaseMoney((Argent.getMonnaiePlayer()));
+        GamePanel.obj = new ArrayList<SuperObjet>();
+        gp.saveEtatMap.loadEtatMap();
+        gp.saveInvAvatar.loadInvAvatar();
+    }
+    public void setAllItemsByRandom() {
+        Argent.decreaseMoney((Argent.getMonnaiePlayer()));
+        GamePanel.obj = new ArrayList<SuperObjet>();
         setRessource();
         setMachine();
         setMarche();
-        // gp.saveEtatMap.loadEtatMap();
-        gp.saveInvAvatar.loadInvAvatar();
     }
 
     public void setRessource() {

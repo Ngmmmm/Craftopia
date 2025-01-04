@@ -1,5 +1,6 @@
 package save;
 
+import item.bag.Argent;
 import item.bag.Inventaire;
 import item.sprites.SuperObjet;
 import java.io.BufferedReader;
@@ -20,7 +21,9 @@ public class SaveInvAvatar {
     public void saveInvAvatar() {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("saveGame/saveInvAvatar.txt"));
-
+            String argentInfo = Integer.toString(Argent.getMonnaiePlayer());
+            bw.write(argentInfo);
+            bw.newLine();
             for (int i = 0; i < Inventaire.getInvAvatar().size(); i++) {
                 String itemInfo = Inventaire.getInvAvatar().get(i).name + " "
                         + Integer.toString(Inventaire.getInvAvatar().get(i).quantity);
@@ -36,7 +39,7 @@ public class SaveInvAvatar {
     public void loadInvAvatar() {
         try {
             BufferedReader br = new BufferedReader(new FileReader("saveGame/saveInvAvatar.txt"));
-
+            Argent.increaseMoney(Integer.parseInt(br.readLine()));
             String itemInfo = br.readLine();
             while (itemInfo != null) {
                 String[] itemInfoArray = itemInfo.split(" ");

@@ -1,6 +1,7 @@
 package main;
 
 import item.machines.Usine;
+import item.machines.UsinePolyvalente;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -23,7 +24,18 @@ public class UiUsine {
         contentPanel.add(uiRecette.getMainPanel());
         contentPanel.add(uiStock.getMainPanel());
 
-        exit = new JButton("exit");
+        JButton reconfigure = new JButton("Reconfigure");
+        reconfigure.addActionListener(l -> {
+            Ui.gameState = Ui.poseUsineState;
+            Ui.poseUsinePanel.rebuild = true;
+            Ui.poseUsinePanel.rebuildPoseUsine();
+            this.setVisible(false);
+        });
+        if(usine instanceof UsinePolyvalente){
+            mainPanel.add(reconfigure, BorderLayout.NORTH);
+        }
+        
+        JButton exit = new JButton("exit");
         exit.addActionListener(l -> {
             Ui.gameState = Ui.playState;
             this.setVisible(false);

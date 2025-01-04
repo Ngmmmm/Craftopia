@@ -17,8 +17,6 @@ public class Usine extends Machine {
 
     public UiUsine uiUsine;
 
-    // TODO : public UiConfigUsine uiConfig;
-
     public Usine() {
         name = "Usine";
         this.stock = new InventaireMachine(this);

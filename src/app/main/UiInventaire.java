@@ -1,6 +1,7 @@
 package main;
 
 import item.bag.Inventaire;
+import item.machines.Recolteuse;
 import item.machines.Usine;
 import item.sprites.SuperObjet;
 import java.awt.Dimension;
@@ -91,23 +92,26 @@ public class UiInventaire extends Ui {
         if (item instanceof Usine) {
             JButton use = new JButton("Poser");
             use.addActionListener(l -> {
-                Ui.gameState = Ui.poseMachineState;
-                this.setVisible(false);
                 UiPoseUsine.act = (Usine) item;
+                Ui.poseUsinePanel.rebuild = false;
+                Ui.poseUsinePanel.rebuildPoseUsine();
+                Ui.gameState = Ui.poseUsineState;
+                this.setVisible(false);
+            });
+            rowPanel.add(use);
+        }
+        if(item instanceof Recolteuse){
+            JButton use = new JButton("Poser");
+            use.addActionListener(l -> {
+                UiPoseRecolteuse.act = (item.machines.Recolteuse) item;
+                Ui.poseRecolteusePanel.rebuildRecolteusePanel();
+                Ui.gameState = Ui.poseRecolteuseState;
+                this.setVisible(false);
             });
             rowPanel.add(use);
         }
         
-        // TODO: Ajouter la possibilité de poser une Recolteuse
-        // if (item instanceof Recolteuse) {
-        //     JButton use = new JButton("Poser");
-        //     use.addActionListener(l -> {
-        //         Ui.gameState = Ui.poseMachineState;
-        //         this.setVisible(false);
-        //         UiPoseRecolteuse.act = (Recolteuse) item;
-        //     });
-        //     rowPanel.add(use);
-        // }
+        
 
         return rowPanel;
     }
