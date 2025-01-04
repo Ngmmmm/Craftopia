@@ -1,7 +1,2 @@
-RecolteuseRapide 1
-Feuille 2
-Epee 2
-Bois 6
-Pierre 5
-Fer 2
-BouleFeuille 7
+1000
+BouleFeuille 1

@@ -1,5 +1,7 @@
 package main;
 
+import item.machines.Recolteuse;
+import item.machines.Usine;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.Icon;
@@ -166,6 +168,26 @@ public class Ui {
                
 
             } else if (gameState == craftState) {
+                int width = gamePanel.getWidth();
+                int height = gamePanel.getHeight();
+
+                int scrollWidth = width / 2 + width/3;
+                int scrollHeight = height / 2 + height/3;
+                int scrollX = (width - scrollWidth) / 2;
+                int scrollY = (height - scrollHeight) / 2;
+
+                for(int i = 0; i<GamePanel.obj.size(); i++){
+                    if(GamePanel.obj.get(i) instanceof Usine){
+                        Usine usine = (Usine)GamePanel.obj.get(i);
+                        usine.uiUsine.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
+                    }else if(GamePanel.obj.get(i) instanceof Recolteuse){
+                        Recolteuse usine = (Recolteuse)GamePanel.obj.get(i);
+                        // usine.uiUsine.updateInventory();
+                        // usine.uiUsine.setVisible(true);
+                        // usine.uiUsine.setBoundsInside(scrollX, scrollY, scrollWidth, scrollHeight);
+                        // usine.uiUsine.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
+                    }
+                }
                
 
             } else if (gameState == poseUsineState) {
