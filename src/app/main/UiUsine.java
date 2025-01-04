@@ -25,6 +25,7 @@ public class UiUsine {
         JButton reconfigure = new JButton("Reconfigure");
         reconfigure.addActionListener(l -> {
             Ui.gameState = Ui.poseUsineState;
+            Ui.poseUsinePanel.rebuild = true;
             Ui.poseUsinePanel.rebuildPoseUsine();
             this.setVisible(false);
         });

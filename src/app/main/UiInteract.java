@@ -101,6 +101,7 @@ public class UiInteract extends Ui {
             int scrollX = (width - scrollWidth) / 2; // Center horizontally
             int scrollY = (height - scrollHeight) / 2; // Center vertically
 
+            Ui.poseUsinePanel.act = usine;
             usine.uiUsine.updateInventory();
             usine.uiUsine.setVisible(true);
             usine.uiUsine.setBoundsInside(scrollX, scrollY, scrollWidth, scrollHeight);

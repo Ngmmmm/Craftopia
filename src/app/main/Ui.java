@@ -181,7 +181,7 @@ public class Ui {
                         Usine usine = (Usine)GamePanel.obj.get(i);
                         usine.uiUsine.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
                     }else if(GamePanel.obj.get(i) instanceof Recolteuse){
-                        Recolteuse usine = (Recolteuse)GamePanel.obj.get(i);
+                        Recolteuse recolteuse = (Recolteuse)GamePanel.obj.get(i);
                         // usine.uiUsine.updateInventory();
                         // usine.uiUsine.setVisible(true);
                         // usine.uiUsine.setBoundsInside(scrollX, scrollY, scrollWidth, scrollHeight);

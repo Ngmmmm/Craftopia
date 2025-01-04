@@ -1,3 +1,6 @@
+Feuille 17.0 25.0 
+Pierre 19.0 25.0 
+Pierre 21.0 25.0 
 Feuille 23.0 25.0 
 Bois 24.0 25.0 
 Pierre 25.0 25.0 

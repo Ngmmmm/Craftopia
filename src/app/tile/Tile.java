@@ -46,12 +46,14 @@ public class Tile {
      * Si cette valeur est définie à "true", le bloc sera considéré comme
      * porteur d'une ressource, machines...
      */
-    public boolean isOccupied = false;
+    public boolean isGrass= false;
     /**
      * La zone de collision solide du bloc.
      * Elle définit précisément l'espace où des interactions physiques peuvent se
      * produire.
      */
     public Rectangle solidArea;
+
+    
 
 }

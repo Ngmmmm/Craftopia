@@ -1,5 +1,6 @@
 package main;
 
+import item.bag.Argent;
 import item.machines.Usine;
 import item.marche.Marche;
 import item.recettes.RecetteHache;
@@ -20,11 +21,13 @@ public class AssetSetter {
     }
 
     public void setAllItemsBySave() {
+        Argent.decreaseMoney((Argent.getMonnaiePlayer()));
         GamePanel.obj = new ArrayList<SuperObjet>();
         gp.saveEtatMap.loadEtatMap();
         gp.saveInvAvatar.loadInvAvatar();
     }
     public void setAllItemsByRandom() {
+        Argent.decreaseMoney((Argent.getMonnaiePlayer()));
         GamePanel.obj = new ArrayList<SuperObjet>();
         setRessource();
         setMachine();
