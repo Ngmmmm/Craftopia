@@ -19,7 +19,7 @@ public class UiRecolteuse {
         uiStock = new UiStock(recolteuse);
 
         mainPanel = new JPanel(new BorderLayout());
-        contentPanel = new JPanel(new GridLayout(1, 2)); // 1 ligne, 2 colonnes pour égaliser les tailles
+        contentPanel = new JPanel(new GridLayout(2, 1)); // 2 lignes, 1 colonne pour égaliser les tailles
 
         contentPanel.add(uiFarm.getMainPanel());
         contentPanel.add(uiStock.getMainPanel());
@@ -29,18 +29,13 @@ public class UiRecolteuse {
             Ui.gameState = Ui.playState;
             this.setVisible(false);
         });
-        exit.setAlignmentX(JButton.CENTER_ALIGNMENT);
+
+        JPanel buttonPanel = new JPanel(); // Nouveau panel pour contenir le bouton
+        buttonPanel.add(exit); // Ajouter le bouton au nouveau panel
 
         mainPanel.add(contentPanel, BorderLayout.CENTER);
-        mainPanel.add(exit, BorderLayout.SOUTH);
+        mainPanel.add(buttonPanel, BorderLayout.SOUTH); // Ajouter le nouveau panel au layout principal
         mainPanel.setVisible(false);
-    }
-
-    public void setBoundsInside(int x, int y, int width, int height) {
-        // Calcule la largeur des sous-panels pour qu'ils soient égaux
-        int halfWidth = width / 2;
-        uiFarm.getMainPanel().setBounds(x, y, halfWidth, height);
-        uiStock.getMainPanel().setBounds(x, y, halfWidth, height);
     }
 
     public void setBounds(int x, int y, int width, int height) {

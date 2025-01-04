@@ -66,6 +66,21 @@ public class Ui {
         this.scaleYAct = gamePanel.getHeight() / gamePanel.HAUTEUR_ECRAN;
     }
 
+    public void draw(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
+        double scaleX = (double) gamePanel.getWidth() / gamePanel.LARGEUR_ECRAN;
+        double scaleY = (double) gamePanel.getHeight() / gamePanel.HAUTEUR_ECRAN;
+
+        // UI DRAW
+        hideAllPanels();
+
+        if (gameState == TITLE_STATE) {
+            drawTitleScreen(g2, scaleX, scaleY);
+        } else {
+            drawGameScreen(g2, scaleX, scaleY);
+        }
+    }
+
     public void initializeComponents() {
         this.itemManager = new UiInteract(gamePanel);
         this.titleScreen = new UiTitleScreen(gamePanel);
@@ -82,21 +97,6 @@ public class Ui {
         ImageIcon resizedIcon = new ImageIcon(((ImageIcon) icon).getImage().getScaledInstance(
                 buttonWidth, buttonHeight, java.awt.Image.SCALE_SMOOTH));
         button.setIcon(resizedIcon);
-    }
-
-    public void draw(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
-        double scaleX = (double) gamePanel.getWidth() / gamePanel.LARGEUR_ECRAN;
-        double scaleY = (double) gamePanel.getHeight() / gamePanel.HAUTEUR_ECRAN;
-
-        // UI DRAW
-        hideAllPanels();
-
-        if (gameState == TITLE_STATE) {
-            drawTitleScreen(g2, scaleX, scaleY);
-        } else {
-            drawGameScreen(g2, scaleX, scaleY);
-        }
     }
 
     private void hideAllPanels() {
@@ -165,6 +165,10 @@ public class Ui {
                 marchePanel.setVisible(true);
                 break;
             case craftState:
+
+                break;
+            case recolteuseState:
+
                 break;
             case poseMachineState:
                 setPanelBounds(poseUsinePanel.mainPanel, gamePanel.getWidth() / 2, gamePanel.getHeight() / 2);
