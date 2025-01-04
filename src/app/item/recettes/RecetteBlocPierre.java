@@ -13,6 +13,7 @@ public class RecetteBlocPierre extends Recette {
         this.ingredients[0].setQuantity(4);
         this.ress = new BlocPierre();
         this.ress.setQuantity(1);
+        this.time = 5;
     }
 
 }

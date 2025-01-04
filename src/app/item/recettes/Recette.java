@@ -103,4 +103,8 @@ public abstract class Recette {
     public String getName() {
         return this.nom;
     }
+
+    public int getTime() {
+        return this.time;
+    }
 }

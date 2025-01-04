@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 
 public class UiCraftAvatar extends Ui {
@@ -98,8 +99,53 @@ public class UiCraftAvatar extends Ui {
 
         build.addActionListener(l -> {
             // Logique pour créer la ressource
-            gamePanel.avatar.createRessource(recette);
 
+            if (recette.getTime() > 0) {
+                JProgressBar progressBar = new JProgressBar(0, recette.getTime());
+                // Définir les bounds pour positionner la progressBar
+                int progressBarWidth = 400;
+                int progressBarHeight = 30;
+                int progressBarX = (gamePanel.getWidth() - progressBarWidth) / 2;
+                int progressBarY = gamePanel.ui.menuPanel.menuBar.getHeight() + 10;
+                progressBar.setBounds(progressBarX, progressBarY, progressBarWidth, progressBarHeight);
+                progressBar.setValue(0);
+                progressBar.setStringPainted(true);
+                gamePanel.add(progressBar);
+                gamePanel.repaint();
+
+                new Thread(() -> {
+                    int previousGameState = gameState;
+                    gamePanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+                        public void componentResized(java.awt.event.ComponentEvent evt) {
+                            int progressBarX = (gamePanel.getWidth() - progressBarWidth) / 2;
+                            int progressBarY = gamePanel.ui.menuPanel.menuBar.getHeight() + 10;
+                            progressBar.setBounds(progressBarX, progressBarY, progressBarWidth, progressBarHeight);
+                        }
+                    });
+                    try {
+                        for (int i = 0; i <= recette.getTime(); i++) {
+                            if (gameState != previousGameState) {
+                                gamePanel.remove(progressBar);
+                                gamePanel.repaint();
+                                return;
+                            }
+                            progressBar.setValue(i);
+                            Thread.sleep(1000); // Sleep for 1 second
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } finally {
+                        if (gameState == previousGameState) {
+                            gamePanel.remove(progressBar);
+                            gamePanel.avatar.createRessource(recette);
+                            gamePanel.avatar.resetDeplacement(); // Reset avatar movement
+                        }
+                    }
+                }).start();
+            } else {
+                gamePanel.avatar.createRessource(recette);
+                gamePanel.avatar.resetDeplacement(); // Reset avatar movement
+            }
         });
 
         craftRow.add(recetteName);
