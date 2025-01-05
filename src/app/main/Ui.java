@@ -2,6 +2,8 @@ package main;
 
 import item.machines.Recolteuse;
 import item.machines.Usine;
+import item.sprites.SuperObjet;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.Icon;
@@ -78,8 +80,17 @@ public class Ui {
         hideAllPanels();
 
         if (gameState == TITLE_STATE) {
+            for (SuperObjet item :GamePanel.obj) {
+                if (item instanceof Usine) {
+                    ((Usine)item).uiUsine.setVisible(false);
+                }
+                if (item instanceof Recolteuse) {
+                    ((Recolteuse)item).uiRecolteuse.setVisible(false);
+                }
+            }
             drawTitleScreen(g2, scaleX, scaleY);
         } else {
+            titleScreen.setVisible(false);
             drawGameScreen(g2, scaleX, scaleY);
         }
     }

@@ -119,24 +119,6 @@ public class UiTitleScreen extends Ui {
     }
 
     /**
-     * Redimensionne l'image d'un bouton pour qu'elle corresponde à sa taille
-     * actuelle.
-     * 
-     * @param button Le bouton à redimensionner
-     * @param icon   L'icône à redimensionner
-     */
-    // private void resizeButtonImages(JButton button, Icon icon) {
-    // int buttonWidth = button.getWidth();
-    // int buttonHeight = button.getHeight();
-
-    // // Redimensionner l'icône en fonction de la taille du bouton
-    // ImageIcon resizedIcon = new ImageIcon(((ImageIcon)
-    // icon).getImage().getScaledInstance(buttonWidth, buttonHeight,
-    // java.awt.Image.SCALE_SMOOTH));
-    // button.setIcon(resizedIcon);
-    // }
-
-    /**
      * Redimensionne les boutons en fonction des nouveaux facteurs de mise à
      * l'échelle.
      * Utilisé lorsque la fenêtre du jeu est redimensionnée.
@@ -182,5 +164,12 @@ public class UiTitleScreen extends Ui {
         continueButton.setVisible(true);
         settingsButton.setVisible(true);
         exitButton.setVisible(true);
+    }
+
+    public void setVisible(boolean visible) {
+        startButton.setVisible(visible);
+        continueButton.setVisible(visible);
+        settingsButton.setVisible(visible);
+        exitButton.setVisible(visible);
     }
 }

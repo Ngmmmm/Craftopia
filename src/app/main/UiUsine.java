@@ -31,10 +31,10 @@ public class UiUsine {
             Ui.poseUsinePanel.rebuildPoseUsine();
             this.setVisible(false);
         });
-        if(usine instanceof UsinePolyvalente){
+        if (usine instanceof UsinePolyvalente) {
             mainPanel.add(reconfigure, BorderLayout.NORTH);
         }
-        
+
         JButton exit = new JButton("exit");
         exit.addActionListener(l -> {
             Ui.gameState = Ui.playState;
@@ -68,6 +68,5 @@ public class UiUsine {
         uiRecette.rebuildRecettePanel();
         mainPanel.revalidate();
         mainPanel.repaint();
-
     }
 }
