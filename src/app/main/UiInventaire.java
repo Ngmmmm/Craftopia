@@ -106,7 +106,8 @@ public class UiInventaire extends Ui {
             use.addActionListener(l -> {
                 SuperObjet newact = SuperObjet.getSuperObjet(item.getName());
                 UiPoseRecolteuse.act = (Recolteuse) newact;
-                Ui.poseRecolteusePanel.rebuildRecolteusePanel();
+                Ui.poseUsinePanel.rebuild = false;
+                Ui.poseRecolteusePanel.rebuildPoseRecolteuse();
                 Ui.gameState = Ui.poseRecolteuseState;
                 this.setVisible(false);
             });

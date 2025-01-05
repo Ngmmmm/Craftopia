@@ -22,6 +22,7 @@ class UiPoseRecolteuse extends Ui {
     Point pos;
     public static Recolteuse act;
     public ArrayList<Ressource> closeRessources = new ArrayList<Ressource>();
+    public boolean rebuild = false;
 
     public UiPoseRecolteuse(GamePanel gamePanel) {
         super(gamePanel);
@@ -75,6 +76,7 @@ class UiPoseRecolteuse extends Ui {
         addButton.setPreferredSize(new Dimension(80, 40));
         if(gamePanel.avatar.validNine()){
             closeRessources = gamePanel.avatar.getSurroundingRessources();
+            if(!rebuild){
             addButton.addActionListener(l -> {
                 SuperObjet nouveau = SuperObjet.getSuperObjet(r.getName());
                 act.setRessource((Ressource) nouveau);
@@ -125,21 +127,30 @@ class UiPoseRecolteuse extends Ui {
                         }
                         break;
                 }
+                rebuild = true;
                 Ui.gameState = Ui.playState;
                 this.setVisible(false);
                 gamePanel.layeredPane.add(act.uiRecolteuse.getMainPanel(),JLayeredPane.PALETTE_LAYER);
                 }
             });
-        }else{
+            row.add(addButton);
+        }else if(rebuild){
+                JButton rebuildButton = new JButton("rebuild");
+                rebuildButton.addActionListener(k -> {
+                    act.setRessource(r);
+                    act.uiRecolteuse.updateInventory();
+                    Ui.gameState = Ui.playState;
+                    this.setVisible(false);
+                });
+                row.add(rebuildButton);
+        }}else {
             JLabel poseImpo = new JLabel("Pose Impossible");
             poseImpo.setPreferredSize(new Dimension(80, 40));
             row.add(poseImpo);
         }
         // Ajouter les composants au sous-panel
-        row.add(addButton);
         row.add(ressourceName);
         row.add(resourceImg);
-        row.add(addButton);
         // Ajouter le sous-panel au panel principal
         return row;
     }
@@ -175,7 +186,7 @@ class UiPoseRecolteuse extends Ui {
     }
 
 
-        public void rebuildRecolteusePanel() {
+        public void rebuildPoseRecolteuse() {
         JPanel posePanel = (JPanel) scrollPane.getViewport().getView();
         posePanel.removeAll();
         closeRessources = gamePanel.avatar.getSurroundingRessources();
