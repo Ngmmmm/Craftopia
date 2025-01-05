@@ -59,7 +59,9 @@ public class Usine extends Machine {
         int compteur = 0;
         for (SuperObjet item : this.stock.getInv()) {
             Ressource ress = (Ressource) item;
+
             compteur += ress.getQuantity();
+            
         }
         if (isPossible() && compteur < this.capacite) {
             Ressource ressource = (Ressource) SuperObjet.getSuperObjet(recetteAct.getRessource().getName());

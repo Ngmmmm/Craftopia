@@ -14,16 +14,17 @@ public class Recolteuse extends Machine {
 
     public UiRecolteuse uiRecolteuse;
     public Ressource res;
+
     public Recolteuse() {
-        name = "Recolteuse";
+        this.name = "Recolteuse";
         this.stock = new InventaireMachine(this);
-        this.stock.add(res, 0);
-        prix = Argent.getPrice(Produits.RECOLTEUSE);
-        produit = Produits.RECOLTEUSE;
-        uiRecolteuse = new UiRecolteuse(this);
+        this.prix = Argent.getPrice(Produits.RECOLTEUSE);
+        this.produit = Produits.RECOLTEUSE;
+        this.uiRecolteuse = new UiRecolteuse(this);
+        this.capacite = 5;
         try {
             File f1 = new File("./img/machines/recolteuse.png");
-            image = ImageIO.read(f1);
+            this.image = ImageIO.read(f1);
         } catch (Exception e) {
             e.printStackTrace();
         }

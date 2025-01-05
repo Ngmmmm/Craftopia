@@ -9,9 +9,8 @@ public class RecolteusePolyvalente extends Recolteuse {
 
     public RecolteusePolyvalente() {
         this.name = "RecolteusePolyvalente";
-        this.stock.add(res, 0);
-        produit = Produits.RECOLTEUSE_POLYVALENTE;
-        prix = Argent.getPrice(produit);
+        this.produit = Produits.RECOLTEUSE_POLYVALENTE;
+        this.prix = Argent.getPrice(produit);
         this.prix = Argent.getPrice(Produits.RECOLTEUSE_POLYVALENTE);
         try {
             this.image = ImageIO.read(new File("./img/machines/recolteuse.png"));

@@ -9,9 +9,9 @@ public class RecolteuseXL extends Recolteuse {
 
     public RecolteuseXL() {
         this.name = "RecolteuseXL";
-        this.stock.add(res, 0);
-        produit = Produits.RECOLTEUSE_XL;
-        prix = Argent.getPrice(produit);
+        this.produit = Produits.RECOLTEUSE_XL;
+        this.prix = Argent.getPrice(this.produit);
+        this.capacite = 10;
         try {
             this.image = ImageIO.read(new File("./img/machines/recolteuse.png"));
         } catch (Exception e) {

@@ -3,7 +3,6 @@ package item.machines;
 
 import item.bag.Argent;
 import item.bag.Inventaire;
-import item.bag.InventaireMachine;
 import item.marche.Marche.Produits;
 import item.ressources.Ressource;
 import java.io.File;
@@ -13,11 +12,8 @@ public class RecolteuseRapide extends Recolteuse {
 
     public RecolteuseRapide() {
         this.name = "RecolteuseRapide";
-        this.stock = new InventaireMachine(this);
-        produit = Produits.RECOLTEUSE_RAPIDE;
-        prix = Argent.getPrice(produit);
-        this.stock.add(res, 0);
-        this.prix = Argent.getPrice(Produits.RECOLTEUSE_RAPIDE);
+        this.produit = Produits.RECOLTEUSE_RAPIDE;
+        this.prix = Argent.getPrice(this.produit);
         try {
             File f1 = new File("./img/machines/recolteuse.png");
             this.image = ImageIO.read(f1);
