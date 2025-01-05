@@ -53,6 +53,7 @@ public class Ui {
     public UiMenuBar menuPanel;
     public UiInventaire inventairePanel;
     public UiMarche marchePanel;
+    public UiSettings uiSettings;
     public static UiPoseUsine poseUsinePanel;
     public static UiPoseRecolteuse poseRecolteusePanel;
     public UiCraftAvatar craftAvatarPanel;
@@ -80,12 +81,12 @@ public class Ui {
         hideAllPanels();
 
         if (gameState == TITLE_STATE) {
-            for (SuperObjet item :GamePanel.obj) {
+            for (SuperObjet item : GamePanel.obj) {
                 if (item instanceof Usine) {
-                    ((Usine)item).uiUsine.setVisible(false);
+                    ((Usine) item).uiUsine.setVisible(false);
                 }
                 if (item instanceof Recolteuse) {
-                    ((Recolteuse)item).uiRecolteuse.setVisible(false);
+                    ((Recolteuse) item).uiRecolteuse.setVisible(false);
                 }
             }
             drawTitleScreen(g2, scaleX, scaleY);
@@ -104,6 +105,7 @@ public class Ui {
         poseUsinePanel = new UiPoseUsine(gamePanel);
         poseRecolteusePanel = new UiPoseRecolteuse(gamePanel);
         this.craftAvatarPanel = new UiCraftAvatar(gamePanel);
+        this.uiSettings = new UiSettings(gamePanel);
     }
 
     protected void resizeButtonImages(JButton button, Icon icon) {
@@ -121,6 +123,7 @@ public class Ui {
         marchePanel.setVisible(false);
         poseUsinePanel.setVisible(false);
         craftAvatarPanel.setVisible(false);
+        uiSettings.setVisible(false);
     }
 
     private void drawTitleScreen(Graphics2D g2, double scaleX, double scaleY) {
@@ -231,6 +234,8 @@ public class Ui {
                 setPanelBounds(craftAvatarPanel.mainPanel, 500, 300);
                 craftAvatarPanel.setVisible(true);
                 break;
+            case settingsState:
+                uiSettings.setVisible(true);
         }
     }
 

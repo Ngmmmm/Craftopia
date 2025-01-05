@@ -84,12 +84,11 @@ public class UiTitleScreen extends Ui {
 
         // Action pour le bouton "Settings"
         settingsButton.addActionListener(l -> {
-            Ui.gameState = Ui.playState;
+            Ui.gameState = Ui.settingsState;
             startButton.setVisible(false);
             continueButton.setVisible(false);
             settingsButton.setVisible(false);
             exitButton.setVisible(false);
-
         });
 
         // Action pour le bouton "Exit"
