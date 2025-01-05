@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import main.GamePanel;
+import java.awt.Point;
 
 /**
  * La classe TileManager gère les blocs du jeu, y compris leur chargement,
@@ -151,8 +152,8 @@ public class TileManager {
                     String[] numbers = line.split(" "); // Découpe la ligne en nombres
                     int num = Integer.parseInt(numbers[col]); // Convertit en entier
                     if(num == 5){
-                        spawnPoint.setX(col * gp.TAILLE_BLOC);
-                        spawnPoint.setY(ligne * gp.TAILLE_BLOC);
+                        spawnPoint.x = (col * gp.TAILLE_BLOC);
+                        spawnPoint.y =(ligne * gp.TAILLE_BLOC);
                     }
                     mapTileNum[col][ligne] = num; // Affecte à la carte
                     col++;

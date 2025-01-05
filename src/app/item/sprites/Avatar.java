@@ -84,8 +84,8 @@ public final class Avatar extends Sprite {
     }
 
     public void setSpawnPoint() {
-        mapPoint.x = TileManager.spawnPoint.getX(); // Position initiale sur l'axe X
-        mapPoint.y = TileManager.spawnPoint.getY(); // Position initiale sur l'axe Y
+        mapPoint.x = TileManager.spawnPoint.x; // Position initiale sur l'axe X
+        mapPoint.y = TileManager.spawnPoint.y; // Position initiale sur l'axe Y
     }
 
     public void setPos(Point p) {
@@ -381,21 +381,28 @@ public final class Avatar extends Sprite {
     }
 
     public boolean checkUp() {
-        Point verif = new Point((int) mapPoint.getX() / gp.TAILLE_BLOC, (int) (mapPoint.getY() / gp.TAILLE_BLOC));
+        Point verif = new Point((int) mapPoint.getX() / gp.TAILLE_BLOC, (int) (mapPoint.getY() / gp.TAILLE_BLOC) +1);
         for (int i = 0; i < GamePanel.obj.size(); i++) {
             if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y) {
+                System.out.print("21");
                 return false;
             } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y + 1) {
+                System.out.print("22");
                 return false;
             } else if ((int) TileManager.spawnPoint.getX() / gp.TAILLE_BLOC == (int) verif.x + 1 && (int) TileManager.spawnPoint.getY() / gp.TAILLE_BLOC == (int) verif.y) {
+                System.out.print("23");
                 return false;
             } else if ((int) TileManager.spawnPoint.getX() / gp.TAILLE_BLOC == (int) verif.x - 1 && (int) TileManager.spawnPoint.getY() / gp.TAILLE_BLOC == (int) verif.y) {
+                System.out.print("24");
                 return false;
             } else if ((int) TileManager.spawnPoint.getX() / gp.TAILLE_BLOC == (int) verif.x && (int) TileManager.spawnPoint.getY() / gp.TAILLE_BLOC == (int) verif.y + 1) {
+                System.out.print("25");
                 return false;
             } else if ((int) TileManager.spawnPoint.getX() / gp.TAILLE_BLOC == (int) verif.x && (int) TileManager.spawnPoint.getY() / gp.TAILLE_BLOC == (int) verif.y - 1) {
+                System.out.print("26");
                 return false;
             } else if ((int) TileManager.spawnPoint.getX() / gp.TAILLE_BLOC == (int) verif.x && (int) TileManager.spawnPoint.getY() / gp.TAILLE_BLOC == (int) verif.y - 1) {
+                System.out.print("27");
                 return false;
             }
         }
