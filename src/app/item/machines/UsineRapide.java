@@ -11,6 +11,7 @@ public class UsineRapide extends Usine {
         this.name = "UsineRapide";
         this.produit = Produits.USINE_RAPIDE;
         this.prix = Argent.getPrice(this.produit);
+        this.time = 5;
         try {
             this.image = ImageIO.read(new File("./img/machines/usine.png"));
         } catch (Exception e) {

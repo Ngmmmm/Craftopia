@@ -95,6 +95,10 @@ public class SuperObjet {
         return image;
     }
 
+    public int getTime() {
+        return time;
+    }
+
     public int getPrix() {
         return 0;
     }

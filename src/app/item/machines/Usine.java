@@ -25,6 +25,7 @@ public class Usine extends Machine {
         this.uiUsine = new UiUsine(this);
         this.recetteAct = null;
         this.capacite = 5;
+        this.time = 10;
         try {
             File f1 = new File("./img/machines/usine.png");
             this.image = ImageIO.read(f1);
@@ -61,15 +62,16 @@ public class Usine extends Machine {
             Ressource ress = (Ressource) item;
 
             compteur += ress.getQuantity();
-            
+
         }
         if (isPossible() && compteur < this.capacite) {
+
             Ressource ressource = (Ressource) SuperObjet.getSuperObjet(recetteAct.getRessource().getName());
-            stock.add(ressource, 1);
             for (int i = 0; i < recetteAct.getIngredients().length; i++) {
                 Inventaire.removeFromAvatarInv(recetteAct.getIngredients()[i],
                         recetteAct.getIngredients()[i].getQuantity());
             }
+            stock.add(ressource, 1);
 
         } else {
             System.out.println("Recette impossible");

@@ -87,8 +87,25 @@ public class UiRecette {
             build.setContentAreaFilled(false);
 
             build.addActionListener(l -> {
-                usine.createRessource();
-                usine.uiUsine.updateInventory();
+                if (usine.time > 0) {
+                    new Thread(() -> {
+                        try {
+                            for (int i = 0; i <= usine.time; i++) {
+                                Thread.sleep(1000); // Sleep for 1 second
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } finally {
+                            usine.createRessource();
+                            usine.uiUsine.updateInventory();
+                        }
+                    }).start();
+                }
+
+                else {
+                    usine.createRessource();
+                    usine.uiUsine.updateInventory();
+                }
             });
 
             recetteContent.add(recetteName);
