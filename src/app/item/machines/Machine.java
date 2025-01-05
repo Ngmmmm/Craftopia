@@ -8,6 +8,7 @@ public abstract class Machine extends SuperObjet implements MachineBehavior {
     public String etat;
     public int prix;
     public int time;
+    public int capacite;
     
     public int getPrix() {
         return prix;

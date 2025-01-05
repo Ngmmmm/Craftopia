@@ -8,11 +8,11 @@ import javax.imageio.ImageIO;
 public class UsineRapide extends Usine {
 
     public UsineRapide() {
-        name = "UsineRapide";
-        produit = Produits.USINE_RAPIDE;
-        prix = Argent.getPrice(produit);
+        this.name = "UsineRapide";
+        this.produit = Produits.USINE_RAPIDE;
+        this.prix = Argent.getPrice(this.produit);
         try {
-            image = ImageIO.read(new File("./img/machines/usine.png"));
+            this.image = ImageIO.read(new File("./img/machines/usine.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }

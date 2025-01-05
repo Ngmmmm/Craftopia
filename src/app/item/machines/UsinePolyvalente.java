@@ -8,11 +8,11 @@ import javax.imageio.ImageIO;
 public class UsinePolyvalente extends Usine {
 
     public UsinePolyvalente() {
-        name = "UsinePolyvalente";
-        produit = Produits.USINE_POLYVALENTE;
-        prix = Argent.getPrice(produit);
+        this.name = "UsinePolyvalente";
+        this.produit = Produits.USINE_POLYVALENTE;
+        this.prix = Argent.getPrice(this.produit);
         try {
-            image = ImageIO.read(new File("./img/machines/usine.png"));
+            this.image = ImageIO.read(new File("./img/machines/usine.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }

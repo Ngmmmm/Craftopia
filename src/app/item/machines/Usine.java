@@ -18,16 +18,16 @@ public class Usine extends Machine {
     public UiUsine uiUsine;
 
     public Usine() {
-        name = "Usine";
+        this.name = "Usine";
         this.stock = new InventaireMachine(this);
-        prix = Argent.getPrice(Produits.USINE);
-        produit = Produits.USINE;
-        uiUsine = new UiUsine(this);
+        this.prix = Argent.getPrice(Produits.USINE);
+        this.produit = Produits.USINE;
+        this.uiUsine = new UiUsine(this);
         this.recetteAct = null;
-
+        this.capacite = 5;
         try {
             File f1 = new File("./img/machines/usine.png");
-            image = ImageIO.read(f1);
+            this.image = ImageIO.read(f1);
         } catch (Exception e) {
             System.out.println("Impossible d'afficher l'usine " + e);
 
@@ -56,7 +56,12 @@ public class Usine extends Machine {
     }
 
     public void createRessource() {
-        if (isPossible()) {
+        int compteur = 0;
+        for (SuperObjet item : this.stock.getInv()) {
+            Ressource ress = (Ressource) item;
+            compteur += ress.getQuantity();
+        }
+        if (isPossible() && compteur < this.capacite) {
             Ressource ressource = (Ressource) SuperObjet.getSuperObjet(recetteAct.getRessource().getName());
             stock.add(ressource, 1);
             for (int i = 0; i < recetteAct.getIngredients().length; i++) {

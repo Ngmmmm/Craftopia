@@ -8,11 +8,11 @@ import javax.imageio.ImageIO;
 public class UsineFragile extends Usine {
 
     public UsineFragile() {
-        name = "UsineFragile";
-        produit = Produits.USINE_FRAGILE;
-        prix = Argent.getPrice(produit);
+        this.name = "UsineFragile";
+        this.produit = Produits.USINE_FRAGILE;
+        this.prix = Argent.getPrice(this.produit);
         try {
-            image = ImageIO.read(new File("./img/machines/usine.png"));
+            this.image = ImageIO.read(new File("./img/machines/usine.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
