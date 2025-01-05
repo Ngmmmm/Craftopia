@@ -75,7 +75,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setupGame() {
         Ui.gameState = Ui.TITLE_STATE; // Définit l'état du jeu à l'écran de titre
         Sound sound = new Sound();
-        sound.loopMusic(0);
+        sound.loopMusic(1);
     }
 
     /**
