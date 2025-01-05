@@ -73,23 +73,68 @@ class UiPoseRecolteuse extends Ui {
         // Bouton addButton
         JButton addButton = new JButton("Choose");
         addButton.setPreferredSize(new Dimension(80, 40));
-        closeRessources = gamePanel.avatar.isPossibleToPose();
-        
+        if(gamePanel.avatar.validNine()){
+            closeRessources = gamePanel.avatar.getSurroundingRessources();
             addButton.addActionListener(l -> {
-                if(whatRessourceClose()){
                 SuperObjet nouveau = SuperObjet.getSuperObjet(r.getName());
                 act.setRessource((Ressource) nouveau);
+                if(poseRecolteuse(r)){
                 act.pos = pos;
                 GamePanel.obj.add(act);
                 Inventaire.removeFromAvatarInv(act, 1);
-                gamePanel.avatar.setPos(new Point((int)pos.x,(int)pos.getY() + gamePanel.TAILLE_BLOC));
+                switch (gamePanel.avatar.getDirection()) {
+                    case "up":
+                        gamePanel.avatar.setPos(new Point((int) pos.getX(), (int) pos.getY() + gamePanel.TAILLE_BLOC));
+                        Point p = gamePanel.avatar.getPosition();
+                        for(int i = 0; i<GamePanel.obj.size();i++){
+                            int plusOuMoins = 1;
+                            while(gamePanel.avatar.getPosition().x == GamePanel.obj.get(i).pos.x && gamePanel.avatar.getPosition().y == GamePanel.obj.get(i).pos.y ){
+                                gamePanel.avatar.setPos(new Point((int) pos.getX()+ (gamePanel.TAILLE_BLOC * plusOuMoins), (int) pos.getY() ));
+                                plusOuMoins = -plusOuMoins;
+                            }
+                        }
+                        break;
+                    case "down":
+                        gamePanel.avatar.setPos(new Point((int) pos.getX(), (int) pos.getY() - gamePanel.TAILLE_BLOC));
+                        for(int i = 0; i<GamePanel.obj.size();i++){
+                            int plusOuMoins = 1;
+                            while(gamePanel.avatar.getPosition().x == GamePanel.obj.get(i).pos.x && gamePanel.avatar.getPosition().y == GamePanel.obj.get(i).pos.y ){
+                                gamePanel.avatar.setPos(new Point((int) pos.getX()+ (gamePanel.TAILLE_BLOC * plusOuMoins), (int) pos.getY() ));
+                                plusOuMoins = -plusOuMoins;
+                            }
+                        }
+                        break;
+                    case "left":
+                        gamePanel.avatar.setPos(new Point((int) pos.getX() + gamePanel.TAILLE_BLOC, (int) pos.getY()));
+                        for(int i = 0; i<GamePanel.obj.size();i++){
+                            int plusOuMoins = 1;
+                            while(gamePanel.avatar.getPosition().x == GamePanel.obj.get(i).pos.x && gamePanel.avatar.getPosition().y == GamePanel.obj.get(i).pos.y ){
+                                gamePanel.avatar.setPos(new Point((int) pos.getX(), (int) pos.getY()+ (gamePanel.TAILLE_BLOC * plusOuMoins)));
+                                plusOuMoins = -plusOuMoins;
+                            }
+                        }
+                        break;
+                    case "right":
+                        gamePanel.avatar.setPos(new Point((int) pos.getX() - gamePanel.TAILLE_BLOC, (int) pos.getY()));
+                        for(int i = 0; i<GamePanel.obj.size();i++){
+                            int plusOuMoins = 1;
+                            while(gamePanel.avatar.getPosition().x == GamePanel.obj.get(i).pos.x && gamePanel.avatar.getPosition().y == GamePanel.obj.get(i).pos.y ){
+                                gamePanel.avatar.setPos(new Point((int) pos.getX(), (int) pos.getY()+ (gamePanel.TAILLE_BLOC * plusOuMoins)));
+                                plusOuMoins = -plusOuMoins;
+                            }
+                        }
+                        break;
+                }
                 Ui.gameState = Ui.playState;
                 this.setVisible(false);
                 gamePanel.layeredPane.add(act.uiRecolteuse.getMainPanel(),JLayeredPane.PALETTE_LAYER);
                 }
-
             });
-        
+        }else{
+            JLabel poseImpo = new JLabel("Pose Impossible");
+            poseImpo.setPreferredSize(new Dimension(80, 40));
+            row.add(poseImpo);
+        }
         // Ajouter les composants au sous-panel
         row.add(addButton);
         row.add(ressourceName);
@@ -103,77 +148,37 @@ class UiPoseRecolteuse extends Ui {
         if (icon == null)
             return null;
         return new ImageIcon(icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH));
-    }
-
-    public boolean whatRessourceClose() {
-        System.out.println("1");
-        switch (gamePanel.avatar.getDirection()) {
-            case "up" -> {
-                if (gamePanel.avatar.checkUp()) {
-                    System.out.println("2");
-                    Point verif = new Point((int) gamePanel.avatar.getPosition().getX() / gamePanel.TAILLE_BLOC,
-                            (int) (gamePanel.avatar.getPosition().getY() / gamePanel.TAILLE_BLOC));
-                    if (gamePanel.tileM.getTile(verif.x*gamePanel.TAILLE_BLOC, verif.y*gamePanel.TAILLE_BLOC).isGrass) {
-                        pos = new Point(verif.x * gamePanel.TAILLE_BLOC, (verif.y) * gamePanel.TAILLE_BLOC);
-                        System.out.println(true);
-                        return true;
-
-                    }
-                    return false;
-
-                }
-                return false;
-            }
-            case "down" -> {
-                if (gamePanel.avatar.checkdown()) {
-                    Point verif = new Point((int) gamePanel.avatar.getPosition().getX() / gamePanel.TAILLE_BLOC,
-                            (int) (gamePanel.avatar.getPosition().getY() / gamePanel.TAILLE_BLOC) + 1);
-                    if (gamePanel.tileM.getTile(verif.x*gamePanel.TAILLE_BLOC, verif.y*gamePanel.TAILLE_BLOC).isGrass) {
-                        pos = new Point(verif.x * gamePanel.TAILLE_BLOC, (verif.y) * gamePanel.TAILLE_BLOC);
-                        return true;
-                       
-                    }
-                    return false;
-                }
-                return false;
-            }
-            case "right" -> {
-                if (gamePanel.avatar.checkRight()) {
-                    Point verif = new Point((int) gamePanel.avatar.getPosition().getX() / gamePanel.TAILLE_BLOC + 1,
-                            (int) (gamePanel.avatar.getPosition().getY() / gamePanel.TAILLE_BLOC));
-                    if (gamePanel.tileM.getTile(verif.x*gamePanel.TAILLE_BLOC, verif.y*gamePanel.TAILLE_BLOC).isGrass) {
-                        pos = new Point(verif.x * gamePanel.TAILLE_BLOC, (verif.y) * gamePanel.TAILLE_BLOC);
-                        return true;
-                        
-                    }
-                    return false;
-                }
-                return false;
-            }
-            case "left" -> {
-                if (gamePanel.avatar.checkLeft()) {
-                    Point verif = new Point((int) gamePanel.avatar.getPosition().getX() / gamePanel.TAILLE_BLOC - 1,
-                            (int) (gamePanel.avatar.getPosition().getY() / gamePanel.TAILLE_BLOC));
-                    if (gamePanel.tileM.getTile(verif.x*gamePanel.TAILLE_BLOC, verif.y*gamePanel.TAILLE_BLOC).isGrass) {
-                        pos = new Point(verif.x * gamePanel.TAILLE_BLOC, (verif.y) * gamePanel.TAILLE_BLOC);
-                        return true;
-                        
-
-                    }
-                    return false;
-                }
-                return false;
-            }
-            default -> {
-                return false;
-            }
         }
+
+
+    public boolean poseRecolteuse(Ressource r){
+        if (gamePanel.avatar.collisionOn){
+                switch(gamePanel.avatar.getDirection()){
+                    case "up":
+                    pos = new Point(r.pos.x,r.pos.y + gamePanel.TAILLE_BLOC);
+                    break;
+                    case "down":
+                    pos = new Point(r.pos.x,r.pos.y - gamePanel.TAILLE_BLOC);
+                    break;
+                    case "left":
+                    pos = new Point(r.pos.x + gamePanel.TAILLE_BLOC,r.pos.y);
+                    break;
+                    case "right":
+                    pos = new Point(r.pos.x  - gamePanel.TAILLE_BLOC,r.pos.y);
+                    break;
+                    default:
+                    return false;
+                }
+                return true;
+        }
+        return false;
     }
 
-    public void rebuildRecolteusePanel() {
+
+        public void rebuildRecolteusePanel() {
         JPanel posePanel = (JPanel) scrollPane.getViewport().getView();
         posePanel.removeAll();
-        closeRessources = gamePanel.avatar.isPossibleToPose();
+        closeRessources = gamePanel.avatar.getSurroundingRessources();
         for (int i = 0; i < closeRessources.size(); i++) {
             posePanel.add(createRow(closeRessources.get(i)));
         }

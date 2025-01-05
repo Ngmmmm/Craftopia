@@ -33,7 +33,7 @@ public class AssetSetter {
         Argent.increaseMoney(1000);
         GamePanel.obj = new ArrayList<SuperObjet>();
         listPoint = new ArrayList<Point>();
-        listPoint.add(TileManager.spawnPoint);
+        listPoint.add(new Point(TileManager.spawnPoint.x/gp.TAILLE_BLOC, TileManager.spawnPoint.y/gp.TAILLE_BLOC));
         setMarcheRandom();
         setRessourceRandom();
     }
