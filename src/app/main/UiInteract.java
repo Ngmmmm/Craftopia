@@ -98,7 +98,6 @@ public class UiInteract extends Ui {
             recolteuse.uiRecolteuse.updateInventory();
             recolteuse.uiRecolteuse.setVisible(true);
             recolteuse.uiRecolteuse.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);
-
         });
 
     }
@@ -107,7 +106,6 @@ public class UiInteract extends Ui {
         itemButton.addActionListener(l -> {
             gameState = craftState;
             itemButton.setVisible(false);
-
             Usine usine = (Usine) item;
             int width = gamePanel.getWidth();
             int height = gamePanel.getHeight();

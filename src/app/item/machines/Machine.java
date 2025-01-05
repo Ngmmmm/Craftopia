@@ -9,11 +9,12 @@ public abstract class Machine extends SuperObjet implements MachineBehavior {
     public int prix;
     public int time;
     public int capacite;
-    
+    public boolean isActive;
+
     public int getPrix() {
         return prix;
     }
 
     public abstract InventaireMachine getStock();
-    
+
 }

@@ -1,7 +1,9 @@
 package main;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -9,7 +11,12 @@ import javax.swing.JScrollPane;
 import item.machines.Recolteuse;
 import item.ressources.Ressource;
 import item.ressources.RessourceVide;
+
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 
 public class UiFarm {
     private Recolteuse recolteuse;
@@ -56,26 +63,25 @@ public class UiFarm {
             ressourceContent.add(ressourceFarm);
 
             // ! Bouton changeFarm redimensionné
-            /*
-             * ImageIcon btnChange = resizeIcon(new ImageIcon("./img/boutons/Change.png"),
-             * 80, 40);
-             * JButton changeFarm = new JButton(btnChange);
-             * changeFarm.setPreferredSize(new Dimension(80, 40));
-             * changeFarm.setBorderPainted(false);
-             * changeFarm.setFocusPainted(false);
-             * changeFarm.setContentAreaFilled(false);
-             * 
-             * changeFarm.addActionListener(l -> {
-             * 
-             * recolteuse.setRessourceAFarmer();
-             * 
-             * recolteuse.uirecolteuse.updateInventory();
-             * });
-             * 
-             * ressourceContent.add(ressourceName);
-             * ressourceContent.add(changeFarm);
-             */
 
+            JButton changeFarm = new JButton("Activate");
+            changeFarm.setPreferredSize(new Dimension(100, 30)); // Ajuste les dimensions.
+            changeFarm.setBackground(new Color(34, 139, 34)); // Couleur de fond (vert foncé).
+            changeFarm.setForeground(Color.WHITE); // Couleur du texte (blanc).
+            changeFarm.setFont(new Font("Arial", Font.BOLD, 14)); // Police du texte.
+            changeFarm.setFocusPainted(false); // Désactive le contour de focus par défaut.
+            changeFarm.setBorder(BorderFactory.createLineBorder(new Color(0, 100, 0), 2)); // Bordure personnalisée
+                                                                                           // (vert foncé).
+            changeFarm.setCursor(new Cursor(Cursor.HAND_CURSOR)); // Change le curseur au survol.
+
+            changeFarm.addActionListener(l -> {
+                recolteuse.createRessource();
+                changeFarm.setVisible(false);
+            });
+            if (!recolteuse.isActive) {
+                ressourceContent.add(changeFarm);
+                changeFarm.setVisible(true);
+            }
             return ressourceContent;
         }
         return null;
