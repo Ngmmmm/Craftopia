@@ -42,7 +42,7 @@ public class Usine extends Machine {
 
     @Override
     public void backToPlayer(Ressource r, int quantity) {
-        Ressource ressource = (Ressource) SuperObjet.getSuperObjet(recetteAct.getRessource().getName());
+        Ressource ressource = (Ressource) SuperObjet.getSuperObjet(r.getName());
         Inventaire.addToAvatarInv(ressource, quantity);
         stock.remove(r, quantity);
     }

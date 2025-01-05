@@ -79,9 +79,7 @@ public class UiStock {
                 }
                 if (machine instanceof Recolteuse) {
                     ((Recolteuse) machine).uiRecolteuse.updateInventory();
-                    
                 }
-
             });
 
             // Ajouter le bouton dans un panel intermédiaire pour alignement

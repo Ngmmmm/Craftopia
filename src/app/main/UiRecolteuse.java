@@ -57,6 +57,5 @@ public class UiRecolteuse {
         uiFarm.rebuildFarmRessourcePanel();
         mainPanel.revalidate();
         mainPanel.repaint();
-
     }
 }
