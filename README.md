@@ -21,9 +21,9 @@ Sinon, ouvrez votre terminal et déplacez vous jusqu'au dossier /projet-poo-l2-o
 Voici les différentes fonctionnalités du jeu.
 - Pour lancer une nouvelle partie, cliquez sur le bouton NewGame après démarrage du jeu. Pour charger une partie sauvegardée, cliquez sur Continuer. 
 
-- Pour couper le son du jeu, cliquez sur le bouton Settings du menu et cliquez ensuite sur le bouton Mute Sounds.
+- Pour couper le son du jeu, cliquez sur le bouton Settings du menu et cliquez ensuite sur le bouton Mute Music, pour réactivé le son, cliquez a nouveau sur celui-ci.
 
-- Pour faire déplacer l'avatar, utilisez les flêches directionnelles du clavier.
+- Pour déplacer l'avatar, utilisez les flêches directionnelles du clavier.
 
 - Pour ouvrir l'inventaire cliquez sur le bouton en forme de sac en haut a gauche de l'écran de jeu.
 
@@ -31,12 +31,15 @@ Voici les différentes fonctionnalités du jeu.
 
 - Pour placer une récolteuse, collez l'avatar a la ressource choisie ouvrez votre inventaire et cliquez sur le bouton Poser correspondant a la récolteuse de votre choix.
 
-- Pour lancer la récolteuse, une fois après avoir intéragi avec elle, il vous faudra ciquer sur le bouton Activate pour lancer la prodution de la ressource choisie.
+- Pour lancer la récolteuse, une fois après avoir intéragi avec elle, il vous faudra cliquer sur le bouton Activate pour lancer la prodution de la ressource choisie.
 
+-Pour modifier la Ressource d'une récolteuse polyvalente, intéragissez avec elle puis cliquer sur le bouton Reconfigure situé au dessus du menu de la récolteuse. Puis cliquez sur la nouvelle ressource que vous voulez associer. _Rappel :_ Une récolteuse ne peux récolter que seulement des ressources adjacentes a celle-ci.
 
 - Pour placer une usine, mettez vous prêt d'une case vide sans Objet autour ouvrez votre inventaire et cliquez sur le bouton Poser correspondant a l' usine de votre choix. Choisissez ensuite la recette que vous voulez associer a l'usine.
 
-- Pour utiliser une usine, une fois après avoir intéragi avec elle, l vous faudra ciquer sur le bouton Activate pour lancer la prodution de la ressource de la recette choisie. Tant que vous en avez les ressources, la recette sera effectuée autant de fois que vous avez cliquez.
+- Pour utiliser une usine, une fois après avoir intéragi avec elle, il vous faudra cliquer sur le bouton build pour lancer la prodution de la ressource de la recette choisie. Tant que vous en avez les ressources, la recette sera effectuée autant de fois que vous aurez cliquez.
+
+-Pour modifier la recette d'une usine polyvalente, intéragissez avec elle puis cliquer sur le bouton Reconfigure situé au dessus du menu de l'usine. Puis cliquez sur la nouvelle recette que vous voulez associer.
 
 - Pour ouvrir le craft Avatar, cliquez sur le bouton marteau situé à coté de celui de l'inventaire en haut de l'écran de jeu.
 
