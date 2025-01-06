@@ -18,7 +18,7 @@ import item.sprites.SuperObjet;
  * pour interagir avec les machines dans le jeu.
  * </p>
  *
- * @author Ouahid Houat
+ * @author Noa Gregoire-Mellier
  * @version 1.0
  */
 public abstract class Machine extends SuperObjet implements MachineBehavior {
