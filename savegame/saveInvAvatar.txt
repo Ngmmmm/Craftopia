@@ -1,0 +1,9 @@
+120
+Fer 8
+Bois 12
+BouleFeuille 3
+Hache 1
+Epee 8
+Arc 2
+RecolteuseFragile 1
+UsineXL 1
