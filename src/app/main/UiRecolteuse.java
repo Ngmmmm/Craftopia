@@ -7,6 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import item.machines.Recolteuse;
+import item.machines.RecolteusePolyvalente;
+import item.machines.UsinePolyvalente;
 
 public class UiRecolteuse {
     UiFarm uiFarm;
@@ -23,6 +25,16 @@ public class UiRecolteuse {
 
         contentPanel.add(uiFarm.getMainPanel());
         contentPanel.add(uiStock.getMainPanel());
+        JButton reconfigure = new JButton("Reconfigure");
+        reconfigure.addActionListener(l -> {
+            Ui.gameState = Ui.poseRecolteuseState;
+            Ui.poseRecolteusePanel.rebuild = true;
+            Ui.poseRecolteusePanel.rebuildPoseRecolteuse();
+            this.setVisible(false);
+        });
+        if(recolteuse instanceof RecolteusePolyvalente){
+            mainPanel.add(reconfigure, BorderLayout.NORTH);
+        }
 
         JButton exit = new JButton("exit");
         exit.addActionListener(l -> {

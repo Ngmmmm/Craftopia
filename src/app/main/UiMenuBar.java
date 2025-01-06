@@ -8,7 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 
 public class UiMenuBar extends Ui {
 
@@ -132,9 +134,14 @@ public class UiMenuBar extends Ui {
         });
 
         backToMenuButton.addActionListener(l -> {
-            gameState = TITLE_STATE;
+            int response = JOptionPane.showConfirmDialog(gamePanel, "Souhaitez-vous sauvegarder avant de quitter ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            if (response == JOptionPane.YES_OPTION) {
+                gamePanel.saveEtatMap.saveEtatMap();
+                Ui.gameState = Ui.TITLE_STATE;
+                menuBar.setVisible(false);
+            }
+            Ui.gameState = Ui.TITLE_STATE;
             menuBar.setVisible(false);
-
         });
 
         crafAvatarButton.addActionListener(l -> {

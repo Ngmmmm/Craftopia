@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
@@ -137,13 +138,19 @@ public class UiCraftAvatar extends Ui {
                     } finally {
                         if (gameState == previousGameState) {
                             gamePanel.remove(progressBar);
-                            gamePanel.avatar.createRessource(recette);
-                            gamePanel.avatar.resetDeplacement(); // Reset avatar movement
+                            if(!gamePanel.avatar.createRessource(recette)){
+                                JOptionPane.showMessageDialog(gamePanel, "Impossible de créer la ressource", "Erreur", JOptionPane.ERROR_MESSAGE);     
+                                gamePanel.avatar.resetDeplacement(); // Reset avatar movement
+                            }
+                            gamePanel.avatar.resetDeplacement();
                         }
                     }
                 }).start();
             } else {
-                gamePanel.avatar.createRessource(recette);
+                if(!gamePanel.avatar.createRessource(recette)){
+                    JOptionPane.showMessageDialog(gamePanel, "Impossible de créer la ressource", "Erreur", JOptionPane.ERROR_MESSAGE);     
+                    gamePanel.avatar.resetDeplacement(); // Reset avatar movement
+                }
                 gamePanel.avatar.resetDeplacement(); // Reset avatar movement
             }
         });

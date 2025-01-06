@@ -17,9 +17,9 @@ import tile.TileManager;
 // La classe GamePanel hérite de JPanel et implémente Runnable pour le fonctionnement via un thread
 public class GamePanel extends JPanel implements Runnable {
 
-    final int TAILLE_BLOC_ORIGINAL = 16; // Taille de base d'un bloc en pixels
-    final int FACTEUR_ECHELLE = 3; // Facteur d'agrandissement appliqué à chaque bloc
-    public final int TAILLE_BLOC = TAILLE_BLOC_ORIGINAL * FACTEUR_ECHELLE; // Taille finale d'un bloc (48px)
+    final static int TAILLE_BLOC_ORIGINAL = 16; // Taille de base d'un bloc en pixels
+    final static int FACTEUR_ECHELLE = 3; // Facteur d'agrandissement appliqué à chaque bloc
+    public static final int TAILLE_BLOC = TAILLE_BLOC_ORIGINAL * FACTEUR_ECHELLE; // Taille finale d'un bloc (48px)
     public final int NB_COLONNE_MAX = 16; // Nombre maximal de colonnes visibles à l'écran
     public final int NB_LIGNE_MAX = 12; // Nombre maximal de lignes visibles à l'écran
     public final int LARGEUR_ECRAN = TAILLE_BLOC * NB_COLONNE_MAX; // Largeur totale de l'écran
