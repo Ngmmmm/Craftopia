@@ -50,4 +50,4 @@ Voici les différentes fonctionnalités du jeu.
 
 ## Authors and acknowledgment
 HOUAT Ouahid;
-Gregoire-Mellier Noa;
+GREGOIRE-MELLIER Noa;
