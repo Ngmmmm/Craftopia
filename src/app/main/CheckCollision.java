@@ -63,7 +63,8 @@ public class CheckCollision {
         // Vérification des collisions en fonction de la direction du sprite
         switch (sprite.direction) {
             case "up": // Si le sprite se déplace vers le haut
-                spriteTopLigne = (spriteTopMapY - sprite.speed) / GamePanel.TAILLE_BLOC; // Nouvelle ligne après le mouvement
+                spriteTopLigne = (spriteTopMapY - sprite.speed) / GamePanel.TAILLE_BLOC; // Nouvelle ligne après le
+                                                                                         // mouvement
                 tileNum1 = gp.tileM.mapTileNum[spriteLeftCol][spriteTopLigne];
                 tileNum2 = gp.tileM.mapTileNum[spriteRightCol][spriteTopLigne];
                 // Si l'un des blocs a une collision, activer la collision pour le sprite

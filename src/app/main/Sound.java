@@ -108,6 +108,9 @@ public class Sound {
         }
     }
 
+    /**
+     * Indique si une musique est jouée actuellement
+     */
     public boolean isPlaying() {
         return currentClip != null && currentClip.isRunning();
     }

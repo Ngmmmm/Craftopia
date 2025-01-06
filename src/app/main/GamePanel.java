@@ -16,7 +16,28 @@ import save.SaveEtatMap;
 import save.SaveInvAvatar;
 import tile.TileManager;
 
-// La classe GamePanel hérite de JPanel et implémente Runnable pour le fonctionnement via un thread
+/**
+ * La classe GamePanel hérite de JPanel et implémente Runnable pour le
+ * fonctionnement via un thread.
+ *
+ * <p>
+ * Cette classe gère le panneau de jeu principal, y compris le dessin des
+ * éléments,
+ * la gestion des entrées du clavier, la gestion des collisions, et l'interface
+ * utilisateur.
+ * Elle est responsable du cycle de vie du jeu et de la mise à jour continue de
+ * l'état du jeu.
+ * </p>
+ *
+ * <p>
+ * Les méthodes incluent la configuration initiale du jeu, le démarrage du
+ * thread du jeu,
+ * la mise à jour de l'état du jeu, et le dessin des éléments à l'écran.
+ * </p>
+ *
+ * @version 1.0
+ * @author Ouahid Houat
+ */
 public class GamePanel extends JPanel implements Runnable {
 
     final static int TAILLE_BLOC_ORIGINAL = 16; // Taille de base d'un bloc en pixels
@@ -70,7 +91,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true); // Permettre au panneau de capturer les événements clavier
         this.setLayout(new BorderLayout());
 
-        ui.initializeComponents(); // Initialize components after GamePanel is fully configured
+        ui.initializeComponents(); // Initialise les composants après la configuration complète de GamePanel
     }
 
     /**
@@ -129,6 +150,11 @@ public class GamePanel extends JPanel implements Runnable {
         ui.draw(g);
     }
 
+    /**
+     * Obtient tous les points des objets présents dans le jeu.
+     * 
+     * @return un tableau de points correspondant aux positions des objets.
+     */
     public Point[] getAllPoints() {
         Point[] points = new Point[obj.size()];
         for (int i = 0; i < obj.size(); i++) {
@@ -137,8 +163,11 @@ public class GamePanel extends JPanel implements Runnable {
         return points;
     }
 
+    /**
+     * Active ou désactive la musique.
+     */
     public void toggleMusic() {
-        if (sound.isPlaying()) { 
+        if (sound.isPlaying()) {
             sound.stopMusic();
         } else {
             sound.playMusic(1);
