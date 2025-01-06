@@ -1,4 +1,4 @@
-package main;
+package main.interfacegraphique;
 
 import item.bag.Inventaire;
 import item.machines.Recolteuse;
@@ -6,6 +6,8 @@ import item.machines.Usine;
 import item.marche.Marche;
 import item.ressources.Ressource;
 import item.sprites.SuperObjet;
+import main.GamePanel;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JProgressBar;

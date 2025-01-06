@@ -1,4 +1,4 @@
-package main;
+package main.interfacegraphique;
 
 import item.bag.InventaireMachine;
 import item.machines.Machine;

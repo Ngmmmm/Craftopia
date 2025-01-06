@@ -1,7 +1,9 @@
-package main;
+package main.interfacegraphique;
 
 import item.recettes.Recette;
 import item.ressources.Ressource;
+import main.GamePanel;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.ArrayList;

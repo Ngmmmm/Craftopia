@@ -1,4 +1,4 @@
-package main;
+package main.interfacegraphique;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;

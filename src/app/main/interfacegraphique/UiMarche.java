@@ -1,9 +1,11 @@
-package main;
+package main.interfacegraphique;
 
 import item.bag.Argent;
 import item.bag.Inventaire;
 import item.marche.Marche;
 import item.sprites.SuperObjet;
+import main.GamePanel;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.ArrayList;

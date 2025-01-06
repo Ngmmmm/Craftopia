@@ -1,9 +1,10 @@
-package main;
+package main.interfacegraphique;
 
 import item.bag.Inventaire;
 import item.machines.Recolteuse;
 import item.ressources.Ressource;
 import item.sprites.SuperObjet;
+import main.GamePanel;
 
 import java.awt.Dimension;
 import java.util.ArrayList;

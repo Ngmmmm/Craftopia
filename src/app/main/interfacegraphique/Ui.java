@@ -1,8 +1,9 @@
-package main;
+package main.interfacegraphique;
 
 import item.machines.Recolteuse;
 import item.machines.Usine;
 import item.sprites.SuperObjet;
+import main.GamePanel;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;

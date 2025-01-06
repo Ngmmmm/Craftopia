@@ -1,4 +1,4 @@
-package main;
+package main.interfacegraphique;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;

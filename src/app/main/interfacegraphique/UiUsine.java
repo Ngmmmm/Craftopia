@@ -1,7 +1,8 @@
-package main;
+package main.interfacegraphique;
 
 import item.machines.Usine;
 import item.machines.UsinePolyvalente;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;

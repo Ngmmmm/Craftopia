@@ -1,10 +1,12 @@
 
-package main;
+package main.interfacegraphique;
 
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+
+import main.GamePanel;
 
 public class UiTempo extends Ui {
     private static JProgressBar progressBar;

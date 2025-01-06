@@ -1,4 +1,4 @@
-package main;
+package main.interfacegraphique;
 
 import item.machines.Usine;
 import item.recettes.Recette;

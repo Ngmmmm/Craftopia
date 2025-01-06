@@ -1,8 +1,10 @@
-package main;
+package main.interfacegraphique;
 
 import item.bag.Inventaire;
 import item.machines.Usine;
 import item.recettes.Recette;
+import main.GamePanel;
+
 import java.awt.Dimension;
 import java.awt.Point;
 import javax.swing.BoxLayout;

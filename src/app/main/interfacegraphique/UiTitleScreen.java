@@ -1,4 +1,4 @@
-package main;
+package main.interfacegraphique;
 
 import java.awt.Graphics2D;
 import java.awt.event.ComponentAdapter;
@@ -7,6 +7,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import main.GamePanel;
 
 public class UiTitleScreen extends Ui {
     private Icon startButtonIcon;

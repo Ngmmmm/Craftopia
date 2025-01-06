@@ -1,6 +1,8 @@
-package main;
+package main.interfacegraphique;
 
 import item.bag.Argent;
+import main.GamePanel;
+
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;

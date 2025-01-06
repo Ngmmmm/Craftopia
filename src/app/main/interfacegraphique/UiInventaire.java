@@ -1,9 +1,11 @@
-package main;
+package main.interfacegraphique;
 
 import item.bag.Inventaire;
 import item.machines.Recolteuse;
 import item.machines.Usine;
 import item.sprites.SuperObjet;
+import main.GamePanel;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
