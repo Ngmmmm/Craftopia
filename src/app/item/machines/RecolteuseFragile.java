@@ -1,9 +1,7 @@
 package item.machines;
 
 import item.bag.Argent;
-import item.bag.Inventaire;
 import item.marche.Marche.Produits;
-import item.ressources.Ressource;
 import java.io.File;
 import javax.imageio.ImageIO;
 
@@ -43,25 +41,5 @@ public class RecolteuseFragile extends Recolteuse {
         } catch (Exception e) {
             e.printStackTrace(); // Gestion des erreurs de chargement de l'image
         }
-    }
-
-    /**
-     * Ajoute une ressource à la machine.
-     */
-    @Override
-    public void addRessource() {
-        this.res.increaseQuantity(1); // Augmente la quantité de la ressource de 1
-    }
-
-    /**
-     * Retourne des ressources au joueur.
-     * 
-     * @param r        la ressource à retourner.
-     * @param quantity la quantité de la ressource à retourner.
-     */
-    @Override
-    public void backToPlayer(Ressource r, int quantity) {
-        Inventaire.addToAvatarInv(r, quantity); // Ajoute les ressources à l'inventaire de l'avatar
-        stock.remove(r, quantity); // Retire les ressources de l'inventaire de la machine
     }
 }
