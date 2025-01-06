@@ -35,7 +35,7 @@ import tile.TileManager; // Gère les entrées clavier du joueur
  * </p>
  *
  * @author Ouahid Houat
- * @version 2.0
+ * @version 5.2
  */
 public final class Avatar extends Sprite {
 
@@ -51,17 +51,19 @@ public final class Avatar extends Sprite {
     /**
      * Constructeur de la classe Avatar.
      *
-     * @param gp le panneau de jeu principal, utilisé pour les dimensions de
-     * l'écran.
+     * @param gp   le panneau de jeu principal, utilisé pour les dimensions de
+     *             l'écran.
      * @param keyH le gestionnaire des entrées clavier, permettant de détecter
-     * les actions du joueur.
+     *             les actions du joueur.
      */
     public Avatar(GamePanel gp, KeyHandler keyH) {
         this.gp = gp; // Initialisation du panneau de jeu
         this.keyH = keyH; // Initialisation du gestionnaire des entrées clavier
-        this.screenX = (this.gp.LARGEUR_ECRAN / 2) - (GamePanel.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran
+        this.screenX = (this.gp.LARGEUR_ECRAN / 2) - (GamePanel.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur
+                                                                                  // l'écran
         // (X)
-        this.screenY = (this.gp.HAUTEUR_ECRAN / 2) - (GamePanel.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran
+        this.screenY = (this.gp.HAUTEUR_ECRAN / 2) - (GamePanel.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur
+                                                                                  // l'écran
         // (Y)
 
         solidArea = new Rectangle(8, 16, 32, 32); // Définit la zone de collision de l'avatar
@@ -270,81 +272,126 @@ public final class Avatar extends Sprite {
                 (int) (GamePanel.TAILLE_BLOC * scaleY), null);
     }
 
+    /**
+     * Récupère la position actuelle de l'avatar sur la carte.
+     *
+     * @return un objet {@link Point} représentant la position de l'avatar.
+     */
     public Point getPosition() {
         return mapPoint;
     }
 
+    /**
+     * Récupère la direction actuelle dans laquelle l'avatar se déplace.
+     *
+     * @return une chaîne de caractères représentant la direction ("up", "down",
+     *         "left", ou "right").
+     */
     public String getDirection() {
         return direction;
     }
 
+    /**
+     * Vérifie si les 9 cases autour de l'avatar sont libres.
+     * Cela inclut la case actuelle de l'avatar et les 8 cases voisines.
+     *
+     * @return {@code true} si aucune collision n'est détectée, {@code false} sinon.
+     */
     public boolean checkNine() {
-        Point verif = new Point((int) mapPoint.getX() / GamePanel.TAILLE_BLOC, (int) (mapPoint.getY() / GamePanel.TAILLE_BLOC));
+        Point verif = new Point((int) mapPoint.getX() / GamePanel.TAILLE_BLOC,
+                (int) (mapPoint.getY() / GamePanel.TAILLE_BLOC));
         for (int i = 0; i < GamePanel.obj.size(); i++) {
-            if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y) {
-                System.out.println("test1");
+            if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x
+                    && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y) {
                 return false;
-            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y - 1) {
-                System.out.println("test1");
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x
+                    && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y - 1) {
                 return false;
-            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y + 1) {
-                System.out.println("test1");
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x
+                    && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y + 1) {
                 return false;
-            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x - 1 && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y) {
-                System.out.println("test1");
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x - 1
+                    && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y) {
                 return false;
-            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x + 1 && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y) {
-                System.out.println("test1");
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x + 1
+                    && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y) {
                 return false;
-            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x - 1 && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y - 1) {
-                System.out.println("test1");
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x - 1
+                    && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y - 1) {
                 return false;
-            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x + 1 && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y + 1) {
-                System.out.println("test1");
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x + 1
+                    && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y + 1) {
                 return false;
-            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x - 1 && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y + 1) {
-                System.out.println("test1");
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x - 1
+                    && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y + 1) {
                 return false;
-            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x + 1 && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y - 1) {
-                System.out.println("test1");
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x + 1
+                    && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y - 1) {
                 return false;
-            } else if ((int) TileManager.spawnPoint.getX() / GamePanel.TAILLE_BLOC == (int) verif.x + 1 && (int) TileManager.spawnPoint.getY() / GamePanel.TAILLE_BLOC == (int) verif.y) {
+            } else if ((int) TileManager.spawnPoint.getX() / GamePanel.TAILLE_BLOC == (int) verif.x + 1
+                    && (int) TileManager.spawnPoint.getY() / GamePanel.TAILLE_BLOC == (int) verif.y) {
                 return false;
-            } else if ((int) TileManager.spawnPoint.getX() / GamePanel.TAILLE_BLOC == (int) verif.x - 1 && (int) TileManager.spawnPoint.getY() / GamePanel.TAILLE_BLOC == (int) verif.y) {
+            } else if ((int) TileManager.spawnPoint.getX() / GamePanel.TAILLE_BLOC == (int) verif.x - 1
+                    && (int) TileManager.spawnPoint.getY() / GamePanel.TAILLE_BLOC == (int) verif.y) {
                 return false;
-            } else if ((int) TileManager.spawnPoint.getX() / GamePanel.TAILLE_BLOC == (int) verif.x && (int) TileManager.spawnPoint.getY() / GamePanel.TAILLE_BLOC == (int) verif.y + 1) {
+            } else if ((int) TileManager.spawnPoint.getX() / GamePanel.TAILLE_BLOC == (int) verif.x
+                    && (int) TileManager.spawnPoint.getY() / GamePanel.TAILLE_BLOC == (int) verif.y + 1) {
                 return false;
-            } else if ((int) TileManager.spawnPoint.getX() / GamePanel.TAILLE_BLOC == (int) verif.x && (int) TileManager.spawnPoint.getY() / GamePanel.TAILLE_BLOC == (int) verif.y - 1) {
+            } else if ((int) TileManager.spawnPoint.getX() / GamePanel.TAILLE_BLOC == (int) verif.x
+                    && (int) TileManager.spawnPoint.getY() / GamePanel.TAILLE_BLOC == (int) verif.y - 1) {
                 return false;
-            } else if ((int) TileManager.spawnPoint.getX() / GamePanel.TAILLE_BLOC == (int) verif.x && (int) TileManager.spawnPoint.getY() / GamePanel.TAILLE_BLOC == (int) verif.y - 1) {
+            } else if ((int) TileManager.spawnPoint.getX() / GamePanel.TAILLE_BLOC == (int) verif.x
+                    && (int) TileManager.spawnPoint.getY() / GamePanel.TAILLE_BLOC == (int) verif.y - 1) {
                 return false;
             }
         }
-        System.out.println("test1");
         return true;
-        }
-    
-    public boolean validNine(){
+    }
+
+    /**
+     * Vérifie si toutes les cases entourant l'avatar contiennent uniquement des
+     * ressources valides.
+     *
+     * @return {@code true} si toutes les cases sont valides, {@code false} sinon.
+     */
+    public boolean validNine() {
         return checkList(getSurroundingSuperObjects());
     }
-    public boolean checkList (ArrayList<SuperObjet> list){
-        for(int i = 0; i<list.size();i++){
-            if(!(list.get(i) instanceof Ressource) || list.get(i).time <=0){
-                System.out.println(list.get(i).getName());
+
+    /**
+     * Vérifie qu'une liste de super objets contient uniquement des ressources
+     * valides.
+     *
+     * @param list une liste de {@link SuperObjet} à vérifier.
+     * @return {@code true} si tous les objets sont des ressources valides,
+     *         {@code false} sinon.
+     */
+    public boolean checkList(ArrayList<SuperObjet> list) {
+        for (int i = 0; i < list.size(); i++) {
+            // Vérifie que l'objet est une ressource et qu'elle est toujours valide.
+            if (!(list.get(i) instanceof Ressource) || list.get(i).time <= 0) {
+                System.out.println("Objet invalide : " + list.get(i).getName());
                 return false;
-            } 
+            }
         }
-        return true;
+        return true; // Tous les objets sont valides.
     }
+
+    /**
+     * Récupère tous les objets entourant l'avatar, y compris ceux situés sur sa
+     * propre case.
+     *
+     * @return une liste d'objets {@link SuperObjet} autour de l'avatar.
+     */
     public ArrayList<SuperObjet> getSurroundingSuperObjects() {
         ArrayList<SuperObjet> surroundingSuperObjects = new ArrayList<>();
         int avatarX = (int) mapPoint.getX() / GamePanel.TAILLE_BLOC;
         int avatarY = (int) mapPoint.getY() / GamePanel.TAILLE_BLOC;
 
         int[][] directions = {
-            {-1, -1}, {0, -1}, {1, -1},
-            {-1, 0},  {0, 0}, {1, 0},
-            {-1, 1}, {0, 1}, {1, 1}
+                { -1, -1 }, { 0, -1 }, { 1, -1 },
+                { -1, 0 }, { 0, 0 }, { 1, 0 },
+                { -1, 1 }, { 0, 1 }, { 1, 1 }
         };
 
         for (int[] direction : directions) {
@@ -358,6 +405,19 @@ public final class Avatar extends Sprite {
         return surroundingSuperObjects;
     }
 
+    /**
+     * Obtient un SuperObjet à une position spécifique.
+     *
+     * <p>
+     * Cette méthode parcourt tous les objets dans le panneau de jeu et retourne
+     * celui qui se trouve aux coordonnées spécifiées.
+     * </p>
+     *
+     * @param x la position X de l'objet.
+     * @param y la position Y de l'objet.
+     * @return le SuperObjet à la position spécifiée, ou null si aucun objet n'est
+     *         trouvé.
+     */
     private SuperObjet getSuperObjetAt(int x, int y) {
         for (SuperObjet obj : GamePanel.obj) {
             if (obj.pos.x / GamePanel.TAILLE_BLOC == x && obj.pos.y / GamePanel.TAILLE_BLOC == y) {
@@ -366,15 +426,27 @@ public final class Avatar extends Sprite {
         }
         return null;
     }
+
+    /**
+     * Obtient les ressources environnantes autour de l'avatar.
+     *
+     * <p>
+     * Cette méthode parcourt les neuf cases entourant l'avatar et retourne toutes
+     * les ressources
+     * qui ont un temps positif.
+     * </p>
+     *
+     * @return une liste de ressources environnantes.
+     */
     public ArrayList<Ressource> getSurroundingRessources() {
         ArrayList<Ressource> surroundingRessources = new ArrayList<>();
         int avatarX = (int) mapPoint.getX() / GamePanel.TAILLE_BLOC;
         int avatarY = (int) mapPoint.getY() / GamePanel.TAILLE_BLOC;
 
         int[][] directions = {
-            {-1, -1}, {0, -1}, {1, -1},
-            {-1, 0},  {0, 0}, {1, 0},
-            {-1, 1}, {0, 1}, {1, 1}
+                { -1, -1 }, { 0, -1 }, { 1, -1 },
+                { -1, 0 }, { 0, 0 }, { 1, 0 },
+                { -1, 1 }, { 0, 1 }, { 1, 1 }
         };
 
         for (int[] direction : directions) {
@@ -386,24 +458,57 @@ public final class Avatar extends Sprite {
             }
         }
         return surroundingRessources;
-}
+    }
 
+    /**
+     * Obtient une ressource à une position spécifique.
+     *
+     * <p>
+     * Cette méthode parcourt tous les objets dans le panneau de jeu et retourne
+     * celui qui se trouve aux coordonnées spécifiées et qui est une instance de
+     * Ressource.
+     * </p>
+     *
+     * @param x la position X de la ressource.
+     * @param y la position Y de la ressource.
+     * @return la Ressource à la position spécifiée, ou null si aucune ressource
+     *         n'est trouvée.
+     */
     private Ressource getRessourceAt(int x, int y) {
-        for(int i = 0; i<GamePanel.obj.size();i++){
-            if(GamePanel.obj.get(i).pos.x / GamePanel.TAILLE_BLOC == x && GamePanel.obj.get(i).pos.y / GamePanel.TAILLE_BLOC == y && GamePanel.obj.get(i) instanceof Ressource){
+        for (int i = 0; i < GamePanel.obj.size(); i++) {
+            if (GamePanel.obj.get(i).pos.x / GamePanel.TAILLE_BLOC == x
+                    && GamePanel.obj.get(i).pos.y / GamePanel.TAILLE_BLOC == y
+                    && GamePanel.obj.get(i) instanceof Ressource) {
                 return (Ressource) GamePanel.obj.get(i);
             }
         }
-        return null; // Remplacez par la logique réelle
+        return null;
     }
 
-        public void resetDeplacement() {
+    /**
+     * Réinitialise le déplacement de l'avatar en mettant à false les indicateurs de
+     * mouvement.
+     */
+    public void resetDeplacement() {
         keyH.upPressed = false;
         keyH.downPressed = false;
         keyH.leftPressed = false;
         keyH.rightPressed = false;
     }
 
+    /**
+     * Crée une ressource en suivant une recette spécifique.
+     *
+     * <p>
+     * Cette méthode vérifie si la recette est possible avec les ingrédients
+     * disponibles
+     * dans l'inventaire de l'avatar, crée la ressource et met à jour l'inventaire
+     * en conséquence.
+     * </p>
+     *
+     * @param recette la recette à suivre pour créer la ressource.
+     * @return true si la ressource a été créée avec succès, false sinon.
+     */
     public boolean createRessource(Recette recette) {
         if (recette == null) {
             return false;
@@ -412,78 +517,82 @@ public final class Avatar extends Sprite {
             Ressource ressource = (Ressource) SuperObjet.getSuperObjet(recette.getRessource().getName());
             Inventaire.addToAvatarInv(ressource, 1);
             for (int i = 0; i < recette.getIngredients().length; i++) {
-                Inventaire.removeFromAvatarInv(recette.getIngredients()[i],
-                        recette.getIngredients()[i].getQuantity());
+                Inventaire.removeFromAvatarInv(recette.getIngredients()[i], recette.getIngredients()[i].getQuantity());
             }
             return true;
         } else {
-            
             return false;
         }
     }
 
-    public Ressource getRessourceFront(){
+    /**
+     * Obtient la ressource qui se trouve directement devant l'avatar en fonction de
+     * sa direction.
+     *
+     * <p>
+     * Cette méthode vérifie les cases devant l'avatar dans les quatre directions
+     * cardinales
+     * et retourne la ressource trouvée.
+     * </p>
+     *
+     * @return la Ressource devant l'avatar, ou null si aucune ressource n'est
+     *         trouvée.
+     */
+    public Ressource getRessourceFront() {
         Ressource res = null;
         int avatarX = (int) mapPoint.getX() / GamePanel.TAILLE_BLOC;
         int avatarY = (int) mapPoint.getY() / GamePanel.TAILLE_BLOC;
 
         int[][] directions = {
-                     {0, -1},
-            {-1, 0},  {0, 0}, {1, 0},
-                      {0, 1}
+                { 0, -1 },
+                { -1, 0 }, { 0, 0 }, { 1, 0 },
+                { 0, 1 }
         };
         int checkX;
         int checkY;
-        switch (direction){
-            case ("up") :
-            checkX = avatarX + directions[0][0];
-            checkY = avatarY + directions[0][1];
-            res = getRessourceAt(checkX, checkY);
-            if(res == null){
-                checkX = avatarX + directions[2][0];
-                checkY = avatarY + directions[2][1];
+        switch (direction) {
+            case ("up"):
+                checkX = avatarX + directions[0][0];
+                checkY = avatarY + directions[0][1];
                 res = getRessourceAt(checkX, checkY);
-            }
-            break;
-
-            case ("down") :
-            checkX = avatarX + directions[4][0];
-            checkY = avatarY + directions[4][1];
-            res = getRessourceAt(checkX, checkY);
-            if(res == null){
-                checkX = avatarX + directions[2][0];
-                checkY = avatarY + directions[2][1];
+                if (res == null) {
+                    checkX = avatarX + directions[2][0];
+                    checkY = avatarY + directions[2][1];
+                    res = getRessourceAt(checkX, checkY);
+                }
+                break;
+            case ("down"):
+                checkX = avatarX + directions[4][0];
+                checkY = avatarY + directions[4][1];
                 res = getRessourceAt(checkX, checkY);
-            }
-            break;
-
-            case ("right") :
-            checkX = avatarX + directions[3][0];
-            checkY = avatarY + directions[3][1];
-            res = getRessourceAt(checkX, checkY);
-            if(res == null){
-                checkX = avatarX + directions[2][0];
-                checkY = avatarY + directions[2][1];
+                if (res == null) {
+                    checkX = avatarX + directions[2][0];
+                    checkY = avatarY + directions[2][1];
+                    res = getRessourceAt(checkX, checkY);
+                }
+                break;
+            case ("right"):
+                checkX = avatarX + directions[3][0];
+                checkY = avatarY + directions[3][1];
                 res = getRessourceAt(checkX, checkY);
-            }
-            break;
-
-            case ("left") :
-            checkX = avatarX + directions[1][0];
-            checkY = avatarY + directions[1][1];
-            res = getRessourceAt(checkX, checkY);
-            if(res == null){
-                checkX = avatarX + directions[2][0];
-                checkY = avatarY + directions[2][1];
+                if (res == null) {
+                    checkX = avatarX + directions[2][0];
+                    checkY = avatarY + directions[2][1];
+                    res = getRessourceAt(checkX, checkY);
+                }
+                break;
+            case ("left"):
+                checkX = avatarX + directions[1][0];
+                checkY = avatarY + directions[1][1];
                 res = getRessourceAt(checkX, checkY);
-            }
-            break;
-
-            default: 
-            break;
-
-
-            
+                if (res == null) {
+                    checkX = avatarX + directions[2][0];
+                    checkY = avatarY + directions[2][1];
+                    res = getRessourceAt(checkX, checkY);
+                }
+                break;
+            default:
+                break;
         }
         return res;
     }
