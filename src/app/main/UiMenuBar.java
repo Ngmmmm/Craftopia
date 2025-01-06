@@ -14,17 +14,14 @@ public class UiMenuBar extends Ui {
 
     private static final String INV_BUTTON_IMAGE_PATH = "./img/boutons/inventory.png";
     private static final String BACKTOMENU_BUTTON_IMAGE_PATH = "./img/boutons/ExitButton.png";
-    private static final String SETTINGS_BUTTON_IMAGE_PATH = "./img/boutons/SettingsButton.png";
     private static final String CRAFTAVATAR_BUTTON_IMAGE_PATH = "./img/boutons/CraftAvatarButton.png";
 
     private ImageIcon invButtonIcon;
     private ImageIcon backToMenuIcon;
-    private ImageIcon setButtonIcon;
     private ImageIcon crafAvatarIcon;
 
     private JButton invButton;
     private JButton backToMenuButton;
-    private JButton setButton;
     private JButton crafAvatarButton;
 
     private JLabel argent;
@@ -49,13 +46,11 @@ public class UiMenuBar extends Ui {
         // Initialize icons
         invButtonIcon = new ImageIcon(INV_BUTTON_IMAGE_PATH);
         backToMenuIcon = new ImageIcon(BACKTOMENU_BUTTON_IMAGE_PATH);
-        setButtonIcon = new ImageIcon(SETTINGS_BUTTON_IMAGE_PATH);
         crafAvatarIcon = new ImageIcon(CRAFTAVATAR_BUTTON_IMAGE_PATH);
 
         // Initialize buttons
         invButton = createButton(invButtonIcon);
         backToMenuButton = createButton(backToMenuIcon);
-        setButton = createButton(setButtonIcon);
         crafAvatarButton = createButton(crafAvatarIcon);
         argent = new JLabel(Integer.toString(Argent.getMonnaiePlayer()) + " $");
 
@@ -85,7 +80,6 @@ public class UiMenuBar extends Ui {
         menuBar.add(invButton);
         menuBar.add(crafAvatarButton);
         menuBar.add(backToMenuButton);
-        menuBar.add(setButton);
         menuBar.add(argent);
     }
 
@@ -124,13 +118,10 @@ public class UiMenuBar extends Ui {
                 buttonHeight);
         backToMenuButton.setBounds(startX + 2 * (buttonWidth + spacing), panelHeight / 2 - buttonHeight / 2,
                 buttonWidth, buttonHeight);
-        setButton.setBounds(startX + 3 * (buttonWidth + spacing), panelHeight / 2 - buttonHeight / 2, buttonWidth,
-                buttonHeight);
-        argent.setBounds(panelWidth - 100, panelHeight / 2 - buttonHeight / 2, 100, buttonHeight);  
+        argent.setBounds(panelWidth - 100, panelHeight / 2 - buttonHeight / 2, 100, buttonHeight);
         // Resize icons for the buttons
         resizeButtonImages(invButton, invButtonIcon);
         resizeButtonImages(backToMenuButton, backToMenuIcon);
-        resizeButtonImages(setButton, setButtonIcon);
         resizeButtonImages(crafAvatarButton, crafAvatarIcon);
     }
 
@@ -142,12 +133,6 @@ public class UiMenuBar extends Ui {
 
         backToMenuButton.addActionListener(l -> {
             gameState = TITLE_STATE;
-            menuBar.setVisible(false);
-
-        });
-
-        setButton.addActionListener(l -> {
-            gameState = settingsState;
             menuBar.setVisible(false);
 
         });
