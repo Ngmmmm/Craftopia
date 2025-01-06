@@ -4,11 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import item.machines.Recolteuse;
 import item.machines.RecolteusePolyvalente;
-import item.machines.UsinePolyvalente;
 
 public class UiRecolteuse {
     UiFarm uiFarm;
@@ -32,7 +32,7 @@ public class UiRecolteuse {
             Ui.poseRecolteusePanel.rebuildPoseRecolteuse();
             this.setVisible(false);
         });
-        if(recolteuse instanceof RecolteusePolyvalente){
+        if (recolteuse instanceof RecolteusePolyvalente) {
             mainPanel.add(reconfigure, BorderLayout.NORTH);
         }
 
@@ -44,7 +44,7 @@ public class UiRecolteuse {
 
         JPanel buttonPanel = new JPanel(); // Nouveau panel pour contenir le bouton
         buttonPanel.add(exit); // Ajouter le bouton au nouveau panel
-
+        mainPanel.add(new JLabel(recolteuse.getName()), BorderLayout.NORTH);
         mainPanel.add(contentPanel, BorderLayout.CENTER);
         mainPanel.add(buttonPanel, BorderLayout.SOUTH); // Ajouter le nouveau panel au layout principal
         mainPanel.setVisible(false);

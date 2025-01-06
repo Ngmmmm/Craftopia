@@ -53,17 +53,17 @@ public class CheckCollision {
         int spriteBottomMapY = sprite.mapPoint.y + sprite.solidArea.y + sprite.solidArea.height;
 
         // Détermination des colonnes et lignes correspondant aux bords du sprite
-        int spriteLeftCol = spriteLeftMapX / gp.TAILLE_BLOC;
-        int spriteRightCol = spriteRightMapX / gp.TAILLE_BLOC;
-        int spriteTopLigne = spriteTopMapY / gp.TAILLE_BLOC;
-        int spriteBottomLigne = spriteBottomMapY / gp.TAILLE_BLOC;
+        int spriteLeftCol = spriteLeftMapX / GamePanel.TAILLE_BLOC;
+        int spriteRightCol = spriteRightMapX / GamePanel.TAILLE_BLOC;
+        int spriteTopLigne = spriteTopMapY / GamePanel.TAILLE_BLOC;
+        int spriteBottomLigne = spriteBottomMapY / GamePanel.TAILLE_BLOC;
 
         int tileNum1, tileNum2; // Numéros des blocs à vérifier
 
         // Vérification des collisions en fonction de la direction du sprite
         switch (sprite.direction) {
             case "up": // Si le sprite se déplace vers le haut
-                spriteTopLigne = (spriteTopMapY - sprite.speed) / gp.TAILLE_BLOC; // Nouvelle ligne après le mouvement
+                spriteTopLigne = (spriteTopMapY - sprite.speed) / GamePanel.TAILLE_BLOC; // Nouvelle ligne après le mouvement
                 tileNum1 = gp.tileM.mapTileNum[spriteLeftCol][spriteTopLigne];
                 tileNum2 = gp.tileM.mapTileNum[spriteRightCol][spriteTopLigne];
                 // Si l'un des blocs a une collision, activer la collision pour le sprite
@@ -72,7 +72,7 @@ public class CheckCollision {
                 }
                 break;
             case "down": // Si le sprite se déplace vers le bas
-                spriteBottomLigne = (spriteBottomMapY + sprite.speed) / gp.TAILLE_BLOC;
+                spriteBottomLigne = (spriteBottomMapY + sprite.speed) / GamePanel.TAILLE_BLOC;
                 tileNum1 = gp.tileM.mapTileNum[spriteLeftCol][spriteBottomLigne];
                 tileNum2 = gp.tileM.mapTileNum[spriteRightCol][spriteBottomLigne];
                 if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision) {
@@ -80,7 +80,7 @@ public class CheckCollision {
                 }
                 break;
             case "left": // Si le sprite se déplace vers la gauche
-                spriteLeftCol = (spriteLeftMapX - sprite.speed) / gp.TAILLE_BLOC;
+                spriteLeftCol = (spriteLeftMapX - sprite.speed) / GamePanel.TAILLE_BLOC;
                 tileNum1 = gp.tileM.mapTileNum[spriteLeftCol][spriteTopLigne];
                 tileNum2 = gp.tileM.mapTileNum[spriteLeftCol][spriteBottomLigne];
                 if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision) {
@@ -88,7 +88,7 @@ public class CheckCollision {
                 }
                 break;
             case "right": // Si le sprite se déplace vers la droite
-                spriteRightCol = (spriteRightMapX + sprite.speed) / gp.TAILLE_BLOC;
+                spriteRightCol = (spriteRightMapX + sprite.speed) / GamePanel.TAILLE_BLOC;
                 tileNum1 = gp.tileM.mapTileNum[spriteRightCol][spriteTopLigne];
                 tileNum2 = gp.tileM.mapTileNum[spriteRightCol][spriteBottomLigne];
                 if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision) {

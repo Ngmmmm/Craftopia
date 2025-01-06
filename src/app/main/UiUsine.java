@@ -5,6 +5,7 @@ import item.machines.UsinePolyvalente;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class UiUsine {
@@ -45,6 +46,7 @@ public class UiUsine {
         buttonPanel.add(exit); // Ajouter le bouton au nouveau panel
 
         mainPanel.add(contentPanel, BorderLayout.CENTER);
+        mainPanel.add(new JLabel(usine.getName()),BorderLayout.NORTH);
         mainPanel.add(buttonPanel, BorderLayout.SOUTH); // Ajouter le nouveau panel au layout principal
         mainPanel.setVisible(false);
     }

@@ -26,8 +26,8 @@ public class SaveEtatMap {
             BufferedWriter bw = new BufferedWriter(new FileWriter("saveGame/saveEtatMap.txt"));
             for (int i = 0; i < GamePanel.obj.size(); i++) {
                 String setterInfo = GamePanel.obj.get(i).name + " "
-                        + Double.toString(GamePanel.obj.get(i).pos.getX() / gp.TAILLE_BLOC) + " " +
-                        Double.toString(GamePanel.obj.get(i).pos.getY() / gp.TAILLE_BLOC) + " ";
+                        + Double.toString(GamePanel.obj.get(i).pos.getX() / GamePanel.TAILLE_BLOC) + " " +
+                        Double.toString(GamePanel.obj.get(i).pos.getY() / GamePanel.TAILLE_BLOC) + " ";
                 if(GamePanel.obj.get(i) instanceof Usine){
                     setterInfo = setterInfo + ((Usine)GamePanel.obj.get(i)).recetteAct.getName()  + " ";
                     setterInfo = setterInfo + ((Usine)GamePanel.obj.get(i)).stock.invObject.size() + " ";
@@ -63,8 +63,8 @@ public class SaveEtatMap {
                 String[] itemInfoArray = setterInfo.split(" ");
                 SuperObjet sObjet = SuperObjet.getSuperObjet(itemInfoArray[0]);
                 GamePanel.obj.add(sObjet);
-                GamePanel.obj.get(obj).pos.x = (int) Double.parseDouble(itemInfoArray[1]) * gp.TAILLE_BLOC;
-                GamePanel.obj.get(obj).pos.y = (int) Double.parseDouble(itemInfoArray[2]) * gp.TAILLE_BLOC;
+                GamePanel.obj.get(obj).pos.x = (int) Double.parseDouble(itemInfoArray[1]) * GamePanel.TAILLE_BLOC;
+                GamePanel.obj.get(obj).pos.y = (int) Double.parseDouble(itemInfoArray[2]) * GamePanel.TAILLE_BLOC;
                 if(sObjet instanceof Usine){
                     for(int j = 0; j<Recette.getRecettes().size(); j++){
                         if(Recette.getRecettes().get(j).getName().equals(itemInfoArray[3])){

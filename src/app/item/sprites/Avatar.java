@@ -59,9 +59,9 @@ public final class Avatar extends Sprite {
     public Avatar(GamePanel gp, KeyHandler keyH) {
         this.gp = gp; // Initialisation du panneau de jeu
         this.keyH = keyH; // Initialisation du gestionnaire des entrées clavier
-        this.screenX = (this.gp.LARGEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran
+        this.screenX = (this.gp.LARGEUR_ECRAN / 2) - (GamePanel.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran
         // (X)
-        this.screenY = (this.gp.HAUTEUR_ECRAN / 2) - (gp.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran
+        this.screenY = (this.gp.HAUTEUR_ECRAN / 2) - (GamePanel.TAILLE_BLOC / 2); // Calcul pour centrer l'avatar sur l'écran
         // (Y)
 
         solidArea = new Rectangle(8, 16, 32, 32); // Définit la zone de collision de l'avatar
@@ -266,8 +266,8 @@ public final class Avatar extends Sprite {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         // Dessine l'image sélectionnée
-        g2.drawImage(image, (int) (screenX * scaleX), (int) (screenY * scaleY), (int) (gp.TAILLE_BLOC * scaleX),
-                (int) (gp.TAILLE_BLOC * scaleY), null);
+        g2.drawImage(image, (int) (screenX * scaleX), (int) (screenY * scaleY), (int) (GamePanel.TAILLE_BLOC * scaleX),
+                (int) (GamePanel.TAILLE_BLOC * scaleY), null);
     }
 
     public Point getPosition() {
@@ -279,44 +279,44 @@ public final class Avatar extends Sprite {
     }
 
     public boolean checkNine() {
-        Point verif = new Point((int) mapPoint.getX() / gp.TAILLE_BLOC, (int) (mapPoint.getY() / gp.TAILLE_BLOC));
+        Point verif = new Point((int) mapPoint.getX() / GamePanel.TAILLE_BLOC, (int) (mapPoint.getY() / GamePanel.TAILLE_BLOC));
         for (int i = 0; i < GamePanel.obj.size(); i++) {
-            if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y) {
+            if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y) {
                 System.out.println("test1");
                 return false;
-            } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y - 1) {
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y - 1) {
                 System.out.println("test1");
                 return false;
-            } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y + 1) {
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y + 1) {
                 System.out.println("test1");
                 return false;
-            } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x - 1 && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y) {
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x - 1 && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y) {
                 System.out.println("test1");
                 return false;
-            } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x + 1 && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y) {
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x + 1 && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y) {
                 System.out.println("test1");
                 return false;
-            } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x - 1 && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y - 1) {
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x - 1 && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y - 1) {
                 System.out.println("test1");
                 return false;
-            } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x + 1 && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y + 1) {
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x + 1 && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y + 1) {
                 System.out.println("test1");
                 return false;
-            } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x - 1 && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y + 1) {
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x - 1 && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y + 1) {
                 System.out.println("test1");
                 return false;
-            } else if ((int) (GamePanel.obj.get(i).pos.x) / gp.TAILLE_BLOC == (int) verif.x + 1 && (int) (GamePanel.obj.get(i).pos.y) / gp.TAILLE_BLOC == (int) verif.y - 1) {
+            } else if ((int) (GamePanel.obj.get(i).pos.x) / GamePanel.TAILLE_BLOC == (int) verif.x + 1 && (int) (GamePanel.obj.get(i).pos.y) / GamePanel.TAILLE_BLOC == (int) verif.y - 1) {
                 System.out.println("test1");
                 return false;
-            } else if ((int) TileManager.spawnPoint.getX() / gp.TAILLE_BLOC == (int) verif.x + 1 && (int) TileManager.spawnPoint.getY() / gp.TAILLE_BLOC == (int) verif.y) {
+            } else if ((int) TileManager.spawnPoint.getX() / GamePanel.TAILLE_BLOC == (int) verif.x + 1 && (int) TileManager.spawnPoint.getY() / GamePanel.TAILLE_BLOC == (int) verif.y) {
                 return false;
-            } else if ((int) TileManager.spawnPoint.getX() / gp.TAILLE_BLOC == (int) verif.x - 1 && (int) TileManager.spawnPoint.getY() / gp.TAILLE_BLOC == (int) verif.y) {
+            } else if ((int) TileManager.spawnPoint.getX() / GamePanel.TAILLE_BLOC == (int) verif.x - 1 && (int) TileManager.spawnPoint.getY() / GamePanel.TAILLE_BLOC == (int) verif.y) {
                 return false;
-            } else if ((int) TileManager.spawnPoint.getX() / gp.TAILLE_BLOC == (int) verif.x && (int) TileManager.spawnPoint.getY() / gp.TAILLE_BLOC == (int) verif.y + 1) {
+            } else if ((int) TileManager.spawnPoint.getX() / GamePanel.TAILLE_BLOC == (int) verif.x && (int) TileManager.spawnPoint.getY() / GamePanel.TAILLE_BLOC == (int) verif.y + 1) {
                 return false;
-            } else if ((int) TileManager.spawnPoint.getX() / gp.TAILLE_BLOC == (int) verif.x && (int) TileManager.spawnPoint.getY() / gp.TAILLE_BLOC == (int) verif.y - 1) {
+            } else if ((int) TileManager.spawnPoint.getX() / GamePanel.TAILLE_BLOC == (int) verif.x && (int) TileManager.spawnPoint.getY() / GamePanel.TAILLE_BLOC == (int) verif.y - 1) {
                 return false;
-            } else if ((int) TileManager.spawnPoint.getX() / gp.TAILLE_BLOC == (int) verif.x && (int) TileManager.spawnPoint.getY() / gp.TAILLE_BLOC == (int) verif.y - 1) {
+            } else if ((int) TileManager.spawnPoint.getX() / GamePanel.TAILLE_BLOC == (int) verif.x && (int) TileManager.spawnPoint.getY() / GamePanel.TAILLE_BLOC == (int) verif.y - 1) {
                 return false;
             }
         }
@@ -338,8 +338,8 @@ public final class Avatar extends Sprite {
     }
     public ArrayList<SuperObjet> getSurroundingSuperObjects() {
         ArrayList<SuperObjet> surroundingSuperObjects = new ArrayList<>();
-        int avatarX = (int) mapPoint.getX() / gp.TAILLE_BLOC;
-        int avatarY = (int) mapPoint.getY() / gp.TAILLE_BLOC;
+        int avatarX = (int) mapPoint.getX() / GamePanel.TAILLE_BLOC;
+        int avatarY = (int) mapPoint.getY() / GamePanel.TAILLE_BLOC;
 
         int[][] directions = {
             {-1, -1}, {0, -1}, {1, -1},
@@ -360,7 +360,7 @@ public final class Avatar extends Sprite {
 
     private SuperObjet getSuperObjetAt(int x, int y) {
         for (SuperObjet obj : GamePanel.obj) {
-            if (obj.pos.x / gp.TAILLE_BLOC == x && obj.pos.y / gp.TAILLE_BLOC == y) {
+            if (obj.pos.x / GamePanel.TAILLE_BLOC == x && obj.pos.y / GamePanel.TAILLE_BLOC == y) {
                 return obj;
             }
         }
@@ -368,8 +368,8 @@ public final class Avatar extends Sprite {
     }
     public ArrayList<Ressource> getSurroundingRessources() {
         ArrayList<Ressource> surroundingRessources = new ArrayList<>();
-        int avatarX = (int) mapPoint.getX() / gp.TAILLE_BLOC;
-        int avatarY = (int) mapPoint.getY() / gp.TAILLE_BLOC;
+        int avatarX = (int) mapPoint.getX() / GamePanel.TAILLE_BLOC;
+        int avatarY = (int) mapPoint.getY() / GamePanel.TAILLE_BLOC;
 
         int[][] directions = {
             {-1, -1}, {0, -1}, {1, -1},
@@ -390,7 +390,7 @@ public final class Avatar extends Sprite {
 
     private Ressource getRessourceAt(int x, int y) {
         for(int i = 0; i<GamePanel.obj.size();i++){
-            if(GamePanel.obj.get(i).pos.x / gp.TAILLE_BLOC == x && GamePanel.obj.get(i).pos.y / gp.TAILLE_BLOC == y && GamePanel.obj.get(i) instanceof Ressource){
+            if(GamePanel.obj.get(i).pos.x / GamePanel.TAILLE_BLOC == x && GamePanel.obj.get(i).pos.y / GamePanel.TAILLE_BLOC == y && GamePanel.obj.get(i) instanceof Ressource){
                 return (Ressource) GamePanel.obj.get(i);
             }
         }
@@ -424,8 +424,8 @@ public final class Avatar extends Sprite {
 
     public Ressource getRessourceFront(){
         Ressource res = null;
-        int avatarX = (int) mapPoint.getX() / gp.TAILLE_BLOC;
-        int avatarY = (int) mapPoint.getY() / gp.TAILLE_BLOC;
+        int avatarX = (int) mapPoint.getX() / GamePanel.TAILLE_BLOC;
+        int avatarY = (int) mapPoint.getY() / GamePanel.TAILLE_BLOC;
 
         int[][] directions = {
                      {0, -1},

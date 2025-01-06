@@ -55,12 +55,12 @@ public class SuperObjet {
         int screenY = pos.y - gp.avatar.mapPoint.y + gp.avatar.screenY;
 
         // Vérifie si les coordonnées sont dans la zone visible
-        if (pos.x + gp.TAILLE_BLOC > gp.avatar.mapPoint.x - gp.avatar.screenX
-                && pos.x - gp.TAILLE_BLOC < gp.avatar.mapPoint.x + gp.avatar.screenX
-                && pos.y + gp.TAILLE_BLOC > gp.avatar.mapPoint.y - gp.avatar.screenY
-                && pos.y - gp.TAILLE_BLOC < gp.avatar.mapPoint.y + gp.avatar.screenY) {
-            g2.drawImage(image, (int) (screenX * scaleX), (int) (screenY * scaleY), (int) (gp.TAILLE_BLOC * scaleX),
-                    (int) (gp.TAILLE_BLOC * scaleY), null);
+        if (pos.x + GamePanel.TAILLE_BLOC > gp.avatar.mapPoint.x - gp.avatar.screenX
+                && pos.x - GamePanel.TAILLE_BLOC < gp.avatar.mapPoint.x + gp.avatar.screenX
+                && pos.y + GamePanel.TAILLE_BLOC > gp.avatar.mapPoint.y - gp.avatar.screenY
+                && pos.y - GamePanel.TAILLE_BLOC < gp.avatar.mapPoint.y + gp.avatar.screenY) {
+            g2.drawImage(image, (int) (screenX * scaleX), (int) (screenY * scaleY), (int) (GamePanel.TAILLE_BLOC * scaleX),
+                    (int) (GamePanel.TAILLE_BLOC * scaleY), null);
         }
     }
 

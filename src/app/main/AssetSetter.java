@@ -32,7 +32,7 @@ public class AssetSetter {
         Argent.decreaseMoney((Argent.getMonnaiePlayer()));
         GamePanel.obj = new ArrayList<SuperObjet>();
         listPoint = new ArrayList<Point>();
-        Point spawnPoint = new Point(TileManager.spawnPoint.x/gp.TAILLE_BLOC, TileManager.spawnPoint.y/gp.TAILLE_BLOC);
+        Point spawnPoint = new Point(TileManager.spawnPoint.x/GamePanel.TAILLE_BLOC, TileManager.spawnPoint.y/GamePanel.TAILLE_BLOC);
         listPoint.add(spawnPoint);
         listPoint.add(new Point((spawnPoint.x) + 1,(spawnPoint.y)));
         listPoint.add(new Point((spawnPoint.x) - 1,(spawnPoint.y)));
@@ -60,8 +60,8 @@ public class AssetSetter {
                 p = new Point(pointX,pointY);
             }
             listPoint.add(p);
-            GamePanel.obj.get(GamePanel.obj.size() -1).pos.x = p.x * gp.TAILLE_BLOC;
-            GamePanel.obj.get(GamePanel.obj.size() -1).pos.y = p.y * gp.TAILLE_BLOC;
+            GamePanel.obj.get(GamePanel.obj.size() -1).pos.x = p.x * GamePanel.TAILLE_BLOC;
+            GamePanel.obj.get(GamePanel.obj.size() -1).pos.y = p.y * GamePanel.TAILLE_BLOC;
 
             GamePanel.obj.add(new Fer());
             pointX = randomNumber.nextInt(9,42);
@@ -73,8 +73,8 @@ public class AssetSetter {
                 p = new Point(pointX,pointY);
             }
             listPoint.add(p);
-            GamePanel.obj.get(GamePanel.obj.size() -1).pos.x = p.x * gp.TAILLE_BLOC;
-            GamePanel.obj.get(GamePanel.obj.size() -1).pos.y = p.y * gp.TAILLE_BLOC;
+            GamePanel.obj.get(GamePanel.obj.size() -1).pos.x = p.x * GamePanel.TAILLE_BLOC;
+            GamePanel.obj.get(GamePanel.obj.size() -1).pos.y = p.y * GamePanel.TAILLE_BLOC;
 
             GamePanel.obj.add(new Bois());
             pointX = randomNumber.nextInt(9,42);
@@ -86,8 +86,8 @@ public class AssetSetter {
                 p = new Point(pointX,pointY);
             }
             listPoint.add(p);
-            GamePanel.obj.get(GamePanel.obj.size() -1).pos.x = p.x * gp.TAILLE_BLOC;
-            GamePanel.obj.get(GamePanel.obj.size() -1).pos.y = p.y * gp.TAILLE_BLOC;
+            GamePanel.obj.get(GamePanel.obj.size() -1).pos.x = p.x * GamePanel.TAILLE_BLOC;
+            GamePanel.obj.get(GamePanel.obj.size() -1).pos.y = p.y * GamePanel.TAILLE_BLOC;
 
             GamePanel.obj.add(new Pierre());
             pointX = randomNumber.nextInt(9,42);
@@ -99,8 +99,8 @@ public class AssetSetter {
                 p = new Point(pointX,pointY);
             }
             listPoint.add(p);
-            GamePanel.obj.get(GamePanel.obj.size() -1).pos.x = p.x * gp.TAILLE_BLOC;
-            GamePanel.obj.get(GamePanel.obj.size() -1).pos.y = p.y * gp.TAILLE_BLOC;
+            GamePanel.obj.get(GamePanel.obj.size() -1).pos.x = p.x * GamePanel.TAILLE_BLOC;
+            GamePanel.obj.get(GamePanel.obj.size() -1).pos.y = p.y * GamePanel.TAILLE_BLOC;
             
         }
         
@@ -139,8 +139,8 @@ public class AssetSetter {
         Point pMarche = new Point(pointX,pointY);
         listPoint.add(pMarche);
         GamePanel.obj.add(new Marche());
-        GamePanel.obj.get(GamePanel.obj.size() -1).pos.x = pMarche.x * gp.TAILLE_BLOC;
-        GamePanel.obj.get(GamePanel.obj.size() -1).pos.y = pMarche.y * gp.TAILLE_BLOC;
+        GamePanel.obj.get(GamePanel.obj.size() -1).pos.x = pMarche.x * GamePanel.TAILLE_BLOC;
+        GamePanel.obj.get(GamePanel.obj.size() -1).pos.y = pMarche.y * GamePanel.TAILLE_BLOC;
 
         listPoint.add(new Point((pMarche.x) + 1,(pMarche.y)));
         listPoint.add(new Point((pMarche.x) - 1,(pMarche.y)));

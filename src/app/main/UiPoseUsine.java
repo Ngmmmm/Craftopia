@@ -72,7 +72,7 @@ public class UiPoseUsine extends Ui {
 
                     System.out.println(act.getName());
                     System.out.println(pos);
-                    gamePanel.avatar.setPos(new Point(pos.x, (pos.y) + gamePanel.TAILLE_BLOC));
+                    gamePanel.avatar.setPos(new Point(pos.x, (pos.y) + GamePanel.TAILLE_BLOC));
                     GamePanel.obj.add(act);
                     GamePanel.obj.get(GamePanel.obj.size() - 1).pos = pos;
                     ((Usine) GamePanel.obj.get(GamePanel.obj.size() - 1)).setRecetteAct(recette);
@@ -112,9 +112,9 @@ public class UiPoseUsine extends Ui {
         switch (gamePanel.avatar.getDirection()) {
             case "up" -> {
             if (gamePanel.avatar.checkNine()) {
-                Point verif = new Point((int) gamePanel.avatar.getPosition().getX() / gamePanel.TAILLE_BLOC, (int) (gamePanel.avatar.getPosition().getY() / gamePanel.TAILLE_BLOC));
-                if (gamePanel.tileM.getTile(verif.x * gamePanel.TAILLE_BLOC, verif.y * gamePanel.TAILLE_BLOC).isGrass && !verif.equals(gamePanel.avatar.getPosition())) {
-                pos = new Point(verif.x * gamePanel.TAILLE_BLOC, (verif.y) * gamePanel.TAILLE_BLOC);
+                Point verif = new Point((int) gamePanel.avatar.getPosition().getX() / GamePanel.TAILLE_BLOC, (int) (gamePanel.avatar.getPosition().getY() / GamePanel.TAILLE_BLOC));
+                if (gamePanel.tileM.getTile(verif.x * GamePanel.TAILLE_BLOC, verif.y * GamePanel.TAILLE_BLOC).isGrass && !verif.equals(gamePanel.avatar.getPosition())) {
+                pos = new Point(verif.x * GamePanel.TAILLE_BLOC, (verif.y) * GamePanel.TAILLE_BLOC);
                 return true;
                 }
             }
@@ -122,9 +122,9 @@ public class UiPoseUsine extends Ui {
             }
             case "down" -> {
             if (gamePanel.avatar.checkNine()) {
-                Point verif = new Point((int) gamePanel.avatar.getPosition().getX() / gamePanel.TAILLE_BLOC, (int) (gamePanel.avatar.getPosition().getY() / gamePanel.TAILLE_BLOC) + 1);
-                if (gamePanel.tileM.getTile(verif.x * gamePanel.TAILLE_BLOC, verif.y * gamePanel.TAILLE_BLOC).isGrass && !verif.equals(gamePanel.avatar.getPosition())) {
-                pos = new Point(verif.x * gamePanel.TAILLE_BLOC, (verif.y) * gamePanel.TAILLE_BLOC);
+                Point verif = new Point((int) gamePanel.avatar.getPosition().getX() / GamePanel.TAILLE_BLOC, (int) (gamePanel.avatar.getPosition().getY() / GamePanel.TAILLE_BLOC) + 1);
+                if (gamePanel.tileM.getTile(verif.x * GamePanel.TAILLE_BLOC, verif.y * GamePanel.TAILLE_BLOC).isGrass && !verif.equals(gamePanel.avatar.getPosition())) {
+                pos = new Point(verif.x * GamePanel.TAILLE_BLOC, (verif.y) * GamePanel.TAILLE_BLOC);
                 return true;
                 }
             }
@@ -132,9 +132,9 @@ public class UiPoseUsine extends Ui {
             }
             case "right" -> {
             if (gamePanel.avatar.checkNine()) {
-                Point verif = new Point((int) gamePanel.avatar.getPosition().getX() / gamePanel.TAILLE_BLOC + 1, (int) (gamePanel.avatar.getPosition().getY() / gamePanel.TAILLE_BLOC));
-                if (gamePanel.tileM.getTile(verif.x * gamePanel.TAILLE_BLOC, verif.y * gamePanel.TAILLE_BLOC).isGrass && !verif.equals(gamePanel.avatar.getPosition())) {
-                pos = new Point(verif.x * gamePanel.TAILLE_BLOC, (verif.y) * gamePanel.TAILLE_BLOC);
+                Point verif = new Point((int) gamePanel.avatar.getPosition().getX() / GamePanel.TAILLE_BLOC + 1, (int) (gamePanel.avatar.getPosition().getY() / GamePanel.TAILLE_BLOC));
+                if (gamePanel.tileM.getTile(verif.x * GamePanel.TAILLE_BLOC, verif.y * GamePanel.TAILLE_BLOC).isGrass && !verif.equals(gamePanel.avatar.getPosition())) {
+                pos = new Point(verif.x * GamePanel.TAILLE_BLOC, (verif.y) * GamePanel.TAILLE_BLOC);
                 return true;
                 }
             }
@@ -142,9 +142,9 @@ public class UiPoseUsine extends Ui {
             }
             case "left" -> {
             if (gamePanel.avatar.checkNine()) {
-                Point verif = new Point((int) gamePanel.avatar.getPosition().getX() / gamePanel.TAILLE_BLOC - 1, (int) (gamePanel.avatar.getPosition().getY() / gamePanel.TAILLE_BLOC));
-                if (gamePanel.tileM.getTile(verif.x * gamePanel.TAILLE_BLOC, verif.y * gamePanel.TAILLE_BLOC).isGrass && !verif.equals(gamePanel.avatar.getPosition())) {
-                pos = new Point(verif.x * gamePanel.TAILLE_BLOC, (verif.y) * gamePanel.TAILLE_BLOC);
+                Point verif = new Point((int) gamePanel.avatar.getPosition().getX() / GamePanel.TAILLE_BLOC - 1, (int) (gamePanel.avatar.getPosition().getY() / GamePanel.TAILLE_BLOC));
+                if (gamePanel.tileM.getTile(verif.x * GamePanel.TAILLE_BLOC, verif.y * GamePanel.TAILLE_BLOC).isGrass && !verif.equals(gamePanel.avatar.getPosition())) {
+                pos = new Point(verif.x * GamePanel.TAILLE_BLOC, (verif.y) * GamePanel.TAILLE_BLOC);
                 return true;
                 }
             }

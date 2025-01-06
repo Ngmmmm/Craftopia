@@ -1,9 +1,5 @@
 package item.recettes;
 
-import item.ressources.Bois;
-import item.ressources.Fer;
-import item.ressources.Feuille;
-import item.ressources.Pierre;
 import item.ressources.Ressource;
 import item.sprites.SuperObjet;
 import java.util.ArrayList;
@@ -47,21 +43,6 @@ public abstract class Recette {
                 return new RecetteHache();
             default:
                 throw new IllegalArgumentException("Recette inconnu : " + recette);
-        }
-    }
-
-    private static SuperObjet getIngredients(Ingredient ingredient) {
-        switch (ingredient) {
-            case FEUILLE:
-                return new Feuille();
-            case BOIS:
-                return new Bois();
-            case PIERRE:
-                return new Pierre();
-            case FER:
-                return new Fer();
-            default:
-                throw new IllegalArgumentException("Ingrédient inconnu : " + ingredient);
         }
     }
 

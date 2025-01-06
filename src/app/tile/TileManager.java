@@ -152,8 +152,8 @@ public class TileManager {
                     String[] numbers = line.split(" "); // Découpe la ligne en nombres
                     int num = Integer.parseInt(numbers[col]); // Convertit en entier
                     if(num == 5){
-                        spawnPoint.x = (col * gp.TAILLE_BLOC);
-                        spawnPoint.y =(ligne * gp.TAILLE_BLOC);
+                        spawnPoint.x = (col * GamePanel.TAILLE_BLOC);
+                        spawnPoint.y =(ligne * GamePanel.TAILLE_BLOC);
                     }
                     mapTileNum[col][ligne] = num; // Affecte à la carte
                     col++;
@@ -187,20 +187,20 @@ public class TileManager {
             int tileNum = mapTileNum[mapCol][mapLigne];
 
             // Coordonnées de la bloc sur la carte
-            int mapX = mapCol * gp.TAILLE_BLOC;
-            int mapY = mapLigne * gp.TAILLE_BLOC;
+            int mapX = mapCol * GamePanel.TAILLE_BLOC;
+            int mapY = mapLigne * GamePanel.TAILLE_BLOC;
 
             // Coordonnées de la bloc à l'écran
             int screenX = mapX - gp.avatar.mapPoint.x + gp.avatar.screenX;
             int screenY = mapY - gp.avatar.mapPoint.y + gp.avatar.screenY;
 
             // Vérifie si les coordonnées sont dans la zone visible
-            if (mapX + gp.TAILLE_BLOC > gp.avatar.mapPoint.x - gp.avatar.screenX
-                    && mapX - gp.TAILLE_BLOC < gp.avatar.mapPoint.x + gp.avatar.screenX
-                    && mapY + gp.TAILLE_BLOC > gp.avatar.mapPoint.y - gp.avatar.screenY
-                    && mapY - gp.TAILLE_BLOC < gp.avatar.mapPoint.y + gp.avatar.screenY) {
+            if (mapX + GamePanel.TAILLE_BLOC > gp.avatar.mapPoint.x - gp.avatar.screenX
+                    && mapX - GamePanel.TAILLE_BLOC < gp.avatar.mapPoint.x + gp.avatar.screenX
+                    && mapY + GamePanel.TAILLE_BLOC > gp.avatar.mapPoint.y - gp.avatar.screenY
+                    && mapY - GamePanel.TAILLE_BLOC < gp.avatar.mapPoint.y + gp.avatar.screenY) {
                 //+1 pour résoudre un bug due a l'arrondi double/int
-                g2.drawImage(tile[tileNum].image,(int)(screenX*scaleX), (int)(screenY*scaleY), (int)(gp.TAILLE_BLOC*scaleX)+1, (int)(gp.TAILLE_BLOC*scaleY)+1, null);
+                g2.drawImage(tile[tileNum].image,(int)(screenX*scaleX), (int)(screenY*scaleY), (int)(GamePanel.TAILLE_BLOC*scaleX)+1, (int)(GamePanel.TAILLE_BLOC*scaleY)+1, null);
             
             }
 
@@ -214,7 +214,7 @@ public class TileManager {
     }
 
     public Tile getTile(int x, int y) {
-        return tile[mapTileNum[x/gp.TAILLE_BLOC][y/gp.TAILLE_BLOC]];
+        return tile[mapTileNum[x/GamePanel.TAILLE_BLOC][y/GamePanel.TAILLE_BLOC]];
     }
 
 
