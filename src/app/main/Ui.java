@@ -132,7 +132,10 @@ public class Ui {
         scaleYAct = scaleY;
 
         titleScreen.drawTitleScreen(g2, scaleX, scaleY);
-        titleScreen.backToMenu();
+        if (!titleScreen.inSettings) {
+            titleScreen.setVisible(true);    
+        }
+        
     }
 
     private void drawGameScreen(Graphics2D g2, double scaleX, double scaleY) {
