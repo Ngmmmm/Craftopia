@@ -1,4 +1,4 @@
-# Projet POO L2 Ouahid HOUAT Noa Gregoire Mellier Craftopia
+> # Projet POO L2 Ouahid HOUAT Noa Gregoire Mellier Craftopia
 
 ## Name
 Craftopia.
@@ -22,13 +22,20 @@ Pour lancer une nouvelle partie, cliquez sur le bouton NewGame après démarrage
 Pour couper le son du jeu, cliquez sur le bouton Settings du menu et cliquez ensuite sur le bouton Mute Sounds.
 Pour faire déplacer l'avatar, utilisez les flêches directionnelles du clavier.
 Pour ouvrir l'inventaire cliquez sur le bouton en forme de sac en haut a gauche de l'écran de jeu.
+
 Pour intéragir avec une Machine ou une ressource, cliquez sur le bouton intéragir lorsque vous êtes collé à celle-ci.
 
 
-Pour placer une récolteuse, collez l'avatar a la ressource choisie ouvrez votre inventaire et cliquez sur le bouton Poser correspondant a la récolteuse de votre choix.
-Pour placer une usine, mettez vous prêt d'une case vide sans Objet autour ouvrez votre inventaire et cliquez sur le bouton Poser correspondant a l' usine de votre choix. Choisissez ensuite la recette que vous voulez associer a l'usine.
-Pour lancer la récolteuse, une fois après avoir intéragi avec elle, il vous faudra ciquer sur le bouton Activate pour lancer la prodution de la ressource choisie.
-Pour utiliser une usine, une fois après avoir intéragi avec elle, l vous faudra ciquer sur le bouton Activate pour lancer la prodution de la ressource de la recette choisie. Tant que vous en avez les ressources, la recette sera effectuée autant de fois que vous avez cliquez.
+    1. Pour placer une récolteuse, collez l'avatar a la ressource choisie ouvrez votre inventaire et cliquez sur le bouton             Poser correspondant a la récolteuse de votre choix.
+
+    2. Pour lancer la récolteuse, une fois après avoir intéragi avec elle, il vous faudra ciquer sur le bouton Activate pour lancer la prodution de la ressource choisie.
+
+
+    1. Pour placer une usine, mettez vous prêt d'une case vide sans Objet autour ouvrez votre inventaire et cliquez sur le bouton Poser correspondant a l' usine de votre choix. Choisissez ensuite la recette que vous voulez associer a l'usine.
+    2. Pour utiliser une usine, une fois après avoir intéragi avec elle, l vous faudra ciquer sur le bouton Activate pour lancer la prodution de la ressource de la recette choisie. Tant que vous en avez les ressources, la recette sera effectuée autant de fois que vous avez cliquez.
+
+    1. Pour ouvrir le craft Avatar, cliquez sur le bouton marteau situé à coté de celui de l'inventaire en haut de l'écran de jeu.
+    2. Pour utiliser le craft Avatar, cliquez sur ce même bouton puis cliquez sur la recette que vous voulez produire, si vous avez les ressources nécessaires, celle-ci sera produite.
 
 
 Pour Revenir a l'accueil, cliquez sur le bouton Exit en haut au centre de l'écran de jeu qui vous demandera de sauvegardez si vous le souhaitez.
