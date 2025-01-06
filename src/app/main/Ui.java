@@ -24,7 +24,7 @@ import javax.swing.JPanel;
  * fonction de la taille du panneau.
  * </p>
  * 
- * @author Noa Gregoire--Mellier
+ * @author Noa Gregoire-Mellier
  * @version 2.0
  */
 public class Ui {
