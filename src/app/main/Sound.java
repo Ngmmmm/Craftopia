@@ -107,4 +107,8 @@ public class Sound {
             currentClip = null;
         }
     }
+
+    public boolean isPlaying() {
+        return currentClip != null && currentClip.isRunning();
+    }
 }
