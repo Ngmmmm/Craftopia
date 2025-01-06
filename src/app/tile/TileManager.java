@@ -82,13 +82,7 @@ public class TileManager {
              // Empêche de pouvoir poser un objet sur le bloc
 
             tile[5] = new Tile();
-            tile[5].image = ImageIO.read(new File("./img/tiles/grass.png"));
-            
-
-            // Chargement des blocs supplémentaires
-            // tile[5] = new Tile();
-            // tile[5].image = ImageIO.read(new File("./img//.png"));
-            // tile[5].collision = true;
+            tile[5].image = ImageIO.read(new File("./img/tiles/spawnPoint.png"));
 
             tile[6] = new Tile();
             tile[6].image = ImageIO.read(new File("./img/tiles/ClotureGaucheVerticale.png"));
