@@ -4,8 +4,6 @@ import item.bag.Inventaire;
 import item.machines.Recolteuse;
 import item.machines.Usine;
 import item.sprites.SuperObjet;
-import main.GamePanel;
-
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -18,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import main.GamePanel;
 
 public class UiInventaire extends Ui {
 
@@ -75,7 +74,7 @@ public class UiInventaire extends Ui {
 
         // Label pour la quantité
         JLabel nbLabel = new JLabel("x" + Inventaire.getQuantityFromAvatarInv(item));
-        nbLabel.setPreferredSize(new Dimension(20, rowHeight));
+        nbLabel.setPreferredSize(new Dimension(50, rowHeight));
         rowPanel.add(nbLabel);
 
         // Image de l'objet
