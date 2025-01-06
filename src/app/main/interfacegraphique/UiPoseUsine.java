@@ -71,9 +71,6 @@ public class UiPoseUsine extends Ui {
             JButton poseUsine = new JButton("use");
             poseUsine.addActionListener(l -> {
                 if (build()) {
-
-                    System.out.println(act.getName());
-                    System.out.println(pos);
                     gamePanel.avatar.setPos(new Point(pos.x, (pos.y) + GamePanel.TAILLE_BLOC));
                     GamePanel.obj.add(act);
                     GamePanel.obj.get(GamePanel.obj.size() - 1).pos = pos;

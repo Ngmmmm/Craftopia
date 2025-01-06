@@ -154,7 +154,6 @@ class UiPoseRecolteuse extends Ui {
             }
         }
         if (rebuild) {
-            System.out.println("test");
             JButton rebuildButton = new JButton("rebuild");
             rebuildButton.addActionListener(k -> {
                 act.setRessource(r);

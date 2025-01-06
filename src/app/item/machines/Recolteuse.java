@@ -18,13 +18,17 @@ import main.interfacegraphique.UiRecolteuse;
  * La classe Recolteuse représente une machine de récolte dans le jeu.
  *
  * <p>
- * Cette classe gère la création de ressources, l'interaction avec le joueur, et l'inventaire spécifique
- * de la machine. Elle implémente les comportements définis par l'interface MachineBehavior.
+ * Cette classe gère la création de ressources, l'interaction avec le joueur, et
+ * l'inventaire spécifique
+ * de la machine. Elle implémente les comportements définis par l'interface
+ * MachineBehavior.
  * </p>
  *
  * <p>
- * Les méthodes incluent l'ajout et la suppression de ressources, la création récursive de ressources,
- * et la gestion de l'état de la machine. Cette classe permet de simuler le fonctionnement d'une
+ * Les méthodes incluent l'ajout et la suppression de ressources, la création
+ * récursive de ressources,
+ * et la gestion de l'état de la machine. Cette classe permet de simuler le
+ * fonctionnement d'une
  * machine de récolte dans le jeu.
  * </p>
  *
@@ -70,7 +74,7 @@ public class Recolteuse extends Machine {
     /**
      * Retourne des ressources au joueur.
      * 
-     * @param r la ressource à retourner.
+     * @param r        la ressource à retourner.
      * @param quantity la quantité de la ressource à retourner.
      */
     @Override
@@ -100,7 +104,8 @@ public class Recolteuse extends Machine {
     }
 
     /**
-     * Crée des ressources de manière récursive jusqu'à ce que la capacité soit atteinte.
+     * Crée des ressources de manière récursive jusqu'à ce que la capacité soit
+     * atteinte.
      */
     @Override
     public void createRessource() {
@@ -129,7 +134,6 @@ public class Recolteuse extends Machine {
                 } catch (InterruptedException e) {
                     e.printStackTrace(); // Gestion des interruptions
                 } finally {
-                    System.out.println("on est good");
                     this.stock.add(res, 1); // Ajoute une ressource à l'inventaire de la machine
                     this.uiRecolteuse.updateInventory(); // Met à jour l'inventaire graphique
 
@@ -139,9 +143,6 @@ public class Recolteuse extends Machine {
 
                         if (probability < 0.3) { // 30 % de chance
                             this.isActive = false; // Désactive la RecolteuseFragile
-                            System.out.println("RecolteuseFragile est désactivée (probabilité atteinte).");
-                        } else {
-                            System.out.println("RecolteuseFragile reste active.");
                         }
                     }
                     // Appel récursif après avoir ajouté la ressource
@@ -164,9 +165,9 @@ public class Recolteuse extends Machine {
         int posY = (int) pos.getY() / GamePanel.TAILLE_BLOC;
 
         int[][] directions = {
-            {0, -1},
-            {-1, 0}, {1, 0},
-            {0, 1}
+                { 0, -1 },
+                { -1, 0 }, { 1, 0 },
+                { 0, 1 }
         };
 
         for (int[] direction : directions) {
@@ -185,11 +186,14 @@ public class Recolteuse extends Machine {
      * 
      * @param x la position x de la ressource.
      * @param y la position y de la ressource.
-     * @return la ressource à la position spécifiée, ou null si aucune ressource n'est trouvée.
+     * @return la ressource à la position spécifiée, ou null si aucune ressource
+     *         n'est trouvée.
      */
     private Ressource getRessourceAt(int x, int y) {
         for (int i = 0; i < GamePanel.obj.size(); i++) {
-            if (GamePanel.obj.get(i).pos.x / GamePanel.TAILLE_BLOC == x && GamePanel.obj.get(i).pos.y / GamePanel.TAILLE_BLOC == y && GamePanel.obj.get(i) instanceof Ressource) {
+            if (GamePanel.obj.get(i).pos.x / GamePanel.TAILLE_BLOC == x
+                    && GamePanel.obj.get(i).pos.y / GamePanel.TAILLE_BLOC == y
+                    && GamePanel.obj.get(i) instanceof Ressource) {
                 return (Ressource) GamePanel.obj.get(i); // Retourne la ressource trouvée à la position spécifiée
             }
         }
