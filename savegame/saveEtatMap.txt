@@ -1,0 +1,52 @@
+Marche 24.0 41.0 
+Feuille 39.0 10.0 
+Fer 10.0 27.0 
+Bois 31.0 20.0 
+Pierre 38.0 18.0 
+Feuille 37.0 13.0 
+Fer 22.0 34.0 
+Bois 38.0 30.0 
+Pierre 9.0 34.0 
+Feuille 11.0 37.0 
+Fer 28.0 8.0 
+Bois 29.0 35.0 
+Pierre 30.0 8.0 
+Feuille 24.0 21.0 
+Fer 39.0 29.0 
+Bois 12.0 15.0 
+Pierre 20.0 34.0 
+Feuille 21.0 19.0 
+Fer 9.0 11.0 
+Bois 15.0 15.0 
+Pierre 35.0 10.0 
+Feuille 41.0 32.0 
+Fer 37.0 18.0 
+Bois 29.0 34.0 
+Pierre 10.0 22.0 
+Feuille 16.0 28.0 
+Fer 31.0 28.0 
+Bois 26.0 14.0 
+Pierre 16.0 12.0 
+RecolteuseFragile 11.0 22.0 Pierre 1 Pierre 2 
+UsineFragile 17.0 38.0 Epee 0 
+UsineRapide 14.0 34.0 BouleFeuille 0 
+RecolteuseFragile 9.0 35.0 Pierre 0 
+RecolteuseXL 10.0 26.0 Fer 0 
+Usine 12.0 10.0 Arc 0 
+UsineXL 22.0 10.0 Pioche 0 
+RecolteusePolyvalente 21.0 34.0 Fer 0 
+RecolteuseRapide 30.0 28.0 Fer 0 
+RecolteuseFragile 39.0 28.0 Fer 0 
+UsineRapide 37.0 23.0 Hache 0 
+Usine 34.0 20.0 Hache 0 
+UsineXL 27.0 19.0 Pioche 0 
+UsinePolyvalente 23.0 24.0 Pioche 0 
+UsinePolyvalente 17.0 23.0 BlocPierre 0 
+UsineXL 17.0 31.0 Pioche 0 
+UsinePolyvalente 24.0 31.0 BlocPierre 0 
+UsineXL 36.0 37.0 Arc 0 
+UsinePolyvalente 30.0 12.0 Pioche 0 
+UsineRapide 19.0 15.0 BlocPierre 0 
+RecolteuseXL 16.0 13.0 Pierre 0 
+Recolteuse 10.0 11.0 Fer 0 
+UsinePolyvalente 40.0 14.0 BouleFeuille 0 
