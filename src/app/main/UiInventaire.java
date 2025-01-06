@@ -109,6 +109,7 @@ public class UiInventaire extends Ui {
                 Ui.poseUsinePanel.rebuild = false;
                 Ui.poseRecolteusePanel.rebuildPoseRecolteuse();
                 Ui.gameState = Ui.poseRecolteuseState;
+
                 this.setVisible(false);
             });
             rowPanel.add(use);

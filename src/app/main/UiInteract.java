@@ -90,11 +90,11 @@ public class UiInteract extends Ui {
             Recolteuse recolteuse = (Recolteuse) item;
             int width = gamePanel.getWidth();
             int height = gamePanel.getHeight();
-
             int scrollWidth = 500; // Fixed width
             int scrollHeight = 300; // Fixed height
             int scrollX = (width - scrollWidth) / 2; // Center horizontally
             int scrollY = (height - scrollHeight) / 2; // Center vertically
+            UiPoseRecolteuse.act = recolteuse;
             recolteuse.uiRecolteuse.updateInventory();
             recolteuse.uiRecolteuse.setVisible(true);
             recolteuse.uiRecolteuse.setBounds(scrollX, scrollY, scrollWidth, scrollHeight);

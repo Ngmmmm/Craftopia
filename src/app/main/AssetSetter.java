@@ -30,10 +30,18 @@ public class AssetSetter {
     }
     public void setAllItemsByRandom() {
         Argent.decreaseMoney((Argent.getMonnaiePlayer()));
-        Argent.increaseMoney(1000);
         GamePanel.obj = new ArrayList<SuperObjet>();
         listPoint = new ArrayList<Point>();
-        listPoint.add(new Point(TileManager.spawnPoint.x/gp.TAILLE_BLOC, TileManager.spawnPoint.y/gp.TAILLE_BLOC));
+        Point spawnPoint = new Point(TileManager.spawnPoint.x/gp.TAILLE_BLOC, TileManager.spawnPoint.y/gp.TAILLE_BLOC);
+        listPoint.add(spawnPoint);
+        listPoint.add(new Point((spawnPoint.x) + 1,(spawnPoint.y)));
+        listPoint.add(new Point((spawnPoint.x) - 1,(spawnPoint.y)));
+        listPoint.add(new Point((spawnPoint.x) + 1,(spawnPoint.y)+ 1));
+        listPoint.add(new Point((spawnPoint.x) - 1,(spawnPoint.y)+ 1));
+        listPoint.add(new Point((spawnPoint.x) + 1,(spawnPoint.y)- 1));
+        listPoint.add(new Point((spawnPoint.x) - 1,(spawnPoint.y)- 1));
+        listPoint.add(new Point((spawnPoint.x) ,(spawnPoint.y)+ 1));
+        listPoint.add(new Point((spawnPoint.x) ,(spawnPoint.y)- 1));
         setMarcheRandom();
         setRessourceRandom();
     }

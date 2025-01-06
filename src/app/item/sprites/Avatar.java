@@ -2,22 +2,21 @@ package item.sprites;
 
 import item.bag.Argent; // Permet de dessiner l'avatar avec une qualité graphique
 import item.bag.Inventaire; // Définit l'aire solide pour la détection des collisions
-import item.ressources.Ressource;
-import item.ressources.RessourceVide;
 import item.recettes.Recette;
-import java.awt.Graphics2D; // Optimise le rendu graphique
-import java.awt.Point;
-import java.awt.Rectangle; // Stocke les images de l'avatar
-import java.awt.RenderingHints; // Gère les fichiers d'images
-import java.awt.image.BufferedImage; // Gère les exceptions liées aux fichiers
-import java.io.File; // Permet de lire les fichiers d'images
-import java.io.IOException;
+import item.ressources.Ressource;
+import java.awt.Graphics2D;
+import java.awt.Point; // Optimise le rendu graphique
+import java.awt.Rectangle;
+import java.awt.RenderingHints; // Stocke les images de l'avatar
+import java.awt.image.BufferedImage; // Gère les fichiers d'images
+import java.io.File; // Gère les exceptions liées aux fichiers
+import java.io.IOException; // Permet de lire les fichiers d'images
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import main.GamePanel;
-import main.KeyHandler; // Importation du panneau principal du jeu
-import main.Ui; // Gère les entrées clavier du joueur
-import tile.TileManager;
+import main.KeyHandler;
+import main.Ui; // Importation du panneau principal du jeu
+import tile.TileManager; // Gère les entrées clavier du joueur
 
 /**
  * La classe Avatar représente le personnage contrôlé par le joueur dans le jeu.
@@ -405,9 +404,9 @@ public final class Avatar extends Sprite {
         keyH.rightPressed = false;
     }
 
-    public void createRessource(Recette recette) {
+    public boolean createRessource(Recette recette) {
         if (recette == null) {
-            return;
+            return false;
         }
         if (recette.isPossible(Inventaire.getInvAvatar())) {
             Ressource ressource = (Ressource) SuperObjet.getSuperObjet(recette.getRessource().getName());
@@ -416,10 +415,77 @@ public final class Avatar extends Sprite {
                 Inventaire.removeFromAvatarInv(recette.getIngredients()[i],
                         recette.getIngredients()[i].getQuantity());
             }
+            return true;
         } else {
-            System.out.println("Recette impossible");
+            
+            return false;
         }
     }
 
+    public Ressource getRessourceFront(){
+        Ressource res = null;
+        int avatarX = (int) mapPoint.getX() / gp.TAILLE_BLOC;
+        int avatarY = (int) mapPoint.getY() / gp.TAILLE_BLOC;
+
+        int[][] directions = {
+                     {0, -1},
+            {-1, 0},  {0, 0}, {1, 0},
+                      {0, 1}
+        };
+        int checkX;
+        int checkY;
+        switch (direction){
+            case ("up") :
+            checkX = avatarX + directions[0][0];
+            checkY = avatarY + directions[0][1];
+            res = getRessourceAt(checkX, checkY);
+            if(res == null){
+                checkX = avatarX + directions[2][0];
+                checkY = avatarY + directions[2][1];
+                res = getRessourceAt(checkX, checkY);
+            }
+            break;
+
+            case ("down") :
+            checkX = avatarX + directions[4][0];
+            checkY = avatarY + directions[4][1];
+            res = getRessourceAt(checkX, checkY);
+            if(res == null){
+                checkX = avatarX + directions[2][0];
+                checkY = avatarY + directions[2][1];
+                res = getRessourceAt(checkX, checkY);
+            }
+            break;
+
+            case ("right") :
+            checkX = avatarX + directions[3][0];
+            checkY = avatarY + directions[3][1];
+            res = getRessourceAt(checkX, checkY);
+            if(res == null){
+                checkX = avatarX + directions[2][0];
+                checkY = avatarY + directions[2][1];
+                res = getRessourceAt(checkX, checkY);
+            }
+            break;
+
+            case ("left") :
+            checkX = avatarX + directions[1][0];
+            checkY = avatarY + directions[1][1];
+            res = getRessourceAt(checkX, checkY);
+            if(res == null){
+                checkX = avatarX + directions[2][0];
+                checkY = avatarY + directions[2][1];
+                res = getRessourceAt(checkX, checkY);
+            }
+            break;
+
+            default: 
+            break;
+
+
+            
+        }
+        return res;
+    }
 
 }

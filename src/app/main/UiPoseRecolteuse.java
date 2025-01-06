@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import java.awt.Point;
@@ -34,11 +35,8 @@ class UiPoseRecolteuse extends Ui {
 
         // Ajoute des lignes au panneau principal (chaque ligne contient IMG, Nom, SELL,
         // BUY)
-        if (closeRessources != null && act != null) {
-            for (int i = 0; i < closeRessources.size(); i++) {
-                posRecolteusePanel.add(createRow(closeRessources.get(i)));
-            }
-
+        if (act != null) {
+            posRecolteusePanel.add(createRow(gamePanel.avatar.getRessourceFront()));
         }
 
         // Configure le JScrollPane
@@ -52,6 +50,7 @@ class UiPoseRecolteuse extends Ui {
         exit.addActionListener(l -> {
             Ui.gameState = Ui.playState;
             this.setVisible(false);
+            rebuild = false;
         });
         exit.setAlignmentX(JButton.CENTER_ALIGNMENT); // Centre le bouton horizontalement
         mainPanel.add(exit);
@@ -66,10 +65,14 @@ class UiPoseRecolteuse extends Ui {
     public JPanel createRow(Ressource r) {
         JPanel row = new JPanel();
         row.setLayout(new BoxLayout(row, BoxLayout.X_AXIS));
-
-        JLabel ressourceName = new JLabel(r.getName() + "  ");
-        ImageIcon icon = new ImageIcon(r.getImage());
-        JLabel resourceImg = new JLabel(resizeIcon(icon, 30, 30));
+        JLabel ressourceName = new JLabel();
+        JLabel resourceImg = new JLabel();
+        if(r != null){
+            ressourceName = new JLabel(r.getName() + "  ");
+            ImageIcon icon = new ImageIcon(r.getImage());
+            resourceImg = new JLabel(resizeIcon(icon, 30, 30));
+        
+        
 
         // Bouton addButton
         JButton addButton = new JButton("Choose");
@@ -127,30 +130,39 @@ class UiPoseRecolteuse extends Ui {
                         }
                         break;
                 }
-                rebuild = true;
                 Ui.gameState = Ui.playState;
                 this.setVisible(false);
                 gamePanel.layeredPane.add(act.uiRecolteuse.getMainPanel(),JLayeredPane.PALETTE_LAYER);
                 }
             });
             row.add(addButton);
-        }else if(rebuild){
+            row.add(ressourceName);
+            row.add(resourceImg);
+        }
+        }
+        }
+        if(rebuild){
+            System.out.println("test");
                 JButton rebuildButton = new JButton("rebuild");
                 rebuildButton.addActionListener(k -> {
                     act.setRessource(r);
                     act.uiRecolteuse.updateInventory();
                     Ui.gameState = Ui.playState;
                     this.setVisible(false);
+                    rebuild =false;
                 });
                 row.add(rebuildButton);
-        }}else {
-            JLabel poseImpo = new JLabel("Pose Impossible");
-            poseImpo.setPreferredSize(new Dimension(80, 40));
-            row.add(poseImpo);
+                row.add(ressourceName);
+                row.add(resourceImg);
         }
+        if(r == null){
+            JLabel poseImpossible = new JLabel("Pose Impossible");
+            poseImpossible.setPreferredSize(new Dimension(80, 40));
+            JOptionPane.showMessageDialog(gamePanel, "Impossible poser la récolteuse", "Erreur", JOptionPane.ERROR_MESSAGE);
+            row.add(poseImpossible);
+
+            }
         // Ajouter les composants au sous-panel
-        row.add(ressourceName);
-        row.add(resourceImg);
         // Ajouter le sous-panel au panel principal
         return row;
     }
@@ -189,9 +201,15 @@ class UiPoseRecolteuse extends Ui {
         public void rebuildPoseRecolteuse() {
         JPanel posePanel = (JPanel) scrollPane.getViewport().getView();
         posePanel.removeAll();
-        closeRessources = gamePanel.avatar.getSurroundingRessources();
-        for (int i = 0; i < closeRessources.size(); i++) {
-            posePanel.add(createRow(closeRessources.get(i)));
+        closeRessources = new ArrayList<>();
+        closeRessources = act.getSurroundingRessources();
+        if(rebuild && closeRessources !=null){
+            for(int i = 0; i < closeRessources.size();i++){
+                posePanel.add(createRow(closeRessources.get(i)));
+            }
+        }else{
+            Ressource r = gamePanel.avatar.getRessourceFront();
+            posePanel.add(createRow(r));
         }
         posePanel.revalidate();
         posePanel.repaint();
