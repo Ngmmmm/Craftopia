@@ -12,7 +12,7 @@ import java.util.Random;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import main.GamePanel;
-import main.UiRecolteuse;
+import main.interfacegraphique.UiRecolteuse;
 
 public class Recolteuse extends Machine {
 
@@ -56,6 +56,7 @@ public class Recolteuse extends Machine {
         this.res = r;
     }
 
+    @Override
     public void createRessource() {
         int compteur = 0;
         for (SuperObjet item : this.stock.getInv()) {

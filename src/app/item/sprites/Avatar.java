@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import main.GamePanel;
 import main.KeyHandler;
-import main.Ui; // Importation du panneau principal du jeu
+import main.interfacegraphique.Ui;
 import tile.TileManager; // Gère les entrées clavier du joueur
 
 /**

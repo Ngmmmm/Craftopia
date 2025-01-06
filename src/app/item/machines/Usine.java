@@ -7,9 +7,10 @@ import item.marche.Marche.Produits;
 import item.recettes.Recette;
 import item.ressources.Ressource;
 import item.sprites.SuperObjet;
+import main.interfacegraphique.UiUsine;
+
 import java.io.File;
 import javax.imageio.ImageIO;
-import main.UiUsine;
 
 public class Usine extends Machine {
 

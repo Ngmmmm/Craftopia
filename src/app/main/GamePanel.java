@@ -2,6 +2,8 @@ package main;
 
 import item.sprites.Avatar;
 import item.sprites.SuperObjet;
+import main.interfacegraphique.Ui;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension; // Importation pour définir les dimensions des composants
@@ -49,7 +51,7 @@ public class GamePanel extends JPanel implements Runnable {
     public static ArrayList<SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
 
     static boolean editMarche = true;
-    static boolean editInv = true;
+    public static boolean editInv = true;
     private Sound sound;
 
     public JLayeredPane layeredPane; // Panneau en couches pour superposer les éléments du jeu
