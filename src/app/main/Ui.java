@@ -43,7 +43,6 @@ public class Ui {
     public static final int craftState = 3;
     public static final int inventaireState = 4;
     public static final int shopState = 5;
-    public static final int settingsState = 6;
     public static final int poseUsineState = 7;
     public static final int poseRecolteuseState = 8;
     public static final int craftAvatarState = 9;
@@ -53,7 +52,6 @@ public class Ui {
     public UiMenuBar menuPanel;
     public UiInventaire inventairePanel;
     public UiMarche marchePanel;
-    public UiSettings uiSettings;
     public static UiPoseUsine poseUsinePanel;
     public static UiPoseRecolteuse poseRecolteusePanel;
     public UiCraftAvatar craftAvatarPanel;
@@ -105,7 +103,6 @@ public class Ui {
         poseUsinePanel = new UiPoseUsine(gamePanel);
         poseRecolteusePanel = new UiPoseRecolteuse(gamePanel);
         this.craftAvatarPanel = new UiCraftAvatar(gamePanel);
-        this.uiSettings = new UiSettings(gamePanel);
     }
 
     protected void resizeButtonImages(JButton button, Icon icon) {
@@ -123,7 +120,6 @@ public class Ui {
         marchePanel.setVisible(false);
         poseUsinePanel.setVisible(false);
         craftAvatarPanel.setVisible(false);
-        uiSettings.setVisible(false);
     }
 
     private void drawTitleScreen(Graphics2D g2, double scaleX, double scaleY) {
@@ -234,8 +230,6 @@ public class Ui {
                 setPanelBounds(craftAvatarPanel.mainPanel, 500, 300);
                 craftAvatarPanel.setVisible(true);
                 break;
-            case settingsState:
-                uiSettings.setVisible(true);
         }
     }
 

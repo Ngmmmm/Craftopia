@@ -54,7 +54,6 @@ public class Recolteuse extends Machine {
         this.res = r;
     }
 
-    // TODO: appeler la méthode à l'endroit où on pose la machine
     public void createRessource() {
         int compteur = 0;
         for (SuperObjet item : this.stock.getInv()) {
