@@ -33,13 +33,17 @@ Voici les différentes fonctionnalités du jeu.
 
 - Pour lancer la récolteuse, une fois après avoir intéragi avec elle, il vous faudra cliquer sur le bouton Activate pour lancer la prodution de la ressource choisie.
 
--Pour modifier la Ressource d'une récolteuse polyvalente, intéragissez avec elle puis cliquer sur le bouton Reconfigure situé au dessus du menu de la récolteuse. Puis cliquez sur la nouvelle ressource que vous voulez associer. _Rappel :_ Une récolteuse ne peux récolter que seulement des ressources adjacentes a celle-ci.
+- Pour modifier la Ressource d'une récolteuse polyvalente, intéragissez avec elle puis cliquez sur le bouton Reconfigure situé au dessus du menu de la récolteuse. Puis cliquez sur la nouvelle ressource que vous voulez associer. _Rappel :_ Une récolteuse ne peux récolter que seulement des ressources adjacentes a celle-ci.
+
+- Pour récupérer les ressources présentes dans la récolteuse, intéragissez avec elle puis cliquez sur le bouton Add. L'intégralité de la quantité de la ressource choisie sera ajoutée à votre Inventaire.
 
 - Pour placer une usine, mettez vous prêt d'une case vide sans Objet autour ouvrez votre inventaire et cliquez sur le bouton Poser correspondant a l' usine de votre choix. Choisissez ensuite la recette que vous voulez associer a l'usine.
 
 - Pour utiliser une usine, une fois après avoir intéragi avec elle, il vous faudra cliquer sur le bouton build pour lancer la prodution de la ressource de la recette choisie. Tant que vous en avez les ressources, la recette sera effectuée autant de fois que vous aurez cliquez.
 
 -Pour modifier la recette d'une usine polyvalente, intéragissez avec elle puis cliquer sur le bouton Reconfigure situé au dessus du menu de l'usine. Puis cliquez sur la nouvelle recette que vous voulez associer.
+
+- Pour récupérer les ressources présentes dans dans l'usine, intéragissez avec elle puis cliquez sur le bouton Add. L'intégralité de la quantité de la ressource choisie sera ajoutée à votre Inventaire.
 
 - Pour ouvrir le craft Avatar, cliquez sur le bouton marteau situé à coté de celui de l'inventaire en haut de l'écran de jeu.
 
@@ -52,5 +56,4 @@ Voici les différentes fonctionnalités du jeu.
 
 
 ## Authors and acknowledgment
-HOUAT Ouahid;
-GREGOIRE-MELLIER Noa;
+- HOUAT Ouahid && GREGOIRE-MELLIER Noa
