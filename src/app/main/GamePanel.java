@@ -45,11 +45,12 @@ public class GamePanel extends JPanel implements Runnable {
     public SaveEtatMap saveEtatMap = new SaveEtatMap(this);
 
     public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
-    
+
     public static ArrayList<SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
 
     static boolean editMarche = true;
     static boolean editInv = true;
+    private Sound sound;
 
     public JLayeredPane layeredPane; // Panneau en couches pour superposer les éléments du jeu
 
@@ -59,6 +60,7 @@ public class GamePanel extends JPanel implements Runnable {
     public GamePanel(JLayeredPane layeredPane) {
         super(); // Appel du constructeur de la classe parente
         this.layeredPane = layeredPane; // Initialisation du panneau en couches
+        sound = new Sound();
         this.setPreferredSize(new Dimension(LARGEUR_ECRAN, HAUTEUR_ECRAN)); // Définir la taille du panneau
         this.setBackground(Color.BLACK); // Couleur de fond noire
         this.setDoubleBuffered(true); // Activer le double buffering pour un rendu fluide
@@ -74,7 +76,6 @@ public class GamePanel extends JPanel implements Runnable {
      */
     public void setupGame() {
         Ui.gameState = Ui.TITLE_STATE; // Définit l'état du jeu à l'écran de titre
-        Sound sound = new Sound();
         sound.loopMusic(1);
     }
 
@@ -132,5 +133,13 @@ public class GamePanel extends JPanel implements Runnable {
             points[i] = obj.get(i).pos;
         }
         return points;
+    }
+
+    public void toggleMusic() {
+        if (sound.isPlaying()) { 
+            sound.stopMusic();
+        } else {
+            sound.playMusic(1);
+        }
     }
 }
