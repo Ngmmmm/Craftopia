@@ -60,11 +60,15 @@ Craftopia est un jeu ou le but est de récolter le maximum de ressource afin de 
 
 
 ## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
 ![alt text](https://moule.informatique.u-paris.fr/houat/projet-poo-l2-ouahid-houat-noa-gregoire-mellier-craftopia/-/raw/main/img/ScreenJeu.png)
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+Avoir une version de Java 8 ou plus récente.
+Si vous avez un éditeur de code, ouvrez le dossier /projet-poo-l2-ouahid-houat-noa-gregoire-mellier-craftopia et lancez le jeu à l'aide du bouton run.
+Sinon, ouvrez votre terminal et déplacez vous jusqu'au dossier /projet-poo-l2-ouahid-houat-noa-gregoire-mellier-craftopia et effectuez dans l'ordre les deux commandes suivantes depuis celui-ci :
+
+- `javac -d out $(find . -name "*.java")`
+- `java src/app/main/Main.java`
 
 ## Usage
 Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
