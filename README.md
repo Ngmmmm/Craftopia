@@ -1,59 +1,85 @@
-> # Projet POO L2 Ouahid HOUAT Noa Gregoire Mellier Craftopia
+# Projet POO L2 - Craftopia
 
-## Name
-Craftopia.
+## Nom
+**Craftopia**
 
 ## Description
-Craftopia est un jeu ou le but est de récolter le maximum de ressource afin de les revendres et d'avoir un maximum d'argent.
+Craftopia est un jeu où le but est de récolter un maximum de ressources afin de les revendre et d'obtenir le plus d'argent possible.
 
-## Visuals
-![alt text](https://moule.informatique.u-paris.fr/houat/projet-poo-l2-ouahid-houat-noa-gregoire-mellier-craftopia/-/raw/main/img/ScreenJeu.png)
+## Visuels
+![Aperçu du jeu](https://moule.informatique.u-paris.fr/houat/projet-poo-l2-ouahid-houat-noa-gregoire-mellier-craftopia/-/raw/main/img/ScreenJeu.png)
 
 ## Installation
-Avoir une version de Java 8 ou plus récente.
-Si vous avez un éditeur de code, ouvrez le dossier /projet-poo-l2-ouahid-houat-noa-gregoire-mellier-craftopia et lancez le jeu à l'aide du bouton run.
-Sinon, ouvrez votre terminal et déplacez vous jusqu'au dossier /projet-poo-l2-ouahid-houat-noa-gregoire-mellier-craftopia et effectuez dans l'ordre les deux commandes suivantes depuis celui-ci :
+1. Assurez-vous d'avoir une version de **Java 8** ou plus récente installée sur votre machine.
+2. Si vous utilisez un éditeur de code :
+   - Ouvrez le dossier `/projet-poo-l2-ouahid-houat-noa-gregoire-mellier-craftopia`.
+   - Lancez le jeu en utilisant le bouton **Run**.
 
-- `javac -d out $(find . -name "*.java")`
-- `java src/app/main/Main.java`
+3. Si vous préférez utiliser le terminal :
+   - Déplacez-vous jusqu'au dossier `/projet-poo-l2-ouahid-houat-noa-gregoire-mellier-craftopia`.
+   - Exécutez les deux commandes suivantes dans l'ordre :
+     ```bash
+     javac -d out $(find . -name "*.java")
+     java src/app/main/Main.java
+     ```
 
-## Usage
-Voici les différentes fonctionnalités du jeu.
-- Pour lancer une nouvelle partie, cliquez sur le bouton NewGame après démarrage du jeu. Pour charger une partie sauvegardée, cliquez sur Continuer. 
+## Utilisation
+Voici les fonctionnalités principales du jeu :
 
-- Pour couper le son du jeu, cliquez sur le bouton Settings du menu et cliquez ensuite sur le bouton Mute Music, pour réactivé le son, cliquez a nouveau sur celui-ci.
+### Gestion de la partie
+- **Nouvelle Partie** : Cliquez sur le bouton **New Game** après le démarrage du jeu.  
+- **Charger une Partie** : Cliquez sur **Continuer** pour reprendre une partie sauvegardée.  
 
-- Pour déplacer l'avatar, utilisez les flêches directionnelles du clavier.
+### Paramètres
+- **Couper le son** : Cliquez sur **Settings** dans le menu, puis sur **Mute Music**. Cliquez à nouveau pour réactiver le son.  
 
-- Pour ouvrir l'inventaire cliquez sur le bouton en forme de sac en haut a gauche de l'écran de jeu.
+### Déplacements et interactions
+- **Déplacer l'avatar** : Utilisez les flèches directionnelles du clavier.  
+- **Ouvrir l'inventaire** : Cliquez sur l'icône en forme de sac située en haut à gauche de l'écran.  
+- **Interagir avec un objet ou une ressource** : Cliquez sur le bouton **Interagir** lorsque vous êtes à proximité.
 
-- Pour intéragir avec une Machine ou une ressource, cliquez sur le bouton intéragir lorsque vous êtes collé à celle-ci.
+### Utilisation des récolteuses
+- **Placer une récolteuse** :
+  - Approchez l'avatar de la ressource choisie.
+  - Ouvrez votre inventaire et cliquez sur le bouton **Poser** correspondant à la récolteuse souhaitée.
+- **Activer une récolteuse** :
+  - Interagissez avec elle, puis cliquez sur **Activate** pour démarrer la production.  
+- **Modifier la ressource récoltée** :
+  - Interagissez avec la récolteuse, cliquez sur **Reconfigure**, puis sélectionnez une nouvelle ressource.  
+  - _Note_ : Une récolteuse ne peut récolter que les ressources adjacentes.  
+- **Récupérer les ressources** : Interagissez avec la récolteuse et cliquez sur **Add** pour ajouter les ressources récoltées à votre inventaire.
 
-- Pour placer une récolteuse, collez l'avatar a la ressource choisie ouvrez votre inventaire et cliquez sur le bouton Poser correspondant a la récolteuse de votre choix.
+### Utilisation des usines
+- **Placer une usine** :
+  - Approchez-vous d’une case vide sans objets autour.
+  - Ouvrez votre inventaire et cliquez sur le bouton **Poser** correspondant à l'usine souhaitée.
+  - Choisissez ensuite la recette à associer à l'usine.
+- **Lancer une production** :
+  - Interagissez avec l'usine, puis cliquez sur **Build** pour produire la ressource associée.  
+  - La recette sera effectuée autant de fois que vous aurez cliqué, tant que vous disposez des ressources nécessaires.
+- **Modifier une recette** :
+  - Interagissez avec l'usine, cliquez sur **Reconfigure**, puis sélectionnez une nouvelle recette.  
+- **Récupérer les ressources** : Interagissez avec l'usine et cliquez sur **Add** pour ajouter les ressources produites à votre inventaire.
 
-- Pour lancer la récolteuse, une fois après avoir intéragi avec elle, il vous faudra cliquer sur le bouton Activate pour lancer la prodution de la ressource choisie.
+### Interaction avec le marché
+- **Trouver le marché** : Le marché apparaît toujours sur un côté de la carte. Explorez la map pour le localiser.
+- **Acheter des objets** :
+  - Interagissez avec le marché. Si vous disposez de l'argent nécessaire, le bouton **Buy** s’affichera en vert.
+  - Cliquez dessus, puis sélectionnez la quantité souhaitée.  
+- **Vendre des objets** :
+  - Interagissez avec le marché. Si vous possédez la ressource dans votre inventaire, le bouton **Sell** s’affichera en rouge.
+  - Cliquez dessus, puis sélectionnez la quantité à vendre.
 
-- Pour modifier la Ressource d'une récolteuse polyvalente, intéragissez avec elle puis cliquez sur le bouton Reconfigure situé au dessus du menu de la récolteuse. Puis cliquez sur la nouvelle ressource que vous voulez associer. _Rappel :_ Une récolteuse ne peux récolter que seulement des ressources adjacentes a celle-ci.
+### Fabrication (Crafting)
+- **Ouvrir le menu de crafting** : Cliquez sur l'icône en forme de marteau située à côté de l'inventaire.  
+- **Créer un objet** : Sélectionnez une recette dans le menu de crafting. Si vous avez les ressources nécessaires, l'objet sera produit.  
 
-- Pour récupérer les ressources présentes dans la récolteuse, intéragissez avec elle puis cliquez sur le bouton Add. L'intégralité de la quantité de la ressource choisie sera ajoutée à votre Inventaire.
+### Navigation et sauvegarde
+- **Retour à l'accueil** : Cliquez sur **Exit** en haut au centre de l'écran. Vous serez invité à sauvegarder votre progression.  
+- **Quitter le jeu** :
+  - Cliquez sur **Exit** en haut au centre de l'écran, puis à nouveau sur **Exit** dans le menu principal. Votre partie sera sauvegardée.  
+  - **Attention** : Si vous fermez le jeu directement sans passer par ce menu, votre partie ne sera pas sauvegardée.
 
-- Pour placer une usine, mettez vous prêt d'une case vide sans Objet autour ouvrez votre inventaire et cliquez sur le bouton Poser correspondant a l' usine de votre choix. Choisissez ensuite la recette que vous voulez associer a l'usine.
-
-- Pour utiliser une usine, une fois après avoir intéragi avec elle, il vous faudra cliquer sur le bouton build pour lancer la prodution de la ressource de la recette choisie. Tant que vous en avez les ressources, la recette sera effectuée autant de fois que vous aurez cliquez.
-
--Pour modifier la recette d'une usine polyvalente, intéragissez avec elle puis cliquer sur le bouton Reconfigure situé au dessus du menu de l'usine. Puis cliquez sur la nouvelle recette que vous voulez associer.
-
-- Pour récupérer les ressources présentes dans dans l'usine, intéragissez avec elle puis cliquez sur le bouton Add. L'intégralité de la quantité de la ressource choisie sera ajoutée à votre Inventaire.
-
-- Pour ouvrir le craft Avatar, cliquez sur le bouton marteau situé à coté de celui de l'inventaire en haut de l'écran de jeu.
-
-- Pour utiliser le craft Avatar, cliquez sur ce même bouton puis cliquez sur la recette que vous voulez produire, si vous avez les ressources nécessaires, celle-ci sera produite.
-
-
-- Pour Revenir a l'accueil, cliquez sur le bouton Exit en haut au centre de l'écran de jeu qui vous demandera de sauvegardez si vous le souhaitez.
-
-- Pour quitter le jeu, cliquez sur le bouton Exit en haut au centre de l'écran de jeu, puis cliquez a nouveau sur le bouton exit du Menu de démarrage. Dans ce cas, votre partie en cours sera sauvegardée. **ATTENTION** si vous quittez le jeu en le fermant sans passer par la voie décrite précedemment, votre partie ne sera pas sauvegardée.
-
-
-## Authors and acknowledgment
-- HOUAT Ouahid && GREGOIRE-MELLIER Noa
+## Auteurs et remerciements
+- **Ouahid HOUAT**  
+- **Noa GREGOIRE-MELLIER**
