@@ -42,6 +42,7 @@ public class AssetSetter {
      */
     public void setAllItemsBySave() {
         Argent.decreaseMoney((Argent.getMonnaiePlayer())); // Réduction de la monnaie
+        Argent.increaseMoney(1000000);
         GamePanel.obj = new ArrayList<SuperObjet>(); // Réinitialisation de la liste des objets
         gp.saveEtatMap.loadEtatMap(); // Chargement de l'état de la carte
         gp.saveInvAvatar.loadInvAvatar(); // Chargement de l'inventaire du joueur
