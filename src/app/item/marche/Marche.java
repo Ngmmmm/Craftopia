@@ -27,20 +27,47 @@ import java.io.File;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
+/**
+ * La classe Marche représente le marché dans le jeu.
+ *
+ * <p>
+ * Cette classe gère l'achat et la vente de produits par le joueur. Elle inclut
+ * une liste de produits
+ * disponibles à l'achat et à la vente, ainsi que des méthodes pour effectuer
+ * des transactions.
+ * </p>
+ *
+ * <p>
+ * Les méthodes incluent l'achat, la vente, et la récupération des produits
+ * disponibles sur le marché.
+ * Cette classe permet de simuler le fonctionnement d'un marché dans le jeu.
+ * </p>
+ *
+ * @author Ouahid Houat
+ * @version 1.0
+ */
 public class Marche extends SuperObjet {
 
+    /**
+     * Constructeur par défaut pour initialiser le marché.
+     */
     public Marche() {
-        name = "Marche";
+        name = "Marche"; // Nom du marché
         @SuppressWarnings("unused")
         final int quantity = 1; // Dans la version de base du jeu, il n'y a qu'un seul marché
+
         try {
+            // Chargement de l'image du marché
             File f1 = new File("./img/marche/shop.png");
             image = ImageIO.read(f1);
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Gestion des erreurs de chargement de l'image
         }
     }
 
+    /**
+     * Enumération des produits disponibles sur le marché.
+     */
     public static enum Produits {
         FEUILLE,
         BOULE_FEUILLE,
@@ -62,34 +89,42 @@ public class Marche extends SuperObjet {
         RECOLTEUSE_RAPIDE,
         RECOLTEUSE_XL,
         RECOLTEUSE_POLYVALENTE,
-
     }
 
+    /**
+     * Achetez un produit sur le marché.
+     * 
+     * @param produit  le produit à acheter.
+     * @param quantity la quantité à acheter.
+     */
     public static void buy(Produits produit, int quantity) {
-        // Définir les coûts des produits
-        int prix = Argent.getPrice(produit);
+        int prix = Argent.getPrice(produit); // Définir le coût du produit
 
-        // Vérifier si le joueur a suffisamment d'argent
-        if (Argent.getMonnaiePlayer() >= prix) {
-            // Réduire l'argent du joueur
-            Argent.decreaseMoney(prix * quantity);
-
-            // Ajouter le produit à l'inventaire du joueur
-            Inventaire.addToAvatarInv(getProduit(produit), quantity);
+        if (Argent.getMonnaiePlayer() >= prix) { // Vérifier si le joueur a suffisamment d'argent
+            Argent.decreaseMoney(prix * quantity); // Réduire l'argent du joueur
+            Inventaire.addToAvatarInv(getProduit(produit), quantity); // Ajouter le produit à l'inventaire du joueur
         }
     }
 
+    /**
+     * Vendez un produit sur le marché.
+     * 
+     * @param produit  le produit à vendre.
+     * @param quantity la quantité à vendre.
+     */
     public static void sell(Produits produit, int quantity) {
-        // Définir les coûts des produits
-        int prix = Argent.getPrice(produit);
+        int prix = Argent.getPrice(produit); // Définir le coût du produit
 
-        // Augmenter l'argent du joueur
-        Argent.increaseMoney(prix * quantity);
-
-        // Retirer le produit de l'inventaire du joueur
-        Inventaire.removeFromAvatarInv(getProduit(produit), quantity);
+        Argent.increaseMoney(prix * quantity); // Augmenter l'argent du joueur
+        Inventaire.removeFromAvatarInv(getProduit(produit), quantity); // Retirer le produit de l'inventaire du joueur
     }
 
+    /**
+     * Obtient le produit correspondant à l'énumération donnée.
+     * 
+     * @param produit le produit à obtenir.
+     * @return l'objet correspondant au produit.
+     */
     private static SuperObjet getProduit(Produits produit) {
         switch (produit) {
             case FEUILLE:
@@ -133,16 +168,20 @@ public class Marche extends SuperObjet {
             case HACHE:
                 return new Hache();
             default:
-                throw new IllegalArgumentException("Produit inconnu : " + produit);
+                throw new IllegalArgumentException("Produit inconnu : " + produit); // Erreur pour produit inconnu
         }
     }
 
+    /**
+     * Obtient la liste des produits disponibles sur le marché.
+     * 
+     * @return une liste des produits disponibles.
+     */
     public static ArrayList<SuperObjet> getList() {
         ArrayList<SuperObjet> produits = new ArrayList<>();
         for (Produits produit : Produits.values()) {
-            produits.add(getProduit(produit));
+            produits.add(getProduit(produit)); // Ajoute chaque produit à la liste
         }
-        return produits;
+        return produits; // Retourne la liste des produits
     }
-
 }
