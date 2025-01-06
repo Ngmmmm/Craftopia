@@ -2,14 +2,42 @@ package item.bag;
 
 import item.marche.Marche.Produits;
 
+/**
+ * La classe Argent gère la monnaie du joueur dans le jeu.
+ *
+ * <p>
+ * Cette classe est utilisée pour obtenir la quantité de monnaie du joueur, déterminer les prix des produits,
+ * et gérer les augmentations et diminutions de la monnaie. Elle inclut des méthodes statiques pour interagir 
+ * avec la monnaie du joueur et définir les prix des différents produits disponibles dans le jeu.
+ * </p>
+ *
+ * <p>
+ * Les produits sont classés avec différents prix en fonction de leur rareté et de leur utilité. Les méthodes 
+ * permettent d'ajuster la monnaie du joueur en fonction des transactions effectuées.
+ * </p>
+ *
+ * @author Noa Gregoire-Mellier
+ * @version 1.0
+ */
 public class Argent {
 
     private static int monnaiePlayer = 0;
 
+    /**
+     * Obtient la quantité actuelle de monnaie du joueur.
+     * 
+     * @return la quantité de monnaie du joueur.
+     */
     public static int getMonnaiePlayer() {
         return monnaiePlayer;
     }
 
+    /**
+     * Obtient le prix d'un produit donné.
+     * 
+     * @param produit le produit dont le prix est demandé.
+     * @return le prix du produit.
+     */
     public static int getPrice(Produits produit) {
         switch (produit) {
             case FEUILLE:
@@ -62,12 +90,21 @@ public class Argent {
         }
     }
 
+    /**
+     * Augmente la monnaie du joueur d'une valeur donnée.
+     * 
+     * @param val la valeur de l'augmentation.
+     */
     public static void increaseMoney(int val) {
         monnaiePlayer += Math.abs(val);
     }
 
+    /**
+     * Diminue la monnaie du joueur d'une valeur donnée.
+     * 
+     * @param val la valeur de la diminution.
+     */
     public static void decreaseMoney(int val) {
         monnaiePlayer -= Math.abs(val);
     }
-
 }

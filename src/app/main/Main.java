@@ -85,7 +85,6 @@ public class Main extends JFrame { // Définition de la classe principale qui é
             public void componentResized(ComponentEvent e) {
                 int width = getWidth();
                 int height = getHeight();
-
                 ecranDuJeu.setBounds(0, 0, width, height);
 
             }

@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import main.GamePanel;
+import java.awt.Point;
 
 /**
  * La classe TileManager gère les blocs du jeu, y compris leur chargement,
@@ -26,7 +27,7 @@ public class TileManager {
     GamePanel gp; // Référence au panneau de jeu principal
     public Tile[] tile; // Tableau contenant les différents blocs
     public int[][] mapTileNum; // Tableau 2D représentant la carte des blocs
-    public Point spawnPoint = new Point();
+    public static Point spawnPoint = new Point();
     /**
      * Constructeur de la classe TileManager.
      * Initialise le tableau des blocs et charge la disposition des blocs depuis
@@ -57,34 +58,31 @@ public class TileManager {
         try {
             tile[0] = new Tile();
             tile[0].image = ImageIO.read(new File("./img/tiles/grass.png"));
+            tile[0].isGrass = true;
+            
 
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(new File("./img/tiles/water.png"));
             tile[1].collision = true; // Bloque les sprites
-            tile[1].isOccupied = true; // Empêche de pouvoir poser un objet sur le bloc
+             // Empêche de pouvoir poser un objet sur le bloc
 
             tile[2] = new Tile();
             tile[2].image = ImageIO.read(new File("./img/tiles/brickwall.png"));
             tile[2].collision = true;
-            tile[2].isOccupied = true; // Empêche de pouvoir poser un objet sur le bloc
+            ; // Empêche de pouvoir poser un objet sur le bloc
 
             tile[3] = new Tile();
             tile[3].image = ImageIO.read(new File("./img/tiles/Cloture.png"));
             tile[3].collision = true;
-            tile[3].isOccupied = true; // Empêche de pouvoir poser un objet sur le bloc
+             // Empêche de pouvoir poser un objet sur le bloc
 
             tile[4] = new Tile();
             tile[4].image = ImageIO.read(new File("./img/tiles/tree.png"));
             tile[4].collision = true;
-            tile[4].isOccupied = true; // Empêche de pouvoir poser un objet sur le bloc
+             // Empêche de pouvoir poser un objet sur le bloc
 
             tile[5] = new Tile();
-            tile[5].image = ImageIO.read(new File("./img/tiles/grass.png"));
-
-            // Chargement des blocs supplémentaires
-            // tile[5] = new Tile();
-            // tile[5].image = ImageIO.read(new File("./img//.png"));
-            // tile[5].collision = true;
+            tile[5].image = ImageIO.read(new File("./img/tiles/spawnPoint.png"));
 
             tile[6] = new Tile();
             tile[6].image = ImageIO.read(new File("./img/tiles/ClotureGaucheVerticale.png"));
@@ -148,8 +146,8 @@ public class TileManager {
                     String[] numbers = line.split(" "); // Découpe la ligne en nombres
                     int num = Integer.parseInt(numbers[col]); // Convertit en entier
                     if(num == 5){
-                        spawnPoint.setX(col * gp.TAILLE_BLOC);
-                        spawnPoint.setY(ligne * gp.TAILLE_BLOC);
+                        spawnPoint.x = (col * GamePanel.TAILLE_BLOC);
+                        spawnPoint.y =(ligne * GamePanel.TAILLE_BLOC);
                     }
                     mapTileNum[col][ligne] = num; // Affecte à la carte
                     col++;
@@ -183,20 +181,20 @@ public class TileManager {
             int tileNum = mapTileNum[mapCol][mapLigne];
 
             // Coordonnées de la bloc sur la carte
-            int mapX = mapCol * gp.TAILLE_BLOC;
-            int mapY = mapLigne * gp.TAILLE_BLOC;
+            int mapX = mapCol * GamePanel.TAILLE_BLOC;
+            int mapY = mapLigne * GamePanel.TAILLE_BLOC;
 
             // Coordonnées de la bloc à l'écran
             int screenX = mapX - gp.avatar.mapPoint.x + gp.avatar.screenX;
             int screenY = mapY - gp.avatar.mapPoint.y + gp.avatar.screenY;
 
             // Vérifie si les coordonnées sont dans la zone visible
-            if (mapX + gp.TAILLE_BLOC > gp.avatar.mapPoint.x - gp.avatar.screenX
-                    && mapX - gp.TAILLE_BLOC < gp.avatar.mapPoint.x + gp.avatar.screenX
-                    && mapY + gp.TAILLE_BLOC > gp.avatar.mapPoint.y - gp.avatar.screenY
-                    && mapY - gp.TAILLE_BLOC < gp.avatar.mapPoint.y + gp.avatar.screenY) {
+            if (mapX + GamePanel.TAILLE_BLOC > gp.avatar.mapPoint.x - gp.avatar.screenX
+                    && mapX - GamePanel.TAILLE_BLOC < gp.avatar.mapPoint.x + gp.avatar.screenX
+                    && mapY + GamePanel.TAILLE_BLOC > gp.avatar.mapPoint.y - gp.avatar.screenY
+                    && mapY - GamePanel.TAILLE_BLOC < gp.avatar.mapPoint.y + gp.avatar.screenY) {
                 //+1 pour résoudre un bug due a l'arrondi double/int
-                g2.drawImage(tile[tileNum].image,(int)(screenX*scaleX), (int)(screenY*scaleY), (int)(gp.TAILLE_BLOC*scaleX)+1, (int)(gp.TAILLE_BLOC*scaleY)+1, null);
+                g2.drawImage(tile[tileNum].image,(int)(screenX*scaleX), (int)(screenY*scaleY), (int)(GamePanel.TAILLE_BLOC*scaleX)+1, (int)(GamePanel.TAILLE_BLOC*scaleY)+1, null);
             
             }
 
@@ -207,6 +205,10 @@ public class TileManager {
                 mapLigne++;
             }
         }
+    }
+
+    public Tile getTile(int x, int y) {
+        return tile[mapTileNum[x/GamePanel.TAILLE_BLOC][y/GamePanel.TAILLE_BLOC]];
     }
 
 

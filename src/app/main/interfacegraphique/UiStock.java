@@ -1,9 +1,13 @@
-package main;
+package main.interfacegraphique;
 
+import item.bag.InventaireMachine;
+import item.machines.Machine;
+import item.machines.Recolteuse;
+import item.machines.Usine;
+import item.ressources.Ressource;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -11,10 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
-import item.bag.InventaireMachine;
-import item.machines.Machine;
-import item.ressources.Ressource;
 
 public class UiStock {
     private Machine machine;
@@ -73,8 +73,13 @@ public class UiStock {
             addButton.setContentAreaFilled(false);
 
             addButton.addActionListener(l -> {
-                machine.backToPlayer(ressource);
-                rebuildInventoryPanel();
+                machine.backToPlayer(ressource, ressource.getQuantity());
+                if (machine instanceof Usine) {
+                    ((Usine) machine).uiUsine.updateInventory();
+                }
+                if (machine instanceof Recolteuse) {
+                    ((Recolteuse) machine).uiRecolteuse.updateInventory();
+                }
             });
 
             // Ajouter le bouton dans un panel intermédiaire pour alignement
@@ -110,8 +115,12 @@ public class UiStock {
         mainPanel.setBounds(x, y, width, height);
     }
 
-    // TODO: Implementer cette méthode
-    public void rebuildInventoryPanel() {
-       
+    public void rebuildStockPanel() {
+        JPanel invPanel = (JPanel) stockPanel.getViewport().getView();
+        invPanel.removeAll();
+        invPanel.setLayout(new BoxLayout(invPanel, BoxLayout.Y_AXIS));
+        invPanel.add(createLigneRecette());
+        invPanel.revalidate();
+        invPanel.repaint();
     }
 }

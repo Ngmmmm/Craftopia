@@ -4,6 +4,7 @@
 # Ignorer les fichiers compilés Java
 *.class
 
+saveGame/
 # Ignorer les dossiers de compilation et de build
 bin/
 target/
@@ -14,5 +15,3 @@ target/
 # Ignorer les fichiers système
 .DS_Store
 Thumbs.db
-
-.codegpt

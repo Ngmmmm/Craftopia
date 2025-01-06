@@ -1,26 +1,48 @@
 package main;
 
-import item.bag.Argent;
 import item.sprites.Avatar;
 import item.sprites.SuperObjet;
-import java.awt.BorderLayout; // Importation pour définir les dimensions des composants
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics; // Importation pour dessiner des composants
-import java.util.ArrayList; // Importation de JPanel pour créer le panneau de jeu
+import main.interfacegraphique.Ui;
 
-import javax.swing.JLayeredPane;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension; // Importation pour définir les dimensions des composants
+import java.awt.Graphics;
+import java.awt.Point;
+import java.util.ArrayList; // Importation pour dessiner des composants
+import javax.swing.JLayeredPane; // Importation de JPanel pour créer le panneau de jeu
 import javax.swing.JPanel;
 import save.SaveEtatMap;
 import save.SaveInvAvatar;
 import tile.TileManager;
 
-// La classe GamePanel hérite de JPanel et implémente Runnable pour le fonctionnement via un thread
+/**
+ * La classe GamePanel hérite de JPanel et implémente Runnable pour le
+ * fonctionnement via un thread.
+ *
+ * <p>
+ * Cette classe gère le panneau de jeu principal, y compris le dessin des
+ * éléments,
+ * la gestion des entrées du clavier, la gestion des collisions, et l'interface
+ * utilisateur.
+ * Elle est responsable du cycle de vie du jeu et de la mise à jour continue de
+ * l'état du jeu.
+ * </p>
+ *
+ * <p>
+ * Les méthodes incluent la configuration initiale du jeu, le démarrage du
+ * thread du jeu,
+ * la mise à jour de l'état du jeu, et le dessin des éléments à l'écran.
+ * </p>
+ *
+ * @version 1.0
+ * @author Ouahid Houat
+ */
 public class GamePanel extends JPanel implements Runnable {
 
-    final int TAILLE_BLOC_ORIGINAL = 16; // Taille de base d'un bloc en pixels
-    final int FACTEUR_ECHELLE = 3; // Facteur d'agrandissement appliqué à chaque bloc
-    public final int TAILLE_BLOC = TAILLE_BLOC_ORIGINAL * FACTEUR_ECHELLE; // Taille finale d'un bloc (48px)
+    final static int TAILLE_BLOC_ORIGINAL = 16; // Taille de base d'un bloc en pixels
+    final static int FACTEUR_ECHELLE = 3; // Facteur d'agrandissement appliqué à chaque bloc
+    public static final int TAILLE_BLOC = TAILLE_BLOC_ORIGINAL * FACTEUR_ECHELLE; // Taille finale d'un bloc (48px)
     public final int NB_COLONNE_MAX = 16; // Nombre maximal de colonnes visibles à l'écran
     public final int NB_LIGNE_MAX = 12; // Nombre maximal de lignes visibles à l'écran
     public final int LARGEUR_ECRAN = TAILLE_BLOC * NB_COLONNE_MAX; // Largeur totale de l'écran
@@ -46,10 +68,12 @@ public class GamePanel extends JPanel implements Runnable {
     public SaveEtatMap saveEtatMap = new SaveEtatMap(this);
 
     public Avatar avatar = new Avatar(this, keyH); // L'avatar contrôlé par le joueur
+
     public static ArrayList<SuperObjet> obj = new ArrayList<>(); // Tableau pour stocker les objets à afficher
 
     static boolean editMarche = true;
-    static boolean editInv = true;
+    public static boolean editInv = true;
+    private Sound sound;
 
     public JLayeredPane layeredPane; // Panneau en couches pour superposer les éléments du jeu
 
@@ -59,6 +83,7 @@ public class GamePanel extends JPanel implements Runnable {
     public GamePanel(JLayeredPane layeredPane) {
         super(); // Appel du constructeur de la classe parente
         this.layeredPane = layeredPane; // Initialisation du panneau en couches
+        sound = new Sound();
         this.setPreferredSize(new Dimension(LARGEUR_ECRAN, HAUTEUR_ECRAN)); // Définir la taille du panneau
         this.setBackground(Color.BLACK); // Couleur de fond noire
         this.setDoubleBuffered(true); // Activer le double buffering pour un rendu fluide
@@ -66,16 +91,15 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true); // Permettre au panneau de capturer les événements clavier
         this.setLayout(new BorderLayout());
 
-        ui.initializeComponents(); // Initialize components after GamePanel is fully configured
+        ui.initializeComponents(); // Initialise les composants après la configuration complète de GamePanel
     }
 
     /**
      * Configure les paramètres initiaux du jeu.
      */
     public void setupGame() {
-        aSetter.setAllItems();
         Ui.gameState = Ui.TITLE_STATE; // Définit l'état du jeu à l'écran de titre
-        
+        sound.loopMusic(1);
     }
 
     /**
@@ -126,5 +150,27 @@ public class GamePanel extends JPanel implements Runnable {
         ui.draw(g);
     }
 
-    
+    /**
+     * Obtient tous les points des objets présents dans le jeu.
+     * 
+     * @return un tableau de points correspondant aux positions des objets.
+     */
+    public Point[] getAllPoints() {
+        Point[] points = new Point[obj.size()];
+        for (int i = 0; i < obj.size(); i++) {
+            points[i] = obj.get(i).pos;
+        }
+        return points;
+    }
+
+    /**
+     * Active ou désactive la musique.
+     */
+    public void toggleMusic() {
+        if (sound.isPlaying()) {
+            sound.stopMusic();
+        } else {
+            sound.playMusic(1);
+        }
+    }
 }

@@ -5,15 +5,34 @@ import item.ressources.Fer;
 import item.ressources.Hache;
 import item.ressources.Ressource;
 
+/**
+ * La classe RecetteHache représente la recette pour créer une hache dans le jeu.
+ *
+ * <p>
+ * Cette classe hérite de la classe abstraite Recette et initialise une recette spécifique 
+ * pour créer une hache. Elle définit les ingrédients nécessaires ainsi que la ressource résultante.
+ * </p>
+ *
+ * @version 1.0
+ * @author Ouahid Houat
+ */
 public class RecetteHache extends Recette {
 
+    /**
+     * Constructeur par défaut pour initialiser la recette d'une hache.
+     */
     public RecetteHache() {
-        this.nom = "Hache";
-        this.ingredients = new Ressource[2];
-        this.ingredients[0] = new Bois();
-        this.ingredients[0].setQuantity(2);
-        this.ingredients[1] = new Fer();
-        this.ingredients[1].setQuantity(3);
-        this.ress = new Hache();
+        this.nom = "Hache"; // Nom de la recette
+
+        // Initialisation des ingrédients nécessaires pour la recette
+        this.ingredients = new Ressource[2]; // Tableau de deux ingrédients
+        this.ingredients[0] = new Bois(); // Premier ingrédient : Bois
+        this.ingredients[0].setQuantity(2); // Quantité de Bois nécessaire : 2
+        this.ingredients[1] = new Fer(); // Deuxième ingrédient : Fer
+        this.ingredients[1].setQuantity(3); // Quantité de Fer nécessaire : 3
+
+        // Initialisation de la ressource résultante de la recette
+        this.ress = new Hache(); // Ressource résultante : Hache
+        this.ress.setQuantity(1); // Quantité de la hache créée : 1
     }
 }
